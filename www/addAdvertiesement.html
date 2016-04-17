@@ -11,7 +11,7 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -19,9 +19,9 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script src="js/app.js"></script>
+    <script src="js/addAdvertiesement.js"></script>
   </head>
-  <body ng-app="newsApp" ng-controller ="newsController">
+  <body ng-app="AddAdver" ng-controller ="addAdvertiesement">
 
     <ion-pane>
       <ion-header-bar class="bar-dark ">
@@ -41,9 +41,9 @@
   </label>
   <label class="item item-input item-stacked-label">
     <span class="input-label">Title</span>
-    <input type="text" placeholder="Enter the title">
+    <input type="text" ng-model="user.title" placeholder="Enter the title">
   </label>
-  <label class="item item-input item-stacked-label">
+  <!--<label class="item item-input item-stacked-label">
     <span class="input-label">Image</span>
     <input type="text" placeholder="Upload your image here">
   </label>
@@ -54,13 +54,13 @@
   <label class="item item-input item-stacked-label">
     <span class="input-label">Contact No</span>
     <input type="text" placeholder="Enter the contact no">
-  </label>
+  </label>-->
     <label class="item item-input item-stacked-label">
     <span class="input-label">Email Address</span>
-    <input type="text" placeholder="Enter the Email address">
+    <input type="text" ng-model="user.email" placeholder="Enter the Email address">
   </label>  
 </div>
-      <center><button class="button button-positive" value="submit">
+      <center><button class="button button-positive" data-ng-click="insertData()" value="submit">
   Submit
   </button></center>
       </ion-content>
