@@ -11,7 +11,7 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -19,30 +19,35 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script src="js/addAdvertiesement.js"></script>
+    <script src="js/app.js"></script>
   </head>
-  <body ng-app="AddAdver" ng-controller ="addAdvertiesement">
-
+  <body ng-app="newsApp" ng-controller ="professioncontroller">
+   <ion-header-bar class="bar-dark ">
+        <h1 class="title">Post Advertiesement</h1>
+    </ion-header-bar> 
     <ion-pane>
-      <ion-header-bar class="bar-dark ">
-        <h3 class="title">Post Your Advertiesement</h3>
-      </ion-header-bar><br>
-        <ion-content>
-        <div class="list">
-    <label class="item item-input item-select">
-    <div class="input-label">
-      Addvertiesement Type
-    </div>
-    <select>
-      <option selected>Promotion</option>
-      <option>Event</option>
-      <option>Murchant</option>
-    </select>
-  </label>
+    <ion-content>
+     <div class="list card">
+ <br>
+ <div class="item item-divider">
+    Advertiesement Details
+  </div>
   <label class="item item-input item-stacked-label">
     <span class="input-label">Title</span>
     <input type="text" ng-model="user.title" placeholder="Enter the title">
   </label>
+
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Select Type
+    </div>
+    <select>
+      <option selected>Promote</option>
+      <option>Merchent</option>
+      <option>Event</option>
+    </select>
+  </label>
+
   <label class="item item-input item-stacked-label">
     <span class="input-label">Image</span>
     <input type="text" ng-model="user.image" placeholder="Upload your image here">
