@@ -83,6 +83,53 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
+  /* 
+    The IonicUIRouter.js UI-Router Modification is being used for this route.
+    To navigate to this route, do NOT use a URL. Instead use one of the following:
+      1) Using the ui-sref HTML attribute:
+        ui-sref='tabsController.fullShowAdvertiesement'
+      2) Using $state.go programatically:
+        $state.go('tabsController.fullShowAdvertiesement');
+    This allows your app to figure out which Tab to open this page in on the fly.
+    If you're setting a Tabs default page or modifying the .otherwise for your app and
+    must use a URL, use one of the following:
+      /page1/tab1/fullShowAdvertiesement
+      /page1/tab5/fullShowAdvertiesement
+  */
+  .state('tabsController.fullShowAdvertiesement', {
+    url: '/fullShowAdvertiesement',
+    views: {
+      'tab1': {
+        templateUrl: 'templates/fullShowAdvertiesement.html',
+        controller: 'fullShowAdvertiesementCtrl'
+      },
+      'tab5': {
+        templateUrl: 'templates/fullShowAdvertiesement.html',
+        controller: 'fullShowAdvertiesementCtrl'
+      }
+    }
+  })
+
+  .state('tabsController.fullEditAdvertiesement', {
+    url: '/fullEditAdvertiesement',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/fullEditAdvertiesement.html',
+        controller: 'fullEditAdvertiesementCtrl'
+      }
+    }
+  })
+
+  .state('tabsController.editButtonPage', {
+    url: '/editButtonPage',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/editButtonPage.html',
+        controller: 'editButtonPageCtrl'
+      }
+    }
+  })
+
 $urlRouterProvider.otherwise('/page1/tab1/ShowAddvertiesement')
 
   

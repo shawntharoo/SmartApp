@@ -19,4 +19,16 @@ angular.module('app.controllers', [])
 .controller('buissnessCardCtrl', function($scope) {
 
 })
+   
+.controller('fullShowAdvertiesementCtrl', function($scope) {
+
+})
+   
+.controller('fullEditAdvertiesementCtrl', function($scope) {
+
+})
+ 
+.controller('editButtonPageCtrl', function($scope) {
+
+})
  
