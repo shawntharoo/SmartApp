@@ -1,0 +1,46 @@
+<ion-view title="Create an event" id="createNewEvent" style="background-color:#EEEEF1;">
+    <ion-content padding="true" class="has-header">
+
+    	<div class="list" style="margin:2px;">
+    <label class="item item-input" style="margin:0; height:100px; ">
+        <input type="text" placeholder="Event Title" style="font-size:26px; text-align:center; " >
+        <a class="button button-icon icon ion-camera" style="margin-right:10px;"></a>
+      </label>
+      <label class="item item-input">
+         <span class="input-label">Date</span>
+         <input type="date">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Time</span>
+        <input type="text">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Location</span>
+        <input type="text">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Co hosts</span>
+        <input type="text">
+      </label>
+      <label class="item item-input">
+        <span class="input-label" >Description</span>
+        <textarea rows="7"></textarea>
+      </label>
+      <ion-toggle ng-model="airplaneMode" toggle-class="toggle-calm">Make publicly visible</ion-toggle>
+      <label class="item " style="background-color:#EEEEEE; padding:5px;" >
+        
+      </label>
+       <label class="item item-input">
+         <span class="input-label">Invite Friends</span>
+         <input type="text">
+      </label>
+      <ion-toggle ng-model="airplaneMode" toggle-class="toggle-calm">Allow guests to invite friends</ion-toggle>
+
+      <button class="button button-block button-positive">
+       Create
+      </button>
+      </div>
+
+
+</ion-content>
+</ion-view>

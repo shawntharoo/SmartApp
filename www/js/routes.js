@@ -8,22 +8,194 @@ angular.module('app.routes', ['ionicUIRouter'])
   // Each state's controller can be found in controllers.js
   $stateProvider
     
-  
+ .state('tabsController.mainprofile', {
+    url: '/mainprofile',
+    views: {
+      'tab1': {
+        templateUrl: 'templates/mainprofile.html',
+        controller: 'mainprofileCtrl'
+      }
+    }
+  }) 
+  //yik event start
+    .state('tabsController.events', {
+    url: '/events',
+    views: {
+      'tab5': {
+    templateUrl: 'templates/events.html',
+    controller: 'eventsCtrl'
+        }
+       }
+  })
+  //yik event end
 
-      /* 
+      .state('tabsController.orderPizza', {
+    url: '/order',
+    views: {
+      'tab3': {
+        templateUrl: 'templates/orderPizza.html',
+        controller: 'orderPizzaCtrl'
+      }
+    }
+  })
+         
+
+  /* 
     The IonicUIRouter.js UI-Router Modification is being used for this route.
     To navigate to this route, do NOT use a URL. Instead use one of the following:
       1) Using the ui-sref HTML attribute:
-        ui-sref='tabsController.showAdvertiesement'
+        ui-sref='tabsController.cart'
       2) Using $state.go programatically:
-        $state.go('tabsController.showAdvertiesement');
+        $state.go('tabsController.cart');
     This allows your app to figure out which Tab to open this page in on the fly.
     If you're setting a Tabs default page or modifying the .otherwise for your app and
     must use a URL, use one of the following:
-      /page1/tab1/ShowAddvertiesement
-      /page1/tab5/ShowAddvertiesement
+      /page1/tab1/page3
+      /page1/tab2/page3
   */
-  .state('tabsController.showAdvertiesement', {
+  .state('login', {
+    url: '/page4',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+  })
+  
+  
+  .state('tabsController.Groups', {
+    url: '/page-group',
+    views: {
+      'tab1': {
+        templateUrl: 'templates/group.html',
+        controller: 'groupCtrl'
+      },
+      'tab2': {
+        templateUrl: 'templates/group.html',
+        controller: 'groupCtrl'
+      }
+    }
+  })
+
+  .state('tabsController', {
+    url: '/page1',
+    templateUrl: 'templates/tabsController.html',
+    abstract:true
+  })
+
+  
+
+  .state('signup', {
+    url: '/page5',
+    templateUrl: 'templates/signup.html',
+    controller: 'signupCtrl'
+  })
+  
+    .state('genaraldetails', {
+    url: '/address',
+    templateUrl: 'templates/address.html',
+    controller: 'addressCtrl'
+  })
+    .state('profile', {
+    url: '/page6',
+    
+        templateUrl: 'templates/profile.html',
+        controller: 'profileCtrl'
+      
+    
+  })
+        .state('request', {
+    url: '/request',
+    
+        templateUrl: 'templates/request.html',
+        controller: 'requestCtrl'
+      
+    
+  })
+         .state('occupation', {
+    url: '/occupation',
+    templateUrl: 'templates/occupation.html',
+    controller: 'occupationCtrl'
+  })
+           .state('family', {
+    url: '/family',
+    templateUrl: 'templates/family.html',
+    controller: 'familyCtrl'
+  })
+  //yik routes
+
+.state('eventPage', {
+    url: '/eventPage',
+    
+    templateUrl: 'templates/eventPage.html',
+    controller: 'eventPageCtrl'
+  })
+
+  .state('createEvent', {
+    url: '/createNewEvent',
+    templateUrl: 'templates/createEvent.html',
+    controller: 'createevent'
+  })
+
+  .state('eventTypes', {
+    url: '/OtherEvents',
+    templateUrl: 'templates/eventTypes.html',
+    controller: 'eventtype'
+  })
+
+   .state('eventDesc', {
+    url: '/description',
+    templateUrl: 'templates/eventDesc.html',
+    controller: 'eventdesc'
+  })
+   //panchali routes
+
+      .state('group', {
+    url: '/page-group',
+    templateUrl: 'templates/group.html',
+    controller: 'groupCtrl'
+  })
+
+  .state('cricket', {
+    url: '/page-cricket-mainpage',
+    templateUrl: 'templates/cricket.html',
+    controller: 'cricketCtrl'
+  })
+
+  .state('selectedPost', {
+    url: '/page-group-post-one',
+    templateUrl: 'templates/selectedPost.html',
+    controller: 'selectedPostCtrl'
+  })
+
+  .state('cricketPost', {
+    url: '/page-group-post',
+    templateUrl: 'templates/cricketPost.html',
+    controller: 'cricketPostCtrl'
+  })
+
+  .state('addAPost', {
+    url: '/page-add-grouppost',
+    templateUrl: 'templates/addAPost.html',
+    controller: 'addAPostCtrl'
+  })
+
+  .state('createAGroup', {
+    url: '/page-create-group',
+    templateUrl: 'templates/createAGroup.html',
+    controller: 'createAGroupCtrl'
+  })
+
+  .state('followAGroup', {
+    url: '/page-follow-group12 members',
+    templateUrl: 'templates/followAGroup.html',
+    controller: 'followAGroupCtrl'
+  })
+
+  .state('settings', {
+    url: '/page-group-setting',
+    templateUrl: 'templates/settings.html',
+    controller: 'settingsCtrl'
+  })
+  //sanda routes
+  .state('tabsController2.showAdvertiesement', {
     url: '/ShowAddvertiesement',
     views: {
       'tab1': {
@@ -37,7 +209,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-  .state('tabsController.about', {
+  .state('tabsController2.about', {
     url: '/About',
     views: {
       'tab4': {
@@ -47,7 +219,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-  .state('tabsController.searchAdvertiesement', {
+  .state('tabsController2.searchAdvertiesement', {
     url: '/SearchAdvertiesement',
     views: {
       'tab2': {
@@ -57,13 +229,13 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-  .state('tabsController', {
-    url: '/page1',
-    templateUrl: 'templates/tabsController.html',
+  .state('tabsController2', {
+    url: '/tabsController2',
+    templateUrl: 'templates/tabsController2.html',
     abstract:true
   })
 
-  .state('tabsController.postAdvertiesement', {
+  .state('tabsController2.postAdvertiesement', {
     url: '/PostAdvertiesement',
     views: {
       'tab5': {
@@ -73,7 +245,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-  .state('tabsController.buissnessCard', {
+  .state('tabsController2.buissnessCard', {
     url: '/BuissnessCard',
     views: {
       'tab3': {
@@ -96,7 +268,7 @@ angular.module('app.routes', ['ionicUIRouter'])
       /page1/tab1/fullShowAdvertiesement
       /page1/tab5/fullShowAdvertiesement
   */
-  .state('tabsController.fullShowAdvertiesement', {
+  .state('tabsController2.fullShowAdvertiesement', {
     url: '/fullShowAdvertiesement',
     views: {
       'tab1': {
@@ -110,7 +282,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-  .state('tabsController.fullEditAdvertiesement', {
+  .state('tabsController2.fullEditAdvertiesement', {
     url: '/fullEditAdvertiesement',
     views: {
       'tab2': {
@@ -120,7 +292,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-  .state('tabsController.editButtonPage', {
+  .state('tabsController2.editButtonPage', {
     url: '/editButtonPage',
     views: {
       'tab2': {
@@ -129,8 +301,9 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     }
   })
+  
 
-$urlRouterProvider.otherwise('/page1/tab1/ShowAddvertiesement')
+$urlRouterProvider.otherwise('/page4')
 
   
 

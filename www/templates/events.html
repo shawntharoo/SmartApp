@@ -1,0 +1,82 @@
+<script id="event-popover.html" type="text/ng-template">
+  <ion-popover-view style="height: 230px; border-radius: 5px; ">
+    <ion-content >
+        <ion-radio ng-model="isChecked" ng-value="'interested'" >Interested</ion-radio>
+        <ion-radio ng-value="'going'" >Going</ion-radio>
+        <ion-radio ng-value="'notinterested'"  > Not Interested</ion-radio>
+        <button class="button button-positive " ng-click="closePopover()" style="margin:10px;"> Save</button>
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+<ion-view title="Events" id="events" style="background-color:#EEEEF1;">
+
+<ion-nav-buttons side="right"  >
+      <button class="button button-large ion-edit " ng-click="createEvent()" >
+      </button>
+    </ion-nav-buttons>
+    <ion-content padding="false" class="has-header">
+        <!-- <div class="button-bar">
+           <a ui-sref="eventPage" id="events-button7" class="button button-stable  button-block">Events</a>
+            <a ui-sref="birthdays" id="events-button8" class="button button-stable  button-block">Birthdays</a>
+        </div> -->
+        <form class="list"></form>
+
+
+        
+        <div ng-controller="MyController">
+         <ion-refresher
+             pulling-text="Pull to refresh..."
+             on-refresh="doRefresh()">
+         </ion-refresher>
+         <ion-list>
+
+             <div class="item item-divider">
+                 Upcoming Events
+
+                  <div>
+                <select ng-model="item" ng-change="show(item)">
+                <option>ela</option>
+                <option>baa</option>
+                </select>
+            </div>
+
+             </div>
+             
+             <ion-item  ng-repeat="eventname in eventNames" > 
+             <div class="item item-thumbnail-left" >
+                    <img src= {{eventname.image}} ng-click="descriptionpg()">
+                    <button class="button button-clear button-positive" ng-click="descriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
+                    <p> {{eventname.date}}</p>
+                    
+                   <button class="button outline item-icon-right icon ion-calendar" ng-click="openPopover($event)"></button >
+             </div>
+             </ion-item>
+         </ion-list>
+
+
+       
+         <div class="list list-inset">
+
+             <div class="item item-divider">
+                 Upcoming Birthdays
+             </div>
+
+             <div class="item" ng-repeat="bdayname in Birthdays" > 
+             <a class="item item-thumbnail-left" href="#">
+                    <img src= {{bdayname.image}}>
+                    <h2>{{bdayname.name}}</h2>
+                    <p> {{bdayname.day}}</p>
+             </a>
+             </div>
+         </div>
+         </div>
+        
+
+    </ion-content>
+</ion-view>
+
+<!--, date in dates, image in images
+
+
+-->

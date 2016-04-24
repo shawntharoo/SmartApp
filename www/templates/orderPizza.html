@@ -1,0 +1,21 @@
+<ion-view title="Order Pizza" id="page2">
+    <ion-nav-buttons side="right" ng-show="true">
+    <button class="button button-icon button-clear ion-compose" ng-click="home()">
+    </button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <h3 id="orderPizza-heading1" style="color:#000000;">Make Your Pizza</h3>
+        <form class="list" style="background-color:#cce6ff;">
+            <label class="item item-input" style="background-color:#cce6ff;">
+                <span class="input-label">Name Your Pizza</span>
+                <input type="text" placeholder="">
+            </label>
+            <ion-toggle toggle-class="toggle-positive" ng-checked="true" >Extra Cheese</ion-toggle>
+            <ion-item class="item-divider">Toppings</ion-item>
+            <ion-radio name="toppings">pepperoni</ion-radio>
+            <ion-radio name="toppings">sausagus</ion-radio>
+            <ion-radio name="toppings">mushroom</ion-radio>
+        </form>
+        <a ui-sref="tabsController.cart" id="orderPizza-button1" style="font-weight:;background-color:#ffaa00" class="button button-assertive  button-block icon ion-android-cart">Add to cart</a>
+    </ion-content>
+</ion-view>
