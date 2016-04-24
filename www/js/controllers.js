@@ -1,7 +1,10 @@
 angular.module('app.controllers', [])
   
-.controller('showAdvertiesementCtrl', function($scope) {
-
+.controller('showAdvertiesementCtrl', function($scope,$http) {
+	$http.get('http://localhost/SmartApp/www/#/database.json')
+	.success(function(response){
+		$scope.advertiesement = response.records;
+	});
 })
    
 .controller('aboutCtrl', function($scope) {
