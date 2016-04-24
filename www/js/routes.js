@@ -28,16 +28,29 @@ angular.module('app.routes', ['ionicUIRouter'])
        }
   })
   //yik event end
+    .state('tabsController.search', {
+    url: '/search',
+    views: {
+      'tab4': {
+    templateUrl: 'templates/page.html',
+    controller: 'pageCtrl'
+      }
+    }
+  })
 
       .state('tabsController.orderPizza', {
     url: '/order',
     views: {
       'tab3': {
-        templateUrl: 'templates/orderPizza.html',
+        templateUrl: 'templates/page.html',
         controller: 'orderPizzaCtrl'
       }
     }
   })
+
+
+
+  
          
 
   /* 
@@ -145,6 +158,25 @@ angular.module('app.routes', ['ionicUIRouter'])
     templateUrl: 'templates/eventDesc.html',
     controller: 'eventdesc'
   })
+
+   .state('eventGoing', {
+    url: '/going',
+    templateUrl: 'templates/goingEvents.html',
+    controller: 'eventgoing'
+  })
+
+    .state('eventHosted', {
+    url: '/hosted',
+    templateUrl: 'templates/hostedEvents.html',
+    controller: 'eventhosted'
+  })
+
+     .state('eventPast', {
+    url: '/past',
+    templateUrl: 'templates/pastEvents.html',
+    controller: 'eventpast'
+  })
+
    //panchali routes
 
       .state('group', {
@@ -301,6 +333,12 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     }
   })
+  
+    .state('result', {
+      url: '/result',
+      templateUrl: 'templates/results.html',
+      controller: 'resultCtrl'
+    })
   
 
 $urlRouterProvider.otherwise('/page4')

@@ -32,14 +32,15 @@
          <ion-list>
 
              <div class="item item-divider">
-                 Upcoming Events
-
-                  <div>
-                <select ng-model="item" ng-change="show(item)">
-                <option>ela</option>
-                <option>baa</option>
+                <label class="item item-input item-select" style="height:30px;">
+                     <div class="input-label" ><h2>Upcoming Events</h2></div>
+                <select ng-model="item " ng-change="show(item)">
+                <option>Upcoming</option>
+                <option>Going</option>
+                <option>Hosted</option>
+                <option>Past</option>
                 </select>
-            </div>
+                </label>
 
              </div>
              
@@ -67,6 +68,7 @@
                     <img src= {{bdayname.image}}>
                     <h2>{{bdayname.name}}</h2>
                     <p> {{bdayname.day}}</p>
+                    <button class="button button-icon icon ion-email"></button>
              </a>
              </div>
          </div>

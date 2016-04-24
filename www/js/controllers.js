@@ -133,9 +133,16 @@ angular.module('app.controllers', [])
 .controller('editButtonPageCtrl', function($scope) {
 
 })
+//mahesh controllers
+.controller('pageCtrl', function($scope) {
 
+})
+  .controller('resultCtrl', function($scope) {
+
+  })
+ 
        //yik controllers
-       .controller('eventsCtrl', function($scope,$state) {
+      .controller('eventsCtrl', function($scope,$state) {
 
      $scope.createEvent = function(){
         $state.transitionTo("createEvent");
@@ -181,11 +188,49 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('MyController', function($scope, $http, $ionicPopover) {
+.controller('eventgoing', function($scope) {
+
+
+    $scope.eventNames = [{name :"'Save Water' Charity", date:"27th April 2016", image:"img/img1.jpg"},
+                       {name:"'Memories' 13C Batch Party", date:"30th April 2016", image:"img/img2.jpg"} ,
+                       {name:"Wesak dansala",date:"6th May 2016", image:"img/img3.jpg"} ]; 
+ 
+})
+
+.controller('eventhosted', function($scope) {
+
+
+    $scope.eventNames = [{name :"'Save Water' Charity", date:"27th April 2016", image:"img/img1.jpg"},
+                       {name:"'Memories' 13C Batch Party", date:"30th April 2016", image:"img/img2.jpg"} ,
+                       {name:"Wesak dansala",date:"6th May 2016", image:"img/img3.jpg"} ]; 
+ 
+})
+
+.controller('eventpast', function($scope) {
+
+
+    $scope.eventNames = [{name :"'Save Water' Charity", date:"27th April 2016", image:"img/img1.jpg"}];
+                      
+})
+
+.controller('MyController', function($scope, $http, $ionicPopover,$state) {
 
   
         $scope.show = function(a){
-    alert(a);
+    
+          if(a=='Upcoming'){
+                $state.transitionTo('tabsController.events');
+          }
+           if(a=='Going'){
+                $state.transitionTo('eventGoing');
+          }
+          if(a=='Past'){
+                $state.transitionTo('eventPast');
+          }
+          if(a=='Hosted'){
+                $state.transitionTo('eventHosted');
+          }
+        
   }
 
   $scope.eventNames = [{name :"'Save Water' Charity", date:"27th April 2016", image:"img/img1.jpg"},
