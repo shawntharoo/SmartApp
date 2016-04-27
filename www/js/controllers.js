@@ -98,7 +98,23 @@ angular.module('app.controllers', [])
    
 .controller('settingsCtrl', function($scope) {
 
-})//sanda controllers
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//sanda controllers
   .controller('showAdvertiesementCtrl', function($scope,$http) {
   $http.get('http://localhost/SmartApp/www/#/database.json')
   .success(function(response){
@@ -107,6 +123,14 @@ angular.module('app.controllers', [])
 })
    
 .controller('aboutCtrl', function($scope) {
+
+})
+
+.controller('about2PageCtrl', function($scope) {
+
+})
+
+.controller('about3PageCtrl', function($scope) {
 
 })
    
@@ -133,13 +157,57 @@ angular.module('app.controllers', [])
 .controller('editButtonPageCtrl', function($scope) {
 
 })
+
+.controller('editProfilePageCtrl', function($scope) {
+
+})
+
+  .controller('ushowadvertiesementCtrl', function($scope) {
+
+})
+
+.controller('ufullShowAdvertiesementCtrl', function($scope) {
+
+})
+
+.controller('ubuissnessCardCtrl', function($scope) {
+
+})
+
+.controller('ueditProfilePageCtrl', function($scope) {
+
+})
+
+.controller('uaboutCtrl', function($scope) {
+
+})
+
+.controller('uabout2PageCtrl', function($scope) {
+
+})
+
+.controller('uabout3PageCtrl', function($scope) {
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
 //mahesh controllers
 .controller('pageCtrl', function($scope) {
 
 })
-  .controller('resultCtrl', function($scope) {
+.controller('resultCtrl', function($scope) {
 
-  })
+})
  
        //yik controllers
       .controller('eventsCtrl', function($scope,$state) {
