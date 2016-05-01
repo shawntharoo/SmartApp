@@ -1,24 +1,24 @@
 <ion-view title="About ME" id="page3" style="background-color:#cce6ff;">
     <ion-content padding="true" class="has-header">
-        <form class="list">
+        <form class="list" name="about1">
             <ion-item class="item-divider">Personal Details</ion-item>
             <label class="item item-input">
                 <span class="input-label">Full Name</span>
-                <input type="text" placeholder="Name You Want to Show in Your Buissness Card">
+                <input type="text" name="fname" ng-model="fullname" ng-required="true" placeholder="Name You Want to Show in Your Buissness Card">
             </label>
             <label class="item item-input">
                 <span class="input-label">Adress</span>
-                <input type="email" placeholder="Email You Want to Show in Your Buissness Card">
+                <input type="text" name="address" ng-model="address" ng-required="true" placeholder="Email You Want to Show in Your Buissness Card">
             </label>
             <label class="item item-input">
                 <span class="input-label">Contact No</span>
-                <input type="tel" placeholder="Contact You Want to Show in Your Buissness Card">
+                <input type="tel" name="tel" ng-model="contact" ng-required="true" placeholder="Contact You Want to Show in Your Buissness Card">
             </label>
             <label class="item item-input">
                 <span class="input-label">Email</span>
-                <input type="email" placeholder="Email You Want to Show in Your Buissness Card">
+                <input type="email" name="email" ng-model="email" ng-required="true" placeholder="Email You Want to Show in Your Buissness Card">
             </label>
-            <a ui-sref="tabsController2.about2" id="About-button1" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block ">Submit</a>
+            <a ui-sref="tabsController2.about2" id="About-button1" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block " ng-click="about1add(fullname,address,contact,email)">Submit</a>
             
             <div class="card">
             <div class="item item-text-wrap">

@@ -1,0 +1,199 @@
+  
+ #section1{
+     background-color:black;
+     color:#b3b3b3;
+	 padding:0.6em;
+	 
+ }
+ .blue_text
+{
+		 color: #3385ff;
+}
+ .myicon
+	  {
+		margin:0.4em;  
+	   }
+.myiconholder
+	   {
+		padding:0;   
+		}
+#section2{
+			  
+     background-color:#333333;
+	 padding:1em;
+     color:#b3b3b3;
+	 font-size:1.4em;
+	 
+     }
+.toll_free
+	 {
+		color:white;
+		font-size:1.8em;
+		text-align:right;
+	    font-family: 'Oswald', sans-serif;
+		margin-top:1em;
+		 }
+	.telephone
+	{
+		color:#F90;
+		font-size:2.5em;
+		text-align:right;
+	    font-family: 'Oswald', sans-serif;
+		border-left:1px solid white;
+	
+     }	 
+.large_icon
+{
+	color:#3385ff;
+	font-size:2.2em;
+	}		 
+.title1
+{
+color:white;
+ font-size:0.7em;
+margin-top:1em;
+	
+}
+.title2
+{
+	color:white;
+   font-size:0.9em;
+
+}
+.right_title{
+	margin-left:1em;	
+	}
+.search_box
+{
+ background-color:#3385ff;
+ padding:0.5em;	
+}
+.search_btn
+{
+background-color:black;
+color:white;
+border:none;
+font-size:1.8em;
+//padding-left:0.3em;
+//padding-right:0.3em;
+	
+}
+search_text
+{
+ font-size:2em;
+ width:200px;
+ height:15px;
+ padding:0.5em;
+}
+.section4{margin-top:0px;
+}
+#section5
+{
+background-color:#3385ff;
+
+padding:1em;	
+}
+.slogn
+{
+	font-size:2em;
+}
+h1
+{
+text-align:center;	
+}
+p{
+	text-align:center;
+	color:#999;
+	margin-bottom:2em;
+}
+#section6
+{
+background-color:#f2f2f2;
+
+
+}
+	
+.ribbon
+{
+background-color:#3385ff;
+color:#292929;
+font-size:1.1em;
+padding:0.6em;
+
+font-weight:bold;
+border-left:1px solid #f2f2f2;
+
+}
+#section8{
+			  
+     background-color:#333333;
+	 padding:1em;
+	 //padding-top:0;
+     color:#b3b3b3;
+	
+	 
+     }
+h3,h4,
+{
+color:#3385ff;
+}
+.grid
+{
+	
+	//border:1px solid white;
+	//margin-bottom:0;
+	
+}
+.grid_title
+{
+	background-color:#f2f2f2;
+	text-align:center;
+	color:black;
+	
+	}
+.grid_row
+{
+margin-top:0.4em;	}
+.navbar_margin
+{
+padding-left:3em;
+padding-right:3em;	
+border-left:1px solid black;
+}
+.navbar-default
+{
+	margin-bottom:0;
+}
+  .affix {
+      top: 0;
+      width: 100%;
+	  background-color:#FFF;
+	 	
+	 
+	 
+  }
+
+  .affix + .container-fluid {
+      padding-top: 70px;
+  }
+  #section3
+  {
+	  
+	  }
+#section2_reg{
+    background-color: #525252;
+}
+.centered-form{
+	margin-top: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+.butn
+{
+background-color:#3385ff;}
+.env
+{
+margin-left:0.4em;	}

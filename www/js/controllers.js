@@ -115,19 +115,39 @@ angular.module('app.controllers', [])
 
 
 //sanda controllers
-  .controller('showAdvertiesementCtrl', function($scope,$http) {
+.controller('showAdvertiesementCtrl', function($scope,$http) {
   $http.get('http://localhost/SmartApp/www/#/database.json')
   .success(function(response){
     $scope.advertiesement = response.records;
   });
 })
-   
-.controller('aboutCtrl', function($scope) {
 
+   
+.controller('aboutCtrl', function($scope,$http,$state) {
+  $scope.about1add = function (Fullname,address,contactNo,email) {
+    $http.post("http://localhost/SmartAppDB/ajax/about1Add.php?Fullname="+Fullname+"&address="+address+"&email="+email+"&contactNo="+contactNo).success(function(data){ 
+      alert("wwww");
+      $scope.NameInput1 = "";
+      $scope.EmailInput1 = "";
+      $scope.ContactNoInput1 = "";
+      $scope.pwdInput1 = "";
+      $scope.pwdInput2 = "";
+      });
+  };
 })
 
-.controller('about2PageCtrl', function($scope) {
 
+.controller('about2PageCtrl', function($scope) {
+  $scope.about1add = function (Fullname,address,contactNo,email) {
+    $http.post("http://localhost/SmartAppDB/ajax/about1Add.php?Fullname="+Fullname+"&address="+address+"&email="+email+"&contactNo="+contactNo).success(function(data){ 
+      alert("wwww");
+      $scope.NameInput1 = "";
+      $scope.EmailInput1 = "";
+      $scope.ContactNoInput1 = "";
+      $scope.pwdInput1 = "";
+      $scope.pwdInput2 = "";
+      });
+  };
 })
 
 .controller('about3PageCtrl', function($scope) {
