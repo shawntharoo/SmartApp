@@ -47,6 +47,24 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     }
   })
+          .state('tabsController.grouppost', {
+    url: '/grouppost',
+    views: {
+      'tab7': {
+        templateUrl: 'templates/groupPost.html',
+        controller: 'groupPostCtrl'
+      }
+    }
+  })
+            .state('tabsController.favouriteContacts', {
+    url: '/favourite',
+    views: {
+      'tab6': {
+        templateUrl: 'templates/favouriteContacts.html',
+        controller: 'favouriteContactsCtrl'
+      }
+    }
+  })
 
 
 
@@ -122,6 +140,14 @@ angular.module('app.routes', ['ionicUIRouter'])
       
     
   })
+      .state('timeline', {
+    url: '/timeline',
+    
+        templateUrl: 'templates/timeline.html',
+        controller: 'timelineCtrl'
+      
+    
+  })
          .state('occupation', {
     url: '/occupation',
     templateUrl: 'templates/occupation.html',
@@ -176,25 +202,109 @@ angular.module('app.routes', ['ionicUIRouter'])
     templateUrl: 'templates/pastEvents.html',
     controller: 'eventpast'
   })
+     .state('eventGroup', {
+    url: '/group',
+    templateUrl: 'templates/eventGroup.html',
+    controller: 'eventgroup'
+  })
+     .state('eventSubgroup', {
+    url: '/subgroup',
+    templateUrl: 'templates/eventSubgroup.html',
+    controller: 'eventsubgroup'
+  })
+
+   .state('adminEvent', {
+    url: '/adminEvent',
+    templateUrl: 'templates/adminEventView.html',
+    controller: 'adminevent'
+  })
+
+   .state('adminEventDesc', {
+    url: '/admindescription',
+    templateUrl: 'templates/adminEventDesc.html',
+    controller: 'admineventdesc'
+  })
+
+   .state('privatemsg', {
+    url: '/messages',
+    templateUrl: 'templates/privatemsg.html',
+    controller: 'msg'
+  })
+
+   .state('allmsg', {
+    url: '/allmessages',
+    templateUrl: 'templates/messages.html',
+    controller: 'allmsg'
+  })
+   
+   .state('exmsg', {
+    url: '/exmessages',
+    templateUrl: 'templates/examplemsg.html',
+    controller: 'exmsg'
+  })
+
+   .state('bdaymsg', {
+    url: '/bdaymessages',
+    templateUrl: 'templates/bdaymsg.html',
+    controller: 'bdaymsg'
+  })
+
+    .state('calendar', {
+    url: '/calendar',
+    templateUrl: 'templates/calendar.html',
+    controller: 'calendar'
+  })
+   
+   .state('calcdet', {
+    url: '/calendardetails',
+    templateUrl: 'templates/calcDetail.html',
+    controller: 'calcdet'
+  })
+
+
 
    //panchali routes
 
-      .state('group', {
+    .state('group', {
     url: '/page-group',
     templateUrl: 'templates/group.html',
     controller: 'groupCtrl'
   })
 
-  .state('cricket', {
-    url: '/page-cricket-mainpage',
-    templateUrl: 'templates/cricket.html',
-    controller: 'cricketCtrl'
+    .state('groupSearchDemo', {
+    url: '/page-group-groupSearchDemo',
+    templateUrl: 'templates/groupSearchDemo.html',
+    controller: 'groupSearchDemoCtrl'
+  })
+  .state('adminGroup', {
+    url: '/page-group-admin',
+    templateUrl: 'templates/adminGroup.html',
+    controller: 'adminGroupCtrl'
   })
 
+  
+
+ .state('followCricket', {
+    url: '/page-follow-cricket',
+    templateUrl: 'templates/followCricket.html',
+    controller: 'followCricketCtrl'
+  })
+
+  .state('football', {
+    url: '/page-football-mainpage',
+    templateUrl: 'templates/football.html',
+    controller: 'footballCtrl'
+  })
   .state('selectedPost', {
     url: '/page-group-post-one',
     templateUrl: 'templates/selectedPost.html',
     controller: 'selectedPostCtrl'
+  })
+
+   .state('selectedPostDemo', {
+    url: '/page-selectedPostDemo',
+    templateUrl: 'templates/selectedPostDemo.html',
+    controller: 'selectedPostDemoCtrl'
   })
 
   .state('cricketPost', {
@@ -209,10 +319,10 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'addAPostCtrl'
   })
 
-  .state('createAGroup', {
+  .state('adminCreateAGroup', {
     url: '/page-create-group',
-    templateUrl: 'templates/createAGroup.html',
-    controller: 'createAGroupCtrl'
+    templateUrl: 'templates/adminCreateAGroup.html',
+    controller: 'adminCreateAGroupCtrl'
   })
 
   .state('followAGroup', {
@@ -227,18 +337,13 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'settingsCtrl'
   })
 
-
-
-
-
-
-
-
-
-
-
+  .state('inviteFriends', {
+    url: '/page-invite-group',
+    templateUrl: 'templates/inviteFriends.html',
+    controller: 'inviteFriendsCtrl'
+  })
   //sanda routes
-  .state('tabsController2.showAdvertiesement', {
+   .state('tabsController2.showAdvertiesement', {
     url: '/ShowAddvertiesement',
     views: {
       'tab1': {
@@ -453,6 +558,20 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     }
   })
+       //mahesh route
+  
+    
+    .state('viewfavourite', {
+      url: '/viewfavourite',
+      templateUrl: 'templates/ViewFavouriteContacts.html',
+      controller: 'ViewFavouriteContactsCtrl'
+    })
+         .state('searchResult', {
+      url: '/searchResult',
+      templateUrl: 'templates/searchResult.html',
+      controller: 'searchResultCtrl'
+    })
+
 
 $urlRouterProvider.otherwise('/page4')
 

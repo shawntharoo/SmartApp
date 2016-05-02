@@ -1,13 +1,21 @@
-<ion-view title="Settings" id="page17">
-<ion-nav-buttons side="right" ng-show="true">
-      <button class="button button-icon button-clear ion-ios-people " ng-click="inviteFriends()" >
+<ion-view title="Follow a group" id="page15">
+<ion-nav-buttons side="left"  >
+      <button class="button button-large ion-chevron-left " ng-click="backTogroup()" >
       </button>
+      
     </ion-nav-buttons>
     <ion-content padding="true" class="has-header">
-        <form class="list">
-            <ion-toggle toggle-class="toggle-positive" name="unfollow" ui-sref="followCricket">Unfollow</ion-toggle>
-           
-            <div class="list card">
+        <div>
+            <img src="img/42XUz96SjSFGiQjoKJcw_cricket.png" width="100%" height="90" style="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+        <h1 id="followAGroup-heading3" style="color:#000000;text-align:center;">Cricket</h1>
+
+        <div id="followAGroup-markdown11" style="color:#000000;text-align:center;">
+            <p>This group is for Cricket fans in royal collage</p>
+        </div>
+        <a ui-sref="football" id="followAGroup-button55" style="border-radius:20px 20px 20px 20px;" class="button button-positive  button-block icon ion-android-person-add" >Follow</a>
+      
+             <div class="list card">
                 <div class="item item-divider">Members</div>
                 <div class="item item-body">
                     <ion-list>
@@ -40,8 +48,7 @@
                   </div>
                     </ion-list>
                 </div>
-            </div>
-        </form>
-        <div class="button-bar"></div>
+            
+        </div>
     </ion-content>
 </ion-view>

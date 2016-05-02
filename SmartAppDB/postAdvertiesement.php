@@ -27,15 +27,15 @@
 <h4 class="panel-title" align="center">Advertiesement Form</h4>
 </div>
 <div class="panel-body">
-<form name="form1"  method="POST" action="register_form.php" onSubmit="return validateform();" enctype="multipart/form-data">
+<form name="form1"  method="POST" action="postAdvertiesement_form.php" onSubmit="return validateform();" enctype="multipart/form-data">
    <div class="form-group">
     <label for="fnam">Tile</label>
-    <input type="text" class="form-control" id="f" name="fname" placeholder="Title of the Advertiesement">
+    <input type="text" class="form-control" id="f" name="title" placeholder="Title of the Advertiesement">
   </div>
 <div class = "form-group">
  <label for="list">Select the Category</label>
  <div>
-<select name="list">
+<select name="type">
   <option value="Promote">Promote</option>
   <option value="Event">Event</option>
   <option value="Merchent">Merchent</option>
@@ -44,7 +44,7 @@
 </div>
     <div class="form-group">
     <label for="addr">Description</label>
-    <textarea class="form-control" name="add" id="a" placeholder="Enter A Brief Description about the adveretiesement" rows="6"></textarea>
+    <textarea class="form-control" name="dis" id="a" placeholder="Enter A Brief Description about the adveretiesement" rows="6"></textarea>
   </div>
   <div class="form-group">
     <label for="ima">Upload The Banner</label>

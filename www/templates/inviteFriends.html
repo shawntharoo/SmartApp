@@ -1,0 +1,72 @@
+<ion-view title="Invite friends" id="page11">
+
+    <ion-content padding="true" class="has-header">
+       <form class="row">
+            <label class="item item-input" style="width: 300px;border-radius:7px 7px 7px 7px;"  name="searchGroup">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Search">
+            </label>
+            <button class="button button-icon icon ion-search" style="width: 10px" ></button>
+        </form>
+        <div class="list card">
+            <div class="item item-divider">Friends
+ <button class="ion-icon ion-android-checkmark-circle button-primary button-clear item-right" style="color: #3366ff;padding-left: 250px"> 
+                </button>
+            </div>
+             <div class="item item-body">
+                    <ion-list>
+ 
+
+                 <ion-checkbox ng-model="isChecked1">
+                    <div class="item item-avatar">
+                    <img src="/img/download (3).jpg"  ui-sref="profile">
+                    <div class="row" style="width: 300px">
+                    <h2 style="width: 180px">Paul Peter</h2>
+                    </div>
+                    </div>
+                 </ion-checkbox>
+
+            
+                    <ion-checkbox ng-model="isChecked2">
+                    <div class="item item-avatar" ui-sref="profile">
+                    <img src="/img/ben.png">
+                    <div class="row" style="width: 300px">
+                    <h2 style="width: 180px">Marty Mcfly</h2>
+                    </div>
+                    </div>
+                    </ion-checkbox>
+
+                    <ion-checkbox ng-model="isChecked3">
+                    <div class="item item-avatar" ui-sref="profile">
+                    <img src="/img/adam.jpg">
+                    <div class="row" style="width: 300px">
+                    <h2 style="width: 180px">MarK Kety</h2>
+                    </div>
+                    </div>
+                    </ion-checkbox>
+
+                    <ion-checkbox ng-model="isChecked4">
+                    <div class="item item-avatar" ui-sref="profile">
+                    <img src="/img/download (5).jpg">
+                    <div class="row" style="width: 300px">
+                    <h2 style="width: 180px">Hanz Pereeson</h2>
+                    </div>
+                    </div>
+                    </ion-checkbox>
+
+                    <ion-checkbox ng-model="isChecked5">
+                    <div class="item item-avatar" ui-sref="profile">
+                    <img src="/img/download (6).jpg">
+                    <div class="row" style="width: 300px">
+                    <h2 style="width: 180px">Nihal Perera</h2>
+                    </div>
+                    </div>
+                    </ion-checkbox>
+
+
+
+                    </ion-list>
+                </div>
+        </div>
+    </ion-content>
+</ion-view>

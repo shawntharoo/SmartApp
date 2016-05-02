@@ -1,36 +1,54 @@
+ 
 <ion-view title="Group" id="page6">
+
+<ion-nav-buttons side="left"  >
+      <button class="button button-large ion-chevron-left " ng-click="backTogroup()" >
+      </button>
+      
+    </ion-nav-buttons>
+
     <ion-content padding="true" class="has-header">
+        
+
+
+        <form class="row">
+            <label class="item item-input" style="width: 300px;border-radius:7px 7px 7px 7px;"  name="searchGroup">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Search">
+            </label>
+            <button class="button button-icon icon ion-search" style="width: 10px" ui-sref="groupSearchDemo"></button>
+        </form>
+
+
+
+        <div class="spacer" style="width: 283px; height: 44px;"></div>
         <ion-list>
-            <ion-item class="item-thumbnail-left" ui-sref="cricket">
-                <img src="img/fUBv0EViSqzmNMRxZEkQ_cricket.png">
-                <h2>Cricket</h2>
-                <p style="white-space:normal;"></p>
-            </ion-item>
-            <ion-item class="item-thumbnail-left">
-                <img src="img/w5Gq0NztTxWrXMzABzRZ_australia.png">
-                <h2>Australians</h2>
-                <p style="white-space:normal;"></p>
-            </ion-item>
-            <ion-item class="item-thumbnail-left">
-                <img src="img/NJtTM5N9TCeXDFBtN6IJ_rugby.jpg">
-                <h2>Rugby</h2>
-                <p style="white-space:normal;"></p>
-            </ion-item>
-            <ion-item class="item-thumbnail-left">
-                <img src="img/5rw2GKOjSu6XIInHz9il_doctor.jpg">
-                <h2>Doctors</h2>
-                <p style="white-space:normal;"></p>
-            </ion-item>
-            <ion-item class="item-thumbnail-left">
-                <img src="img/hz2dDXCgRTSH3g4ep6Am_ingineers.jpg">
-                <h2>Engineers</h2>
-                <p style="white-space:normal;"></p>
-            </ion-item>
-            <ion-item class="item-thumbnail-left">
-                <img src="img/GF1b6BcoTo678SCH8oz8_music.jpg">
-                <h2>Music</h2>
-                <p style="white-space:normal;"></p>
-            </ion-item>
+
+      <table style="width:100%">
+  <tr>
+    <td>   <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;"  ui-sref="cricketPost"> <img src="img/fUBv0EViSqzmNMRxZEkQ_cricket.png" style="height: 70px;width: 70px;min-height: 70px"><br>Cricket</a></div>
+    </td>
+    <td>    <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;"> <img src="img/w5Gq0NztTxWrXMzABzRZ_australia.png" style="height: 70px;width: 70px;min-height: 70px"><br>Australians</a></div>
+    </td>      
+    <td>   <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;"> <img src="img/NJtTM5N9TCeXDFBtN6IJ_rugby.jpg" style="height: 70px;width: 70px;min-height: 70px"><br>Rugby</a></div>
+    </td>
+  </tr>
+
+
+    <tr>
+    <td>   <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;"> <img src="img/5rw2GKOjSu6XIInHz9il_doctor.jpg" style="height: 70px;width: 50px;min-height: 70px"><br>Doctors</a>
+    </div>
+    </td>
+    <td>    <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;"> <img src="img/hz2dDXCgRTSH3g4ep6Am_ingineers.jpg" style="height: 70px;width: 70px;min-height: 50px"><br>Engineers</a>
+    </div>
+    </td>      
+    <td>   <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;"> <img src="img/GF1b6BcoTo678SCH8oz8_music.jpg" style="height: 70px;width: 70px;min-height: 50px"><br>Music</a></div>
+    </td>
+  </tr>
+  
+</table>
+
+
         </ion-list>
     </ion-content>
-</ion-view>
+</ion-view> 

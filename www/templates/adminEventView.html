@@ -1,4 +1,4 @@
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
 <script id="event-popover.html" type="text/ng-template">
   <ion-popover-view style="height: 230px; border-radius: 5px; ">
     <ion-content >
@@ -13,8 +13,8 @@
 <ion-view title="Events" id="events" style="background-color:#EEEEF1;">
 
 <ion-nav-buttons side="right"  >
-     <!-- <button class="button button-large ion-edit " ng-click="createEvent()" >
-      </button> -->
+      <button class="button button-large ion-edit " ng-click="createEvent1()" >
+      </button>
     </ion-nav-buttons>
     <ion-content padding="false" class="has-header">
         <!-- <div class="button-bar">
@@ -34,32 +34,52 @@
 
              <div class="item item-divider">
                 <label class="item item-input item-select" style="height:30px;">
-                     <div class="input-label" ><h2>Upcoming Events</h2></div>
+                     <div class="input-label" ><h2>Event List</h2></div>
                 <select ng-model="item " ng-change="show(item)">
-                <option>Upcoming</option>
-                <option>Going</option>
-                <option>Hosted</option>
+                 <option>All</option>
+                <option>Group</option>
+                <option>Sub Group</option>
                 <option>Past</option>
                 </select>
                 </label>
 
              </div>
-              <ion-item ng-hide="noInterest"  > 
-             <div class="item item-thumbnail-left"  >
-                    <img src= "img\savewil.jpg" ng-click="descriptionpg()">
-                    <button class="button button-clear button-positive" ng-click="descriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">Save Wilpattu</button>
+              <ion-item  > 
+             <div class="item item-thumbnail-left" ng-hide="noInterest">
+                    <img src= "img\savewil.jpg" ng-click="admindescriptionpg()">
+                    <button class="button button-clear button-positive" ng-click="admindescriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">Save Wilpattu</button>
                     <p> 19th May 2016</p>
-                    
-                   <button class="button outline item-icon-right icon ion-calendar" ng-click="openPopover($event)"></button >
+                    <p> Doctors Association</p>
+                  <button class="button outline item-icon-right icon ion-compose" ng-click="admindescriptionpg()"></button >
+                  <button class="button outline item-icon-right icon ion-trash-a" style="color:red;" ng-click="showConfirm()"></button >
              </div>
              </ion-item>
              <ion-item  ng-repeat="eventname in eventNames" > 
              <div class="item item-thumbnail-left"  >
-                    <img src= {{eventname.image}} ng-click="descriptionpg()">
-                    <button class="button button-clear button-positive" ng-click="descriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
+                    <img src= {{eventname.image}} ng-click="admindescriptionpg()">
+                    <button class="button button-clear button-positive" ng-click="admindescriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
                     <p> {{eventname.date}}</p>
+                    <p> {{eventname.assoc}}</p>
+
+                    <button class="button outline item-icon-right icon ion-compose" ng-click="admindescriptionpg()"></button >
+                  <button class="button outline item-icon-right icon ion-trash-a" style="color:red;" ng-click="admindescriptionpg()"></button >
                     
-                   <button class="button outline item-icon-right icon ion-calendar" ng-click="openPopover($event)"></button >
+        
+             </div>
+
+             </ion-item>
+
+             <ion-item  ng-repeat="n in neweventName" ng-show="newevent" > 
+             <div class="item item-thumbnail-left"  >
+                    <img src= {{n.image}} ng-click="admindescriptionpg()">
+                    <button class="button button-clear button-positive" ng-click="admindescriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">{{n.name}}</button>
+                    <p> {{n.date}}</p>
+                    <p> {{n.assoc}}</p>
+
+                    <button class="button outline item-icon-right icon ion-compose" ng-click="admindescriptionpg()"></button >
+                  <button class="button outline item-icon-right icon ion-trash-a" style="color:red;" ng-click="admindescriptionpg()"></button >
+                    
+        
              </div>
 
              </ion-item>

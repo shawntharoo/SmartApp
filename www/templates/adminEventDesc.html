@@ -10,22 +10,41 @@
 </script>
 
 <ion-view title="Event Description" id="desc" style="background-color:#EEEEF1;">
+<ion-nav-buttons side="right"  >
+      <button class="button button-large ion-checkmark-round " ng-click="demo()" > SAVE
+      </button>
+    </ion-nav-buttons>
 <ion-content padding="false" class="has-header">
 
 <div class="list">
   <label class="item item-input">
-    <span class="input-label" style="height:200px;"><img src="img\img2.jpg" height="200px"; width="340px"> </span>
+    <span class="input-label" style="height:200px;"><img src="img\savewil.jpg" height="200px"; width="340px"> </span>
     
   </label>
-  <label class="item item-input" align="center" >
-    <span class="input-label" style="font-size:20px;">April <br><b> 28  </b></span>
-    <span class="input-label" style="font-size:20px;">"Memories" Batch Party </span>
+  <div class="list">
+  <label class="item item-input">
+    <span class="input-label">Title</span>
+    <input type="text"  value={{title}}>
   </label>
-   <label class="item item-input" align="center" >
-    <span class="input-label" style="font-size:12px;">Hosted By </span>
-    <span class="input-label" style="font-size:12px;">Class 13C of Royal College 1994 Batch</span>  
+  <label class="item item-input">
+    <span class="input-label">Date</span>
+    <input type="text" value={{date}}>
   </label>
- <label class="item item-input" align="center" >
+  <label class="item item-input">
+    <span class="input-label">Hosted By</span>
+    <input type="text"  value="Doctors Association">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Time</span>
+    <input type="text"  value="10am onwards">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Venue</span>
+    <input type="text"  value="Waters' Edge, Battaramulla">
+  </label>
+</div>
+
+ <!--<label class="item item-input" align="center" >
    <div class="row">
   <div class="col" style="padding:3px; margin:3px; font-size:12px;" ><a class="button button-icon icon ion-star" style="font-size:12px; color: {{textColor}};" ><br>Interested</a>
   </div>
@@ -43,7 +62,7 @@
     <span class="input-label " style="font-size:25px;">  <i class="icon ion-location"></i></span>
     <span class="input-label" style="font-size:18px;">Location</span>  
   </label>
-</div>
+</div>-->
 
 <div class="list">
 
@@ -52,9 +71,9 @@
     </div>
 
     <div class="list">
-    <label class="item item-input">
+    <!--<label class="item item-input">
       <textarea placeholder="Your Comments" rows="7" ng-click="showButton()" ng-model="comment"></textarea>
-    </label>
+    </label>-->
     
       <div class="row"  ng-show="var" >
        <div class="col col-20" ><button class="button icon ion-images" ></button></div>

@@ -1,13 +1,16 @@
-<ion-view title="Settings" id="page17">
-<ion-nav-buttons side="right" ng-show="true">
-      <button class="button button-icon button-clear ion-ios-people " ng-click="inviteFriends()" >
-      </button>
-    </ion-nav-buttons>
+<ion-view title="Football" id="pagefootball">
+
     <ion-content padding="true" class="has-header">
-        <form class="list">
-            <ion-toggle toggle-class="toggle-positive" name="unfollow" ui-sref="followCricket">Unfollow</ion-toggle>
-           
-            <div class="list card">
+        <div>
+            <img src="img/football.jpg" width="100%" height="90" style="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+        <h1 id="cricket-heading1" style="color:#000000;text-align:center;">Football</h1>
+        <div id="cricket-markdown10" style="color:#000000;text-align:center;">
+            <p>This group is for football fans in royal collage</p>
+        </div>
+        <a ui-sref="followAGroup" id="followAGroup-button55" style="border-radius:20px 20px 20px 20px;" class="button button-positive  button-block icon ion-android-person-add" >Follow</a>
+      
+             <div class="list card">
                 <div class="item item-divider">Members</div>
                 <div class="item item-body">
                     <ion-list>
@@ -15,7 +18,7 @@
                     <div class="item item-avatar" ui-sref="profile">
                     <img src="/img/download (3).jpg">
                     <h2>Paul Peter</h2>
-                  
+                   
                   </div>
                
                          <div class="item item-avatar" ui-sref="profile">
@@ -40,8 +43,7 @@
                   </div>
                     </ion-list>
                 </div>
-            </div>
-        </form>
-        <div class="button-bar"></div>
+            
+        </div>
     </ion-content>
 </ion-view>

@@ -1,0 +1,130 @@
+<link rel="stylesheet" href="http://code.ionicframework.com/1.1.1/css/ionic.min.css"/>
+<link rel="stylesheet" href="C:/Users/Harshee/Desktop/SEP PROJECT/smartApp/ionic-calendar/dist/css/calendar.min.css"/>
+<script src="http://code.ionicframework.com/1.1.1/js/ionic.bundle.min.js"></script>
+<script src="C:/Users/Harshee/Desktop/SEP PROJECT/smartApp/ionic-calendar/dist/js/calendar-tpls.min.js"></script>
+
+<ion-view title="Calendar" id="page4">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <div ng-controller="MyController">
+   <!-- <calendar calendar-mode="mode" event-source="eventSource">-->
+  <ion-slide-box on-slide-changed="slideHasChanged($index)">
+  <ion-slide>
+
+    <div class="row"> MAY 2016 </div>
+    <div class="row">
+  <div class="col">Sun</div>
+  <div class="col">Mon</div>
+  <div class="col">Tue</div>
+  <div class="col">Wed</div>
+  <div class="col">Thu</div>
+  <div class="col">Fri</div>
+  <div class="col">Sat</div>
+  </div>  
+   <div class="row"  ng-repeat="val in calendarVals">
+  <div class="col">
+      <a class=" button-outline button-positive" style="margin:0; padding:10px;" >{{val.d1}}</a>
+  </div>
+  <div class="col" >
+    <a class=" button-outline button-positive" style="margin:0; padding:10px;" ng-click="openPopover($event)" onmouseup="this.style.background='blue';">{{val.d2}}</a>
+  </div>
+  <div class="col">
+    <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d3}}</a>
+  </div>
+  <div class="col"> 
+    <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d4}}</a>
+  </div>
+  <div class="col"> 
+    <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d5}}</a>
+  </div>
+  <div class="col">
+   <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d6}}</a>
+ </div>
+  <div class="col"> 
+    <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d7}}</a>
+  </div>
+  </div> 
+
+  </ion-slide>
+  <ion-slide>
+    <div class="box yellow">
+
+         <div class="row" ng-repeat="val in calendarVals">
+  <div class="col" >
+      <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d1}}</a>
+  </div>
+  <div class="col">
+    <a class=" button-outline button-positive" style="margin:0; padding:10px;" >{{val.d2}}</a>
+  </div>
+  <div class="col">
+    <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d3}}</a>
+  </div>
+  <div class="col"> 
+    <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d4}}</a>
+  </div>
+  <div class="col"> 
+    <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d5}}</a>
+  </div>
+  <div class="col">
+   <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d6}}</a>
+ </div>
+  <div class="col"> 
+    <a class=" button-outline button-positive" style="margin:0; padding:10px;">{{val.d7}}</a>
+  </div>
+  </div> 
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="box pink"><h1>PINK</h1></div>
+  </ion-slide>
+</ion-slide-box>
+
+<script id="event-popover.html" type="text/ng-template">
+  <ion-popover-view style="height: 400px; width:300px; border-radius: 5px; ">
+    <ion-content >
+        <div class="list list-inset">
+        <label class="item item-input">
+           <input type="text" placeholder="Event Name">
+        </label>
+         <label class="item item-input">
+           <input type="text" placeholder="Location">
+        </label>
+
+         <div class="item item-toggle">
+            <input type="text" placeholder="All Day" disabled>
+         <label class="toggle toggle-assertive">
+         <input type="checkbox">
+         <div class="track">
+         <div class="handle"></div>
+         </div>
+         </label>
+         </div>
+          <label class="item item-input">
+           <input type="date" placeholder="Time">
+        </label>
+
+        <label class="item item-input">
+           <input type="text" placeholder="Description">
+        </label>
+        </div>    
+        <button class="button button-positive " ng-click="closePopover()" style="margin:10px;"> Add</button>
+    </ion-content>
+  </ion-popover-view>
+</script>
+<hr>
+  <div style="margin-top:20px">
+      <div class="list">
+
+  <div class="item item-divider">
+    My Events
+  </div>
+
+  <a class="item" ui-sref="calcdet" ng-hide="ebit">
+   {{eventCal.day}} &nbsp; &nbsp; {{eventCal.title}}
+  </a>
+
+    </div>
+  </div>
+  </div>
+  </ion-content>
+
+</ion-view>

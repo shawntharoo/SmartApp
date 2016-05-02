@@ -1,7 +1,7 @@
 <ion-view title="Create an event" id="createNewEvent" style="background-color:#EEEEF1;">
     <ion-content padding="true" class="has-header">
 
-    	<div class="list" style="margin:2px;">
+    	<div class="list" style="margin:2px;" ng-controller="MyController">
     <label class="item item-input" style="margin:0; height:100px; ">
         <input type="text" placeholder="Event Title" style="font-size:26px; text-align:center; " >
         <a class="button button-icon icon ion-camera" style="margin-right:10px;"></a>
@@ -36,7 +36,7 @@
       </label>
       <ion-toggle ng-model="airplaneMode" toggle-class="toggle-calm">Allow guests to invite friends</ion-toggle>
 
-      <button class="button button-block button-positive">
+      <button class="button button-block button-positive" ng-click="created()">
        Create
       </button>
       </div>

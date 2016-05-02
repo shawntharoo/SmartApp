@@ -1,0 +1,50 @@
+<ion-view title="My Profile" id="timeline">
+   <ion-nav-buttons side="left" ng-show="true">
+    <button class="button button-icon button-clear ion-arrow-left-b" ui-sref="tabsController.mainprofile">
+    Back</button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <ion-list>
+            <ion-item class="item-thumbnail-left">
+                <img src="img/boy1.png">
+                <h2>Saman Perera</h2>
+                <p>saman@gmail.com</p>
+                
+            </ion-item>
+               <div class="item item-input-inset">
+                 <div class="col col-80"> 
+                 <label class="item-input-wrapper">
+
+                 <input type="file" placeholder="post">
+                 </label>
+                 </div>
+              <a class="button icon-right button-small button-positive"> POST </a>
+             </div>
+
+             <label class="item item-input item-select" >
+                     <div class="input-label">
+                      Visibility
+                      </div>
+                     <select ng-model="class">
+                     <option>OnlyMe</option>
+                     <option>Public</option>
+                     <option>Favourite</option>
+                     </select>
+              </label>
+      
+              <div class="item item-divider">
+              Timeline
+              </div>
+            <div class="item item-body">
+   
+             <p>
+              sunday Rocks
+             </p>
+             <img class="full-image" src="img/sunday1.jpg">
+
+            </div>
+       
+        
+        </ion-list>
+     </ion-content>
+</ion-view>

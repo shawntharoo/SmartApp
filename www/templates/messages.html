@@ -1,0 +1,84 @@
+ <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+
+<ion-view title="My Messages" id="messages" style="background-color:#EEEEF1;" >
+<ion-content padding="false" class="has-header" > 
+
+
+    <div class="item item-input-inset" style="padding:10px;">
+    <label class="item-input-wrapper">
+      <input type="text" placeholder="Send a messages" ng-click="searchppl()">
+    </label>
+    <a class="button button-icon icon ion-person-add" ng-click="createMsg()" >
+     
+    </a> </div>
+    <div class="list" ng-show="searchval" style="float:left;">
+    	
+   		
+   		 	<button class="item button button-full button-light"> peter   </button>
+   		  	<button class="item button button-full button-light">prasan</button>   
+   		   	<button class="item button button-full button-light"> perera   </button> 
+		
+	</div>
+ 
+
+
+	<!--<ion-list ng-controller="MyCtrl" show-delete="false" show-reorder="false" can-swipe="true">
+  		  <ion-item 
+            class="item-thumbnail-left">
+
+    <img ng-src="img\boy3.png">
+    <h2>Sampath Gamage</h2>
+    <p>Hey where are you?</p>
+    <ion-option-button class="button-positive"
+                       ng-click="share(item)">
+      Share
+    </ion-option-button>
+    <ion-option-button class="button-info"
+                       ng-click="edit(item)">
+      Edit
+    </ion-option-button>
+    <ion-delete-button class="ion-minus-circled"
+                       ng-click="items.splice($index, 1)">
+    </ion-delete-button>
+    <ion-reorder-button class="ion-navicon"
+                        on-reorder="reorderItem(item, $fromIndex, $toIndex)">
+    </ion-reorder-button>
+
+ 			 </ion-item>
+			</ion-list>-->
+
+
+
+    		<a class="item item-avatar" ui-sref="privatemsg">
+     		 <img src="img\ben.png">
+      		 <h2>Jagath Chamara</h2>
+     		 <p>hello</p>
+    		</a>
+
+    		<a class="item item-avatar" ui-sref="exmsg">
+     		 <img src="img\boy3.png">
+      		 <h2>Samith Guruge</h2>
+     		 <p>hello</p>
+    		</a>
+
+    		<a class="item item-avatar" ui-sref="privatemsg">
+     		 <img src="img\adam.jpg">
+      		 <h2>Gray Calvin</h2>
+     		 <p>hello</p>
+    		</a>
+
+    		<a class="item item-avatar" ui-sref="bdaymsg">
+     		 <img src="img\blue1.jpg">
+      		 <h2>1994 Batch of Royal College</h2>
+     		 <p></p>
+    		</a>
+
+		
+	</ion-content>
