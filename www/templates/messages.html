@@ -13,17 +13,26 @@
 
     <div class="item item-input-inset" style="padding:10px;">
     <label class="item-input-wrapper">
-      <input type="text" placeholder="Send a messages" ng-click="searchppl()">
+      <input type="text" ng-model="searchname" placeholder="Send a messages" ng-keypress="searchppl()"  >
     </label>
     <a class="button button-icon icon ion-person-add" ng-click="createMsg()" >
      
     </a> </div>
-    <div class="list" ng-show="searchval" style="float:left;">
+    <div class="list" ng-show="searchval" >
     	
    		
-   		 	<button class="item button button-full button-light"> peter   </button>
-   		  	<button class="item button button-full button-light">prasan</button>   
-   		   	<button class="item button button-full button-light"> perera   </button> 
+   		 	<button class="item item-avatar button-full button-light" ng-click="hideppl()"> 
+          <img src="img\ben.png">
+          <p>Dhanuja Kumarasiri  </p>
+           </button>
+   		  	<button class="item item-avatar button-full button-light" ng-click="hideppl()"> 
+          <img src="img\ben.png">
+          <p>Dhananjaya Hettiarachchi  </p>
+           </button> 
+   		   <button class="item item-avatar button-full button-light" ng-click="hideppl()"> 
+          <img src="img\ben.png">
+          <p>Dhanka Premathilaka  </p>
+           </button> 
 		
 	</div>
  

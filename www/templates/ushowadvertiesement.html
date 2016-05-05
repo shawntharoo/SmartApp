@@ -7,6 +7,10 @@
     <button class="button button-icon ion-arrow-left-b" ui-sref="tabsController.mainprofile">
     </button>
     </ion-nav-buttons>
+      <ion-nav-buttons side="right" ng-show="true">
+    <button class="button button-icon button-clear ion-edit" ui-sref="AdmintabsController.upost">
+    </button>
+    </ion-nav-buttons>
     <ion-content padding="true" class="has-header">
     <div ng-controller="showAdvertiesementCtrl">
         <ion-list>
@@ -14,7 +18,7 @@
                 <i class="icon ion-search placeholder-icon"></i>
                 <input type="search" placeholder="Search By Title">
             </label>
-            <ion-item class="item item-avatar" ui-sref="tabsController2_1.ufullShowAdvertiesement">
+            <ion-item class="item item-avatar" ui-sref="AdmintabsController.ufullEditShow">
                 <img src="img/download (3).jpg">
                        <h2>Scientists find AI-based method to curb poaching </h2>
                 <p>Researchers in the US, Singapore, Netherlands and Malaysia have found a method to use Artificial ...</p>
@@ -57,4 +61,7 @@
         </ion-list>
         </div>
     </ion-content>
+           <ion-item class="item item-thumbnail" ui-sref="AdmintabsController.ufullEditShow" style="position: absolute;  bottom: 10px; right:20px;  left:10px;" align="right" ng-hide="newbit">  
+    <img src="img/advertise.jpg" style="width: 300px; height: 100px"> 
+  </ion-item>
 </ion-view>

@@ -1,6 +1,12 @@
-<ion-view title="Cricket Post" hide-back-button="true" id="grouppost">
+<ion-view title="My Dashboard" hide-back-button="true" id="grouppost" >
+<ion-nav-buttons side="left" ng-show="true"  >
+      <button class="button button-icon button-clear ion-calendar " ng-click="addCalendar()" > </button>
+ </ion-nav-buttons>
 <ion-nav-buttons side="right" ng-show="true"  >
-      <button class="button button-icon button-clear ion-compose " ng-click="addPost()" >
+     
+       <button class="button button-icon button-clear ion-email" ng-click="addMsg()"  style="padding-right:5px;">
+      </button>
+       <button class="button button-icon button-clear ion-android-notifications-none " ng-click="addNotif()" >
       </button>
     </ion-nav-buttons>
 
@@ -8,9 +14,49 @@
    
     <ion-content padding="true" class="cards-bg has-header">
        
+         <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+          <input type="text" placeholder="Say something">
+          </label>
+        <button class="button button-small icon ion-images"></button>
+        <button class="button button-small icon " ng-click="addnew()">POST</button>
 
+     
+    </a>
+  </div>
  
-   
+        <div class="list card" ng-show="postbit">
+            <div class="item item-body">
+                <ion-list>
+                    <div class="item item-avatar" ui-sref="profile">
+                    <img src="/img/ben.png">
+                    <h2>Tharinda Perera</h2>
+                    <p>2 sec ago</p>
+                  </div>
+                </ion-list>
+                <div>
+                    <a style="display:block;" ui-sref="selectedGroupPost">
+                        <img src="img/Beach_Party .jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                    </a>
+                </div>
+                <div id="cricketPost-markdown2" style="color:#0E0101;text-align:justify;">
+                    <p> Hey group</p>
+                </div>
+                <div class="item">
+                   
+                    <button id="cricketPost-button3" class="ion-icon ion-thumbsup button-primary button-clear item-left" style="color: #3366ff">12 Likes</button>
+                       <a ui-sref="selectedPost" id="cricketPost-button2" > <button class="ion-icon ion-ios-compose button-primary button-clear item-left" style="color: #3366ff">4 Comments</button></a>
+                    
+                    <ion-note item-right style="color: #C0C0C0 ">
+                      11h ago
+                    </ion-note>
+ </div>
+               
+            </div>
+        </div>
+
+
+
         <div class="list card">
             <div class="item item-body">
                 <ion-list>

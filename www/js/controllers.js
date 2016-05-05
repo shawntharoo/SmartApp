@@ -12,9 +12,21 @@ angular.module('app.controllers', [])
 
 })
       
-.controller('loginCtrl', function($scope) {
-
+.controller('loginCtrl', function($scope,$state) {
+    $scope.log = function(params){
+        $scope.x = params.name1;
+        //$scope.res = angular.equals($scope.x,'admin');
+        if($scope.x=="admin"){
+         // alert("yay");
+         $state.transitionTo('AdmintabsController.mainprofile',{name: $scope.x});
+        }
+        else {
+         // alert("nay");
+         $state.go('tabsController.mainprofile',{name: $scope.x});
+        }
+    }
 })
+
 .controller('timelineCtrl', function($scope) {
 
 })
@@ -53,7 +65,8 @@ angular.module('app.controllers', [])
    // Show the action sheet
    var hideSheet = $ionicActionSheet.show({
      buttons: [
-       { text: 'Logout' }
+       { text: 'Logout'},
+        { text: 'Theme'}
       
      ],
     
@@ -65,6 +78,9 @@ angular.module('app.controllers', [])
      buttonClicked: function(index) {
       if(index===0){
             $state.transitionTo('login');
+          }
+           if(index===1){
+            $state.transitionTo('theme');
           }
      }
    });
@@ -82,14 +98,34 @@ angular.module('app.controllers', [])
 
 
 })
-  .controller('mainprofileCtrl', function($scope,$state) {
+  .controller('mainprofileCtrl', function($scope,$state, $stateParams) {
+
+    $scope.n = $stateParams.name;
+    if($scope.n == 'Saman'){
+      $scope.rep="true";
+      $scope.admin="false";
+    }
+    else if($scope.n == 'admin'){
+      $scope.rep="false";
+      $scope.admin="true";
+    }
+    else{
+      $scope.admin="false";
+      $scope.rep="false";
+    }
+
+     
       $scope.swichtobusiness= function(){
 
     $state.transitionTo("tabsController2.showAdvertiesement");
   }
 
 })
+
     .controller('requestCtrl', function($scope) {
+
+})
+     .controller('request1Ctrl', function($scope) {
 
 })
      .controller('occupationCtrl', function($scope) {
@@ -202,10 +238,63 @@ $scope.inviteFriends = function(){
 
 .controller('groupPostCtrl', function($scope,$state) {
 
-  $scope.addPost = function(){
-        $state.transitionTo("addAPost");
+  $scope.addCalendar = function(){
+        $state.transitionTo("calendar");
+    }
+
+  $scope.addMsg = function(){
+        $state.transitionTo("allmsg");
+  }
+
+  $scope.addNotif = function(){
+        $state.transitionTo("notifications");
+  }
+
+    $scope.addnew = function() {
+      $scope.postbit = !$scope.postbit;
     }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //sanda controllers
   .controller('showAdvertiesementCtrl', function($scope,$http) {
   $http.get('http://localhost/SmartApp/www/#/database.json')
@@ -214,7 +303,12 @@ $scope.inviteFriends = function(){
   });
 })
    
-.controller('aboutCtrl', function($scope) {
+//user
+.controller('buissnessCardCtrl', function($scope) {
+
+})
+
+.controller('editProfilePageCtrl', function($scope) {
 
 })
 
@@ -225,62 +319,51 @@ $scope.inviteFriends = function(){
 .controller('about3PageCtrl', function($scope) {
 
 })
-   
-.controller('searchAdvertiesementCtrl', function($scope) {
 
-})
-      
-.controller('postAdvertiesementCtrl', function($scope) {
 
-})
-   
-.controller('buissnessCardCtrl', function($scope) {
+//admin   
+.controller('upostAdvertiesementCtrl', function($scope) {
 
 })
    
-.controller('fullShowAdvertiesementCtrl', function($scope) {
-
-})
-   
-.controller('fullEditAdvertiesementCtrl', function($scope) {
-
-})
  
-.controller('editButtonPageCtrl', function($scope) {
-
-})
-
-.controller('editProfilePageCtrl', function($scope) {
-
-})
-
   .controller('ushowadvertiesementCtrl', function($scope) {
 
 })
 
-.controller('ufullShowAdvertiesementCtrl', function($scope) {
+.controller('ufullEditShowCtrl', function($scope) {
 
 })
 
-.controller('ubuissnessCardCtrl', function($scope) {
+.controller('ufullEditCtrl', function($scope) {
 
 })
 
-.controller('ueditProfilePageCtrl', function($scope) {
 
-})
 
-.controller('uaboutCtrl', function($scope) {
 
-})
 
-.controller('uabout2PageCtrl', function($scope) {
 
-})
 
-.controller('uabout3PageCtrl', function($scope) {
 
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //mahesh controllers
 //mahesh controllers
 .controller('pageCtrl', function($scope) {
@@ -299,7 +382,13 @@ $scope.inviteFriends = function(){
   })
 
       .controller('themeSettingsCtrl', function($scope) {
+              $scope.backcolor = null;
+              $scope.textcolor="null";
 
+              $scope.changecolor = function(){
+                $scope.backcolor = "#ffd633";
+                $scope.textcolor="#000066";
+              }
   })
 
       .controller('searchResultCtrl', function($scope) {
@@ -500,20 +589,38 @@ $scope.createEvent = function(){
 
 })
 
-.controller('allmsg',function($scope){
-      $scope.searchval= false;
+.controller('allmsg',function($scope,$state){
 
       $scope.searchppl = function(){
+       
         $scope.searchval= true;
+         
+      }
+
+      $scope.hideppl = function(){
+        $scope.searchname= "Dhanuja Kumarasiri";
+        $scope.searchval= false;
+
+        $state.transitionTo('exmsg');
       }
 })
 
 .controller('exmsg',function($scope){
-   $scope.newbit = true;
-
-   $scope.addMsg = function(){
-      $scope.newbit=false;
+    
+     $scope.newbit = $scope.c;
+ $scope.addMsg = function(){
+      $scope.c = "ff";
    }
+   $scope.searchcon = function(){
+       
+        $scope.xval= true;
+         
+      }
+    $scope.addconference = function(){
+        $scope.vevo=null;
+        $scope.xval= false;
+        $scope.yval= true;
+    }  
 
 })
 

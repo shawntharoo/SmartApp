@@ -1,4 +1,4 @@
-<ion-view title="About ME" id="about2" style="background-color:#cce6ff;">
+<ion-view title="About ME" id="about3" style="background-color:#cce6ff;">
     <ion-content padding="true" class="has-header">
         <form class="list">
             <ion-item class="item-divider">Working Place Details</ion-item>
@@ -23,7 +23,7 @@
                 <input type="text" placeholder="Your Normal working hours">
             </label>
 
-            <a ui-sref="tabsController2.about3" id="About2-button1" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block ">Submit</a>
+            <a ui-sref="tabsController2.buissnessCard" id="About2-button1" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block ">Submit</a>
              <div class="card" style="color:#cce6ff;">
             <div class="item item-text-wrap">
             Your Buissness Card is Completed !
@@ -31,4 +31,7 @@
             </div>
              </form>
     </ion-content>
+         <ion-item class="item item-thumbnail" ui-sref="AdmintabsController.ufullEditShow" style="position: absolute;  bottom: 50px; right:20px;  left:10px;" align="right" ng-hide="newbit">  
+    <img src="img/advertise.jpg" style="width: 250px; height: 100px"> 
+  </ion-item>
 </ion-view>

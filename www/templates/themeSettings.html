@@ -1,10 +1,18 @@
-<ion-view title="Theme Settings" id="page2"
-  <ion-content padding="true" class="has-header">
-    <h3 id="themeSettings-heading1" style="color:#2D34C9;">Themes</h3>
+
+
+<ion-view title="Theme Settings" id="theme">
+  <ion-content padding="true" class="has-header"  style="background-color:{{backcolor}};">
+    <h3 id="themeSettings-heading1" style="color:{{textcolor}}; text-align: center;">Themes</h3>
     <form class="list">
-      <br>  <ion-radio>Blue and Gold</ion-radio></br>
-      <br><ion-radio>Black and White</ion-radio></br>
-      <br><ion-radio>White and Blue</ion-radio></br>
+    <ion-list>
+      <ion-radio >Blue and Gold</ion-radio>
+      <ion-radio >Black and White</ion-radio>
+      <ion-radio>White and Blue</ion-radio>
+      </ion-list>
+      <button class="button button-block button-positive" style="background-color: {{textcolor}}; color:{{backcolor}}" ng-click="changecolor()">
+  Apply
+</button>
+
     </form>
   </ion-content>
 </ion-view>
