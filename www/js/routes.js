@@ -41,12 +41,8 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-
-
-
-
  //sanda admin start
-        .state('AdmintabsController.ushow', {
+              .state('AdmintabsController.ushow', {
     url: '/ushow',
     views: {
       'tab7': {
@@ -85,23 +81,7 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     }
   })               
-
-
-
-
  //sanda admin end
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -196,6 +176,12 @@ angular.module('app.routes', ['ionicUIRouter'])
     templateUrl: 'templates/login.html',
     controller: 'loginCtrl'
   })
+    .state('resetpassword', {
+    url: '/resetpassword',
+    templateUrl: 'templates/resetpassword.html',
+    controller: 'resetpasswordCtrl'
+  })
+  
   
   
   .state('tabsController.Groups', {
@@ -465,6 +451,7 @@ angular.module('app.routes', ['ionicUIRouter'])
   })
 
 
+  
 
 
 
@@ -477,32 +464,8 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //sanda routes
+  
+   //sanda routes
    
 
   .state('tabsController2', {
@@ -522,6 +485,15 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
+  .state('tabsController2.editProfile', {
+    url: '/editProfile',
+    views: {
+      'tab3': {
+        templateUrl: 'templates/editProfile.html',
+        controller: 'editProfilePageCtrl'
+      }
+    }
+  })
   /* 
     The IonicUIRouter.js UI-Router Modification is being used for this route.
     To navigate to this route, do NOT use a URL. Instead use one of the following:
@@ -552,16 +524,6 @@ angular.module('app.routes', ['ionicUIRouter'])
       'tab4': {
         templateUrl: 'templates/about3.html',
         controller: 'about3PageCtrl'
-      }
-    }
-  })
-
-             .state('tabsController2.editProfile', {
-    url: '/editProfile',
-    views: {
-      'tab3': {
-        templateUrl: 'templates/editProfile.html',
-        controller: 'editProfilePageCtrl'
       }
     }
   })

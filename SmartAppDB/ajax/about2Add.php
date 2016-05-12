@@ -1,11 +1,10 @@
 <?php 
 include('../includes/db.php');
-$Fullname = $_GET['Fullname'];
-$adress = $_GET['address'];
-$Email = $_GET['email'];
-$contactNo = $_GET['contactNo'];
+$profession = $_GET['profession'];
+$skills = $_GET['skills'];
+$awards = $_GET['awards'];
 
-$query="INSERT INTO about(Fullname,address,contactNo,email)  VALUES ('$Fullname','$adress','$contactNo','$Email')";
+$query="INSERT INTO about2(Profession,Skills,Awards)  VALUES ('$profession','$skills','$awards')";
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 
 $result = $mysqli->affected_rows;

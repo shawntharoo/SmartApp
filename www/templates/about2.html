@@ -1,21 +1,21 @@
 <ion-view title="About ME" id="about2" style="background-color:#cce6ff;">
-    <ion-content padding="true" class="has-header">
+     <ion-content padding="true" class="has-header">
         <form class="list">
              <ion-item class="item-divider">Professional Details</ion-item>
             <label class="item item-input">
                 <span class="input-label">Profession</span>
-                <input type="text" placeholder="Your Profession">
+                <input type="text" name="prof" ng-model="profession" ng-required="true" placeholder="Your Profession">
             </label>
             <label class="item item-input">
                 <span class="input-label">Skills</span>
-                <input type="text" placeholder="Skills Based on Profession">
+                <input type="text" name="ski" ng-model="skills" ng-required="true" placeholder="Skills Based on Profession">
             </label>
              <label class="item item-input">
                 <span class="input-label">Awards</span>
-                <input type="text" placeholder="Awards Regards to Profession">
+                <input type="text" name="awar" ng-model="awards" ng-required="true" placeholder="Awards Regards to Profession">
             </label>
 
-               <a ui-sref="tabsController2.about3" id="About2-button1" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block ">Submit</a>
+               <a ui-sref="tabsController2.about3" id="About2-button1" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block " ng-click="about2add(profession,skills,awards)">Submit</a>
             
             <div class="card">
             <div class="item item-text-wrap">
@@ -25,7 +25,25 @@
             <a ui-sref="tabsController2.about3" id="About-button1" style="font-weight:800;font-size:-2px;" class="button button-calm  button-stable icon ion-arrow-right-c">   Next</a>
         </form>
     </ion-content>
-           <ion-item class="item item-thumbnail" ui-sref="AdmintabsController.ufullEditShow" style="position: absolute;  bottom: 50px; right:20px;  left:10px;" align="right" ng-hide="newbit">  
-    <img src="img/advertise.jpg" style="width: 250px; height: 100px"> 
-  </ion-item>
+           <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+      
+      <ion-slide-box ng-click="change()" does-continue="true" auto-play="true">
+    
+      <ion-slide>
+        <a class="item " href="#" style="padding:0;margin:0" >
+         <img src ="img/ad3.png" width="382px" height="70px" style="padding:0; margin:0"></a>
+      </ion-slide>
+      <ion-slide>
+        <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad2.png" width="382px" height="70px" style="padding:0; margin:0">
+        </a>
+      </ion-slide>
+     <ion-slide>
+       <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad1.png" width="382px" height="70px" style="padding:0; margin:0"></a>
+     </ion-slide>
+    
+    
+
+  </div>
+
+
 </ion-view>

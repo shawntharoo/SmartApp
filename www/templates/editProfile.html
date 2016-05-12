@@ -3,37 +3,54 @@
             <ion-item class="item-divider">Professional Details</ion-item>
             <label class="item item-input">
                 <span class="input-label">Profession</span>
-                <input type="text" placeholder="Your Profession">
+                <input type="text" name="prof" placeholder="Your Profession" ng-model="Profession" ng-required="true">
+                <div ng-bind="Profession"></div>
             </label>
             <label class="item item-input">
                 <span class="input-label">Skills</span>
-                <input type="text" placeholder="Skills Based on Profession">
+                <input type="text" placeholder="Skills Based on Profession" ng-model="Skills" ng-required="true">
             </label>
             <ion-item class="item-divider">Working Place Details</ion-item>
             <label class="item item-input">
                 <span class="input-label">Working Place</span>
-                <input type="text" placeholder="Name of the working place">
+                <input type="text" placeholder="Name of the working place" ng-model="wpName" ng-required="true">
             </label>
             <label class="item item-input">
                 <span class="input-label">Address</span>
-                <input type="text" placeholder="Address of the working place">
+                <input type="text" placeholder="Address of the working place" ng-model="wpAddress" ng-required="true">
             </label>
             <label class="item item-input">
                 <span class="input-label">Contact No</span>
-                <input type="text" placeholder="Contact details of the working place">
+                <input type="text" placeholder="Contact details of the working place" ng-model="wpContact" ng-required="true">
             </label>
             <label class="item item-input">
                 <span class="input-label">Email</span>
-                <input type="text" placeholder="Email use for working purposes">
+                <input type="text" placeholder="Email use for working purposes" ng-model="wpEmail" ng-required="true">
             </label>
             <label class="item item-input">
                 <span class="input-label">working Hours</span>
-                <input type="text" placeholder="Your Normal working hours">
+                <input type="text" placeholder="Your Normal working hours" ng-model="wpHours" ng-required="true">
             </label>
-              <a ui-sref="tabsController2.buissnessCard" id="editProfile-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block icon ion-checkmark-circled">Submit</a>
+              <a ui-sref="tabsController2.buissnessCard" id="editProfile-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block icon ion-checkmark-circled" ng-click="BuissnessCardEdit(Profession,Skills,wpName,wpAddress,wpContact,wpEmail,wpHours)">Submit</a>
         </form>
     </ion-content>
-       <ion-item class="item item-thumbnail" ui-sref="AdmintabsController.ufullEditShow" style="position: absolute;  bottom: 10px; right:20px;  left:10px;" align="right" ng-hide="newbit">  
-    <img src="img/advertise.jpg" style="width: 250px; height: 50px"> 
-  </ion-item>
+       <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+      
+      <ion-slide-box ng-click="change()" does-continue="true" auto-play="true">
+    
+      <ion-slide>
+        <a class="item " href="#" style="padding:0;margin:0" >
+         <img src ="img/ad3.png" width="382px" height="60px" style="padding:0; margin:0"></a>
+      </ion-slide>
+      <ion-slide>
+        <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad2.png" width="382px" height="60px" style="padding:0; margin:0">
+        </a>
+      </ion-slide>
+     <ion-slide>
+       <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad1.png" width="382px" height="60px" style="padding:0; margin:0"></a>
+     </ion-slide>
+    
+    
+
+  </div>
 </ion-view>

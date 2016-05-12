@@ -7,6 +7,10 @@ angular.module('app.controllers', [])
 		$state.transitionTo("login");
 	}
 })
+.controller('slider',function($scope,$ionicSlideBoxDelegate){
+
+   
+})
    
 .controller('cartCtrl', function($scope) {
 
@@ -30,6 +34,9 @@ angular.module('app.controllers', [])
 .controller('timelineCtrl', function($scope) {
 
 })
+.controller('resetpasswordCtrl', function($scope) {
+
+})
 .controller('signupCtrl', function($scope,$http,$ionicPopup,$state) {
 
 	/*	$scope.signup = function(){
@@ -49,7 +56,7 @@ angular.module('app.controllers', [])
 	template:'your request has successfully sent to the system.Check mail for the confirmation'
 	
  });
- $state.transitionTo('tabsController.mainprofile');
+ //$state.transitionTo('tabsController.mainprofile');
 
  }
 
@@ -65,8 +72,10 @@ angular.module('app.controllers', [])
    // Show the action sheet
    var hideSheet = $ionicActionSheet.show({
      buttons: [
+      
        { text: 'Logout'},
-        { text: 'Theme'}
+        { text: 'Theme'},
+          { text: 'Reset Password'},
       
      ],
     
@@ -81,6 +90,9 @@ angular.module('app.controllers', [])
           }
            if(index===1){
             $state.transitionTo('theme');
+          }
+            if(index===2){
+            $state.transitionTo('resetpassword');
           }
      }
    });
@@ -280,21 +292,6 @@ $scope.inviteFriends = function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //sanda controllers
   .controller('showAdvertiesementCtrl', function($scope,$http) {
   $http.get('http://localhost/SmartApp/www/#/database.json')
@@ -304,26 +301,87 @@ $scope.inviteFriends = function(){
 })
    
 //user
-.controller('buissnessCardCtrl', function($scope) {
+.controller('buissnessCardCtrl', function($scope,$http,$state) {
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+1).success(function(data){
+        
+    var card=[];
+    card=data;
+    $scope.Profession=card[0].Profession;
+    $scope.Skills=card[0].Skills;
+    $scope.wpName=card[0].wpName;
+    $scope.wpAddress=card[0].wpAddress; 
+    $scope.wpContact=card[0].wpContact;
+    $scope.wpEmail=card[0].wpEmail;
+    $scope.wpHours=card[0].wpHours;
+  });
 
 })
 
-.controller('editProfilePageCtrl', function($scope) {
+.controller('editProfilePageCtrl', function($scope,$http,$state) {
+
+    $scope.BuissnessCardEdit = function (Profession,Skills,wpName,wpAddress,wpContact,wpEmail,wpHours) {
+    alert('Hi ' + $scope.Profession);
+    $http.post("http://localhost/SmartAppDB/ajax/buissnessCardEdit.php?Profession="+Profession+"&Skills="+Skills+"&wpName="+wpName+"&wpAddress="+wpAddress+"&wpContact="+wpContact+"&wpEmail="+wpEmail+"&wpHours="+wpHours)
+    .success(function(data){
+    });
+    };
+
+    
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+1).success(function(data){   
+    var card=[];
+    card=data;
+    $scope.Profession=card[0].Profession;
+    $scope.Skills=card[0].Skills;
+    $scope.wpName=card[0].wpName;
+    $scope.wpAddress=card[0].wpAddress; 
+    $scope.wpContact=card[0].wpContact;
+    $scope.wpEmail=card[0].wpEmail;
+    $scope.wpHours=card[0].wpHours;
+  })
 
 })
 
-.controller('about2PageCtrl', function($scope) {
+
+.controller('about2PageCtrl', function($scope,$http,$state) {
+   $scope.about2add = function (profession,skills,awards) {
+    $http.post("http://localhost/SmartAppDB/ajax/about2Add.php?profession="+profession+"&skills="+skills+"&awards="+awards)
+    .success(function(data){ 
+      alert("Successfully Uploaded");
+      $scope.prof = "";
+      $scope.ski = "";
+      $scope.awar = "";
+      });
+  };
 
 })
 
-.controller('about3PageCtrl', function($scope) {
+.controller('about3PageCtrl', function($scope,$http,$state) {
+   $scope.about3add = function (workPlace,address,contact,email,workHour) {
+    $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour)
+    .success(function(data){ 
+      $scope.wplace = "";
+      $scope.addr = "";
+      $scope.cont = "";
+      scope.mail = "";
+      scope.hour = "";
+      });
+  };
 
 })
 
+.controller('slider',function($scope,$ionicSlideBoxDelegate){
+
+   
+})
 
 //admin   
-.controller('upostAdvertiesementCtrl', function($scope) {
-
+.controller('upostAdvertiesementCtrl', function($scope,$http,$state) {
+    $scope.postAdvertiesement = function (Selected,Title,Image,Description,Contact,Email,SDate,EDate) {
+    $http.post("http://localhost/SmartAppDB/ajax/postAdvertiesement.php?Selected="+Selected+"&Title="+Title+"&Image="+Image+"&Description="+Description+"&Contact="+Contact+"&Email="+Email+"&SDate="+SDate+"&EDate="+EDate)
+    .success(function(data){ 
+      });
+    alert("Successfully Uploaded");
+  };
 })
    
  
@@ -338,17 +396,6 @@ $scope.inviteFriends = function(){
 .controller('ufullEditCtrl', function($scope) {
 
 })
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -404,8 +451,10 @@ $scope.createEvent = function(){
         $state.transitionTo("eventDesc");
     }
 })
-.controller('createevent', function($scope) {
-
+.controller('createevent', function($scope,$state) {
+      $scope.created = function(){
+        $state.transitionTo("AdmintabsController");
+      }
 })
 
 
