@@ -1,30 +1,16 @@
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-<!--<script src="angular-route.min.js"></script>-->
-<script src="controllers.js"></script>
-
-<ion-view title="Show Advertiesement" id="ushow" style="background-color:#d9d9d9;" ng-app="app">
-  <ion-nav-buttons side="left" ng-show="true">
-    <button class="button button-icon ion-arrow-left-b" ui-sref="tabsController.mainprofile">
-    </button>
-    </ion-nav-buttons>
-      <ion-nav-buttons side="right" ng-show="true">
-    <button class="button button-icon button-clear ion-edit" ui-sref="AdmintabsController.upost">
-    </button>
-    </ion-nav-buttons>
+<ion-view title="My Advertiesements" id="page4" style="background-color:#d9d9d9;">
     <ion-content padding="true" class="has-header">
-    <div ng-controller="showAdvertiesementCtrl">
         <ion-list>
-         <label class="item item-input">
+            <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search By Title">
+                <input type="search" placeholder=" Search By Title">
             </label>
-            <ion-item class="item item-avatar" ui-sref="AdmintabsController.ufullEditShow({ ID: add.ID })" ng-repeat="add in advertiesement">
-                <img ng-src="{{add.Image}}">
-                       <h2>{{add.Title}} </h2>
-                       <p>{{add.Description}}</p>
-                       <span><p><h5>Published On : {{add.CDate}}</h5></p></span>
+            <ion-item class="item item-avatar" ui-sref="tabsController2.fullEditAdvertiesement">
+                <img src="img/download (3).jpg">
+                       <h2>Scientists find AI-based method to curb poaching </h2>
+                <p>Researchers in the US, Singapore, Netherlands and Malaysia have found a method to use Artificial ...</p>
             </ion-item>
-           <ion-item class="item item-avatar">
+            <ion-item class="item item-avatar">
                 <img src="img/download (6).jpg">
                  <h2>Three US Army vehicles destroyed during airdrop </h2>
                 <p>Three US Army vehicles costing as much as $220,000 each, were destroyed during an airdrop as the ...</p>
@@ -58,8 +44,6 @@
                 <img src="img/987a50fc07cfaa8a0996f3b98adb0673.jpg">
                 <h2>Centre clears \u20b9723 cr for drought-hit Karnataka </h2>
                 <p>The Home Ministry on Friday cleared a \u20b9723 crore financial assistance package for drought-hit ...</p>
-            </ion-item>
         </ion-list>
-        </div>
     </ion-content>
 </ion-view>

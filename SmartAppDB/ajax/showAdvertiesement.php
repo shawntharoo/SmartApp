@@ -1,9 +1,7 @@
 <?php
 include('../includes/db.php');
 
-$CusID = $_GET['CusID'];
-
-$query="select * from postadvertiesement where ID='$CusID'";
+$query="select * from postadvertiesement";
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 
 $add = array();

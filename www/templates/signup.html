@@ -3,8 +3,10 @@
         <form class="list signuplist">
             <ion-list>
                 <label class="item item-input">
-                    <input type="text" placeholder="Name" ng-model="name">
+                    <input type="text" placeholder="Name" ng-model="name" ng-change="changefname()" id="fCode" name="firstname" ng-required="true">
+                    
                 </label>
+                 <p style="color:red;" ng-show="changefname()"><i class="ion-information-circled "></i>Name can only have letters</p>
                 <div class="list">
 
                  <label class="item item-input item-select" >

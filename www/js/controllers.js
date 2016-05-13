@@ -63,6 +63,7 @@ angular.module('app.controllers', [])
  });
  };
  
+ 
 
 })
  .controller('profileCtrl', function($scope,$ionicActionSheet,$timeout,$state) {
@@ -292,6 +293,26 @@ $scope.inviteFriends = function(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //sanda controllers
   .controller('showAdvertiesementCtrl', function($scope,$http) {
   $http.get('http://localhost/SmartApp/www/#/database.json')
@@ -344,39 +365,31 @@ $scope.inviteFriends = function(){
     }
     else if(WorkPlace == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Enter workPlace Name'
+        title: 'Enter Work Place Name'
       });
     }
     else if(Address == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Enter workPlace Address'
+        title: 'Enter Work Place Address'
       });
     }
     else if(Contact == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Enter workPlace Contact'
+        title: 'Enter Work Place Contact Details'
       });
     }
     else if(Email == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Enter workPlace Email'
+        title: 'Enter Work Place Email'
       });
     }
     else {
       var confirmPopup = $ionicPopup.confirm({
-        title: 'Are you sure you want to Update?'
+        title: 'Your Current Details Will Be Changed'
       });
       confirmPopup.then(function(res) {
         if(res) {
           $http.get("http://localhost/smartAppDB/ajax/buissnessCardEdit.php?Profession="+Profession+"&Skills="+Skills+"&Awards="+Awards+"&WorkPlace="+WorkPlace+"&Address="+Address+"&Contact="+Contact+"&Email="+Email+"&WorkHour="+WorkHour+"&CusID="+1).success(function (data) {
-           alert("Inside");   
-             /* $scope.Profession="";
-              $scope.Skills="";
-              $scope.wpName="";
-              $scope.wpAddress=""; 
-              $scope.wpContact="";
-              $scope.wpEmail="";
-              $scope.wpHours="";*/
           });
         } else {
           console.log('not updated');
@@ -395,9 +408,6 @@ $scope.inviteFriends = function(){
     $http.post("http://localhost/SmartAppDB/ajax/about2Add.php?profession="+profession+"&skills="+skills+"&awards="+awards)
     .success(function(data){ 
       alert("Successfully Uploaded");
-      $scope.prof = "";
-      $scope.ski = "";
-      $scope.awar = "";
       });
   };
 
@@ -433,21 +443,13 @@ $scope.inviteFriends = function(){
 })
    
  
-  .controller('ushowadvertiesementCtrl', function($scope,$http,$state) {
-    $http.get("http://localhost/SmartAppDB/ajax/showAdvertiesement.php?CusID="+1).success(function(data){
-        
-    var add=[];
-    add=data;
-    $scope.Type=add[0].Type;
-    $scope.Title=add[0].Title;
-    $scope.Image=add[0].Image;
-    $scope.Description=add[0].Description; 
-    $scope.contactNo=add[0].contactNo;
-    $scope.Email=add[0].Email;
-    $scope.StartDate=add[0].StartDate;
-    $scope.EndDate=add[0].EndDate;
-    $scope.CDate=add[0].CDate;
-  });
+.controller('ushowadvertiesementCtrl', function($scope,$http,$state) {
+  loadtable();
+  function loadtable(){
+        $http.get("http://localhost/smartAppDB/ajax/showAdvertiesement.php").success(function(data){
+      $scope.advertiesement = data;
+    });
+  };
 
 })
 
@@ -458,6 +460,46 @@ $scope.inviteFriends = function(){
 .controller('ufullEditCtrl', function($scope) {
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

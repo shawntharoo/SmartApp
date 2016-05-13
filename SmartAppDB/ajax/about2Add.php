@@ -4,7 +4,7 @@ $profession = $_GET['profession'];
 $skills = $_GET['skills'];
 $awards = $_GET['awards'];
 
-$query="INSERT INTO about2(Profession,Skills,Awards)  VALUES ('$profession','$skills','$awards')";
+$query="INSERT INTO buissnescard(Profession,Skills,Awards)  VALUES ('$profession','$skills','$awards')";
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 
 $result = $mysqli->affected_rows;

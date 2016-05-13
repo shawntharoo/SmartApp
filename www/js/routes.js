@@ -26,6 +26,7 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     }
   }) 
+ 
 
 
 
@@ -41,7 +42,17 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
- //sanda admin start
+
+
+
+
+
+
+
+
+
+
+//sanda admin start
               .state('AdmintabsController.ushow', {
     url: '/ushow',
     views: {
@@ -82,6 +93,37 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })               
  //sanda admin end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -451,7 +493,6 @@ angular.module('app.routes', ['ionicUIRouter'])
   })
 
 
-  
 
 
 
@@ -464,8 +505,38 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-  
-   //sanda routes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //sanda routes
    
 
   .state('tabsController2', {
@@ -518,7 +589,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-       .state('tabsController2.about3', {
+      .state('tabsController2.about3', {
     url: '/about3',
     views: {
       'tab4': {
@@ -528,6 +599,24 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
 
 
 $urlRouterProvider.otherwise('/page4')
