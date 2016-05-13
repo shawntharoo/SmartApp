@@ -19,9 +19,10 @@
                 <input type="search" placeholder="Search By Title">
             </label>
             <ion-item class="item item-avatar" ui-sref="AdmintabsController.ufullEditShow">
-                <img src="img/download (3).jpg">
-                       <h2>Scientists find AI-based method to curb poaching </h2>
-                <p>Researchers in the US, Singapore, Netherlands and Malaysia have found a method to use Artificial ...</p>
+                <img ng-src="{{Image}}">
+                       <h2>{{Title}} </h2>
+                <p>{{Description}}</p>
+                 <span><p><h5>Published On : {{CDate}}</h5></p></span>
             </ion-item>
             <ion-item class="item item-avatar">
                 <img src="img/download (6).jpg">
@@ -61,7 +62,4 @@
         </ion-list>
         </div>
     </ion-content>
-           <ion-item class="item item-thumbnail" ui-sref="AdmintabsController.ufullEditShow" style="position: absolute;  bottom: 10px; right:20px;  left:10px;" align="right" ng-hide="newbit">  
-    <img src="img/advertise.jpg" style="width: 300px; height: 100px"> 
-  </ion-item>
 </ion-view>

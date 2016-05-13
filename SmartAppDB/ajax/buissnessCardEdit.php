@@ -1,17 +1,16 @@
 <?php 
 include('../includes/db.php');
 
-//$CusID = $_GET['CusID'];
+$Profession = $_GET['Profession'];
+$Skills = $_GET['Skills'];
+$Awards = $_GET['Awards'];
+$WorkPlace = $_GET['WorkPlace'];
+$Address = $_GET['Address'];
+$Contact = $_GET['Contact'];
+$Email = $_GET['Email'];
+$WorkHour = $_GET['WorkHour'];
 
-$profession = $_GET['Profession'];
-$skills = $_GET['Skills'];
-$workName = $_GET['wpName'];
-$workAddress = $_GET['wpAddress'];
-$workContact = $_GET['wpContact'];
-$workEmail = $_GET['wpEmail'];
-$workHour = $_GET['wpHours'];
-
-$query="UPDATE buissnesscard set Profession='".$profession."',Skills='".$skills."',wpName='".$workName."',wpAddress='".$workAddress."',wpContact='".$workContact."',wpEmail='".$workEmail."',wpHours'".$workHour."' WHERE ID='1'";
+$query="UPDATE buissnescard set Profession='".$Profession."',Skills='".$Skills."',Awards='".$Awards."',WorkPlace='".$WorkPlace."',Address='".$Address."',Contact='".$Contact."',Email='".$Email."',WorkHour='".$WorkHour."' WHERE Id='7'";
 
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 $result = $mysqli->affected_rows;

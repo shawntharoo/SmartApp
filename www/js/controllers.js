@@ -302,42 +302,90 @@ $scope.inviteFriends = function(){
    
 //user
 .controller('buissnessCardCtrl', function($scope,$http,$state) {
-    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+1).success(function(data){
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+7).success(function(data){
         
     var card=[];
     card=data;
     $scope.Profession=card[0].Profession;
     $scope.Skills=card[0].Skills;
-    $scope.wpName=card[0].wpName;
-    $scope.wpAddress=card[0].wpAddress; 
-    $scope.wpContact=card[0].wpContact;
-    $scope.wpEmail=card[0].wpEmail;
-    $scope.wpHours=card[0].wpHours;
+    $scope.Awards=card[0].Awards;
+    $scope.WorkPlace=card[0].WorkPlace;
+    $scope.Address=card[0].Address; 
+    $scope.Contact=card[0].Contact;
+    $scope.Email=card[0].Email;
+    $scope.WorkHour=card[0].WorkHour;
   });
 
 })
 
-.controller('editProfilePageCtrl', function($scope,$http,$state) {
-
-    $scope.BuissnessCardEdit = function (Profession,Skills,wpName,wpAddress,wpContact,wpEmail,wpHours) {
-    alert('Hi ' + $scope.Profession);
-    $http.post("http://localhost/SmartAppDB/ajax/buissnessCardEdit.php?Profession="+Profession+"&Skills="+Skills+"&wpName="+wpName+"&wpAddress="+wpAddress+"&wpContact="+wpContact+"&wpEmail="+wpEmail+"&wpHours="+wpHours)
-    .success(function(data){
-    });
-    };
-
-    
-    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+1).success(function(data){   
+.controller('editProfilePageCtrl', function($scope,$http,$ionicPopup,$state) {
+    $scope.BuissnessCardValues = function () {
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+7).success(function(data){   
     var card=[];
     card=data;
     $scope.Profession=card[0].Profession;
     $scope.Skills=card[0].Skills;
-    $scope.wpName=card[0].wpName;
-    $scope.wpAddress=card[0].wpAddress; 
-    $scope.wpContact=card[0].wpContact;
-    $scope.wpEmail=card[0].wpEmail;
-    $scope.wpHours=card[0].wpHours;
+    $scope.Awards=card[0].Awards;
+    $scope.WorkPlace=card[0].WorkPlace;
+    $scope.Address=card[0].Address; 
+    $scope.Contact=card[0].Contact;
+    $scope.Email=card[0].Email;
+    $scope.WorkHour=card[0].WorkHour;
   })
+  }
+
+
+    $scope.BuissnessCardEdit = function (Profession,Skills,Awards,WorkPlace,Address,Contact,Email,WorkHour) {
+
+      if(Profession == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter Profession'
+      });
+    }
+    else if(WorkPlace == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter workPlace Name'
+      });
+    }
+    else if(Address == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter workPlace Address'
+      });
+    }
+    else if(Contact == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter workPlace Contact'
+      });
+    }
+    else if(Email == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter workPlace Email'
+      });
+    }
+    else {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Are you sure you want to Update?'
+      });
+      confirmPopup.then(function(res) {
+        if(res) {
+          $http.get("http://localhost/smartAppDB/ajax/buissnessCardEdit.php?Profession="+Profession+"&Skills="+Skills+"&Awards="+Awards+"&WorkPlace="+WorkPlace+"&Address="+Address+"&Contact="+Contact+"&Email="+Email+"&WorkHour="+WorkHour+"&CusID="+1).success(function (data) {
+           alert("Inside");   
+             /* $scope.Profession="";
+              $scope.Skills="";
+              $scope.wpName="";
+              $scope.wpAddress=""; 
+              $scope.wpContact="";
+              $scope.wpEmail="";
+              $scope.wpHours="";*/
+          });
+        } else {
+          console.log('not updated');
+        }
+      });
+
+    }
+
+    }
 
 })
 
@@ -385,7 +433,21 @@ $scope.inviteFriends = function(){
 })
    
  
-  .controller('ushowadvertiesementCtrl', function($scope) {
+  .controller('ushowadvertiesementCtrl', function($scope,$http,$state) {
+    $http.get("http://localhost/SmartAppDB/ajax/showAdvertiesement.php?CusID="+1).success(function(data){
+        
+    var add=[];
+    add=data;
+    $scope.Type=add[0].Type;
+    $scope.Title=add[0].Title;
+    $scope.Image=add[0].Image;
+    $scope.Description=add[0].Description; 
+    $scope.contactNo=add[0].contactNo;
+    $scope.Email=add[0].Email;
+    $scope.StartDate=add[0].StartDate;
+    $scope.EndDate=add[0].EndDate;
+    $scope.CDate=add[0].CDate;
+  });
 
 })
 

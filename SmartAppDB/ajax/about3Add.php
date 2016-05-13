@@ -6,7 +6,7 @@ $contact = $_GET['contact'];
 $email = $_GET['email'];
 $workHour = $_GET['workHour'];
 
-$query="UPDATE about2 set WorkPlace='".$workPlace."',Address='".$address."',Contact='".$contact."',Email='".$email."',WorkHour='".$workHour."' WHERE Id='4'";
+$query="UPDATE about2 set WorkPlace='".$workPlace."',Address='".$address."',Contact='".$contact."',Email='".$email."',WorkHour='".$workHour."' WHERE Id='7'";
 
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 $result = $mysqli->affected_rows;

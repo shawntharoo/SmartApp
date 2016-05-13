@@ -3,17 +3,17 @@ include('../includes/db.php');
 
 $CusID = $_GET['CusID'];
 
-$query="select * from buissnescard where Id='$CusID'";
+$query="select * from postadvertiesement where ID='$CusID'";
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 
-$card = array();
+$add = array();
 if($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
-		$card[] = $row;	
+		$add[] = $row;	
 	}
 }
 
-$json_response = json_encode($card);
+$json_response = json_encode($add);
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
