@@ -1,4 +1,4 @@
-<ion-view title="Samith" id="messages" style="background-color:#EEEEF1;" >
+<ion-view title="Dhanuja Kumarasiri" id="messages" style="background-color:#EEEEF1;" >
 
 <ion-nav-buttons side="right"  >
       <button class="button button-large ion-android-more-vertical " ng-click="createEvent()" >
@@ -9,25 +9,39 @@
 
   <div class="item item-input-inset">
     <label class="item-input-wrapper">
-      <input type="text" placeholder="Add to conference">
+      <input type="text" value={{vevo}} ng-keypress="searchcon()" placeholder="Add to conference">
     </label>
-    <a class="button button-icon icon ion-person-add">
+    <a class="button button-icon icon ion-person-add" ng-click="addconference()">
      
     </a>
   </div>
+     <ion-list ng-show="xval">
 
+  <ion-checkbox ng-model="filter.blue">Kasun Tharuka</ion-checkbox>
+  <ion-checkbox ng-model="filter.yellow">Kusal Perera</ion-checkbox>
+  <ion-checkbox ng-model="filter.pink">Reince Theva</ion-checkbox>
+
+</ion-list>
+    
 </div> 
+
+
 </ion-content>
 
+<div class="list"  style="position: absolute;  bottom: 110px; right:0px; width: 100% text-align: center;" align="center" ng-show="yval">
+<p> You added Kasun Tharuka, Kusal Perera to the conference.
+   
+  </div>
 <div class="list"  style="position: absolute;  bottom: 30px; right:0px; width: 100% text-align: right;" align="right" ng-hide="newbit">
 
     <a class="item item-avatar" href="#" style="background-color: #c2c2d6; color:black;" >
       
-      <h2>Marley </h2>
+      <h2>Malith</h2>
       <p>Hey man how are u?</p>
     </a>
-  </div>
+    <!--<input type="text" value={{c}}>-->
 
+  </div>
 
 <div class="bar bar-footer">
 
@@ -41,6 +55,7 @@
   </div>
 
 </div>
+
 
 
 <!--<div style="position: absolute; bottom: 0px; width: 100%">

@@ -3,8 +3,10 @@
         <form class="list signuplist">
             <ion-list>
                 <label class="item item-input">
-                    <input type="text" placeholder="Name" ng-model="name">
+                    <input type="text" placeholder="Name" ng-model="name" ng-change="changefname()" id="fCode" name="firstname" ng-required="true">
+                    
                 </label>
+                 <p style="color:red;" ng-show="changefname()"><i class="ion-information-circled "></i>Name can only have letters</p>
                 <div class="list">
 
                  <label class="item item-input item-select" >
@@ -25,16 +27,20 @@
                 </label>
                  <div class="list">
 
-                 <label class="item item-input item-select" >
-                     <div class="input-label">
+                
+                     <div class="item item-divider">
                       Group
                       </div>
-                     <select ng-model="class">
-                     <option>Doctors</option>
-                     <option>Engeneers</option>
-                     <option>Lawyers</option>
-                     </select>
-                     </label>
+                    <ion-list>
+
+                         <ion-checkbox ng-model="filter.blue">Doctors</ion-checkbox>
+                         <ion-checkbox ng-model="filter.yellow">Cricket Fans</ion-checkbox>
+                         <ion-checkbox ng-model="filter.pink">Engineers</ion-checkbox>
+
+                     </ion-list>
+
+                   
+
 
                 </div>
 

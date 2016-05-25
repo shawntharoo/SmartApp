@@ -8,8 +8,8 @@ angular.module('app.routes', ['ionicUIRouter'])
   // Each state's controller can be found in controllers.js
   $stateProvider
     
- .state('tabsController.mainprofile', {
-    url: '/mainprofile',
+.state('tabsController.mainprofile', {
+    url: '/mainprofile/:name',
     views: {
       'tab1': {
         templateUrl: 'templates/mainprofile.html',
@@ -17,6 +17,126 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     }
   }) 
+.state('AdmintabsController.mainprofile', {
+    url: '/adminmainprofile/:name',
+    views: {
+      'tab1': {
+        templateUrl: 'templates/mainprofile.html',
+        controller: 'mainprofileCtrl'
+      }
+    }
+  }) 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//sanda admin start
+              .state('AdmintabsController.ushow', {
+    url: '/ushow',
+    views: {
+      'tab7': {
+        templateUrl: 'templates/ushowadvertiesement.html',
+        controller: 'ushowadvertiesementCtrl'
+      }
+    }
+  })
+
+               .state('AdmintabsController.ufullEditShow', {
+    url: '/ufullEditShow',
+    views: {
+      'tab7': {
+        templateUrl: 'templates/ufullEditAdvertiesement.html',
+        controller: 'ufullEditShowCtrl'
+      }
+    }
+  })
+
+                .state('AdmintabsController.uedit', {
+    url: '/uedit',
+    views: {
+      'tab7': {
+        templateUrl: 'templates/ueditButtonPage.html',
+        controller: 'ufullEditCtrl'
+      }
+    }
+  })
+
+                .state('AdmintabsController.upost', {
+    url: '/upost',
+    views: {
+      'tab7': {
+        templateUrl: 'templates/upostAdvertiesement.html',
+        controller: 'upostAdvertiesementCtrl'
+      }
+    }
+  })               
+ //sanda admin end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //yik event start
     .state('tabsController.events', {
     url: '/events',
@@ -25,6 +145,15 @@ angular.module('app.routes', ['ionicUIRouter'])
     templateUrl: 'templates/events.html',
     controller: 'eventsCtrl'
         }
+       }
+  })
+     .state('AdmintabsController.adminEvent', {
+    url: '/adminEvent',
+        views: {
+      'tab5': {
+    templateUrl: 'templates/adminEventView.html',
+    controller: 'adminevent'
+    }
        }
   })
   //yik event end
@@ -89,6 +218,12 @@ angular.module('app.routes', ['ionicUIRouter'])
     templateUrl: 'templates/login.html',
     controller: 'loginCtrl'
   })
+    .state('resetpassword', {
+    url: '/resetpassword',
+    templateUrl: 'templates/resetpassword.html',
+    controller: 'resetpasswordCtrl'
+  })
+  
   
   
   .state('tabsController.Groups', {
@@ -110,7 +245,11 @@ angular.module('app.routes', ['ionicUIRouter'])
     templateUrl: 'templates/tabsController.html',
     abstract:true
   })
-
+   .state('AdmintabsController', {
+    url: '/Admintab',
+    templateUrl: 'templates/Admintabscontroller.html',
+    abstract:true
+  })
   
 
   .state('signup', {
@@ -137,6 +276,14 @@ angular.module('app.routes', ['ionicUIRouter'])
     
         templateUrl: 'templates/request.html',
         controller: 'requestCtrl'
+      
+    
+  })
+         .state('request1', {
+    url: '/request1',
+    
+        templateUrl: 'templates/request1.html',
+        controller: 'request1Ctrl'
       
     
   })
@@ -213,11 +360,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'eventsubgroup'
   })
 
-   .state('adminEvent', {
-    url: '/adminEvent',
-    templateUrl: 'templates/adminEventView.html',
-    controller: 'adminevent'
-  })
+  
 
    .state('adminEventDesc', {
     url: '/admindescription',
@@ -342,36 +485,59 @@ angular.module('app.routes', ['ionicUIRouter'])
     templateUrl: 'templates/inviteFriends.html',
     controller: 'inviteFriendsCtrl'
   })
+
+  .state('notifications', {
+    url: '/notifications',
+    templateUrl: 'templates/Notifications.html',
+    controller: 'NotificationsCtrl'
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //sanda routes
-   .state('tabsController2.showAdvertiesement', {
-    url: '/ShowAddvertiesement',
-    views: {
-      'tab1': {
-        templateUrl: 'templates/showAdvertiesement.html',
-        controller: 'showAdvertiesementCtrl'
-      }
-    }
-  })
-
-  .state('tabsController2.about', {
-    url: '/About',
-    views: {
-      'tab4': {
-        templateUrl: 'templates/about.html',
-        controller: 'aboutCtrl'
-      }
-    }
-  })
-
-  .state('tabsController2.searchAdvertiesement', {
-    url: '/SearchAdvertiesement',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/searchAdvertiesement.html',
-        controller: 'searchAdvertiesementCtrl'
-      }
-    }
-  })
+   
 
   .state('tabsController2', {
     url: '/tabsController2',
@@ -379,18 +545,9 @@ angular.module('app.routes', ['ionicUIRouter'])
     abstract:true
   })
 
-  .state('tabsController2.postAdvertiesement', {
-    url: '/PostAdvertiesement',
-    views: {
-      'tab5': {
-        templateUrl: 'templates/postAdvertiesement.html',
-        controller: 'postAdvertiesementCtrl'
-      }
-    }
-  })
 
   .state('tabsController2.buissnessCard', {
-    url: '/BuissnessCard',
+    url: '/buissnessCard',
     views: {
       'tab3': {
         templateUrl: 'templates/buissnessCard.html',
@@ -399,6 +556,15 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
+  .state('tabsController2.editProfile', {
+    url: '/editProfile',
+    views: {
+      'tab3': {
+        templateUrl: 'templates/editProfile.html',
+        controller: 'editProfilePageCtrl'
+      }
+    }
+  })
   /* 
     The IonicUIRouter.js UI-Router Modification is being used for this route.
     To navigate to this route, do NOT use a URL. Instead use one of the following:
@@ -412,44 +578,9 @@ angular.module('app.routes', ['ionicUIRouter'])
       /page1/tab1/fullShowAdvertiesement
       /page1/tab5/fullShowAdvertiesement
   */
-  .state('tabsController2.fullShowAdvertiesement', {
-    url: '/fullShowAdvertiesement',
-    views: {
-      'tab1': {
-        templateUrl: 'templates/fullShowAdvertiesement.html',
-        controller: 'fullShowAdvertiesementCtrl'
-      }
-    }
-  })
 
-  .state('tabsController2.fullEditAdvertiesement', {
-    url: '/fullEditAdvertiesement',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/fullEditAdvertiesement.html',
-        controller: 'fullEditAdvertiesementCtrl'
-      }
-    }
-  })
-
-  .state('tabsController2.editButtonPage', {
-    url: '/editButtonPage',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/editButtonPage.html',
-        controller: 'editButtonPageCtrl'
-      }
-    }
-  })
-  
-    .state('result', {
-      url: '/result',
-      templateUrl: 'templates/results.html',
-      controller: 'resultCtrl'
-    })
-  
     .state('tabsController2.about2', {
-    url: '/editButtonPage',
+    url: '/about2',
     views: {
       'tab4': {
         templateUrl: 'templates/about2.html',
@@ -458,8 +589,8 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-       .state('tabsController2.about3', {
-    url: '/editButtonPage',
+      .state('tabsController2.about3', {
+    url: '/about3',
     views: {
       'tab4': {
         templateUrl: 'templates/about3.html',
@@ -468,109 +599,24 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-             .state('tabsController2.editProfile', {
-    url: '/editButtonPage',
-    views: {
-      'tab3': {
-        templateUrl: 'templates/editProfile.html',
-        controller: 'editProfilePageCtrl'
-      }
-    }
-  })
 
 
-       .state('tabsController2_1', {
-    url: '/tabsController2_1',
-    templateUrl: 'templates/tabsController2_1.html',
-    abstract:true
-  })
 
 
-        .state('tabsController2_1.ushowadvertiesement', {
-    url: '/ushowAddvertiesement',
-    views: {
-      'tab1': {
-        templateUrl: 'templates/ushowadvertiesement.html',
-        controller: 'ushowadvertiesementCtrl'
-      }
-    }
-  })
-
-          .state('tabsController2_1.ufullShowAdvertiesement', {
-    url: '/ufullShowAdvertiesement',
-    views: {
-      'tab1': {
-        templateUrl: 'templates/ufullShowAdvertiesement.html',
-        controller: 'ufullShowAdvertiesementCtrl'
-      }
-    }
-  })
 
 
-            .state('tabsController2_1.ubuissnessCard', {
-    url: '/uBuissnessCard',
-    views: {
-      'tab3': {
-        templateUrl: 'templates/ubuissnessCard.html',
-        controller: 'ubuissnessCardCtrl'
-      }
-    }
-  })
-
-             .state('tabsController2_1.ueditProfile', {
-    url: '/ueditProfile',
-    views: {
-      'tab3': {
-        templateUrl: 'templates/ueditProfile.html',
-        controller: 'ueditProfilePageCtrl'
-      }
-    }
-  })
 
 
-  .state('tabsController2_1.uabout', {
-    url: '/uAbout',
-    views: {
-      'tab4': {
-        templateUrl: 'templates/uabout.html',
-        controller: 'uaboutCtrl'
-      }
-    }
-  })
 
 
-    .state('tabsController2_1.uabout2', {
-    url: '/editButtonPage1',
-    views: {
-      'tab4': {
-        templateUrl: 'templates/uabout2.html',
-        controller: 'uabout2PageCtrl'
-      }
-    }
-  })
 
-       .state('tabsController2_1.uabout3', {
-    url: '/editButtonPage2',
-    views: {
-      'tab4': {
-        templateUrl: 'templates/uabout3.html',
-        controller: 'uabout3PageCtrl'
-      }
-    }
-  })
-       //mahesh route
-  
-    
-    .state('viewfavourite', {
-      url: '/viewfavourite',
-      templateUrl: 'templates/ViewFavouriteContacts.html',
-      controller: 'ViewFavouriteContactsCtrl'
-    })
-         .state('searchResult', {
-      url: '/searchResult',
-      templateUrl: 'templates/searchResult.html',
-      controller: 'searchResultCtrl'
-    })
+
+
+
+
+
+
+         
 
 
 $urlRouterProvider.otherwise('/page4')

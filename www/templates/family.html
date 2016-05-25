@@ -17,14 +17,7 @@
                 <label class="item item-input" name="addresshome">
                    <span class="input-label">Name</span><textarea > </textarea>
                 </label>
-                 <div class="item item-divider">
-                   Date of Birth
-                 </div>
-                   <label class="item item-input">
-                    <input type="date" placeholder="Name" ng-model="phonehome">
-                </label>
-
-                  <div class="item item-divider" style="background-color:white;height: 50px;border-left: none;border-right: none" >
+                 <div class="item item-divider" style="background-color:white;height: 50px;border-left: none;border-right: none" >
                 
                  </div>
                  <div class="item item-divider" style="background-color:white">
@@ -34,22 +27,11 @@
                    </a>
                   
                  </div>
-                 <div class="item item-divider">
-                  Name
-                 </div>
+                
                 <label class="item item-input">
                     <input type="text" placeholder="Name" ng-model="phonehome">
                 </label>
 
-                <div class="item item-divider">
-                  Age
-                 </div>
-                 <label class="item item-input">
-                    <input type="number" placeholder="Age" ng-model="mobile">
-                </label>
-                  <div class="item item-divider">
-                  Royalist
-                 </div>
                   
                    <ul class="list">
 
@@ -62,18 +44,21 @@
                               </div>
                            </label>
                     </li>
-                  <div class="item item-divider">
-                  Date of Birth
-                 </div>
+                 
                      <label class="item item-input">
-                    <input type="date" placeholder="Name" ng-model="phonehome">
+                     Date of Birth
+                      </label>
+                     <label class="item item-input">
+                    <input type="date" placeholder="Name" >
                 </label>
                     </ul>
                   
 
             </ion-list>
 
-            <a id="signup-button5" class="button button-stable  button-block"  style="background-color: #000080;color: white" ui-sref="profile">ADD</a>
+            <a id="signup-button5" class="button button-outline button-positive button-block" ui-sref="profile">ADD</a>
+             <a id="signup-button5" class="button button-outline button-energized button-block" ui-sref="profile">EDIT</a>
+            <a id="signup-button5" class="button button-outline button-assertive button-block" ui-sref="profile">DELETE</a>
         </form>
     </ion-content>
 </ion-view>
