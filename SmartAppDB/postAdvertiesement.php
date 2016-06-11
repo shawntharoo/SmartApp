@@ -14,7 +14,10 @@
 </div>
 <div class="container">
 <div class="row">
-<div class="col-md-6"><br/>
+<div class="col-md-6">
+<div>
+  <br/><br/>
+</div>
 <div class="jumbotron">
   <h2>Post your Advertiesements here</h2><br/>
   <p><a class="btn btn-primary btn-lg" href="login.php" role="button">Show Advertiesements</a></p>
@@ -30,7 +33,7 @@
 <form name="form1"  method="POST" action="postAdvertiesement_form.php" onSubmit="return validateform();" enctype="multipart/form-data">
    <div class="form-group">
     <label for="fnam">Tile</label>
-    <input type="text" class="form-control" id="f" name="title" placeholder="Title of the Advertiesement">
+    <input type="text" class="form-control" name="title" placeholder="Title of the Advertiesement">
   </div>
 <div class = "form-group">
  <label for="list">Select the Category</label>
@@ -44,12 +47,28 @@
 </div>
     <div class="form-group">
     <label for="addr">Description</label>
-    <textarea class="form-control" name="dis" id="a" placeholder="Enter A Brief Description about the adveretiesement" rows="6"></textarea>
+    <textarea class="form-control" name="dis" placeholder="Enter A Brief Description about the adveretiesement" rows="6"></textarea>
   </div>
   <div class="form-group">
     <label for="ima">Upload The Banner</label>
-    <input type="file" name="input" id="i"/>
+    <input type="file" name="input"/>
     <p class="help-block">Make Sure your Banner is With Good Quality</p>
+  </div>
+  <div class="form-group">
+    <label for="fnam">Contact Number</label>
+    <input type="text" class="form-control" name="contact" placeholder="Conatct Details related to Advertisement">
+  </div>
+  <div class="form-group">
+    <label for="fnam">Email</label>
+    <input type="text" class="form-control" name="email" placeholder="Email related to Advertisement">
+  </div>
+  <div class="form-group">
+    <label for="fnam">Start Date</label>
+    <input type="date" class="form-control" name="sdate" >
+  </div>
+  <div class="form-group">
+    <label for="fnam">End Date</label>
+    <input type="date" class="form-control" name="edate" placeholder="End Date">
   </div>
   <button type="submit" class="btn btn-primary" name="btn-signup" value="submit">Post</button>
 </form>

@@ -1,6 +1,9 @@
 <?php
 
 include('includes/db.php');
+session_start();
+$id = $_SESSION['AddId'];
+
 $title =  $_POST['title'];
 $type = $_POST['type'];
 $description =  $_POST['dis'];
@@ -13,22 +16,15 @@ $today = date('Y-m-d H:i:s');
 
 $destination="img/".$_FILES["input"]["name"];
 $source = $_FILES["input"]["tmp_name"];
+	if($source != ""){
 $input=$destination;
 $done = move_uploaded_file($source,$destination);
-  if($done)
-   {
-	   echo "image Uploaded Successfully";
-   }
-  else
-   {
-	  
-     	echo "Error in Uploading Image";
-   }
+	}else{
+		$input = $_SESSION["imagepath"];
+	}
 
-echo $sdate ."<br/>";
+$sql="UPDATE postadvertiesement set Type='".$type."',Title='".$title."',Image='".$input."',Description='".$description."',ContactNo='".$contact."',Email='".$email."',StartDate='".$sdate."',EndDate='".$edate."',CDate='".$today."' WHERE IDAdd='".$id."'";
 
-$sql="INSERT INTO postadvertiesement (Title,Type,Description,ContactNo,Email,StartDate,EndDate,Image,CDate)
-VALUES ('$title','$type','$description','$contact','$email','$sdate','$edate','$input','$today')";
 mysqli_query($mysqli,$sql);
 
 //header('Location: showAdvertiesement.php');

@@ -323,7 +323,7 @@ $scope.inviteFriends = function(){
    
 //user
 .controller('buissnessCardCtrl', function($scope,$http,$state) {
-    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+7).success(function(data){
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+1).success(function(data){
         
     var card=[];
     card=data;
@@ -341,7 +341,7 @@ $scope.inviteFriends = function(){
 
 .controller('editProfilePageCtrl', function($scope,$http,$ionicPopup,$state) {
     $scope.BuissnessCardValues = function () {
-    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+7).success(function(data){   
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+1).success(function(data){   
     var card=[];
     card=data;
     $scope.Profession=card[0].Profession;
@@ -403,26 +403,84 @@ $scope.inviteFriends = function(){
 })
 
 
-.controller('about2PageCtrl', function($scope,$http,$state) {
+.controller('about2PageCtrl', function($scope,$http,$state,$ionicPopup) {
    $scope.about2add = function (profession,skills,awards) {
-    $http.post("http://localhost/SmartAppDB/ajax/about2Add.php?profession="+profession+"&skills="+skills+"&awards="+awards)
-    .success(function(data){ 
-      alert("Successfully Uploaded");
+
+    if(profession == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter Profession'
       });
+    }
+    else {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Proceed with the Registration'
+      });
+      confirmPopup.then(function(res) {
+        if(res) {
+         $http.post("http://localhost/SmartAppDB/ajax/about2Add.php?profession="+profession+"&skills="+skills+"&awards="+awards)
+    .success(function(data){ 
+      var alertPopup = $ionicPopup.alert({
+        title: 'Successfully Registerd'
+      });
+      });
+        } else {
+          var alertPopup = $ionicPopup.alert({
+        title: 'Registration ended with an Error'
+      });
+        }
+      });
+
+    }
+
+    
   };
 
 })
 
-.controller('about3PageCtrl', function($scope,$http,$state) {
+.controller('about3PageCtrl', function($scope,$http,$state,$ionicPopup) {
    $scope.about3add = function (workPlace,address,contact,email,workHour) {
-    $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour)
-    .success(function(data){ 
-      $scope.wplace = "";
-      $scope.addr = "";
-      $scope.cont = "";
-      scope.mail = "";
-      scope.hour = "";
+
+    if(workPlace == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter Working Place'
       });
+    }
+    else if(address == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter Work Place Address'
+      });
+    }
+    else if(contact == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter work place Contact'
+      });
+    }
+    else if(email == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter Email'
+      });
+    }
+    else {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Proceed with the Registration'
+      });
+      confirmPopup.then(function(res) {
+        if(res) {
+         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour)
+         .success(function(data){ 
+      var alertPopup = $ionicPopup.alert({
+        title: 'Business Card Completed'
+      });
+      });
+        } else {
+          var alertPopup = $ionicPopup.alert({
+        title: 'Registration ended with an Error'
+      });
+        }
+      });
+
+    }
+
   };
 
 })
@@ -433,12 +491,59 @@ $scope.inviteFriends = function(){
 })
 
 //admin   
-.controller('upostAdvertiesementCtrl', function($scope,$http,$state) {
+.controller('upostAdvertiesementCtrl', function($scope,$http,$state,$ionicPopup) {
     $scope.postAdvertiesement = function (Selected,Title,Image,Description,Contact,Email,SDate,EDate) {
-    $http.post("http://localhost/SmartAppDB/ajax/postAdvertiesement.php?Selected="+Selected+"&Title="+Title+"&Image="+Image+"&Description="+Description+"&Contact="+Contact+"&Email="+Email+"&SDate="+SDate+"&EDate="+EDate)
-    .success(function(data){ 
+          if(Selected == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Select the type'
       });
-    alert("Successfully Uploaded");
+    }
+         else if(Title == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter The title'
+      });
+    }
+    else if(Image == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Upload the Banner'
+      });
+    }
+    else if(Description == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'say something about the Advertiesement'
+      });
+    }
+    else if(Contact == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter Contact no'
+      });
+    }
+    else if(Email == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter the Email'
+      });
+    }
+      else {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Proceed with the Registration'
+      });
+      confirmPopup.then(function(res) {
+        if(res) {
+         $http.post("http://localhost/SmartAppDB/ajax/postAdvertiesement.php?Selected="+Selected+"&Title="+Title+"&Image="+Image+"&Description="+Description+"&Contact="+Contact+"&Email="+Email+"&SDate="+SDate+"&EDate="+EDate)
+    .success(function(data){  
+      var alertPopup = $ionicPopup.alert({
+        title: 'Advertiesement Posted'
+      });
+      });
+        } else {
+          var alertPopup = $ionicPopup.alert({
+        title: 'Advertisement fail'
+      });
+        }
+      });
+
+    }
+
   };
 })
    
@@ -454,6 +559,60 @@ $scope.inviteFriends = function(){
 })
 
 .controller('ufullEditShowCtrl', function($scope) {
+
+   $scope.editAdvertiesement = function (Selected,Title,Image,Description,Contact,Email,SDate,EDate) {
+     if(Selected == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Select the type'
+      });
+    }
+        else  if(Title == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter The title'
+      });
+    }
+    else if(Image == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Upload the Banner'
+      });
+    }
+    else if(Description == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'say something about the Advertiesement'
+      });
+    }
+    else if(Contact == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter Contact no'
+      });
+    }
+    else if(Email == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Enter the Email'
+      });
+    }
+      else {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Proceed with the Registration'
+      });
+      confirmPopup.then(function(res) {
+        if(res) {
+         $http.post("http://localhost/SmartAppDB/ajax/postAdvertiesement.php?Selected="+Selected+"&Title="+Title+"&Image="+Image+"&Description="+Description+"&Contact="+Contact+"&Email="+Email+"&SDate="+SDate+"&EDate="+EDate)
+    .success(function(data){  
+      var alertPopup = $ionicPopup.alert({
+        title: 'Advertiesement Posted'
+      });
+      });
+        } else {
+          var alertPopup = $ionicPopup.alert({
+        title: 'Advertisement fail'
+      });
+        }
+      });
+
+    }
+
+  };
 
 })
 

@@ -10,7 +10,7 @@ $Contact = $_GET['Contact'];
 $Email = $_GET['Email'];
 $WorkHour = $_GET['WorkHour'];
 
-$query="UPDATE buissnescard set Profession='".$Profession."',Skills='".$Skills."',Awards='".$Awards."',WorkPlace='".$WorkPlace."',Address='".$Address."',Contact='".$Contact."',Email='".$Email."',WorkHour='".$WorkHour."' WHERE Id='7'";
+$query="UPDATE buissnescard set Profession='".$Profession."',Skills='".$Skills."',Awards='".$Awards."',WorkPlace='".$WorkPlace."',Address='".$Address."',Contact='".$Contact."',Email='".$Email."',WorkHour='".$WorkHour."' WHERE ID='1'";
 
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 $result = $mysqli->affected_rows;
