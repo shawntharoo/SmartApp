@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2016 at 02:29 PM
+-- Generation Time: May 12, 2016 at 02:29 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -23,60 +23,75 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buissnescard`
+-- Table structure for table `about2`
 --
 
-CREATE TABLE IF NOT EXISTS `buissnescard` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `about2` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Profession` varchar(40) NOT NULL,
-  `Skills` varchar(100) NOT NULL DEFAULT 'No',
-  `Awards` varchar(60) NOT NULL DEFAULT 'No',
+  `Skills` varchar(40) NOT NULL,
+  `Awards` varchar(40) NOT NULL,
   `WorkPlace` varchar(40) NOT NULL,
-  `Address` varchar(50) NOT NULL,
+  `Address` varchar(40) NOT NULL,
   `Contact` int(11) NOT NULL,
   `Email` varchar(40) NOT NULL,
-  `WorkHour` varchar(40) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `WorkHour` varchar(20) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `buissnescard`
+-- Dumping data for table `about2`
 --
 
-INSERT INTO `buissnescard` (`ID`, `Profession`, `Skills`, `Awards`, `WorkPlace`, `Address`, `Contact`, `Email`, `WorkHour`) VALUES
-(1, 'Software Engineer', 'Java,AngularJS,Cordova,PHP', 'OCPJP', 'Millenium IT', '1A,Malabe,Baththaramulla,', 79807653, 'Ronald94@gmail.com', '8.00AM - 4.00PM'),
-(3, 'Software Developer', 'Java', 'SCPJP', '', '', 0, '', ''),
-(4, 'Network', 'Java Script', 'Bronze medal', '', '', 0, '', ''),
-(5, 'Supervisor', 'undefined', 'undefined', 'Virtusa', '167,dematagoda', 716359856, 'kumar@gmail.com', '11.0AM - 5.00PM');
+INSERT INTO `about2` (`Id`, `Profession`, `Skills`, `Awards`, `WorkPlace`, `Address`, `Contact`, `Email`, `WorkHour`) VALUES
+(2, 'software', 'java', 'ocpjp', 'Millenium IT', 'Malabe', 716359856, 'sman@gmail.com', '8.00AM - 9.00PM'),
+(3, '', '', '', '', '', 0, '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `postadvertiesement`
+-- Table structure for table `buissnesscard`
 --
 
-CREATE TABLE IF NOT EXISTS `postadvertiesement` (
-  `IDAdd` int(11) NOT NULL AUTO_INCREMENT,
-  `Type` varchar(20) NOT NULL,
-  `Title` varchar(40) NOT NULL,
-  `Image` varchar(100) NOT NULL,
-  `Description` varchar(150) NOT NULL,
-  `ContactNo` int(11) NOT NULL,
-  `Email` varchar(30) NOT NULL,
-  `StartDate` varchar(15) NOT NULL,
-  `EndDate` varchar(15) NOT NULL,
-  `CDate` varchar(20) NOT NULL,
-  PRIMARY KEY (`IDAdd`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+CREATE TABLE IF NOT EXISTS `buissnesscard` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Profession` varchar(40) NOT NULL,
+  `Skills` varchar(100) NOT NULL,
+  `wpName` varchar(40) NOT NULL,
+  `wpAddress` varchar(50) NOT NULL,
+  `wpContact` int(11) NOT NULL,
+  `wpEmail` varchar(40) NOT NULL,
+  `wpHours` varchar(40) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `postadvertiesement`
+-- Dumping data for table `buissnesscard`
 --
 
-INSERT INTO `postadvertiesement` (`IDAdd`, `Type`, `Title`, `Image`, `Description`, `ContactNo`, `Email`, `StartDate`, `EndDate`, `CDate`) VALUES
-(1, 'Promote', 'Get Together', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together of the 94 group will ba having on 2016-06-09.. It is beter i f all the members are participated.', 987654321, 'saman@gmail.com', 'Wed Jun 01 2016', 'Fri Jun 10 2016', '2016-06-09 07:50 AM'),
-(3, 'Promote', 'An Example of a Google Bar Chart', 'img/add2.jpg', 'sadfdf', 768954312, 'harsh@gmail.com', '2016-07-04', '2016-07-20', '2016-06-11 14:25:33'),
-(4, 'Event', 'Exhibition', 'img/add1.jpg', 'Royal college 94 batch going to be organized exhibition to celebrate the 175th anniversary of Royal College  ', 756789546, 'kumar@gmail.com', '2016-06-20', '2016-06-30', '2016-06-11 14:24:31');
+INSERT INTO `buissnesscard` (`ID`, `Profession`, `Skills`, `wpName`, `wpAddress`, `wpContact`, `wpEmail`, `wpHours`) VALUES
+(1, 'Software Engineer', 'Java,AngularJS,Cordova,PHP', 'Millenium IT', '1A,Malabe,Baththaramulla,', 715698563, 'Ronald94@gmail.com', '8.00AM - 4.00PM');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cus`
+--
+
+CREATE TABLE IF NOT EXISTS `cus` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `cus`
+--
+
+INSERT INTO `cus` (`ID`, `name`, `email`) VALUES
+(1, 'isuru', 'isuru@gmail.com'),
+(2, 'sada', 'sada@gmail.com');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

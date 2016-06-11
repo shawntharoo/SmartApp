@@ -1,29 +1,119 @@
-
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width-device-width, initial-scale=1.0">
- <!-- <tilte><h4>Register Here</h4></tilte>-->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/ideacss.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <link rel="stylesheet" href="css/style.css"></link>
+   <link rel="stylesheet" href="css/bootstrap.min.css"></link>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> 
+ <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+<link href='http://fonts.googleapis.com/css?family=Asul:400,700' rel='stylesheet' type='text/css'>
+
+<link type="text/css" rel="stylesheet" href="sideviewmenu.css" />
+
+<script src="sideviewmenu.js">
+
+</script>
+
+<script>
+
+jQuery(function(){ // on DOM Load
+  sideviewmenu({ // call sideviewmenu() function
+    menuid: 'sideviewmenu',
+    onopenclose:function(state){ // state is either "open" or "closed"
+      // custom code
+    }
+  })
+})
+
+jQuery(function(){ // on DOM Load
+  sideviewmenu() // call sideviewmenu() function
+})
+
+</script>
+
+<script type="text/javascript">
+
+function validateform(){
+
+ if (document.form1.title.value == "")
+   {
+      alert("Please enter the Title");
+      document.form1.title.focus();
+      return false;
+   }
+    if (document.form1.input.value == "")
+   {
+      alert("Please upload the Banner");
+      document.form1.input.focus();
+      return false;
+   }
+   if (document.form1.contact.value == "")
+   {
+      alert("Please enter the Conatct No");
+      document.form1.contact.focus();
+      return false;
+   }
+     if (document.form1.contact.value.length!=10)
+   {
+      alert("Contact number should contain 10 digits");
+      document.form1.contact.focus();
+      return false;
+   }
+   if (document.form1.email.value == "")
+   {
+      alert("Please enter the Email");
+      document.form1.email.focus();
+      return false;
+   }
+return true;
+
+}
+</script>
 
 </head>
-<body background="images/body.jpg">
-<div>
-</div>
+<body background="img/body.jpg">
+<div class="container-fluid" id="maincontainer">
+ <div class="col-md-4 box1">
+  <p class="smartappheading">SmartApp</p>
+
+
+   <p>Admin Panel</p>
+ </div>
+  <div class="col-md-2">
+ </div>
+  <div class="col-md-2">
+ </div>
+  <div class="col-md-2">
+ </div>
+  <div class="col-md-2">
+  <img src="img/oie_trans.gif" width="100" height="150" />
+ </div>
+ </div>
+ 
 <div class="container">
 <div class="row">
-<div class="col-md-6">
+
+<div class="col-md-1"><br/><br>
+ <ul class="nav nav-pills nav-stacked">
+
+<h3>Menu </h3><br/>
+<div class="toggler" onClick="sideviewmenu.toggle()"></div>
+</ul>
+</div>
+
+<div class="col-md-5">
 <div>
-  <br/><br/>
+  <br/><br><br>
 </div>
 <div class="jumbotron">
   <h2>Post your Advertiesements here</h2><br/>
   <p><a class="btn btn-primary btn-lg" href="login.php" role="button">Show Advertiesements</a></p>
   <img src="img/advert.jpg" class="img-responsive" alt="">
-  </div>
-</div><br/>
+</div>
+</div>
 <div class="col-md-6">
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -32,7 +122,7 @@
 <div class="panel-body">
 <form name="form1"  method="POST" action="postAdvertiesement_form.php" onSubmit="return validateform();" enctype="multipart/form-data">
    <div class="form-group">
-    <label for="fnam">Tile</label>
+    <label for="fnam">Title</label>
     <input type="text" class="form-control" name="title" placeholder="Title of the Advertiesement">
   </div>
 <div class = "form-group">
