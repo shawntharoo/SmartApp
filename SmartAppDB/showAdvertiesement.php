@@ -89,6 +89,7 @@ while($row=mysqli_fetch_array($result)){
     <?php echo $row['Description']?>
     <div>
      <button class="btn btn-primary" onclick="javascript:EditPage(<?php echo $row['IDAdd']; ?>)">Edit</button>
+     <button class="btn btn-danger" onclick="javascript:DeletePage(<?php echo $row['IDAdd']; ?>)">Delete</button>
      </div>
      <div>
      <br/>
@@ -140,6 +141,14 @@ while($row=mysqli_fetch_array($result)){
 function EditPage(id)
 {
   window.location.href='editAdvertiesement.php?Edit_id='+id;
+}
+
+function DeletePage(id)
+{
+   if(confirm('Are you sure you want To Remove This Badge?'))
+    {
+      window.location.href='deleteAdvertiesement.php?delete_id='+id;
+    }
 }
 </script>
 
