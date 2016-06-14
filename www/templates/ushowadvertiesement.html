@@ -4,7 +4,7 @@
 
 <ion-view title="Show Advertiesement" id="ushow" style="background-color:#d9d9d9;" ng-app="app">
   <ion-nav-buttons side="left" ng-show="true">
-    <button class="button button-icon ion-arrow-left-b" ui-sref="tabsController.mainprofile">
+    <button class="button button-icon ion-arrow-left-b" ui-sref="AdmintabsController.mainprofile">
     </button>
     </ion-nav-buttons>
       <ion-nav-buttons side="right" ng-show="true">
@@ -19,7 +19,7 @@
               <input type="search" placeholder="Search By Title">
       </label>
       <ion-item class="item item-avatar" ui-sref="AdmintabsController.ufullEditShow" ng-repeat="add in advertiesement" ng-click="gotoFullEditShow(add.IDAdd)">
-                <img ng-src="{{add.Image}}">
+                <img src="{{add.Image}}">
                        <h2>{{add.Title}} </h2>
                        <p>{{add.Description}}</p>
                        <span><p><h5><font color="red">Published On : {{add.CDate}}</font></h5></p></span>

@@ -324,7 +324,8 @@ $scope.inviteFriends = function(){
 //user
 //Show Business Card Control
 .controller('buissnessCardCtrl', function($scope,$http,$state) {
-    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+2).success(function(data){
+    var CusID = window.localStorage.getItem("id");
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+CusID).success(function(data){
         
     var card=[];
     card=data;
@@ -345,7 +346,8 @@ $scope.inviteFriends = function(){
 //Edit BusinessCard Control
 .controller('editProfilePageCtrl', function($scope,$http,$ionicPopup,$state) {
     $scope.BuissnessCardValues = function () {
-    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+2).success(function(data){   
+    var CusID = window.localStorage.getItem("id");
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+CusID).success(function(data){   
     var card=[];
     card=data;
     $scope.Profession=card[0].Profession;
@@ -393,7 +395,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-          $http.get("http://localhost/smartAppDB/ajax/buissnessCardEdit.php?Profession="+Profession+"&Skills="+Skills+"&Awards="+Awards+"&WorkPlace="+WorkPlace+"&Address="+Address+"&Contact="+Contact+"&Email="+Email+"&WorkHour="+WorkHour+"&CusID="+2).success(function (data) {
+          $http.get("http://localhost/smartAppDB/ajax/buissnessCardEdit.php?Profession="+Profession+"&Skills="+Skills+"&Awards="+Awards+"&WorkPlace="+WorkPlace+"&Address="+Address+"&Contact="+Contact+"&Email="+Email+"&WorkHour="+WorkHour+"&CusID="+CusID).success(function (data) {
           });
         } else {
           console.log('not updated');
@@ -410,6 +412,7 @@ $scope.inviteFriends = function(){
 
 //First Registration form Of the Business Profile 
 .controller('about2PageCtrl', function($scope,$http,$state,$ionicPopup) {
+    var CusID = window.localStorage.getItem("id");
    $scope.about2add = function (profession,skills,awards) {
 
     if(profession == null){
@@ -423,7 +426,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-         $http.post("http://localhost/SmartAppDB/ajax/about2Add.php?ID="+2+"&profession="+profession+"&skills="+skills+"&awards="+awards)
+         $http.post("http://localhost/SmartAppDB/ajax/about2Add.php?ID="+CusID+"&profession="+profession+"&skills="+skills+"&awards="+awards)
     .success(function(data){ 
       var alertPopup = $ionicPopup.alert({
         title: 'Successfully Registerd'
@@ -447,6 +450,7 @@ $scope.inviteFriends = function(){
 
 //Second Registration form Of the Business Profile
 .controller('about3PageCtrl', function($scope,$http,$state,$ionicPopup) {
+  var CusID = window.localStorage.getItem("id");
    $scope.about3add = function (workPlace,address,contact,email,workHour) {
 
     if(workPlace == null){
@@ -475,7 +479,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour+"&CusID="+2)
+         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour+"&CusID="+CusID)
          .success(function(data){ 
       var alertPopup = $ionicPopup.alert({
         title: 'Business Card Completed'
@@ -589,13 +593,13 @@ $scope.inviteFriends = function(){
 
 //Admin View the Detail View page of the Advertisement  
 .controller('ufullEditShowCtrl', function($scope,$http,$state,$ionicPopup,$stateParams) {
-$scope.deleteAdvertiesement = function (thissID) {
+$scope.deleteAdvertiesement = function (IDAdd) {
      var confirmPopup = $ionicPopup.confirm({
         title: 'Remove Advertisement'
       });
       confirmPopup.then(function(res) {
         if(res) {
-        $http.post("http://localhost/SmartAppDB/ajax/deleteAddvertisement.php?thissID="+5).success(function(data){  
+        $http.post("http://localhost/SmartAppDB/ajax/deleteAddvertisement.php?thissID="+IDAdd).success(function(data){  
       var alertPopup = $ionicPopup.alert({
         title: 'Advertiesement Removed'
       });
@@ -652,8 +656,8 @@ $scope.deleteAdvertiesement = function (thissID) {
     $scope.Description=card[0].Description;
     $scope.Contact=card[0].ContactNo; 
     $scope.Email=card[0].Email;
-    $scope.SDate=card[0].StartDate;
-    $scope.EDate=card[0].EndDate;
+    $scope.SDate=card[0].newDate(StartDate);
+    $scope.EDate=card[0].newDate(EndDate);
   })
   }
 

@@ -9,16 +9,15 @@
 
     <p>Type : {{Selected}} </p>
   <div class="item item-body">
-    <img class="full-image" src="img/dominos_pizza2.jpg">
+    <img class="full-image" src="{{Image}}">
     <span><p><h5> <font color="red">Published On : {{CurrentDate}} </font></h5></p></span>
     <p>
-      {{Image}}
      {{Description}}
      <p>Contact No : {{Contact}} </p>
      <p>Email : {{Email}} </p>
     </p>
     <a ui-sref="AdmintabsController.uedit" id="fullEditAdvertiesement-button2" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block " ng-click="gotoEditAdd(IDAdd)">Edit</a>
-    <a ui-sref="AdmintabsController.ushow" id="fullEditAdvertiesement-button2" style="font-weight:600;font-size:-2px;" class="button button-assertive  button-block " ng-click="deleteAdvertiesement(thissID)">Delete</a>
+    <a ui-sref="AdmintabsController.ushow" id="fullEditAdvertiesement-button2" style="font-weight:600;font-size:-2px;" class="button button-assertive  button-block " ng-click="deleteAdvertiesement(IDAdd)">Delete</a>
   </div>
 
 </div>

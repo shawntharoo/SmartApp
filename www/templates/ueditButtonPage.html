@@ -17,14 +17,14 @@
             </label>
             <label class="item item-input">
                 <span class="input-label">Image</span>
-                <img class="full-image" ng-bind="Image">
+                <input type="file" ng-model="Image" ng-required="true" placeholder="Browse The Banner">
             </label>
             <label class="item item-input">
                 <span class="input-label">Description</span><textarea placeholder="Enter A Brief Description" ng-model="Description"></textarea>
             </label>
             <label class="item item-input">
                 <span class="input-label">Contact No</span>
-                <input type="text" placeholder="Contact you want to show in the advertiesement" ng-model="Contact">
+                <input type="text" maxlength="10" placeholder="Contact you want to show in the advertiesement" ng-model="Contact">
             </label>
             <label class="item item-input">
                 <span class="input-label">Email</span>
@@ -32,12 +32,12 @@
             </label>
 
              <label class="item item-input">
-            <span class="input-label"  ng-model="SDate">Start Date</span>
-            <input type="date">
+            <span class="input-label">Start Date</span>
+            <input type="date" ng-model="SDate">
             </label>
             <label class="item item-input">
-            <span class="input-label"  ng-model="EDate">End Date</span>
-            <input type="date">
+            <span class="input-label">End Date</span>
+            <input type="date"  ng-model="EDate">
             </label>
 
         </form>

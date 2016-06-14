@@ -154,11 +154,11 @@ return true;
   </div>
   <div class="form-group">
     <label for="fnam">Start Date</label>
-    <input type="date" class="form-control" name="sdate" >
+    <input type="date" class="form-control" name="sdate" value="<?php echo date('Y-m-d');?>"/>
   </div>
   <div class="form-group">
     <label for="fnam">End Date</label>
-    <input type="date" class="form-control" name="edate" placeholder="End Date">
+    <input type="date" class="form-control" name="edate" placeholder="End Date" value="<?php echo date('Y-m-d');?>"/>
   </div>
   <button type="submit" class="btn btn-primary" name="btn-signup" value="submit">Post</button>
 </form>
