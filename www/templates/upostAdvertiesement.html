@@ -32,7 +32,8 @@
             </label>
             <label class="item item-input">
             <span class="input-label">Start Date</span>
-            <input type="date" ng-model="SDate" ng-required="true" date-format="yyyy-MM-dd"/>
+            <input type="date" ng-model="SDate" min="{{today}}" ng-required="true" date-format="yyyy-MM-dd"/>
+            <span style="color:red; margin-right:10px;" ng-show="myForm.date < {{today}} && myForm.date.$invalid "> Not a valid Date </span>
             </label>
 
             <label class="item item-input">

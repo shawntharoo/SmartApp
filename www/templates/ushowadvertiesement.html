@@ -18,12 +18,12 @@
               <i class="icon ion-search placeholder-icon"></i>
               <input type="search" placeholder="Search By Title">
       </label>
-      <ion-item class="item item-avatar" ui-sref="AdmintabsController.ufullEditShow({ ID: add.IDAdd })" ng-repeat="add in advertiesement">
+      <ion-item class="item item-avatar" ui-sref="AdmintabsController.ufullEditShow" ng-repeat="add in advertiesement" ng-click="gotoFullEditShow(add.IDAdd)">
                 <img ng-src="{{add.Image}}">
                        <h2>{{add.Title}} </h2>
                        <p>{{add.Description}}</p>
                        <span><p><h5><font color="red">Published On : {{add.CDate}}</font></h5></p></span>
-            </ion-item>
+      </ion-item>
            <ion-item class="item item-avatar">
                 <img src="img/download (6).jpg">
                  <h2>Three US Army vehicles destroyed during airdrop </h2>

@@ -322,6 +322,7 @@ $scope.inviteFriends = function(){
 })
    
 //user
+//Show Business Card Control
 .controller('buissnessCardCtrl', function($scope,$http,$state) {
     $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+2).success(function(data){
         
@@ -341,7 +342,7 @@ $scope.inviteFriends = function(){
 })
 
 
-
+//Edit BusinessCard Control
 .controller('editProfilePageCtrl', function($scope,$http,$ionicPopup,$state) {
     $scope.BuissnessCardValues = function () {
     $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+2).success(function(data){   
@@ -407,7 +408,7 @@ $scope.inviteFriends = function(){
 
 
 
-
+//First Registration form Of the Business Profile 
 .controller('about2PageCtrl', function($scope,$http,$state,$ionicPopup) {
    $scope.about2add = function (profession,skills,awards) {
 
@@ -444,7 +445,7 @@ $scope.inviteFriends = function(){
 
 
 
-
+//Second Registration form Of the Business Profile
 .controller('about3PageCtrl', function($scope,$http,$state,$ionicPopup) {
    $scope.about3add = function (workPlace,address,contact,email,workHour) {
 
@@ -495,7 +496,7 @@ $scope.inviteFriends = function(){
 
 
 
-
+//Slider Bottom of the Application
 .controller('slider',function($scope,$ionicSlideBoxDelegate){
 
    
@@ -504,7 +505,8 @@ $scope.inviteFriends = function(){
 
 
 
-//admin   
+//admin  
+//Admin Post Advertisement 
 .controller('upostAdvertiesementCtrl', function($scope,$http,$state,$ionicPopup) {
     $scope.postAdvertiesement = function (Selected,Title,Image,Description,Contact,Email,SDate,EDate) {
           if(Selected == null){
@@ -563,8 +565,8 @@ $scope.inviteFriends = function(){
    
 
 
- 
-.controller('ushowadvertiesementCtrl', function($scope,$http,$state) {
+ //Admin Show Advertisement in a list view
+.controller('ushowadvertiesementCtrl', function($scope,$http,$state,$ionicPopup) {
   loadtable();
 
   function loadtable(){
@@ -573,15 +575,20 @@ $scope.inviteFriends = function(){
     });
   };
 
+  $scope.gotoFullEditShow = function (IDAdd) {
+  $state.go('AdmintabsController.ufullEditShow',{id:IDAdd});
+  };
+
   function Currentadvetisment($scope, Addvertisement) {
     $scope.cAdd = Addvertisement.cAdd;
-}
+  }
+
 })
 
 
 
-
-.controller('ufullEditShowCtrl', function($scope,$http,$state,$ionicPopup) {
+//Admin View the Detail View page of the Advertisement  
+.controller('ufullEditShowCtrl', function($scope,$http,$state,$ionicPopup,$stateParams) {
 $scope.deleteAdvertiesement = function (thissID) {
      var confirmPopup = $ionicPopup.confirm({
         title: 'Remove Advertisement'
@@ -601,7 +608,8 @@ $scope.deleteAdvertiesement = function (thissID) {
       });
     }
 
-  $http.get("http://localhost/SmartAppDB/ajax/addFullShow.php?CusID="+3).success(function(data){
+  var CusID = $stateParams.id;
+  $http.get("http://localhost/SmartAppDB/ajax/addFullShow.php?CusID="+CusID).success(function(data){
         
    var card=[];
     card=data;
@@ -616,6 +624,7 @@ $scope.deleteAdvertiesement = function (thissID) {
     $scope.CurrentDate=card[0].CDate;
   });
 
+
    function ufullEditShowCtrl($scope, Advertisement) {
     $scope.cAdd = Advertisement.cAdd;
   }
@@ -624,7 +633,7 @@ $scope.deleteAdvertiesement = function (thissID) {
 
 
 
-
+//Admin Edit the Advertisement
 .controller('ufullEditCtrl', function($scope,$http,$state,$ionicPopup) {
 
     $scope.EidtAddValues = function () {

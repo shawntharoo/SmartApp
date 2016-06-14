@@ -64,7 +64,7 @@ angular.module('app.routes', ['ionicUIRouter'])
   })
 
                .state('AdmintabsController.ufullEditShow', {
-    url: '/ufullEditShow',
+    url: '/ufullEditShow/:id',
     views: {
       'tab7': {
         templateUrl: 'templates/ufullEditAdvertiesement.html',
