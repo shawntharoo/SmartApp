@@ -608,11 +608,16 @@ $scope.deleteAdvertiesement = function (thissID) {
       });
     }
 
+
+  $scope.gotoEditAdd = function (IDAdd) {
+  $state.go('AdmintabsController.uedit',{Eid:IDAdd});
+  };
   var CusID = $stateParams.id;
   $http.get("http://localhost/SmartAppDB/ajax/addFullShow.php?CusID="+CusID).success(function(data){
         
    var card=[];
     card=data;
+    $scope.IDAdd=card[0].IDAdd;
     $scope.Selected=card[0].Type;
     $scope.Title=card[0].Title;
     $scope.Image=card[0].Image;
@@ -634,10 +639,11 @@ $scope.deleteAdvertiesement = function (thissID) {
 
 
 //Admin Edit the Advertisement
-.controller('ufullEditCtrl', function($scope,$http,$state,$ionicPopup) {
+.controller('ufullEditCtrl', function($scope,$http,$state,$ionicPopup,$stateParams) {
 
     $scope.EidtAddValues = function () {
-    $http.get("http://localhost/SmartAppDB/ajax/showEditAddvertiesement.php?CusID="+1).success(function(data){   
+      var CusID = $stateParams.Eid;
+    $http.get("http://localhost/SmartAppDB/ajax/showEditAddvertiesement.php?CusID="+CusID).success(function(data){   
     var card=[];
     card=data;
     $scope.Selected=card[0].Type;

@@ -74,7 +74,7 @@ angular.module('app.routes', ['ionicUIRouter'])
   })
 
                 .state('AdmintabsController.uedit', {
-    url: '/uedit',
+    url: '/uedit/:Eid',
     views: {
       'tab7': {
         templateUrl: 'templates/ueditButtonPage.html',
