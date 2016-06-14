@@ -323,10 +323,11 @@ $scope.inviteFriends = function(){
    
 //user
 .controller('buissnessCardCtrl', function($scope,$http,$state) {
-    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+1).success(function(data){
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+2).success(function(data){
         
     var card=[];
     card=data;
+    $scope.Image=card[0].Image;
     $scope.Profession=card[0].Profession;
     $scope.Skills=card[0].Skills;
     $scope.Awards=card[0].Awards;
@@ -339,9 +340,11 @@ $scope.inviteFriends = function(){
 
 })
 
+
+
 .controller('editProfilePageCtrl', function($scope,$http,$ionicPopup,$state) {
     $scope.BuissnessCardValues = function () {
-    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+1).success(function(data){   
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+2).success(function(data){   
     var card=[];
     card=data;
     $scope.Profession=card[0].Profession;
@@ -389,7 +392,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-          $http.get("http://localhost/smartAppDB/ajax/buissnessCardEdit.php?Profession="+Profession+"&Skills="+Skills+"&Awards="+Awards+"&WorkPlace="+WorkPlace+"&Address="+Address+"&Contact="+Contact+"&Email="+Email+"&WorkHour="+WorkHour+"&CusID="+1).success(function (data) {
+          $http.get("http://localhost/smartAppDB/ajax/buissnessCardEdit.php?Profession="+Profession+"&Skills="+Skills+"&Awards="+Awards+"&WorkPlace="+WorkPlace+"&Address="+Address+"&Contact="+Contact+"&Email="+Email+"&WorkHour="+WorkHour+"&CusID="+2).success(function (data) {
           });
         } else {
           console.log('not updated');
@@ -401,6 +404,8 @@ $scope.inviteFriends = function(){
     }
 
 })
+
+
 
 
 .controller('about2PageCtrl', function($scope,$http,$state,$ionicPopup) {
@@ -417,7 +422,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-         $http.post("http://localhost/SmartAppDB/ajax/about2Add.php?profession="+profession+"&skills="+skills+"&awards="+awards)
+         $http.post("http://localhost/SmartAppDB/ajax/about2Add.php?ID="+2+"&profession="+profession+"&skills="+skills+"&awards="+awards)
     .success(function(data){ 
       var alertPopup = $ionicPopup.alert({
         title: 'Successfully Registerd'
@@ -436,6 +441,9 @@ $scope.inviteFriends = function(){
   };
 
 })
+
+
+
 
 .controller('about3PageCtrl', function($scope,$http,$state,$ionicPopup) {
    $scope.about3add = function (workPlace,address,contact,email,workHour) {
@@ -466,7 +474,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour)
+         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour+"&CusID="+2)
          .success(function(data){ 
       var alertPopup = $ionicPopup.alert({
         title: 'Business Card Completed'
@@ -485,10 +493,16 @@ $scope.inviteFriends = function(){
 
 })
 
+
+
+
 .controller('slider',function($scope,$ionicSlideBoxDelegate){
 
    
 })
+
+
+
 
 //admin   
 .controller('upostAdvertiesementCtrl', function($scope,$http,$state,$ionicPopup) {
@@ -503,11 +517,11 @@ $scope.inviteFriends = function(){
         title: 'Enter The title'
       });
     }
-    else if(Image == null){
+    /*else if(Image == null){
       var alertPopup = $ionicPopup.alert({
         title: 'Upload the Banner'
       });
-    }
+    }*/
     else if(Description == null){
       var alertPopup = $ionicPopup.alert({
         title: 'say something about the Advertiesement'
@@ -547,18 +561,86 @@ $scope.inviteFriends = function(){
   };
 })
    
+
+
  
 .controller('ushowadvertiesementCtrl', function($scope,$http,$state) {
   loadtable();
+
   function loadtable(){
         $http.get("http://localhost/smartAppDB/ajax/showAdvertiesement.php").success(function(data){
       $scope.advertiesement = data;
     });
   };
 
+  function Currentadvetisment($scope, Addvertisement) {
+    $scope.cAdd = Addvertisement.cAdd;
+}
 })
 
-.controller('ufullEditShowCtrl', function($scope) {
+
+
+
+.controller('ufullEditShowCtrl', function($scope,$http,$state,$ionicPopup) {
+$scope.deleteAdvertiesement = function (thissID) {
+     var confirmPopup = $ionicPopup.confirm({
+        title: 'Remove Advertisement'
+      });
+      confirmPopup.then(function(res) {
+        if(res) {
+        $http.post("http://localhost/SmartAppDB/ajax/deleteAddvertisement.php?thissID="+5).success(function(data){  
+      var alertPopup = $ionicPopup.alert({
+        title: 'Advertiesement Removed'
+      });
+      });
+        } else {
+          var alertPopup = $ionicPopup.alert({
+        title: 'Advertisement remove failed'
+      });
+        }
+      });
+    }
+
+  $http.get("http://localhost/SmartAppDB/ajax/addFullShow.php?CusID="+3).success(function(data){
+        
+   var card=[];
+    card=data;
+    $scope.Selected=card[0].Type;
+    $scope.Title=card[0].Title;
+    $scope.Image=card[0].Image;
+    $scope.Description=card[0].Description;
+    $scope.Contact=card[0].ContactNo; 
+    $scope.Email=card[0].Email;
+    $scope.SDate=card[0].StartDate;
+    $scope.EDate=card[0].EndDate;
+    $scope.CurrentDate=card[0].CDate;
+  });
+
+   function ufullEditShowCtrl($scope, Advertisement) {
+    $scope.cAdd = Advertisement.cAdd;
+  }
+
+})
+
+
+
+
+.controller('ufullEditCtrl', function($scope,$http,$state,$ionicPopup) {
+
+    $scope.EidtAddValues = function () {
+    $http.get("http://localhost/SmartAppDB/ajax/showEditAddvertiesement.php?CusID="+1).success(function(data){   
+    var card=[];
+    card=data;
+    $scope.Selected=card[0].Type;
+    $scope.Title=card[0].Title;
+    $scope.Image=card[0].Image;
+    $scope.Description=card[0].Description;
+    $scope.Contact=card[0].ContactNo; 
+    $scope.Email=card[0].Email;
+    $scope.SDate=card[0].StartDate;
+    $scope.EDate=card[0].EndDate;
+  })
+  }
 
    $scope.editAdvertiesement = function (Selected,Title,Image,Description,Contact,Email,SDate,EDate) {
      if(Selected == null){
@@ -597,7 +679,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-         $http.post("http://localhost/SmartAppDB/ajax/postAdvertiesement.php?Selected="+Selected+"&Title="+Title+"&Image="+Image+"&Description="+Description+"&Contact="+Contact+"&Email="+Email+"&SDate="+SDate+"&EDate="+EDate)
+         $http.post("http://localhost/SmartAppDB/ajax/editAdvertisement.php?Selected="+Selected+"&Title="+Title+"&Image="+Image+"&Description="+Description+"&Contact="+Contact+"&Email="+Email+"&SDate="+SDate+"&EDate="+EDate+"&CusID="+1)
     .success(function(data){  
       var alertPopup = $ionicPopup.alert({
         title: 'Advertiesement Posted'
@@ -613,11 +695,6 @@ $scope.inviteFriends = function(){
     }
 
   };
-
-})
-
-.controller('ufullEditCtrl', function($scope) {
-
 })
 
 

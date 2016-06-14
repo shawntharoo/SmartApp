@@ -1,12 +1,14 @@
 <?php 
 include('../includes/db.php');
+$CusID = $_GET['CusID'];
+
 $workPlace = $_GET['workPlace'];
 $address = $_GET['address'];
 $contact = $_GET['contact'];
 $email = $_GET['email'];
 $workHour = $_GET['workHour'];
 
-$query="UPDATE buissnescard set WorkPlace='".$workPlace."',Address='".$address."',Contact='".$contact."',Email='".$email."',WorkHour='".$workHour."' WHERE ID='5'";
+$query="UPDATE buissnescard set WorkPlace='".$workPlace."',Address='".$address."',Contact='".$contact."',Email='".$email."',WorkHour='".$workHour."' WHERE ID='$CusID'";
 
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 $result = $mysqli->affected_rows;

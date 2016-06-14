@@ -6,5 +6,10 @@ angular.module('app.services', [])
 
 .service('BlankService', [function(){
 
-}]);
+}])
 
+.factory('Advertisement', [function(){
+  return {
+      cAdd : 'anonymous'
+  };
+}]);
