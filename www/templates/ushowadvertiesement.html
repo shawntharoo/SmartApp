@@ -16,9 +16,9 @@
       <ion-list>
       <label class="item item-input">
               <i class="icon ion-search placeholder-icon"></i>
-              <input type="search" placeholder="Search By Title">
+              <input type="search" ng-model="search" placeholder="Search By Title">
       </label>
-      <ion-item class="item item-avatar" ui-sref="AdmintabsController.ufullEditShow" ng-repeat="add in advertiesement" ng-click="gotoFullEditShow(add.IDAdd)">
+      <ion-item class="item item-avatar" ui-sref="AdmintabsController.ufullEditShow" ng-repeat="add in advertiesement | filter:search" ng-click="gotoFullEditShow(add.IDAdd)">
                 <img src="{{add.Image}}">
                        <h2>{{add.Title}} </h2>
                        <p>{{add.Description}}</p>

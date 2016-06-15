@@ -381,7 +381,7 @@ $scope.inviteFriends = function(){
     }
     else if(Contact == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Enter Work Place Contact Details'
+        title: 'Contact number is empty or Incorrect'
       });
     }
     else if(Email == null){
@@ -465,7 +465,7 @@ $scope.inviteFriends = function(){
     }
     else if(contact == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Enter work place Contact'
+        title: 'Contact number is empty or Incorrect'
       });
     }
     else if(email == null){
@@ -479,7 +479,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour+"&CusID="+CusID)
+         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour+"&CusID="+5)
          .success(function(data){ 
       var alertPopup = $ionicPopup.alert({
         title: 'Business Card Completed'
@@ -535,7 +535,7 @@ $scope.inviteFriends = function(){
     }
     else if(Contact == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Enter Contact no'
+        title: 'Contact number is empty or Incorrect'
       });
     }
     else if(Email == null){
@@ -656,7 +656,13 @@ $scope.deleteAdvertiesement = function (IDAdd) {
     $scope.Description=card[0].Description;
     $scope.Contact=card[0].ContactNo; 
     $scope.Email=card[0].Email;
-    $scope.SDate=card[0].newDate(StartDate);
+    $scope.SDate=card[0].StartDate;
+    var breakvalue=SDate.split('/');    
+    var day=breakvalue[0];
+    var mon=breakvalue[1];
+    var yer=breakvalue[2];    
+    $scope.startdate = new Date(mon+"/"+day+"/"+yer);
+
     $scope.EDate=card[0].newDate(EndDate);
   })
   }
@@ -684,7 +690,7 @@ $scope.deleteAdvertiesement = function (IDAdd) {
     }
     else if(Contact == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Enter Contact no'
+        title: 'Contact number is empty or Incorrect'
       });
     }
     else if(Email == null){
