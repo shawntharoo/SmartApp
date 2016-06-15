@@ -479,7 +479,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour+"&CusID="+5)
+         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour+"&CusID="+CusID)
          .success(function(data){ 
       var alertPopup = $ionicPopup.alert({
         title: 'Business Card Completed'
