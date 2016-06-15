@@ -325,7 +325,7 @@ $scope.inviteFriends = function(){
 //Show Business Card Control
 .controller('buissnessCardCtrl', function($scope,$http,$state) {
     var CusID = window.localStorage.getItem("id");
-    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+CusID).success(function(data){
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+1).success(function(data){
         
     var card=[];
     card=data;
@@ -347,7 +347,7 @@ $scope.inviteFriends = function(){
 .controller('editProfilePageCtrl', function($scope,$http,$ionicPopup,$state) {
     $scope.BuissnessCardValues = function () {
     var CusID = window.localStorage.getItem("id");
-    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+CusID).success(function(data){   
+    $http.get("http://localhost/SmartAppDB/ajax/showBuissnessCard.php?CusID="+1).success(function(data){   
     var card=[];
     card=data;
     $scope.Profession=card[0].Profession;
@@ -381,7 +381,7 @@ $scope.inviteFriends = function(){
     }
     else if(Contact == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Contact number is empty or Incorrect'
+        title: 'Enter Work Place Contact Details'
       });
     }
     else if(Email == null){
@@ -426,7 +426,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-         $http.post("http://localhost/SmartAppDB/ajax/about2Add.php?ID="+CusID+"&profession="+profession+"&skills="+skills+"&awards="+awards)
+         $http.post("http://localhost/SmartAppDB/ajax/about2Add.php?ID="+8+"&profession="+profession+"&skills="+skills+"&awards="+awards)
     .success(function(data){ 
       var alertPopup = $ionicPopup.alert({
         title: 'Successfully Registerd'
@@ -465,7 +465,7 @@ $scope.inviteFriends = function(){
     }
     else if(contact == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Contact number is empty or Incorrect'
+        title: 'Enter work place Contact'
       });
     }
     else if(email == null){
@@ -479,7 +479,7 @@ $scope.inviteFriends = function(){
       });
       confirmPopup.then(function(res) {
         if(res) {
-         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour+"&CusID="+CusID)
+         $http.post("http://localhost/SmartAppDB/ajax/about3Add.php?workPlace="+workPlace+"&address="+address+"&contact="+contact+"&email="+email+"&workHour="+workHour+"&CusID="+8)
          .success(function(data){ 
       var alertPopup = $ionicPopup.alert({
         title: 'Business Card Completed'
@@ -535,7 +535,7 @@ $scope.inviteFriends = function(){
     }
     else if(Contact == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Contact number is empty or Incorrect'
+        title: 'Enter Contact no'
       });
     }
     else if(Email == null){
@@ -690,7 +690,7 @@ $scope.deleteAdvertiesement = function (IDAdd) {
     }
     else if(Contact == null){
       var alertPopup = $ionicPopup.alert({
-        title: 'Contact number is empty or Incorrect'
+        title: 'Enter Contact no'
       });
     }
     else if(Email == null){
@@ -787,6 +787,10 @@ $scope.deleteAdvertiesement = function (IDAdd) {
 
   .controller('favouriteContactsCtrl', function($scope) {
 
+        $http.get("http://localhost/smartAppDB/ajax/favouriteList.php").success(function(data){
+      $scope.favourite = data;
+    });
+
   })
 
     .controller('ViewFavouriteContactsCtrl', function($scope) {
@@ -803,7 +807,45 @@ $scope.deleteAdvertiesement = function (IDAdd) {
               }
   })
 
-      .controller('searchResultCtrl', function($scope) {
+      .controller('searchResultCtrl', function($scope,$http,$ionicPopup) {
+
+    var follower = window.localStorage.getItem("followerid");
+    var id = window.localStorage.getItem("id");
+    $http.get("http://localhost/SmartAppDB/ajax/followpage.php?follower="+1).success(function(data){   
+    var fav=[];
+    fav=data;
+    $scope.name=fav[0].name;
+    $scope.email=fav[0].email;
+    $scope.class=fav[0].class;
+    $scope.dob=fav[0].dob;
+    $scope.address=fav[0].address; 
+    $scope.contact_no=fav[0].contact_no;
+  })
+
+    $http.get('http://localhost/SmartAppDB/ajax/checkFollow.php?follower='+3+'&id='+1).then(function(response){
+      if(response.data=="true")
+      {
+        alert("ufollow");
+        $scope.check = "unfollow";
+      }
+      else if(response.data=="false")
+      {
+        alert("follow");
+        $scope.check = "follow";
+      }
+      else{
+      }
+      
+  })
+
+    $scope.follow = function(){
+     $http.post("http://localhost/SmartAppDB/ajax/followdatabase.php?follower="+3+"&id="+4)
+    .success(function(data){  
+      var alertPopup = $ionicPopup.alert({
+        title: 'You followed this person'
+      });
+      });
+    }
 
   })
  

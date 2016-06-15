@@ -616,7 +616,16 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-         
+         .state('viewfavourite', {
+      url: '/viewfavourite',
+      templateUrl: 'templates/ViewFavouriteContacts.html',
+      controller: 'ViewFavouriteContactsCtrl'
+    })
+         .state('searchResult', {
+      url: '/searchResult',
+      templateUrl: 'templates/searchResult.html',
+      controller: 'searchResultCtrl'
+    })       
 
 
 $urlRouterProvider.otherwise('/page4')

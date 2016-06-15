@@ -8,9 +8,11 @@
           <input type="search" placeholder="Search name">
         </label>
         <ion-item class="item-divider"></ion-item>
+ <ion-item class="item-thumbnail-left" ui-sref="tabscontroller.viewfavourite" ng-repeat="fav in favourite">
+
         <ion-item class="item-thumbnail-left" ui-sref="viewfavourite">
           <img src="img/boy1.png">
-          <h2>Saman Perera</h2>
+          <h2>{{fav.name}}</h2>
           <p></p>
         </ion-item>
         <ion-item class="item-thumbnail-left">
