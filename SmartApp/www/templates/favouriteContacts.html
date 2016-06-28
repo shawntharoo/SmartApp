@@ -1,0 +1,36 @@
+
+
+  <ion-view title="Favourite  Contacts " id="favourite">
+    <ion-content padding="true" class="has-header">
+      <form class="list">
+      
+         <ion-list>
+              <ion-item class="item-divider">My Favourite Contacts</ion-item>
+ 
+                <ion-item class="item-thumbnail-left" ng-repeat="x in favourite">
+                    <img src="img/boy1.png">
+                    <h2>{{x.name}}</h2>
+                    <p>{{x.class}}</p>
+                    
+                   
+                </ion-item>
+              
+        </ion-list>
+      </form>
+    </ion-content>
+  </ion-view>
+
+
+<!--ui-sref="tabscontroller.viewfavourite" 
+ui-sref="viewfavourite"
+
+<ion-item class="item-thumbnail-left">
+          <img src="img/boy3.png">
+          <h2>Amal Ranasinghe</h2>
+          <p></p>
+        </ion-item>
+        <ion-item class="item-thumbnail-left">
+          <img src="img/boy1.png">
+          <h2>Dinesh Kumar</h2>
+          <p></p>
+        </ion-item>-->

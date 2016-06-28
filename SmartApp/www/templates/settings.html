@@ -1,0 +1,59 @@
+<ion-view title="Details" id="page17">
+<ion-nav-buttons side="right" ng-show="true">
+      <button class="button button-icon button-clear ion-ios-people " ng-click="inviteFriends()" >
+      </button>
+</ion-nav-buttons>
+<ion-content padding="true" class="has-header">
+                  <form class="list">
+ <!-- unfollow the group -->  
+                      <div ng-repeat="x in gp">
+                                <a ng-click="getid({{gp[$index].id}})" >
+                                <ion-toggle toggle-class="toggle-positive" name="unfollow">Unfollow</ion-toggle>
+                                </a>
+                      </div>
+
+  <!-- display group members -->                       
+                      <div class="list card">
+                          <div class="item item-divider">Members</div>
+                               <div class="item item-body">
+                                    <ion-list>
+                                        <table  ng-repeat="x in names track by $index"  ng-switch on="$index % 1">
+                                            <tr>
+                                                <td> 
+                                                  <div class="item item-avatar" ui-sref="profile">
+                                                  <img src="/img/download (3).jpg">
+                                                  <h2>{{names[$index].name}}</h2>                                          
+                                                  </div>
+                                       
+                                               </td>
+                                          </tr>
+                                      </table>       
+                                              
+                                     </ion-list>
+                                </div>
+                          </div>
+                </form>
+
+    </ion-content>
+
+ <!-- slider -->  
+    <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+      
+      <ion-slide-box ng-click="change()" does-continue="true" auto-play="true">
+    
+      <ion-slide>
+        <a class="item " href="#" style="padding:0;margin:0" >
+         <img src ="img/ad3.png" width="382px" height="70px" style="padding:0; margin:0"></a>
+      </ion-slide>
+      <ion-slide>
+        <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad2.png" width="382px" height="70px" style="padding:0; margin:0">
+        </a>
+      </ion-slide>
+     <ion-slide>
+       <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad1.png" width="382px" height="70px" style="padding:0; margin:0"></a>
+     </ion-slide>
+    
+    
+
+  </div>
+</ion-view>

@@ -1,0 +1,82 @@
+<ion-view title="General Details" id="family" cache-view="false">
+    <ion-content overflow-scroll="true" padding="true" class="has-header"  >
+        
+        <form class="list">
+            <ion-list>
+                  <div class="item item-divider divivernormal">
+                   <a class="item item-icon-right" href="#">
+                   <i class="icon ion-ios-home"></i>
+                   Family Details
+                   </a>
+                 </div>
+                 <div class="item item-divider">
+                  Spouse
+                 </div>
+
+              
+
+                <label class="item item-input" name="addresshome">
+                   <span class="input-label">Name</span>
+                   <input type="text" placeholder="Name" ng-model="sname" ng-change="namecheck" id="name">
+
+                </label>
+                <p style="color:red;" ng-show="namecheck()"><i class="ion-information-circled "></i>Name must only contain letters</p>
+                 <div class="item item-divider familylist">
+                </div>
+                <a id="signup-button5" class="button button-outline button-positive button-block" ng-click="changesname(sname)">CHANGE</a>
+                
+                 <div class="item item-divider divivernormal">
+                 <a class="item item-icon-right" href="#">
+                 <i class="icon ion-android-happy"></i>
+                    Children Details
+                   </a>
+                  
+                 </div>
+                
+                 <label class="item item-input">
+                    <input type="text" placeholder="Name" ng-model="cname" id="c_name" ng-change="cnamecheck">
+                </label>
+                 <p style="color:red;" ng-show="cnamecheck()"><i class="ion-information-circled "></i>Name must only contain letters</p>
+                  
+                   <ul class="list">
+
+                     <li class="item item-toggle">
+                       Royalist
+                          <label class="toggle toggle-positive" >
+                          <input type="checkbox" ng-model="royal" ng-change="checked(royal)">
+                              <div class="track" >
+                              <div class="handle"></div>
+                              </div>
+                           </label>
+                    </li>
+                 
+                     <label class="item item-input">
+                     Date of Birth
+                      </label>
+                     <label class="item item-input">
+                    <input type="date" max="2010-12-31" min="1994-12-31" placeholder="Name" ng-model="date" id="d_date">
+          <span class="datepicker_label" style="pointer-events: none;"></span>
+                </label>
+                    </ul>
+
+            </ion-list>
+
+            <a id="signup-button5" class="button button-outline button-positive button-block" ng-click="add(cname,date)">ADD</a>
+              <a id="signup-button5" class="button button-outline button-energized button-block" ng-click="editchild(cname,date)">EDIT</a>
+          
+        </form>
+          <div class="row header">
+          <div class="col">Name</div>
+          <div class="col">BirthDay</div>
+          <div class="col">Royalist</div>
+          <div class="col"></div>
+        </div>
+        <div class="row" ng-repeat="data in childlist">
+          <div class="col">{{data.child_name}}</div>
+          <div class="col">{{data.date_of_birth}}</div>
+          <div class="col">{{data.school_name}}</div>
+          <div class="col"><button class="button" ng-click="edit({{data.family_id}})">SELECT</button>
+      <button class="button" ng-click="delete({{data.family_id}})">DELETE</button></div>
+        </div>
+    </ion-content>
+</ion-view>

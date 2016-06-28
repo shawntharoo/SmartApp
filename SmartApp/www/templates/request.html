@@ -1,0 +1,23 @@
+<ion-view title="My Profile" id="request" cache-view="false">
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+      <form class="list">
+        <ion-list>
+             
+                <ion-item class="item-thumbnail-left" ng-repeat="x in request">
+                    <img src="img/boy1.png">
+                    <h2>{{x.name}}</h2>
+                    <p>Class-{{x.class}}</p>
+                    
+                    <button class="button button-small button-balanced" ng-click="approve({{x.id}})">
+                Approve
+                </button>
+                <button class="button button-small button-assertive" ng-click="reject({{x.id}})" style="width: 60px;margin-left: 2px">
+                Reject
+                </button>
+                </ion-item>
+              
+        </ion-list>
+        </form>
+    </ion-content>
+</ion-view>

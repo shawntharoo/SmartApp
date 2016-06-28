@@ -1,0 +1,38 @@
+<ion-view title="Profile Edit" id="Edit">
+   <ion-nav-buttons side="left" ng-show="true">
+  
+  
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <form class="list" enctype="multipart/form-data">
+        <ion-list>
+            <ion-item class="item-thumbnail-left">
+                <img src="img/boy1.png">
+                <h2>Profile Picture</h2>
+           
+            </ion-item>
+            <div class="item item-input-inset">
+                 <div class="col col-80"> 
+                   <label class="item-input-wrapper">
+
+                   <input type="file" placeholder="post" ng-model="photo">
+                   </label>
+                 </div>
+                <a class="button icon-right button-small button-positive">Change </a>
+            </div>
+                <label class="item item-input">
+                    <input type="text" placeholder="Name" ng-model="name" ng-change="namecheck" id="name" name="firstname" ng-required="true">
+                    
+                </label>
+                 <p style="color:red;" ng-show="namecheck()"><i class="ion-information-circled "></i>Name must only contain letters</p>
+                 <label class="item item-input">
+                    <input type="email" placeholder="Email" ng-model="email">
+                </label>
+                <a id="signup-button5" class="button button-outline button-positive button-block" ng-click="profileEdit(name,email)">CHANGE</a>
+             
+       
+        
+        </ion-list>
+        </form>
+     </ion-content>
+</ion-view>

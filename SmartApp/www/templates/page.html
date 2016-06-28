@@ -1,0 +1,52 @@
+<ion-view title="Page" id="search">
+    <ion-content padding="true" class="has-header">
+        <form class="list">
+          <div class="item item-divider">
+            Search
+          </div>
+            <label class="item item-input" name="Search1" >
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Search name" ng-model="name">
+            </label>
+            <label class="item item-input" name="Search1">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Class" ng-model="class">
+            </label>
+            <div class="item item-divider">
+                   Advanced Search
+                  
+            </div>
+
+            <div>
+            <label class="item item-input" name="ASearchP">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Profession" ng-model="profession">
+            </label>
+            <label class="item item-input" name="ASearchC">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Country " ng-model="country">
+            </label>
+            <button id="page-button4" class="button button-positive button-block" ng-click="search(name,class,profession,country)" ui-sref="result" >Search</button>
+            </div>
+
+            <div >
+              <div class="item item-divider">
+                   Search By Group
+            </div>
+
+            <label class="item item-select">
+                <span class="input-label">Sub Group</span>
+                <select ng-model="group">
+                    <option ng-value="default">Select One</option>
+                    <option ng-value="IT">IT</option>
+                    <option ng-value="Doctors">Doctors</option>
+                    <option ng-value="Business">Business</option>
+
+                </select>
+            </label>
+            </div>
+        <button id="page-button4" class="button button-positive button-block" ng-click="searchGroup(name,class,group)" ui-sref="group_result" >Search</button>
+        
+        </form>
+    </ion-content>
+</ion-view>

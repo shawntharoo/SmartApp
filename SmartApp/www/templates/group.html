@@ -1,0 +1,115 @@
+ 
+<ion-view title="Group" id="page6">
+
+<ion-nav-buttons side="right"  >
+      <button class="button button-large ion-chevron-left " ng-click="backTogroup()" >
+      </button>
+      
+    </ion-nav-buttons>
+
+    <ion-content padding="true" class="has-header">
+        
+
+ <!-- search group -->  
+       <form class="row">
+              <div class="list list-inset">
+                <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" ng-model="search" name="searchvalue" ng-required="true" ng-change="searchlist(search)" id="wordofthe" placeholder="Search">
+                </label>
+              </div>
+        </form>
+
+
+ <!-- display sub groups-->  
+      <div class="spacer" style="width: 283px; height: 44px;"></div>
+        <ion-list>
+
+            <table style="width:100%;border="0"">
+
+  <!-- display sub groups which user is following -->  
+                <tr ng-repeat="x in names" ng-switch on="$index % 3" ng-hide='{{names[$index].xx}}'>
+                      
+                            <td ng-switch-when="0">
+                            <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" href="#/page-group-post" style="font-size:12px; color: #004d4d" ng-click="getid({{names[$index].id}})"><img src="http://localhost/test/{{names[$index].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>   {{names[$index].group_name}}</a></div>
+                             
+                            </td>
+                            
+                            <span ng-show="names[$index+1]">
+                                <td ng-switch-when="0" ng-if="names[$index+1]">
+                                <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" href="#/page-group-post" style="font-size:12px; color: #004d4d" ng-click="getid({{names[$index+1].id}})"><img src="http://localhost/test/{{names[$index+1].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>{{names[$index+1].group_name}}</a></div>
+                                   
+                                </td>
+                            </span>    
+
+                            <span ng-show="names[$index+2]" > 
+                           
+                                <td ng-switch-when="0" ng-if="names[$index+2]">
+                                <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" href="#/page-group-post" style="font-size:12px; color: #004d4d" ng-click="getid({{names[$index+2].id}})"><img src="http://localhost/test/{{names[$index+2].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>{{names[$index+2].group_name}}</a></div>
+                                     
+                                </td>
+                            </span>
+                </tr>
+
+
+
+ <!-- display search output which user is not following -->  
+                 <tr ng-repeat="y in names" ng-switch on="$index % 3" ng-show='{{names[$index].xx}}'>
+                  
+                            <td ng-switch-when="0">
+                            <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" href="#/page-follow-cricket" style="font-size:12px; color: #004d4d" ng-click="getid2({{names[$index].id}})"><img src="http://localhost/test/{{names[$index].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>   {{names[$index].group_name}}</a></div>
+                             
+                            </td>
+
+                            <span ng-show="names[$index+1]">
+                                <td ng-switch-when="0" ng-if="names[$index+1]">
+                                <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" href="#/page-follow-cricket" style="font-size:12px; color: #004d4d" ng-click="getid2({{names[$index+1].id}})"><img src="http://localhost/test/{{names[$index+1].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>{{names[$index+1].group_name}}</a></div>
+                                   
+                                </td>
+                            </span>    
+
+                            <span ng-show="names[$index+2]" > 
+                           
+                                <td ng-switch-when="0" ng-if="names[$index+2]">
+                                <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" href="#/page-follow-cricket" style="font-size:12px; color: #004d4d" ng-click="getid2({{names[$index+2].id}})"><img src="http://localhost/test/{{names[$index+2].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>{{names[$index+2].group_name}}</a></div>
+                                     
+                                </td>
+                            </span>
+                    </tr>
+
+               
+            </table>
+
+
+
+
+
+
+
+
+
+        </ion-list>
+    </ion-content>
+
+
+ <!-- slider -->  
+    <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+      
+      <ion-slide-box ng-click="change()" does-continue="true" auto-play="true">
+    
+      <ion-slide>
+        <a class="item " href="#" style="padding:0;margin:0" >
+         <img src ="img/ad3.png" width="382px" height="70px" style="padding:0; margin:0"></a>
+      </ion-slide>
+      <ion-slide>
+        <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad2.png" width="382px" height="70px" style="padding:0; margin:0">
+        </a>
+      </ion-slide>
+     <ion-slide>
+       <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad1.png" width="382px" height="70px" style="padding:0; margin:0"></a>
+     </ion-slide>
+    
+    
+
+  </div>
+</ion-view> 

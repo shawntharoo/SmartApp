@@ -1,0 +1,103 @@
+<ion-view title="My Dashboard" hide-back-button="true" id="grouppost" >
+<ion-nav-buttons side="left" ng-show="true"  >
+      <button class="button button-icon button-clear ion-calendar " ng-click="addCalendar()" > </button>
+ </ion-nav-buttons>
+<ion-nav-buttons side="right" ng-show="true"  >
+     
+       <button class="button button-icon button-clear ion-email" ng-click="addMsg()"  style="padding-right:5px;">
+       </button>
+       <button class="button button-icon button-clear ion-android-notifications-none " ng-click="addNotif()" >
+       </button>
+</ion-nav-buttons>
+
+ <!-- add a new post to the batch group-->     
+<ion-content padding="true" class="cards-bg has-header">
+       <div class="item item-input-inset">
+             <table>
+                    <tr>
+                      <td style="width: 900px">      
+                      <label class="item-input-wrapper">
+                      <input type="text" placeholder="Say something" ng-model="dis">
+                      </label>                     
+                      </td>
+                    </tr>
+                    <tr style="height: 10px"> </tr>
+                      <tr>
+                        <td>                      
+                         <label class="item-input-wrapper">
+                         <input type="text" placeholder="Image" ng-model="img">
+                         </label>                     
+                        </td>
+                      </tr>
+                    <tr style="height: 10px"> </tr>
+                     <tr>
+                    <td style="padding-left: 260px">
+                    <button class="button button-small icon ion-images"></button>
+                    <button class="button button-small icon " ng-click="addpost(dis,img)">POST</button>
+                   </td>
+                 </tr>
+            </table>
+       </div>               
+    </a>
+  </div>
+ 
+       
+ <!-- display group posts -->  
+
+<table  ng-repeat="x in names" ng-switch on="$index % 1">
+      <tr>
+       <td>
+              <div class="list card" style="width: 350px">
+                  <div class="item item-body">
+                      <ion-list>
+                         <div class="item item-avatar" ui-sref="profile">
+                          <img src="/img/download (3).jpg">
+                          <h2>{{names[$index].name}}</h2>
+                          <p>{{names[$index].date}}</p>
+                        </div>
+                      </ion-list>
+                      <a style="display:block;" ui-sref="selectedGroupPost">
+                              <img src="http://localhost/test/{{names[$index].image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                          </a>
+                                   <div id="cricketPost-markdown6" style="color:#0E0101;text-align:justify;">
+                          <p>{{names[$index].description}}</p>
+                    </div>
+                     
+                      
+                      <ion-note item-right style="color: #C0C0C0 ">{{names[$index].time}}
+                      </ion-note>
+                  </div>
+              </div>
+          </td>
+        </tr>
+</table>
+    </ion-content>
+
+ <!-- slider -->  
+
+<div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+      
+      <ion-slide-box ng-click="change()" does-continue="true" auto-play="true">
+    
+      <ion-slide>
+        <a class="item " href="#" style="padding:0;margin:0" >
+         <img src ="img/ad3.png" width="382px" height="70px" style="padding:0; margin:0"></a>
+      </ion-slide>
+      <ion-slide>
+        <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad2.png" width="382px" height="70px" style="padding:0; margin:0">
+        </a>
+      </ion-slide>
+     <ion-slide>
+       <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad1.png" width="382px" height="70px" style="padding:0; margin:0"></a>
+     </ion-slide>
+    
+    
+
+  </div>
+    
+</ion-view>
+<style>
+  .has-header ion-col {
+    padding: 10;
+  }
+</style>

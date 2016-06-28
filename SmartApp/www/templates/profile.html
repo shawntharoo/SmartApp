@@ -1,0 +1,70 @@
+<ion-view title="My Profile" id="page6" cache-view="false">
+   <ion-nav-buttons side="left" ng-show="true">
+    <button class="button button-icon button-clear ion-arrow-left-b" ui-sref="tabsController.mainprofile">
+    Back</button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <ion-list>
+            <ion-item class="item-thumbnail-left">
+                <img src="img/boy1.png" ng-click="nextpage()">
+                <h2>{{name}}</h2>
+                <p>{{email}}</p>
+                <p>{{class}}</p>
+            </ion-item>
+        
+              <div class="item item-divider">
+              Personal Details
+              </div>
+              <a class="item item-icon-left" href="#/address">
+                  <i class="icon ion-ios-location-outline"></i>
+                 Address
+                <span class="item-note">
+                  {{address}}
+                </span>
+              </a>
+               <a class="item item-icon-left" href="#/address">
+                  <i class="icon ion-ios-telephone"></i>
+                 Telephone
+                <span class="item-note">
+                 {{contact_no}}
+                </span>
+              </a>
+              <!--
+             <div class="item item-input-inset">
+                 <label class="item-input-wrapper">
+                 <input type="text" placeholder="Nickname">pina
+                 </label>
+              <a class="button icon-right button-small button-positive" >EDIT</a>
+             </div>-->
+             
+
+        
+        
+                   <div class="item item-divider">
+                    Family
+                   </div>
+                   <a class="item item-icon-left" href="#/family">
+                  <i class="icon ion-woman"></i>
+                    Spouse
+                     <span class="item-note">
+                 {{spouse}}
+                </span>
+
+                  
+                 </a>
+                <a class="item item-icon-left item-icon-right" href="#/family">
+                  <i class="icon ion-android-happy"></i>
+                     Children
+                    <span class="badge badge-assertive">{{childcount}}</span>
+                    
+                  
+                 </a>
+            
+       
+                  <a id="signup-button5" class="button button-stable  button-block" ng-click=show() style="background-color: white"></a>
+            
+       
+        
+        </ion-list>
+     </ion-content>
+</ion-view>

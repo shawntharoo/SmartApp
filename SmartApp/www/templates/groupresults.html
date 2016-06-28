@@ -1,0 +1,21 @@
+<ion-view title="Results" id="result">
+<ion-nav-buttons side="left" ng-show="true">
+    <button class="button button-icon button-clear ion-arrow-left-b" >
+    Back</button>
+    </ion-nav-buttons>
+  <ion-content padding="true" class="has-header" ui-sref="searchResult">
+    <form class="list">
+      <ion-item class="item-thumbnail-left" ng-repeat="x in searchItems track by x.id">
+
+        <img src="img/boy1.png">
+        <h2>{{x.name}}</h2>
+        <p>{{x.class}}</p>
+        <p>{{x.email}}</p>
+        
+
+      </ion-item>
+      
+    </form>
+  </ion-content>
+</ion-view>
+
