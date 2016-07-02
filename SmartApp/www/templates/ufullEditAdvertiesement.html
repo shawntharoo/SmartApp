@@ -1,28 +1,43 @@
 <ion-view title="View-Edit" id="ufullEditShow">
-<ion-content padding="true" class="has-header">
-<div class="list card">
-
-  <div class="item item-avatar">
-    <img src="img/images (3).jpg">
-    <h2>{{Title}}</h2>
-  </div>
-
-    <p>Type : {{Selected}} </p>
-  <div class="item item-body">
-    <img class="full-image" src="{{Image}}">
-    <span><p><h5> <font color="red">Published On : {{CurrentDate}} </font></h5></p></span>
-    <p>
-     {{Description}}
-     <p>Contact No : {{Contact}} </p>
-     <p>Email : {{Email}} </p>
-    </p>
-    <a ui-sref="AdmintabsController.uedit" id="fullEditAdvertiesement-button2" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block " ng-click="gotoEditAdd(IDAdd)">Edit</a>
-    <a ui-sref="AdmintabsController.ushow" id="fullEditAdvertiesement-button2" style="font-weight:600;font-size:-2px;" class="button button-assertive  button-block " ng-click="deleteAdvertiesement(IDAdd)">Delete</a>
-    <button class="button" ng-click="showActionsheet()">
+  <ion-content padding="true" class="has-header">
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="img/images (3).jpg">
+        <h2>{{Title}}</h2>
+      </div>
+      <p>Type : {{Selected}} </p>
+      <div class="item item-body">
+        <img class="full-image" src="{{Image}}">
+        <span>
+          <p>
+          <h5> <font color="red">Published On : {{CurrentDate}} </font></h5>
+          </p>
+        </span>
+        <p>
+          {{Description}}
+        <p>Contact No : {{Contact}} </p>
+        <p>Email : {{Email}} </p>
+        </p>
+        <a ui-sref="AdmintabsController.uedit" id="fullEditAdvertiesement-button2" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block " ng-click="gotoEditAdd(IDAdd)">Edit</a>
+        <a ui-sref="AdmintabsController.ushow" id="fullEditAdvertiesement-button2" style="font-weight:600;font-size:-2px;" class="button button-assertive  button-block " ng-click="deleteAdvertiesement(IDAdd)">Delete</a>
+        <button class="button" ng-click="showActionsheet()">
         Show Actionsheet
-      </button>
+        </button>
+      </div>
+    </div>
+  </ion-content>
+  <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+    <ion-slide-box does-continue="true" auto-play="true">
+      <ion-slide ng-repeat="ban in Banner">
+        <div class="box">
+          <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box">
+          <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
+        </div>
+      </ion-slide>
+    </ion-slide-box>
   </div>
-
-</div>
-</ion-content>
 </ion-view>

@@ -1,8 +1,8 @@
 <ion-view title="Change Advertiesement" id="uedit" style="background-color:#D5EEF8;">
     <ion-content padding="true" class="has-header">
-    <a id="editProfile-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block" ng-click="EidtAddValues()">Load Current Details</a>
-      <form class="list">
-      <label class="item item-select">
+        <a id="editProfile-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block" ng-click="EidtAddValues()">Load Current Details</a>
+        <form class="list">
+            <label class="item item-select">
                 <span class="input-label">Select Type</span>
                 <select ng-model="Selected" ng-required="true">
                     <option>Event</option>
@@ -12,26 +12,25 @@
                 </select>
             </label>
             <label class="item item-input">
-                <span class="input-label">Title</span>
-                <textarea placeholder="Enter the Title" ng-model="Title"></textarea>
+            <span class="input-label">Title</span>
+            <textarea placeholder="Enter the Title" ng-model="Title"></textarea>
             </label>
             <label class="item item-input">
-                <span class="input-label">Image</span>
-                <input type="file" ng-model="Image" ng-required="true" placeholder="Browse The Banner">
+            <span class="input-label">Image</span>
+            <input type="file" ng-model="Image" ng-required="true" placeholder="Browse The Banner">
             </label>
             <label class="item item-input">
-                <span class="input-label">Description</span><textarea placeholder="Enter A Brief Description" ng-model="Description"></textarea>
+            <span class="input-label">Description</span><textarea placeholder="Enter A Brief Description" ng-model="Description"></textarea>
             </label>
             <label class="item item-input">
-                <span class="input-label">Contact No</span>
-                <input type="text" maxlength="10" placeholder="Contact you want to show in the advertiesement" ng-model="Contact">
+            <span class="input-label">Contact No</span>
+            <input type="text" maxlength="10" placeholder="Contact you want to show in the advertiesement" ng-model="Contact">
             </label>
             <label class="item item-input">
-                <span class="input-label">Email</span>
-                <input type="email" placeholder="Email you want to show in the advertiesement" ng-model="Email">
+            <span class="input-label">Email</span>
+            <input type="email" placeholder="Email you want to show in the advertiesement" ng-model="Email">
             </label>
-
-             <label class="item item-input">
+            <label class="item item-input">
             <span class="input-label">Start Date</span>
             <input type="date" ng-model="startdate">
             </label>
@@ -39,7 +38,6 @@
             <span class="input-label">End Date</span>
             <input type="date"  ng-model="EDate">
             </label>
-
         </form>
         <a ui-sref="AdmintabsController.uedit" id="EditAdvertiesement-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block icon ion-checkmark-circled" ng-click="editAdvertiesement(Selected,Title,Image,Description,Contact,Email,SDate,EDate)">Submit</a>
     </ion-content>

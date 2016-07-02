@@ -3,14 +3,14 @@ include('includes/db.php');
 
 $CusID = $_GET['CusID'];
 
-$query="select * from buissnescard where Id='$CusID'";
-$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
+$query = "select * from buissnescard where Id='$CusID'";
+$result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 
 $card = array();
-if($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) {
-		$card[] = $row;	
-	}
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $card[] = $row;
+    }
 }
 
 $json_response = json_encode($card);

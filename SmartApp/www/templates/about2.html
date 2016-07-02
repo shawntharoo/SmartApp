@@ -1,29 +1,40 @@
 <ion-view title="About ME" id="about2" style="background-color:#cce6ff;">
-     <ion-content padding="true" class="has-header">
-        <form class="list">
-             <ion-item class="item-divider">Professional Details</ion-item>
-            <label class="item item-input">
-                <span class="input-label">Profession</span>
-                <input type="text" name="prof" ng-model="profession" ng-required="true" placeholder="Your Profession">
-                </label>
-      
-            <label class="item item-input">
-                <span class="input-label">Skills</span>
-                <input type="text" name="ski" ng-model="skills" ng-required="true" placeholder="Skills Based on Profession">
-            </label>
-             <label class="item item-input">
-                <span class="input-label">Awards</span>
-                <input type="text" name="awar" ng-model="awards" ng-required="true" placeholder="Awards Regards to Profession">
-            </label>
-               <a ui-sref="tabsController2.about2" id="About2-button1" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block " ng-click="about2add(profession,skills,awards)">Submit</a>
-            
-            <div class="card">
-            <div class="item item-text-wrap">
-            To Upgrade your Buissness Card Proceed <span>with further registration</span>
-            </div>
-            </div>
-            <a ui-sref="tabsController2.about3" id="About-button1" style="font-weight:800;font-size:-2px;" class="button button-calm  button-stable icon ion-arrow-right-c">   Next</a>
-        </form>
-    </ion-content>
-
+  <ion-content padding="true" class="has-header">
+    <form class="list">
+      <ion-item class="item-divider">Professional Details</ion-item>
+      <label class="item item-input">
+      <span class="input-label">Profession</span>
+      <input type="text" name="prof" ng-model="profession" ng-required="true" placeholder="Your Profession">
+      </label>
+      <label class="item item-input">
+      <span class="input-label">Skills</span>
+      <input type="text" name="ski" ng-model="skills" ng-required="true" placeholder="Skills Based on Profession">
+      </label>
+      <label class="item item-input">
+      <span class="input-label">Awards</span>
+      <input type="text" name="awar" ng-model="awards" ng-required="true" placeholder="Awards Regards to Profession">
+      </label>
+      <a ui-sref="tabsController2.about2" id="About2-button1" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block " ng-click="about2add(profession,skills,awards)">Submit</a>
+      <div class="card">
+        <div class="item item-text-wrap">
+          To Upgrade your Buissness Card Proceed <span>with further registration</span>
+        </div>
+      </div>
+      <a ui-sref="tabsController2.about3" id="About-button1" style="font-weight:800;font-size:-2px;" class="button button-calm  button-stable icon ion-arrow-right-c">   Next</a>
+    </form>
+  </ion-content>
+  <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+    <ion-slide-box does-continue="true" auto-play="true">
+      <ion-slide ng-repeat="ban in Banner">
+        <div class="box">
+          <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box">
+          <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+  </div>
 </ion-view>

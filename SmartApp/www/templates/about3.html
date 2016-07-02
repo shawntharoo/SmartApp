@@ -1,54 +1,47 @@
 <ion-view title="About ME" id="about3" style="background-color:#cce6ff;">
-    <ion-content padding="true" class="has-header">
-        <form class="list">
-            <ion-item class="item-divider">Working Place Details</ion-item>
-            <label class="item item-input">
-                <span class="input-label">Working Place</span>
-                <input type="text" name="wplace" ng-model="workPlace" ng-required="true" placeholder="Name of the working place">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Address</span>
-                <input type="text" name="addr" ng-model="address" ng-required="true" placeholder="Address of the working place">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Contact No</span>
-                <input type="text" maxlength="10" name="cont" ng-model="contact" ng-required="true" placeholder="Contact details of the working place">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Email</span>
-                <input type="email" name="mail" ng-model="email" ng-required="true" placeholder="Email use for working purposes">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">working Hours</span>
-                <input type="text" name="hour" ng-model="workHour" ng-required="true" placeholder="Your Normal working hours">
-            </label>
-
-            <a ui-sref="tabsController2.about3" id="About2-button1" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block " ng-click="about3add(workPlace,address,contact,email,workHour)">Submit</a>
-             <div class="card" style="color:#cce6ff;">
-            <div class="item item-text-wrap">
-            Your Buissness Card is Completed !
-            </div>
-            </div>
-             </form>
-    </ion-content>
-         <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
-      
-      <ion-slide-box ng-click="change()" does-continue="true" auto-play="true">
-    
-      <ion-slide>
-        <a class="item " href="#" style="padding:0;margin:0" >
-         <img src ="img/ad3.png" width="382px" height="70px" style="padding:0; margin:0"></a>
+  <ion-content padding="true" class="has-header">
+    <form class="list">
+      <ion-item class="item-divider">Working Place Details</ion-item>
+      <label class="item item-input">
+      <span class="input-label">Working Place</span>
+      <input type="text" name="wplace" ng-model="workPlace" ng-required="true" placeholder="Name of the working place">
+      </label>
+      <label class="item item-input">
+      <span class="input-label">Address</span>
+      <input type="text" name="addr" ng-model="address" ng-required="true" placeholder="Address of the working place">
+      </label>
+      <label class="item item-input">
+      <span class="input-label">Contact No</span>
+      <input type="text" maxlength="10" name="cont" ng-model="contact" ng-required="true" placeholder="Contact details of the working place">
+      </label>
+      <label class="item item-input">
+      <span class="input-label">Email</span>
+      <input type="email" name="mail" ng-model="email" ng-required="true" placeholder="Email use for working purposes">
+      </label>
+      <label class="item item-input">
+      <span class="input-label">working Hours</span>
+      <input type="text" name="hour" ng-model="workHour" ng-required="true" placeholder="Your Normal working hours">
+      </label>
+      <a ui-sref="tabsController2.about3" id="About2-button1" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block " ng-click="about3add(workPlace,address,contact,email,workHour)">Submit</a>
+      <div class="card" style="color:#cce6ff;">
+        <div class="item item-text-wrap">
+          Your Buissness Card is Completed !
+        </div>
+      </div>
+    </form>
+  </ion-content>
+  <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+    <ion-slide-box does-continue="true" auto-play="true">
+      <ion-slide ng-repeat="ban in Banner">
+        <div class="box">
+          <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
+        </div>
       </ion-slide>
       <ion-slide>
-        <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad2.png" width="382px" height="70px" style="padding:0; margin:0">
-        </a>
+        <div class="box">
+          <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
+        </div>
       </ion-slide>
-     <ion-slide>
-       <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad1.png" width="382px" height="70px" style="padding:0; margin:0"></a>
-     </ion-slide>
-    
-    
-
+    </ion-slide-box>
   </div>
-
 </ion-view>

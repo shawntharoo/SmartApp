@@ -1,35 +1,36 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 <!--<script src="angular-route.min.js"></script>-->
 <script src="controllers.js"></script>
-
-<ion-view title="recieved Advertiesement" id="readd" style="background-color:#d9d9d9;" ng-app="app">
+<ion-view title="Recieved Advertiesement" id="readd" style="background-color:#d9d9d9;" ng-app="app">
   <ion-nav-buttons side="left" ng-show="true">
-    </ion-nav-buttons>
-      <ion-nav-buttons side="right" ng-show="true">
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right" ng-show="true">
     <button class="button button-icon button-clear ion-edit" ui-sref="AdmintabsController.upost">
     </button>
-    </ion-nav-buttons>
-    <ion-content padding="true" class="has-header">
+  </ion-nav-buttons>
+  <ion-content padding="true" class="has-header">
     <div ng-controller="showAdvertiesementCtrl">
-
       <ion-list>
-      <label class="item item-input">
-              <i class="icon ion-search placeholder-icon"></i>
-              <input type="search" ng-model="search" placeholder="Search By Title">
-      </label>
-      <ion-item class="item item-avatar" ng-repeat="add in advertiesement | filter:search" ng-click="gotoFullEditShow(add.IDAdd)">
-                <img src="{{add.Image}}">
-                       <h2>{{add.Title}} </h2>
-                       <p>{{add.Description}}</p>
-                       <span><p><h5><font color="red">Recieved On : {{add.sendDate}}</font></h5></p></span>
-                      <button class="button button-small button-balanced">
-                 Accept
-                </button>
-                 <button class="button button-small button-assertive" style="width: 60px;margin-left: 2px">
-                 Reject
-                </button>
-
+        <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" ng-model="search" placeholder="Search By Title">
+        </label>
+        <ion-item class="item item-avatar" ng-repeat="add in advertiesement | filter:search" ng-click="gotoFullEditShow(add.IDAdd)">
+        <img src="{{add.Image}}">
+        <h2>{{add.title}} </h2>
+        <p>{{add.Description}}</p>
+        <span>
+          <p>
+          <h5><font color="red">Recieved On : {{add.sendDate}}</font></h5>
+          </p>
+        </span>
+        <button class="button button-small button-balanced" ng-click="AcceptAdd({{add.SID}})">
+        Accept
+        </button>
+        <button class="button button-small button-assertive" style="width: 60px;margin-left: 2px" ng-click="RejectAdd({{add.SID}})">
+        Reject
+        </button>
       </ion-list>
-        </div>
-    </ion-content>
+    </div>
+  </ion-content>
 </ion-view>

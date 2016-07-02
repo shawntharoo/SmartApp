@@ -1,14 +1,14 @@
 <?php
 include('includes/db.php');
 
-$query="select Image from postadvertiesement";
-$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
+$query = "select Image from postadvertiesement";
+$result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 
 $ban = array();
-if($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) {
-		$ban[] = $row;	
-	}
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $ban[] = $row;
+    }
 }
 
 $json_response = json_encode($ban);

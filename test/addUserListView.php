@@ -2,14 +2,14 @@
 header('Access-Control-Allow-Origin:*');
 include('includes/db.php');
 $CusID = $_GET['CusID'];
-$query="select * from usendadvertiesement where MemberId = '$CusID'";
-$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
+$query = "select * from usendadvertiesement where MemberId = '$CusID'";
+$result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 
 $add = array();
-if($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) {
-		$add[] = $row;	
-	}
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $add[] = $row;
+    }
 }
 
 $json_response = json_encode($add);
