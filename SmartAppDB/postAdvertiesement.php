@@ -6,7 +6,7 @@
     </link>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     </link>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -22,15 +22,15 @@
           }
         })
       })
-      
+
       jQuery(function(){ // on DOM Load
         sideviewmenu() // call sideviewmenu() function
       })
-      
+
     </script>
     <script type="text/javascript">
       function validateform(){
-      
+
        if (document.form1.title.value == "")
          {
             alert("Please enter the Title");
@@ -62,7 +62,7 @@
             return false;
          }
       return true;
-      
+
       }
     </script>
   </head>
@@ -99,7 +99,7 @@
           <div class="jumbotron">
             <h2>Post your Advertiesements here</h2>
             <br/>
-            <p><a class="btn btn-primary btn-lg" href="login.php" role="button">Show Advertiesements</a></p>
+            <p><a class="btn btn-primary btn-lg" href="showAdvertiesement.php" role="button">Show Advertiesements</a></p>
             <img src="img/advert.jpg" class="img-responsive" alt="">
           </div>
         </div>

@@ -6,7 +6,7 @@
     </link>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     </link>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -22,15 +22,15 @@
           }
         })
       })
-      
+
       jQuery(function(){ // on DOM Load
         sideviewmenu() // call sideviewmenu() function
       })
-      
+
     </script>
     <script>
       function pop_up(url){
-      window.open(url,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=500,directories=no,location=no') 
+      window.open(url,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=500,height=500,directories=no,location=no')
       }
     </script>
   </head>
@@ -61,11 +61,11 @@
         </div>
         <div class="col-md-10">
           <br/>
-          <h3>All New Registered Users </h3>
+          <h3>All Pending Advertisements </h3>
           <br/>
           <?php
             include('includes/db.php');
-            
+
             if(mysqli_connect_errno()){
             echo "failed to connect to MySQL.".mysqli_connect_error();
             }
@@ -75,10 +75,10 @@
           <tr class="info">
             <div class="row">
               <?php while($row=mysqli_fetch_array($result)){ ?>
-              <div class="col-xs-6 col-md-7">
+              <div class="col-xs-6 col-md-10">
                 <div class="thumbnail">
-                  <div class="caption" style="width:300px">
-                    <img class="img-responsive" src="<?php echo $row['Image']?>" width="450px" align="middle"><br/>
+                  <div class="caption" style="width:900px">
+                    <img src="<?php echo $row['Image']?>" width="750px" height="150px" align="middle"><br/><br/>
                     <p>Title : <?php echo $row['title']; ?></p>
                     <p><a href="ViewAdd.php?sendId=<?= $row['SID'] ?>" onclick="pop_up(this);return false;" class="btn btn-info" role="button">View</a>
                       <button type="button" name="button" class="btn btn-success" onclick="javascript:AcceptAdd(<?php echo $row['SID']; ?>)">Accept</button>

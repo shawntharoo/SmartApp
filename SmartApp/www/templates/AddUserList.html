@@ -1,49 +1,67 @@
 <html>
   <ion-view title="Show Advertisement" id="addlist" style="background-color:#cce6ff;">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Ionic List Directive</title>
-    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
-    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
-  </head>
-  <body>
-    <ion-content>
-      <ion-header-bar class="bar-positive">
-        <div class="buttons">
-          <button class="button button-icon icon ion-ios-minus-outline"
-            ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
-        </div>
-        <h1 class="title">Delete or Reorder</h1>
-        <div class="buttons">
-          <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
-          Reorder
-          </button>
-        </div>
-      </ion-header-bar>
-      <!-- The list directive is great, but be sure to also checkout the collection repeat directive when scrolling through large lists -->
-      <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-        <ion-item>
-        </ion-item>
-        <ion-item ng-repeat="item in items track by $index" item="item" class="item-remove-animate">
-          <div class="item-thumbnail">
-            <img src="{{item.Image}}" style="width:300px">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <title>Ionic List Directive</title>
+      <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+      <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+    </head>
+      <ion-nav-buttons side="right" ng-show="true">
+      <button class="button button-icon button-clear ion-android-notifications" ui-sref="tabsController2.notify">
+      </button>
+      </ion-nav-buttons>
+    <body>
+      <ion-content>
+        <ion-header-bar class="bar-positive">
+          <div class="buttons">
+            <button class="button button-icon icon ion-ios-minus-outline"
+              ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
           </div>
+          <h1 class="title">Delete or Reorder</h1>
+          <div class="buttons">
+            <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
+            Reorder
+            </button>
           </div>
-          {{ item.title }} <br/>
-          {{ item.Description }} <br/>
-          <font color="blue"> Send date : {{ item.sendDate }}</font><br/> 
-          <div ng-if="item.status == -1">
-            <div class="row responsive-sm">
-              <div class="col"><font size="5" color="red"><i class="icon ion-android-cancel"></i> Rejected </font></div>
+        </ion-header-bar>
+        <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+          <ion-item>
+          </ion-item>
+          <ion-item ng-repeat="item in items track by $index" item="item" class="item-remove-animate">
+            <div class="item-thumbnail">
+              <img src="{{item.Image}}" style="width:300px">
             </div>
-          </div>
-          <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
-          </ion-delete-button>
-          <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)">
-          </ion-reorder-button>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </body>
+            </div>
+            {{ item.title }} <br/>
+            {{ item.Description }} <br/>
+            <font color="blue"> Send date : {{ item.sendDate }}</font><br/> 
+            <div ng-if="item.status == -1">
+              <div class="row responsive-sm">
+                <div class="col"><font size="5" color="red"><i class="icon ion-android-cancel"></i> Rejected by the Admin </font></div>
+              </div>
+            </div>
+            <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
+            </ion-delete-button>
+            <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)">
+            </ion-reorder-button>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </body>
+    <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >  
+      <ion-slide-box does-continue="true" auto-play="true">
+       <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">
+      <div class="box">
+      <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
+      </div>
+      </ion-slide>
+      <ion-slide>
+      <div class="box">
+      <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
+      </div>
+      </ion-slide>
+      </ion-slide-box>
+  </div>
+  </ion-view>
 </html>

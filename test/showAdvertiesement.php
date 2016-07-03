@@ -2,9 +2,9 @@
 header('Access-Control-Allow-Origin:*');
 include('includes/db.php');
 
+//Select Data from the postadvertiesement table in the smartapp database
 $query = "select * from postadvertiesement";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
-
 $add = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -20,5 +20,3 @@ header('Access-Control-Allow-Headers: Content-Type,x-prototype-version,x-request
 
 echo $json_response;
 ?>
-
-

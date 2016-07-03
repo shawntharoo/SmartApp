@@ -1,10 +1,10 @@
 <?php
 include('includes/db.php');
-
+//Asighn Data to the Variables
 $thissID = $_GET['thissID'];
 
+//Dlete Data from postadvertiesement table in the Smartapp database
 $query = "DELETE FROM postadvertiesement WHERE IDAdd='$thissID'";
-
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 $result = $mysqli->affected_rows;
 

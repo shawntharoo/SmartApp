@@ -46,18 +46,18 @@
       </div>
     </div>
   </ion-content>
-  <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
-    <ion-slide-box ng-click="change()" does-continue="true" auto-play="true">
-    <ion-slide>
-      <a class="item " href="#" style="padding:0;margin:0" >
-      <img src ="img/ad3.png" width="382px" height="70px" style="padding:0; margin:0"></a>
-    </ion-slide>
-    <ion-slide>
-      <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad2.png" width="382px" height="70px" style="padding:0; margin:0">
-      </a>
-    </ion-slide>
-    <ion-slide>
-      <a class="item " href="#" style="padding:0;margin:0" > <img src ="img/ad1.png" width="382px" height="70px" style="padding:0; margin:0"></a>
-    </ion-slide>
+  <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >  
+      <ion-slide-box does-continue="true" auto-play="true">
+       <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">
+      <div class="box">
+      <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
+      </div>
+      </ion-slide>
+      <ion-slide>
+      <div class="box">
+      <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
+      </div>
+      </ion-slide>
+      </ion-slide-box>
   </div>
 </ion-view>

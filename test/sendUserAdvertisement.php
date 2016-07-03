@@ -1,6 +1,7 @@
 <?php
 include('includes/db.php');
 
+//Asighn Data to the Variables
 $MemberId    = $_GET['MemberId'];
 $title       = $_GET['title'];
 $Selected    = $_GET['Selected'];
@@ -18,13 +19,13 @@ $done        = move_uploaded_file($source, $destination);
 if ($done) {
     echo "image Uploaded Successfully";
 } else {
-    
+
     echo "Error in Uploading Image";
 }
 
+/*Insert Data to the usendadvertiesement in the smartapp database*/
 $query = "INSERT INTO usendadvertiesement (MemberId,title,Selection,Image,Description,ContactNo,Email,StartDate,EndDate,sendDate)  VALUES ('$MemberId','$title','$Selected','$Image','$description','$contact','$email','$SDate','$EDate','$today')";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
-
 $result = $mysqli->affected_rows;
 
 header('Access-Control-Allow-Origin: *');

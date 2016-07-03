@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2016 at 05:58 AM
+-- Generation Time: Jul 03, 2016 at 05:03 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -262,7 +262,7 @@ INSERT INTO `postadvertiesement` (`IDAdd`, `Type`, `Title`, `Image`, `Descriptio
 (7, 'Event', '94 group meeting', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Batch Meeting will be held in order to discuss about the future plans', 789876543, 'sahan@gmail.com', 'Wed Jun 15 2016', 'Fri Jul 01 2016', '2016-06-23 17:05:33'),
 (8, 'Merchent', 'SendAdd', 'img/ad1.png', 'dsfsff', 99877, 'arjun@gmail.com', 'undefined', 'undefined', ''),
 (9, 'Merchent', 'SendAdd', 'img/ad1.png', 'dsfsff', 99877, 'arjun@gmail.com', 'undefined', 'undefined', ''),
-(10, 'Merchent', 'get', 'img/', 'get together', 789654362, 'saman@gmail.com', 'Wed Jun 15 2016', 'Wed Jun 29 2016', '2016-06-29 17:34:28'),
+(10, 'Merchent', 'get', 'img/meet1.jpg', 'get together', 789654362, 'saman@gmail.com', 'Wed Jun 15 2016', 'Wed Jun 29 2016', '2016-06-29 17:34:28'),
 (11, 'Merchent', 'SendAdd', 'img/ad1.png', 'dsfsff', 99877, 'arjun@gmail.com', 'undefined', 'undefined', '');
 
 -- --------------------------------------------------------
@@ -293,11 +293,11 @@ CREATE TABLE IF NOT EXISTS `usendadvertiesement` (
 
 INSERT INTO `usendadvertiesement` (`SID`, `MemberId`, `title`, `Selection`, `Image`, `Description`, `ContactNo`, `Email`, `StartDate`, `EndDate`, `sendDate`, `status`) VALUES
 (1, 1, 'SendAdd', 'Merchent', 'img/ad1.png', 'dsfsff', 99877, 'arjun@gmail.com', 'undefined', 'undefined', '', 1),
-(2, 1, 'SendAdd', 'Promote', 'img/ad2.png', 'sjshj', 987766, 'sa@g.com', 'Fri Jun 17 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '', -1),
+(2, 1, 'SendAdd', 'Promote', 'img/ad2.png', 'sjshj', 987766, 'sa@g.com', 'Fri Jun 17 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '', 0),
 (3, 1, 'SendAdd', 'Notice', 'img/ad3.png', 'sjshj', 987766, 'sa@g.com', 'Fri Jun 17 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '2016-06-11 14:24:31', 0),
-(4, 1, 'Get', 'Event', 'img/', 'Get Together', 786785435, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '2016-06-29 17:44:26', 0),
-(5, 1, 'Get', 'Event', 'img/', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Fri Jul 01 2016 00:00:00 GMT 0', '2016-06-29 17:45:13', -1),
-(6, 1, 'Get', 'Event', 'img/', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Fri Jul 01 2016 00:00:00 GMT 0', '2016-06-29 17:45:31', 0);
+(4, 1, 'Get', 'Event', 'img/ad1.png', 'Get Together', 786785435, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '2016-06-29 17:44:26', -1),
+(5, 1, 'Get', 'Event', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Fri Jul 01 2016 00:00:00 GMT 0', '2016-06-29 17:45:13', 0),
+(6, 1, 'Get', 'Event', 'img/ad2.png', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Fri Jul 01 2016 00:00:00 GMT 0', '2016-06-29 17:45:31', 0);
 
 -- --------------------------------------------------------
 

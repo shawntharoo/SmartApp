@@ -1,8 +1,9 @@
 <?php
 include('includes/db.php');
-
+//Asighn Data to the Variables
 $CusID = $_GET['CusID'];
 
+//Select Data from the postadvertiesement table in the Samrtapp database
 $query = "select * from postadvertiesement where IDAdd='$CusID'";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 
@@ -21,5 +22,3 @@ header('Access-Control-Allow-Headers: Content-Type,x-prototype-version,x-request
 
 echo $json_response;
 ?>
-
-

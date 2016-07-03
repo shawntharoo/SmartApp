@@ -11,10 +11,9 @@
 			window.opener.location.href = window.opener.location.href;
 			if (window.opener.progressWindow) {
 			   window.opener.progressWindow.close()
-			
 			 }
 			window.close();
-			} 
+			}
 		</script>
 		<title>View Advertisement</title>
 	</head>
@@ -69,7 +68,6 @@
 					<input type="text" class="form-control" name="department" value="<?php echo $row['sendDate'] ?>" disabled >
 				</div>
 				<div class="form-group">
-					<!--<button type="submit" class="btn btn-danger"  name="confirm">Update</button>-->
 					<button type="button" class="btn btn-primary" onclick="closeWin()">Cancel </button>
 				</div>
 			</form>

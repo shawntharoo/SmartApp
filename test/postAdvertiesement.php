@@ -1,5 +1,7 @@
 <?php
 include('includes/db.php');
+
+//Asighn Data to the Variables
 $Selected    = $_GET['Selected'];
 $Title       = $_GET['Title'];
 $Image       = $_GET['Image'];
@@ -8,9 +10,7 @@ $Contact     = $_GET['Contact'];
 $Email       = $_GET['Email'];
 $SDate       = $_GET['SDate'];
 $EDate       = $_GET['EDate'];
-
 $today = date('Y-m-d H:i:s');
-
 $destination = "img/" . $_FILES["Image"]["name"];
 $source      = $_FILES["Image"]["tmp_name"];
 $Image       = $destination;
@@ -18,10 +18,11 @@ $done        = move_uploaded_file($source, $destination);
 if ($done) {
     echo "image Uploaded Successfully";
 } else {
-    
+
     echo "Error in Uploading Image";
 }
 
+/*Insert Data to the postadvertiesement table in the Smartapp database*/
 $query = "INSERT INTO postadvertiesement(Type,Title,Image,Description,ContactNo,Email,StartDate,EndDate,CDate)  VALUES ('$Selected','$Title','$Image','$Description','$Contact','$Email','$SDate','$EDate','$today')";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 
