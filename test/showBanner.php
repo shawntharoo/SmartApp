@@ -2,7 +2,7 @@
 include('includes/db.php');
 
 //Select Data from the postadvertiesement table in the smartapp database
-$query = "select Image from postadvertiesement";
+$query = "select Image,IDAdd from postadvertiesement";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 $ban = array();
 if ($result->num_rows > 0) {

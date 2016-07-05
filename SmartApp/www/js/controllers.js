@@ -1586,31 +1586,68 @@ var UID=window.localStorage.getItem("id");
             });
     })
 
+
     //Display Slider Controller.
     .controller('slider', function($scope, $ionicSlideBoxDelegate, $http,
         $state) {
+        var role = window.localStorage.getItem("role");
         $http.get("http://localhost/test/showBanner.php").success(function(
             data) {
             $scope.Banner = data;
             $ionicSlideBoxDelegate.update();
         });
         $scope.gotoSlideAdd = function(IDAdd) {
-            $state.go('tabsController2.slideAdd', {
-                id: IDAdd
+          if(role=="admin"){
+            $state.go('AdmintabsController.slideAdd', {
+                idA: IDAdd
             });
-        };
+          }
+          else if(role=="member" || role=="rep"){
+            $state.go('tabsController.slideAdd', {
+                idA: IDAdd
+            });
+          }
+      };
     })
+
 
     //user
-    //Controller for notifications
-    .controller('notifyCtrl',function(){
+    .controller('settingsBCtrl', function() {
 
     })
+
+    //Controller for notifications
+    .controller('notifyCtrl',function($scope,$http,$ionicPopup) {
+      var CusID = window.localStorage.getItem("id");
+      $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
+                function(data) {
+                    $scope.notifications = data;
+                });
+      $scope.ClearNotifications = function() {
+        var confirmPopup = $ionicPopup.confirm({
+        title: 'You want to CLear all the Notifications?'
+        });
+        confirmPopup.then(function(res) {
+          if (res) {
+            $http.post(
+            "http://localhost/test/deleteNotifications.php").success(function(data) {
+              var alertPopup = $ionicPopup.alert({
+              title: 'Notifications Cleared'
+              });
+            });
+          } else {
+            var alertPopup = $ionicPopup.alert({
+            title: 'Error'
+            });
+          }
+        });
+      }
+    })
+
 
     //Show full view of the Advertisement on the sliders
     .controller('slideAddCtrl', function($state, $scope, $http, $stateParams) {
-        var CusID = $stateParams.id;
-        alert(CusID);
+        var CusID = $stateParams.idA;
         $http.get("http://localhost/test/addFullShow.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
@@ -1627,6 +1664,7 @@ var UID=window.localStorage.getItem("id");
                 $scope.CurrentDate = card[0].CDate;
             });
     })
+
 
     //Send advertisement to the admin Controller
     .controller('sendAdvertisementPageCtrl', function($scope, $http, $state,
@@ -1687,6 +1725,7 @@ var UID=window.localStorage.getItem("id");
         };
     })
 
+
     .controller('AddUserListCntrl', function($scope, $http, $ionicPopover) {
         var CusID = window.localStorage.getItem("id");
         loaddata();
@@ -1710,29 +1749,38 @@ var UID=window.localStorage.getItem("id");
         };
     })
 
+    //Show Business card Details
     .controller('buissnessCardCtrl', function($scope, $http, $state) {
         var CusID = window.localStorage.getItem("id");
         $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
-            $scope.Image = card[0].Image;
-            $scope.Profession = card[0].Profession;
-            $scope.Skills = card[0].Skills;
-            $scope.Awards = card[0].Awards;
-            $scope.WorkPlace = card[0].WorkPlace;
-            $scope.Address = card[0].Address;
-            $scope.Contact = card[0].Contact;
-            $scope.Email = card[0].Email;
-            $scope.WorkHour = card[0].WorkHour;
+            if(card[0]=="null")
+            {
+              $scope.check = -1;
+            }else{
+              $scope.check = 1;
+              $scope.ID = card[0].ID;
+              $scope.Image = card[0].Image;
+              $scope.Profession = card[0].Profession;
+              $scope.Skills = card[0].Skills;
+              $scope.Awards = card[0].Awards;
+              $scope.WorkPlace = card[0].WorkPlace;
+              $scope.Address = card[0].Address;
+              $scope.Contact = card[0].Contact;
+              $scope.Email = card[0].Email;
+              $scope.WorkHour = card[0].WorkHour;
+          }
         });
     })
+
 
     //Edit BusinessCard Control
     .controller('editProfilePageCtrl', function($scope, $http, $ionicPopup,
         $state) {
+        var CusID = window.localStorage.getItem("id");
         $scope.BuissnessCardValues = function() {
-            var CusID = window.localStorage.getItem("id");
             $http.get(
                 "http://localhost/test/showBuissnessCard.php?CusID=" +
                 CusID).success(function(data) {
@@ -1786,14 +1834,22 @@ var UID=window.localStorage.getItem("id");
                             "&Email=" + Email +
                             "&WorkHour=" + WorkHour +
                             "&CusID=" + CusID).success(
-                            function(data) {});
+                            function(data) {
+                              var alertPopup =
+                                $ionicPopup.alert({
+                                  title: 'Successfully Changed'
+                                });
+                            });
                     } else {
-                        console.log('not updated');
+                        var alertPopup = $ionicPopup.alert({
+                          title: 'Error Occurs'
+                        });
                     }
                 });
             }
         }
     })
+
 
     //First Registration form Of the Business Profile 
     .controller('about2PageCtrl', function($scope, $http, $state, $ionicPopup) {
@@ -1829,6 +1885,7 @@ var UID=window.localStorage.getItem("id");
             }
         };
     })
+
 
     //Second Registration form Of the Business Profile
     .controller('about3PageCtrl', function($scope, $http, $state, $ionicPopup) {
@@ -1880,9 +1937,10 @@ var UID=window.localStorage.getItem("id");
         };
     })
 
+
     //admin  
     //Admin Post Advertisement 
-    .controller('adminAddListCtrl', function($scope, $http, $ionicPopup) {
+    .controller('adminAddListCtrl', function($scope, $http, $state, $ionicPopup ,$window) {
         loadtable();
         function loadtable() {
             $http.get("http://localhost/test/adminAddverList.php").success(
@@ -1923,6 +1981,7 @@ var UID=window.localStorage.getItem("id");
                                 title: 'Advertiesement Rejected'
                             });
                         });
+                        $state.go($state.current, {}, {reload: true});
                     } else {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Reject Rejection'
@@ -1934,6 +1993,7 @@ var UID=window.localStorage.getItem("id");
   $state.go('AdmintabsController.ufullEditShow',{id:IDAdd});
   };*/
     })
+
 
     .controller('upostAdvertiesementCtrl', function($scope, $http, $state,
         $ionicPopup) {
@@ -1995,6 +2055,7 @@ var UID=window.localStorage.getItem("id");
         };
     })
 
+
     //Admin Show Advertisement in a list view
     .controller('ushowadvertiesementCtrl', function($scope, $http, $state,
         $ionicPopup) {
@@ -2016,6 +2077,7 @@ var UID=window.localStorage.getItem("id");
             $scope.cAdd = Addvertisement.cAdd;
         }
     })
+
 
     //Admin View the Detail View page of the Advertisement  
     .controller('ufullEditShowCtrl', function($scope, $http, $state,
@@ -2089,6 +2151,7 @@ var UID=window.localStorage.getItem("id");
             $scope.cAdd = Advertisement.cAdd;
         }
     })
+
 
     //Admin Edit the Advertisement
     .controller('ufullEditCtrl', function($scope, $http, $state, $ionicPopup,

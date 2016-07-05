@@ -5,18 +5,16 @@ include('includes/db.php');
 $CusID = $_GET['CusID'];
 
 //Select Data from the buissnescard table in the Samrtapp database
-$query = "select * from buissnescard where Id='$CusID'";
+$query = "select * from notification where MemberID='$CusID'";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
-$card = array();
+$notif = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $card[] = $row;
+        $notif[] = $row;
     }
-}else{
-	$card[0] = "null";
 }
 
-$json_response = json_encode($card);
+$json_response = json_encode($notif);
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');

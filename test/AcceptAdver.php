@@ -22,11 +22,12 @@ $result2 = $mysqli->query($query2) or die($mysqli->error . __LINE__);
 $row2 = mysqli_fetch_array($result2);
 $ATitle = $row2['title'];
 $MemberID = $row2['MemberId'];
+$status = $row2['status'];
 
 //Current Date and Time of the System
 $today = date('Y-m-d H:i:s');
 //Insert Data to the notification table in the smartap database
-$query3 = "INSERT INTO notification(MemberID,ATitle,Notification,ADate)  VALUES ('$MemberID','$ATitle','Your Advertisement is Now Available in the System','$today')";
+$query3 = "INSERT INTO notification(MemberID,ATitle,Notification,ADate,status)  VALUES ('$MemberID','$ATitle','Your Advertisement is Now Available in the System','$today','$status')";
 $result3 = $mysqli->query($query3) or die($mysqli->error . __LINE__);
 
 header('Access-Control-Allow-Origin: *');

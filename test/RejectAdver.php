@@ -17,11 +17,12 @@ $result1 = $mysqli->query($query1) or die($mysqli->error . __LINE__);
 $row1 = mysqli_fetch_array($result1);
 $ATitle = $row1['title'];
 $MemberID = $row1['MemberId'];
+$status = $row2['status'];
 
 //Current Date and Time of the System
 $today = date('Y-m-d H:i:s');
 //Insert Data to the notification table in the smartap database
-$query2 = "INSERT INTO notification(MemberID,ATitle,Notification,ADate)  VALUES ('$MemberID','$ATitle','Your Advertisement has been Rejected by the Administrator','$today')";
+$query2 = "INSERT INTO notification(MemberID,ATitle,Notification,ADate,status)  VALUES ('$MemberID','$ATitle','Your Advertisement is Rejected by the Admin','$today','$status')";
 $result3 = $mysqli->query($query2) or die($mysqli->error . __LINE__);
 
 header('Access-Control-Allow-Origin: *');

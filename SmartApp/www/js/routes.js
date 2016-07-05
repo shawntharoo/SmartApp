@@ -105,6 +105,17 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     }
   }) 
+
+
+                  .state('AdmintabsController.slideAdd', {
+      url: '/slideAdd/:idA',
+      views: {
+        'tab1': {
+          templateUrl: 'templates/slideAdd.html',
+          controller: 'slideAddCtrl'
+        }
+      }
+    })
  //sanda admin end
 
 
@@ -519,13 +530,24 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
- .state('tabsController2', {
+  .state('tabsController2', {
             url: '/tabsController2',
             templateUrl: 'templates/tabsController2.html',
             abstract: true
         })
 
- .state('tabsController2.buissnessCard', {
+
+  .state('tabsController.slideAdd', {
+            url: '/slideAdd/:idA',
+            views: {
+                'tab1': {
+                    templateUrl: 'templates/slideAdd.html',
+                    controller: 'slideAddCtrl'
+                }
+            }
+        })
+
+  .state('tabsController2.buissnessCard', {
             url: '/buissnessCard',
             views: {
                 'tab3': {
@@ -545,25 +567,6 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
-  .state('tabsController2.about2', {
-            url: '/about2',
-            views: {
-                'tab4': {
-                    templateUrl: 'templates/about2.html',
-                    controller: 'about2PageCtrl'
-                }
-            }
-        })
-
-  .state('tabsController2.about3', {
-            url: '/about3',
-            views: {
-                'tab4': {
-                    templateUrl: 'templates/about3.html',
-                    controller: 'about3PageCtrl'
-                }
-            }
-        })
 
   .state('tabsController2.sendAdd', {
             url: '/sendAdd',
@@ -595,18 +598,36 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
-  .state('tabsController2.slideAdd', {
-            url: '/slideAdd/:id',
+
+  .state('tabsController2.settingsB', {
+            url: '/settingsB',
             views: {
-                'tab6': {
-                    templateUrl: 'templates/slideAdd.html',
-                    controller: 'slideAddCtrl'
+                'tab7': {
+                    templateUrl: 'templates/settingsBusiness.html',
+                    controller: 'settingsBCtrl'
                 }
             }
         })
 
+  .state('tabsController2.about2', {
+            url: '/about2',
+            views: {
+                'tab7': {
+                    templateUrl: 'templates/about2.html',
+                    controller: 'about2PageCtrl'
+                }
+            }
+        })
 
-
+  .state('tabsController2.about3', {
+            url: '/about3',
+            views: {
+                'tab7': {
+                    templateUrl: 'templates/about3.html',
+                    controller: 'about3PageCtrl'
+                }
+            }
+        })
 
 
 

@@ -1,10 +1,26 @@
-<ion-view title="About ME" id="notify" style="background-color:#cce6ff;">
+<ion-view title="Advertisement Notification" id="notify" style="background-color:#cce6ff;">
   <ion-content padding="true" class="has-header">
-
+  <a id="editProfile-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block" ng-click="ClearNotifications()">Clear Notifications</a>
+    <ion-list>
+      <div class="card" ng-repeat="notification in notifications">
+        <div class="item item-divider">
+          {{notification.ATitle}}
+        </div>
+        <div class="item item-text-wrap" style="color: blue" ng-if="notification.status == 1">
+          {{notification.Notification}}
+        </div>
+        <div class="item item-text-wrap" style="color: red" ng-if="notification.status == -1">
+          {{notification.Notification}}
+        </div>
+        <div class="item item-divider">
+          {{notification.ADate}}
+        </div>
+      </div>
+    </ion-list><br/>
   </ion-content>
   <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
     <ion-slide-box does-continue="true" auto-play="true">
-      <ion-slide ng-repeat="ban in Banner">
+      <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">
         <div class="box">
           <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
         </div>

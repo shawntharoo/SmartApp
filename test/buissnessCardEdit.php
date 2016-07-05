@@ -2,6 +2,7 @@
 include('includes/db.php');
 
 //Asighn Data to the Variables
+$CusID      = $_GET['CusID'];
 $Profession = $_GET['Profession'];
 $Skills     = $_GET['Skills'];
 $Awards     = $_GET['Awards'];
@@ -12,7 +13,7 @@ $Email      = $_GET['Email'];
 $WorkHour   = $_GET['WorkHour'];
 
 /*Update businesscard table in the smartapp database*/
-$query = "UPDATE buissnescard set Profession='" . $Profession . "',Skills='" . $Skills . "',Awards='" . $Awards . "',WorkPlace='" . $WorkPlace . "',Address='" . $Address . "',Contact='" . $Contact . "',Email='" . $Email . "',WorkHour='" . $WorkHour . "' WHERE ID='1'";
+$query = "UPDATE buissnescard set Profession='" . $Profession . "',Skills='" . $Skills . "',Awards='" . $Awards . "',WorkPlace='" . $WorkPlace . "',Address='" . $Address . "',Contact='" . $Contact . "',Email='" . $Email . "',WorkHour='" . $WorkHour . "' WHERE ID='$CusID'";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 $result = $mysqli->affected_rows;
 

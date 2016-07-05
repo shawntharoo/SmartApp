@@ -13,7 +13,7 @@
       </ion-nav-buttons>
     <body>
       <ion-content>
-        <ion-header-bar class="bar-positive">
+        <ion-header-bar class = "bar bar-header bar-stable">
           <div class="buttons">
             <button class="button button-icon icon ion-ios-minus-outline"
               ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
@@ -38,7 +38,9 @@
             <font color="blue"> Send date : {{ item.sendDate }}</font><br/> 
             <div ng-if="item.status == -1">
               <div class="row responsive-sm">
-                <div class="col"><font size="5" color="red"><i class="icon ion-android-cancel"></i> Rejected by the Admin </font></div>
+                <div class="col">
+                  <font size="5" color="red"><i class="icon ion-android-cancel"></i> Rejected by the Admin </font>
+                </div>
               </div>
             </div>
             <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
@@ -49,19 +51,19 @@
         </ion-list>
       </ion-content>
     </body>
-    <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >  
-      <ion-slide-box does-continue="true" auto-play="true">
-       <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">
-      <div class="box">
-      <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
-      </div>
+  <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+    <ion-slide-box does-continue="true" auto-play="true">
+      <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">
+        <div class="box">
+          <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
+        </div>
       </ion-slide>
       <ion-slide>
-      <div class="box">
-      <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
-      </div>
+        <div class="box">
+          <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
+        </div>
       </ion-slide>
-      </ion-slide-box>
+    </ion-slide-box>
   </div>
   </ion-view>
 </html>

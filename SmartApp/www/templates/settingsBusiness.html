@@ -1,0 +1,36 @@
+<ion-view title="Settings" id="settingsB" style="background-color:#cce6ff;">
+  	<ion-content padding="true" class="has-header">
+	  	<ion-toggle ng-model="addSwitch" toggle-class="toggle-calm">Disable Advertisement</ion-toggle>
+	  	<div class="card">
+		  	<div class="item item-divider">
+		   	Create Business Card!
+		  	</div>
+		  	<div class="item item-text-wrap">
+				Fill the Fields of the Businesscard Manually
+				<button class="button button-full button-calm" ui-sref="tabsController2.about2" id="About-button1">
+			  	Fill Business card
+				</button><br/>
+				<font size="6px" color="blue"><center>OR</center></font><br/>
+			  	Import data from the Linkedin Profile
+				<button class="button button-full button-calm ion-social-linkedin-outline" id="About-button1">
+			  	Import From Linkedin
+				</button>
+				<img src ="img/linked.png" width="200px" height="50px">
+		  	</div>
+		</div>
+  	</ion-content>
+    <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+	    <ion-slide-box does-continue="true" auto-play="true">
+	      <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">
+	        <div class="box">
+	          <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
+	        </div>
+	      </ion-slide>
+	      <ion-slide>
+	        <div class="box">
+	          <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
+	        </div>
+	      </ion-slide>
+	    </ion-slide-box>
+  	</div>
+</ion-view>
