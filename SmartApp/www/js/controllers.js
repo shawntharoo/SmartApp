@@ -1591,14 +1591,19 @@ var UID=window.localStorage.getItem("id");
     .controller('slider', function($scope, $ionicSlideBoxDelegate, $http,
         $state) {
         var role = window.localStorage.getItem("role");
-        var addStatus = window.localStorage.getItem("addStatus");
-        if(addStatus == 1){
-          $scope.slide = -1;
-          console.log('testToggle changed to '+addStatus);
-        }else{
-          $scope.slide = 1;
-          console.log('testToggle changed to '+addStatus);
-        }
+        var CusID = window.localStorage.getItem("id");
+        $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(
+                  function(data) {
+          $scope.addStatus = data[0].Status;
+          if($scope.addStatus == 1){
+            $scope.slide = 1;
+            console.log('testToggle changed to '+$scope.addStatus);
+          }else{
+            $scope.slide = -1;
+            console.log('testToggle changed to '+$scope.addStatus);
+          }
+        });
+
         $http.get("http://localhost/test/showBanner.php").success(function(
             data) {
             $scope.Banner = data;
@@ -1627,15 +1632,18 @@ var UID=window.localStorage.getItem("id");
         if($scope.addSwitch == false) {
           $scope.addSwitch = true;  
           var addStatus = 1;
-          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus);
-          window.localStorage.setItem("addStatus",addStatus);
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+                function(data) {
           console.log('inside settings '+addStatus);
+        });
         }
         else{
           $scope.addSwitch = false;
           var addStatus = -1;
-          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus);
-          window.localStorage.setItem("addStatus",addStatus);
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+                function(data) {  
+          console.log('inside settings '+addStatus);
+        });
         }
       }
     })

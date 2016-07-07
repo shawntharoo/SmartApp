@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2016 at 01:21 PM
+-- Generation Time: Jul 07, 2016 at 08:16 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `buissnescard` (
 --
 
 INSERT INTO `buissnescard` (`ID`, `Profession`, `Skills`, `Awards`, `WorkPlace`, `Address`, `Contact`, `Email`, `WorkHour`) VALUES
-(1, 'Doctor1', 'neurologist', 'Specialist', 'Hemas', 'Waththala', 112435678, 'hemas.paw@gmail.com', '8.00AM-6.00PM'),
+(1, 'Doctor', 'neurologist', 'Specialist,Consultant', 'Hemas', 'Kiribathgoda', 112435678, 'hemas.paw@gmail.com', '8.00AM-6.00PM'),
 (2, 'Lawyer', 'Language', 'Law', 'Law Entrance', 'Colombo', 768905462, 'ronald@gmial.com', 'No Specific'),
 (3, 'Businessmen', 'promote', 'annual awards', 'helys', 'dematagoda', 767890874, 'kamal@gmail.com', '5.00PM onwards'),
 (4, 'Network Administrator', 'Java Script', 'Bronze medal', 'BOC', 'Maradana', 786575452, 'sama@gmail.com', '2.00PM- 7.00PM'),
@@ -52,7 +52,28 @@ INSERT INTO `buissnescard` (`ID`, `Profession`, `Skills`, `Awards`, `WorkPlace`,
 (6, 'Doctor', 'Specialist', 'MBBS', 'Hemas', 'Wathtala', 789065478, 'sakila@gmail.com', '5.00AM - 11.00PM'),
 (7, 'Manager', 'CIMA,AAT', 'Best Runner', 'Brandix I3', 'Kingsly Road', 789654321, 'brayan@gmail.com', 'Normal Hours'),
 (8, 'Software Engineer', 'Angular JS', 'OCPJP', 'Millenium IT', 'Baththaramulla', 789875673, 'robert@gmail.com', '1.00PM - 10.00PM'),
-(9, 'master', 'sir mage', 'himi thana denavaada', 'anam manam', 'mata', 789652, 'vadi@kara', '8.00AM to 9.00PM');
+(9, 'Master sir', 'mage himi thana', 'denavaaada?', 'Anee sir', 'anukamapaa', 789654321, 'nositheda@apa.atharekaba', '6.00AM-12.00PM');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `disableadd`
+--
+
+CREATE TABLE IF NOT EXISTS `disableadd` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `MemID` int(11) NOT NULL,
+  `Status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `disableadd`
+--
+
+INSERT INTO `disableadd` (`ID`, `MemID`, `Status`) VALUES
+(1, 10, 1),
+(4, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -243,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `ADate` varchar(40) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`NID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `notification`
@@ -253,7 +274,9 @@ INSERT INTO `notification` (`NID`, `MemberID`, `ATitle`, `Notification`, `ADate`
 (1, 1, 'SendAdd', 'Your Advertisement is Now Available in the System', '2016-07-04 18:47:20', 1),
 (2, 1, 'Get', 'Your Advertisement is Rejected by the Admin', '2016-07-04 18:50:59', -1),
 (3, 1, 'Get', 'Your Advertisement is Now Available in the System', '2016-07-04 18:52:20', 1),
-(4, 1, 'Get', 'Your Advertisement is Rejected by the Admin', '2016-07-04 18:54:02', -1);
+(4, 1, 'Get', 'Your Advertisement is Rejected by the Admin', '2016-07-04 18:54:02', -1),
+(5, 9, 'new add', 'Your Advertisement is Rejected by the Admin', '2016-07-07 04:24:44', 0),
+(6, 9, 'new add', 'Your Advertisement is Rejected by the Admin', '2016-07-07 04:54:06', 0);
 
 -- --------------------------------------------------------
 
@@ -273,14 +296,14 @@ CREATE TABLE IF NOT EXISTS `postadvertiesement` (
   `EndDate` varchar(15) NOT NULL,
   `CDate` varchar(40) NOT NULL,
   PRIMARY KEY (`IDAdd`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `postadvertiesement`
 --
 
 INSERT INTO `postadvertiesement` (`IDAdd`, `Type`, `Title`, `Image`, `Description`, `ContactNo`, `Email`, `StartDate`, `EndDate`, `CDate`) VALUES
-(1, 'Event', 'Get Together2', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together of the 94 group will ba having on 2016-06-09.. It is beter i f all the members are participated.', 987654321, 'saman@gmail.com', 'Wed Jun 01 2016', 'Fri Jun 10 2016', '2016-06-09 07:50 AM'),
+(1, 'Promote', 'organize the batch trip', 'img/add2.jpg', 'batch trip for jaffna', 768954312, 'harsh@gmail.com', '2016-07-04', 'Sat Jul 30 2016', '2016-06-09 07:50 AM'),
 (2, 'Notice', 'Batch Meeting', 'img/meet1.jpg', 'Batch Meeting will be Held on the College Premises', 786578942, 'shenal@gmail.com', '2016-07-20', 'Wed Jun 01 2016', '2016-06-12 17:45:24'),
 (3, 'Promote', 'An Example of a Google Bar Chart', 'img/add2.jpg', 'sadfdf', 768954312, 'harsh@gmail.com', '2016-07-04', '2016-07-20', '2016-06-11 14:25:33'),
 (4, 'Event', 'Exhibition', 'img/mer1.jpg', 'Royal college 94 batch going to be organized exhibition to celebrate the 175th anniversary of Royal College  ', 756789546, 'kumar@gmail.com', '2016-06-20', '2016-06-30', '2016-06-11 14:24:31'),
@@ -294,7 +317,9 @@ INSERT INTO `postadvertiesement` (`IDAdd`, `Type`, `Title`, `Image`, `Descriptio
 (12, 'Event', 'Get', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016', 'Fri Jul 01 2016', '2016-06-29 17:45:13'),
 (13, 'Event', 'Get', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016', 'Fri Jul 01 2016', '2016-06-29 17:45:13'),
 (14, 'Notice', 'SendAdd', 'img/ad3.png', 'sjshj', 987766, 'sa@g.com', 'Fri Jun 17 2016', 'Thu Jun 30 2016', '2016-06-11 14:24:31'),
-(15, 'Event', 'Get', 'img/ad1.png', 'Get Together', 786785435, 'saman@gmail.com', 'Wed Jun 15 2016', 'Thu Jun 30 2016', '2016-06-29 17:44:26');
+(15, 'Event', 'Get', 'img/ad1.png', 'Get Together', 786785435, 'saman@gmail.com', 'Wed Jun 15 2016', 'Thu Jun 30 2016', '2016-06-29 17:44:26'),
+(16, 'Promote', 'balh', 'img/', 'blah blah', 786748484, 'na@gmail.com', 'Fri Jul 29 2016', 'Thu Aug 25 2016', '2016-07-05 20:41:12'),
+(18, 'Merchent', 'test123', 'img/', 'testing 123', 1231231231, '123@gmail.com', 'Wed Jun 29 2016', 'Wed Jul 06 2016', '2016-07-06 15:57:29');
 
 -- --------------------------------------------------------
 
@@ -316,7 +341,7 @@ CREATE TABLE IF NOT EXISTS `usendadvertiesement` (
   `sendDate` varchar(40) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`SID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `usendadvertiesement`
@@ -326,9 +351,11 @@ INSERT INTO `usendadvertiesement` (`SID`, `MemberId`, `title`, `Selection`, `Ima
 (1, 1, 'SendAdd', 'Merchent', 'img/ad1.png', 'dsfsff', 99877, 'arjun@gmail.com', 'undefined', 'undefined', '', 1),
 (2, 1, 'SendAdd', 'Promote', 'img/ad2.png', 'sjshj', 987766, 'sa@g.com', 'Fri Jun 17 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '', 0),
 (3, 1, 'SendAdd', 'Notice', 'img/ad3.png', 'sjshj', 987766, 'sa@g.com', 'Fri Jun 17 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '2016-06-11 14:24:31', -1),
-(4, 1, 'Get', 'Event', 'img/ad1.png', 'Get Together', 786785435, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '2016-06-29 17:44:26', 1),
-(5, 1, 'Get', 'Event', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Fri Jul 01 2016 00:00:00 GMT 0', '2016-06-29 17:45:13', 0),
-(6, 1, 'Get', 'Event', 'img/ad2.png', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Fri Jul 01 2016 00:00:00 GMT 0', '2016-06-29 17:45:31', -1);
+(4, 1, 'Get', 'Event', 'img/ad1.png', 'Get Together', 786785435, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '2016-06-29 17:44:26', 0),
+(5, 1, 'Get', 'Event', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Fri Jul 01 2016 00:00:00 GMT 0', '2016-06-29 17:45:13', 1),
+(6, 1, 'Get', 'Event', 'img/ad2.png', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Fri Jul 01 2016 00:00:00 GMT 0', '2016-06-29 17:45:31', -1),
+(7, 9, 'new add', 'Merchent', 'img/', 'this is a new add', 2147483647, 'sa@gmial.com', 'Thu Jul 21 2016 00:00:00 GMT 0', 'Thu Jul 28 2016 00:00:00 GMT 0', '2016-07-05 20:36:49', 0),
+(8, 9, 'SendAdd', 'Promote', 'img/', 'tasting', 98876544, 'test@gmail.com', 'Thu Jul 07 2016 00:00:00 GMT 0', 'Fri Jul 15 2016 00:00:00 GMT 0', '2016-07-07 05:37:18', 0);
 
 -- --------------------------------------------------------
 
@@ -374,7 +401,7 @@ INSERT INTO `user` (`id`, `name`, `email`, `password`, `class`, `dob`, `address`
 (39, 'aaa', 'aaa@gmail.com', '12345', '13B', '0000-00-00', 'Galle', 714444444, 912222222, '', '', 0, '', 'member', 1, '2016-06-13'),
 (41, 'pawan', 'pawan@gmil.com', '12345', '13B', '0000-00-00', '', 0, 0, '', '', 0, '', 'member', 1, '2016-06-14'),
 (43, 'fff', 'ff@gmail.com', '12345', '13B', '0000-00-00', '', 0, 0, '', '', 0, '', 'member', 1, '2016-06-14'),
-(44, 'i', 'gg@gmail.com', '', '13B', '0000-00-00', '', 0, 0, '', '', 0, '', 'member', 0, '2016-06-14'),
+(44, 'i', 'gg@gmail.com', '', '13B', '0000-00-00', '', 0, 0, '', '', 0, '', 'member', 2, '2016-06-14'),
 (57, 'p00', 'd@gmail.com', '', '13A', '0000-00-00', '', 0, 0, '', '', 0, '', 'member', 2, '2016-06-14'),
 (58, 'pp', 'hhhhh@gmail.com', '', '13B', '0000-00-00', '', 0, 0, '', '', 0, '', 'member', 2, '2016-06-14'),
 (59, 'pp', 'ght@gmail.com', '', '13B', '0000-00-00', '', 0, 0, '', '', 0, '', 'member', 2, '2016-06-14'),
