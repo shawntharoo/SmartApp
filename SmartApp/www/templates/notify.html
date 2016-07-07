@@ -1,5 +1,9 @@
 <ion-view title="Advertisement Notification" id="notify" style="background-color:#cce6ff;">
   <ion-content padding="true" class="has-header">
+  <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
   <a id="editProfile-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block" ng-click="ClearNotifications()">Clear Notifications</a>
     <ion-list>
       <div class="card" ng-repeat="notification in notifications">

@@ -58,6 +58,7 @@ angular.module('app.routes', ['ionicUIRouter'])
 //sanda admin start
               .state('AdmintabsController.ushow', {
     url: '/ushow',
+    cache: false,
     views: {
       'tab7': {
         templateUrl: 'templates/ushowadvertiesement.html',
@@ -549,6 +550,7 @@ angular.module('app.routes', ['ionicUIRouter'])
 
   .state('tabsController2.buissnessCard', {
             url: '/buissnessCard',
+            cache: false,
             views: {
                 'tab3': {
                     templateUrl: 'templates/buissnessCard.html',
@@ -580,6 +582,7 @@ angular.module('app.routes', ['ionicUIRouter'])
 
   .state('tabsController2.addlist', {
             url: '/addlist',
+            cache: false,
             views: {
                 'tab6': {
                     templateUrl: 'templates/AddUserList.html',

@@ -1,9 +1,18 @@
 <ion-view title="Buissness Card" style="background-color: white" id="buissnessCard">
   <ion-content padding="true" class="has-header">
-    <div ng-if="check == -1">
-    Welcome
-    Please Create your Business card
+  <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
+    <div ng-if="check == -1"><br/>
+    <font size="6" color="blue"> <center> Welcome </center> </font> <br/>
+    Every User might have a Business Card as other users can view the Professional details.<br/><br/>
+    <font color="purple" size="4">Business Card can be created in two ways.</font><br/>
+    1. Customize Manually. <br/>
+    2. Import Data from the Linkedin Account.<br/><br/>
     <a ui-sref="tabsController2.settingsB" id="BuissnessCarad-button3" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block ">Create Business Card</a>
+    Your Business Card will appear like this
+    <center> <img src="img\business.png" width="250px" height="350px"> </center>
     </div>
     <div ng-if="check == 1" class="list card">
       <div class="item item-body">
@@ -26,6 +35,10 @@
             {{Awards}}
           </div>
         </ion-list><br/>
+      </div>
+    </div>
+    <div ng-if="check == 1" class="list card">
+      <div class="item item-body">
         <ion-list>
           <ion-item class="item-divider">Working Place</ion-item>
           <div class="item item-icon-left">

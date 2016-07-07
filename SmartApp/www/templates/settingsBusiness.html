@@ -1,6 +1,6 @@
 <ion-view title="Settings" id="settingsB" style="background-color:#cce6ff;">
   	<ion-content padding="true" class="has-header">
-	  	<ion-toggle ng-model="addSwitch" toggle-class="toggle-calm">Disable Advertisement</ion-toggle>
+	  	<ion-toggle ng-model="addSwitch" ng-change="toggleChange()">Disable Advertisement</ion-toggle>
 	  	<div class="card">
 		  	<div class="item item-divider">
 		   	Create Business Card!

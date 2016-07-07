@@ -1591,6 +1591,14 @@ var UID=window.localStorage.getItem("id");
     .controller('slider', function($scope, $ionicSlideBoxDelegate, $http,
         $state) {
         var role = window.localStorage.getItem("role");
+        var addStatus = window.localStorage.getItem("addStatus");
+        if(addStatus == 1){
+          $scope.slide = -1;
+          console.log('testToggle changed to '+addStatus);
+        }else{
+          $scope.slide = 1;
+          console.log('testToggle changed to '+addStatus);
+        }
         $http.get("http://localhost/test/showBanner.php").success(function(
             data) {
             $scope.Banner = data;
@@ -1612,8 +1620,24 @@ var UID=window.localStorage.getItem("id");
 
 
     //user
-    .controller('settingsBCtrl', function() {
-
+    .controller('settingsBCtrl', function($scope,$http) {
+      var CusID = window.localStorage.getItem("id"); 
+      $scope.toggleChange = function(){
+      $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
+        if($scope.addSwitch == false) {
+          $scope.addSwitch = true;  
+          var addStatus = 1;
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus);
+          window.localStorage.setItem("addStatus",addStatus);
+          console.log('inside settings '+addStatus);
+        }
+        else{
+          $scope.addSwitch = false;
+          var addStatus = -1;
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus);
+          window.localStorage.setItem("addStatus",addStatus);
+        }
+      }
     })
 
     //Controller for notifications
@@ -1642,6 +1666,16 @@ var UID=window.localStorage.getItem("id");
           }
         });
       }
+      $scope.doRefresh = function() {
+        $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
+                function(data) {
+                    $scope.notifications = data;
+        })
+         .finally(function() {
+           // Stop the ion-refresher from spinning
+           $scope.$broadcast('scroll.refreshComplete');
+         });
+      };
     })
 
 
@@ -1714,6 +1748,8 @@ var UID=window.localStorage.getItem("id");
                                     $ionicPopup.alert({
                                         title: 'Successfully Send'
                                     });
+                                $state.go("tabsController2.addlist", {}, {reload: true});
+                                $state.transitionTo("tabsController2.addlist");
                             });
                     } else {
                         var alertPopup = $ionicPopup.alert({
@@ -1747,6 +1783,17 @@ var UID=window.localStorage.getItem("id");
                 $scope.items.splice($scope.items.indexOf(item), 1);
             };
         };
+        $scope.doRefresh = function() {
+          $http.get(
+                "http://localhost/test/addUserListView.php?CusID=" +
+                CusID).success(function(data) {
+                $scope.items = data;
+          })
+         .finally(function() {
+           // Stop the ion-refresher from spinning
+           $scope.$broadcast('scroll.refreshComplete');
+         })
+  };
     })
 
     //Show Business card Details
@@ -1773,6 +1820,33 @@ var UID=window.localStorage.getItem("id");
               $scope.WorkHour = card[0].WorkHour;
           }
         });
+            $scope.doRefresh = function() {
+              $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
+            CusID).success(function(data) {
+            var card = [];
+            card = data;
+            if(card[0]=="null")
+            {
+              $scope.check = -1;
+            }else{
+              $scope.check = 1;
+              $scope.ID = card[0].ID;
+              $scope.Image = card[0].Image;
+              $scope.Profession = card[0].Profession;
+              $scope.Skills = card[0].Skills;
+              $scope.Awards = card[0].Awards;
+              $scope.WorkPlace = card[0].WorkPlace;
+              $scope.Address = card[0].Address;
+              $scope.Contact = card[0].Contact;
+              $scope.Email = card[0].Email;
+              $scope.WorkHour = card[0].WorkHour;
+          }
+        })
+               .finally(function() {
+                 // Stop the ion-refresher from spinning
+                 $scope.$broadcast('scroll.refreshComplete');
+               });
+            };
     })
 
 
@@ -1839,6 +1913,8 @@ var UID=window.localStorage.getItem("id");
                                 $ionicPopup.alert({
                                   title: 'Successfully Changed'
                                 });
+                              $state.go("tabsController2.buissnessCard", {}, {reload: true});
+                              $state.transitionTo("tabsController2.buissnessCard");
                             });
                     } else {
                         var alertPopup = $ionicPopup.alert({
@@ -1875,6 +1951,8 @@ var UID=window.localStorage.getItem("id");
                                     $ionicPopup.alert({
                                         title: 'Successfully Registerd'
                                     });
+                                $state.go("tabsController2.buissnessCard", {}, {reload: true});
+                                $state.transitionTo("tabsController2.about3");
                             });
                     } else {
                         var alertPopup = $ionicPopup.alert({
@@ -1926,6 +2004,8 @@ var UID=window.localStorage.getItem("id");
                                     $ionicPopup.alert({
                                         title: 'Business Card Completed'
                                     });
+                                $state.go("tabsController2.buissnessCard", {}, {reload: true});
+                                $state.transitionTo("tabsController2.buissnessCard");
                             });
                     } else {
                         var alertPopup = $ionicPopup.alert({
@@ -1961,6 +2041,7 @@ var UID=window.localStorage.getItem("id");
                             title: 'Advertiesement Accepted'
                         });
                     });
+                    window.location.reload(true);
                 } else {
                     var alertPopup = $ionicPopup.alert({
                         title: 'Reject Acceptence'
@@ -1981,7 +2062,7 @@ var UID=window.localStorage.getItem("id");
                                 title: 'Advertiesement Rejected'
                             });
                         });
-                        $state.go($state.current, {}, {reload: true});
+                        window.location.reload(true);
                     } else {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Reject Rejection'
@@ -1989,9 +2070,16 @@ var UID=window.localStorage.getItem("id");
                     }
                 });
             }
-            /*$scope.gotoFullEditShow = function (IDAdd) {
-  $state.go('AdmintabsController.ufullEditShow',{id:IDAdd});
-  };*/
+            $scope.doRefresh = function() {
+            $http.get("http://localhost/test/adminAddverList.php").success(
+                function(data) {
+                    $scope.advertiesement = data;
+                })
+             .finally(function() {
+               // Stop the ion-refresher from spinning
+               $scope.$broadcast('scroll.refreshComplete');
+             });
+  };
     })
 
 
@@ -2044,6 +2132,8 @@ var UID=window.localStorage.getItem("id");
                                     $ionicPopup.alert({
                                         title: 'Advertiesement Posted'
                                     });
+                                $state.go("AdmintabsController.ushow", {}, {reload: true});
+                                $state.transitionTo("AdmintabsController.ushow");
                             });
                     } else {
                         var alertPopup = $ionicPopup.alert({
@@ -2076,6 +2166,17 @@ var UID=window.localStorage.getItem("id");
         function Currentadvetisment($scope, Addvertisement) {
             $scope.cAdd = Addvertisement.cAdd;
         }
+
+        $scope.doRefresh = function() {
+          $http.get("http://localhost/test/showAdvertiesement.php").success(
+                function(data) {
+            $scope.advertiesement = data;
+          })
+           .finally(function() {
+             // Stop the ion-refresher from spinning
+             $scope.$broadcast('scroll.refreshComplete');
+           });
+        };
     })
 
 
@@ -2117,6 +2218,7 @@ var UID=window.localStorage.getItem("id");
                         var alertPopup = $ionicPopup.alert({
                             title: 'Advertiesement Removed'
                         });
+                        $state.go("AdmintabsController.ushow", {}, {reload: true});
                     });
                 } else {
                     var alertPopup = $ionicPopup.alert({
@@ -2225,10 +2327,12 @@ var UID=window.localStorage.getItem("id");
                                 $ionicPopup.alert({
                                     title: 'Advertiesement Posted'
                                 });
+                            $state.go("AdmintabsController.ushow", {}, {reload: true});
+                            $state.transitionTo("AdmintabsController.ushow");  
                         });
                     } else {
                         var alertPopup = $ionicPopup.alert({
-                            title: 'Advertisement fail'
+                            title: 'Advertisement failed'
                         });
                     }
                 });
