@@ -12,11 +12,13 @@
     </button>
   </ion-nav-buttons>
   <ion-content padding="true" class="has-header">
+    <!--Refresh the content-->
     <ion-refresher
       pulling-text="Pull to refresh..."
       on-refresh="doRefresh()">
     </ion-refresher>
     <div ng-controller="showAdvertiesementCtrl">
+      <!--Show currently available advertisement-->
       <ion-list>
         <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
@@ -34,6 +36,7 @@
       </ion-list>
     </div>
   </ion-content>
+  <!--Show slider with the advertisement-->
   <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
     <ion-slide-box does-continue="true" auto-play="true" ng-if="slide == 1">
       <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">

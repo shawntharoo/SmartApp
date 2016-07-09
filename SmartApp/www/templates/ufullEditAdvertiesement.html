@@ -1,5 +1,6 @@
 <ion-view title="View-Edit" id="ufullEditShow">
   <ion-content padding="true" class="has-header">
+    <!--Show the details of the advertisment-->
     <div class="list card">
       <div class="item item-avatar">
         <img src="img/images (3).jpg">
@@ -26,6 +27,7 @@
       </div>
     </div>
   </ion-content>
+  <!--Show the slider with the advertisement-->
   <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
     <ion-slide-box does-continue="true" auto-play="true" ng-if="slide == 1">
       <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">

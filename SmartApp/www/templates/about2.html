@@ -1,5 +1,6 @@
 <ion-view title="About ME" id="about2" style="background-color:#cce6ff;">
   <ion-content padding="true" class="has-header">
+  <!--Form to gather information about the professional details-->
     <form class="list">
       <ion-item class="item-divider">Professional Details</ion-item>
       <label class="item item-input">
@@ -23,6 +24,7 @@
       <a ui-sref="tabsController2.about3" id="About-button1" style="font-weight:800;font-size:-2px;" class="button button-calm  button-stable icon ion-arrow-right-c">   Next</a>
     </form>
   </ion-content>
+  <!--Slider with the Advertisement-->
   <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
     <ion-slide-box does-continue="true" auto-play="true" ng-if="slide == 1">
       <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">

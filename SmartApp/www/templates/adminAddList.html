@@ -8,11 +8,13 @@
     </button>
   </ion-nav-buttons>
   <ion-content padding="true" class="has-header">
+  <!--Refresh when pull Down -->
   <ion-refresher
       pulling-text="Pull to refresh..."
       on-refresh="doRefresh()">
   </ion-refresher>
     <div ng-controller="showAdvertiesementCtrl">
+    <!--Show all the advertisement in the list view -->
       <ion-list>
         <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
@@ -27,9 +29,11 @@
           <h5><font color="red">Recieved On : {{add.sendDate}}</font></h5>
           </p>
         </span>
+        <!--Accept the Advertisement -->
         <button class="button button-small button-balanced" ng-click="AcceptAdd({{add.SID}})">
         Accept
         </button>
+        <!--Reject the Advertisement -->
         <button class="button button-small button-assertive" style="width: 60px;margin-left: 2px" ng-click="RejectAdd({{add.SID}})">
         Reject
         </button>

@@ -492,6 +492,9 @@ $state.transitionTo("profile");
 })
   .controller('mainprofileCtrl', function($scope,$state, $stateParams,$http) {
 
+    var CusID = window.localStorage.getItem("id");
+    $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
+
     $scope.n = $stateParams.name;
     if($scope.n == 'rep'){
       $scope.rep="true";
@@ -1637,8 +1640,7 @@ var UID=window.localStorage.getItem("id");
         });
       $scope.toggleChange = function(){
         if($scope.addSwitch == false) {
-          $scope.addSwitch = true;  
-              console.log('hey '+$scope.addSwitch);
+          $scope.addSwitch = true;
           var addStatus = -1;
           $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
@@ -1646,13 +1648,12 @@ var UID=window.localStorage.getItem("id");
         }
         else{
           $scope.addSwitch = false;
-              console.log('hey '+$scope.addSwitch);
           var addStatus = 1;
           $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
         });
         }
-       // $state.go("AdmintabsController.ushow", {}, {reload: true});
+       $state.go("slider", {}, {reload: true});
       }
     })
 
@@ -2419,7 +2420,7 @@ var UID=window.localStorage.getItem("id");
    {
 
     
-      //$state.go('tabsController.mainprofile',{name: role});
+      //$state.go('tabsController.mainprofileCtrl',{name: role});
    // window.localStorage.setItem("name",name);
    // window.localStorage.setItem("class",class1);
    alert("hello");

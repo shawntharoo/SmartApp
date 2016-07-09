@@ -13,6 +13,7 @@
       </ion-nav-buttons>
     <body>
       <ion-content>
+      <!--Refresh when pull Down -->
         <ion-refresher
         pulling-text="Pull to refresh..."
         on-refresh="doRefresh()">
@@ -32,6 +33,7 @@
           <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
             <ion-item>
             </ion-item>
+            <!--Show all the advertisement in the list view -->
             <ion-item ng-repeat="item in items track by $index" item="item" class="item-remove-animate">
               <div class="item-thumbnail">
                 <img src="{{item.Image}}" style="width:300px">
@@ -54,7 +56,8 @@
             </ion-item>
           </ion-list>
       </ion-content>
-    </body>
+    </body>  
+  <!--Slider with the Advertisement-->
   <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
     <ion-slide-box does-continue="true" auto-play="true" ng-if="slide == 1">
       <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">

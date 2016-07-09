@@ -56,6 +56,7 @@ angular.module('app.routes', ['ionicUIRouter'])
 
  
 //sanda admin start
+//Advertisement show page route
               .state('AdmintabsController.ushow', {
     url: '/ushow',
     cache: false,
@@ -67,6 +68,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
+//Detail View of the Advertisment page route
                .state('AdmintabsController.ufullEditShow', {
     url: '/ufullEditShow/:id',
     views: {
@@ -77,6 +79,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
+//Advertisment Edit page route
                 .state('AdmintabsController.uedit', {
     url: '/uedit/:Eid',
     views: {
@@ -87,6 +90,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
+//Advertisement Post page route
                 .state('AdmintabsController.upost', {
     url: '/upost',
     views: {
@@ -97,6 +101,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })              
 
+//Show the pending advertisement page route
                   .state('AdmintabsController.readd', {
     url: '/readd',
     views: {
@@ -108,6 +113,7 @@ angular.module('app.routes', ['ionicUIRouter'])
   }) 
 
 
+//the route of the page redirrect when admin clicks the slider
                   .state('AdmintabsController.slideAdd', {
       url: '/slideAdd/:idA',
       views: {
@@ -530,7 +536,7 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-
+//Tabscontroller of the business profile
   .state('tabsController2', {
             url: '/tabsController2',
             templateUrl: 'templates/tabsController2.html',
@@ -538,6 +544,7 @@ angular.module('app.routes', ['ionicUIRouter'])
         })
 
 
+//the route of the page redirrect when User clicks the slider
   .state('tabsController.slideAdd', {
             url: '/slideAdd/:idA',
             views: {
@@ -548,6 +555,7 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
+//The businesscard page route
   .state('tabsController2.buissnessCard', {
             url: '/buissnessCard',
             cache: false,
@@ -559,6 +567,7 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
+//The businesscard edit page route
   .state('tabsController2.editProfile', {
             url: '/editProfile',
             views: {
@@ -569,7 +578,7 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
-
+//The send advertisment page route
   .state('tabsController2.sendAdd', {
             url: '/sendAdd',
             views: {
@@ -580,6 +589,7 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
+//The users advertisment list page route
   .state('tabsController2.addlist', {
             url: '/addlist',
             cache: false,
@@ -591,6 +601,7 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
+//The notification page route
   .state('tabsController2.notify', {
             url: '/notify',
             views: {
@@ -601,7 +612,7 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
-
+//The Settings page route
   .state('tabsController2.settingsB', {
             url: '/settingsB',
             views: {
@@ -612,6 +623,7 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
+//The professional information gathering page route
   .state('tabsController2.about2', {
             url: '/about2',
             views: {
@@ -622,6 +634,7 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
+//The Working place information gathering page route
   .state('tabsController2.about3', {
             url: '/about3',
             views: {
