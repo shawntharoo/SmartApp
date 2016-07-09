@@ -1597,13 +1597,10 @@ var UID=window.localStorage.getItem("id");
           $scope.addStatus = data[0].Status;
           if($scope.addStatus == 1){
             $scope.slide = 1;
-            console.log('testToggle changed to '+$scope.addStatus);
           }else{
             $scope.slide = -1;
-            console.log('testToggle changed to '+$scope.addStatus);
           }
         });
-
         $http.get("http://localhost/test/showBanner.php").success(function(
             data) {
             $scope.Banner = data;
@@ -1625,26 +1622,37 @@ var UID=window.localStorage.getItem("id");
 
 
     //user
-    .controller('settingsBCtrl', function($scope,$http) {
-      var CusID = window.localStorage.getItem("id"); 
-      $scope.toggleChange = function(){
+    .controller('settingsBCtrl', function($scope,$http) { 
       $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
+      var CusID = window.localStorage.getItem("id"); 
+      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
+            data) {
+            $scope.getdata = data[0].Status;
+            if($scope.getdata == -1) {
+              $scope.addSwitch = true;
+            }
+            else if ($scope.getdata == 1){
+              $scope.addSwitch = false;
+            }
+        });
+      $scope.toggleChange = function(){
         if($scope.addSwitch == false) {
           $scope.addSwitch = true;  
-          var addStatus = 1;
+              console.log('hey '+$scope.addSwitch);
+          var addStatus = -1;
           $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
-          console.log('inside settings '+addStatus);
         });
         }
         else{
           $scope.addSwitch = false;
-          var addStatus = -1;
+              console.log('hey '+$scope.addSwitch);
+          var addStatus = 1;
           $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
-                function(data) {  
-          console.log('inside settings '+addStatus);
+                function(data) {
         });
         }
+       // $state.go("AdmintabsController.ushow", {}, {reload: true});
       }
     })
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2016 at 08:16 AM
+-- Generation Time: Jul 09, 2016 at 05:23 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -65,15 +65,16 @@ CREATE TABLE IF NOT EXISTS `disableadd` (
   `MemID` int(11) NOT NULL,
   `Status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `disableadd`
 --
 
 INSERT INTO `disableadd` (`ID`, `MemID`, `Status`) VALUES
-(1, 10, 1),
-(4, 9, 1);
+(1, 10, -1),
+(4, 9, 1),
+(5, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -425,7 +426,7 @@ CREATE TABLE IF NOT EXISTS `user_family` (
   `date_of_birth` varchar(200) DEFAULT NULL,
   `school_name` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`family_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `user_family`
@@ -433,7 +434,8 @@ CREATE TABLE IF NOT EXISTS `user_family` (
 
 INSERT INTO `user_family` (`family_id`, `userid`, `spouse_name`, `child_name`, `type`, `date_of_birth`, `school_name`) VALUES
 (11, 1, 'hou', 'null', 's', 'null', 0),
-(19, 39, 'ggg', 'null', 's', 'null', 0);
+(19, 39, 'ggg', 'null', 's', 'null', 0),
+(20, 10, 'hy', 'null', 's', 'null', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
