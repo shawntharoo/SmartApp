@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2016 at 05:23 AM
+-- Generation Time: Jul 16, 2016 at 05:01 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `disableadd` (
   `MemID` int(11) NOT NULL,
   `Status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `disableadd`
@@ -74,7 +74,9 @@ CREATE TABLE IF NOT EXISTS `disableadd` (
 INSERT INTO `disableadd` (`ID`, `MemID`, `Status`) VALUES
 (1, 10, -1),
 (4, 9, 1),
-(5, 0, 1);
+(5, 0, 1),
+(6, 1, -1),
+(7, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -157,22 +159,23 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `description` varchar(255) NOT NULL,
   `num_participants` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=91 ;
 
 --
 -- Dumping data for table `groups`
 --
 
 INSERT INTO `groups` (`id`, `group_name`, `image`, `category`, `description`, `num_participants`) VALUES
-(73, 'IT', 'imag/42XUz96SjSFGiQjoKJcw_cricket.png', 'Professinal', 'This is for cricket fans', 0),
+(73, 'Cricket', 'imag/42XUz96SjSFGiQjoKJcw_cricket.png', 'Professinal', 'This is for cricket fans', -1),
 (74, 'India', 'imag/india.png', 'Professinal', 'This is for the people who lives in india', 0),
 (82, 'Australians', 'imag/w5Gq0NztTxWrXMzABzRZ_australia.png', 'Professinal', 'This group is for the old boys of royal collage who lives in Australia ', 0),
 (83, 'Music', 'imag/GF1b6BcoTo678SCH8oz8_music.jpg', 'Entertainment', 'This group is for music fans of royal collage', 0),
 (84, 'Enginners', 'imag/bgcHRKzFRIyly4qlg3PE_hz2dDXCgRTSH3g4ep6Am_ingineers.jpg', 'Professinal', 'This is the group of engineers  ', 0),
-(85, 'Cricket', 'imag/download (5).jpg', 'Professinal', 'We are the old boys of royal collage currently is in the IT field', 0),
+(85, 'IT', 'imag/download (5).jpg', 'Professinal', 'We are the old boys of royal collage currently is in the IT field', -2),
 (86, 'Doctors', 'imag/5rw2GKOjSu6XIInHz9il_doctor.jpg', 'Professinal', 'This is the group of doctors in royal collage 94 batch', 0),
 (88, 'Business', 'imag/b.jpg', 'Professional', 'This is about business', 0),
-(89, 'Tours', 'imag/t.jpg', 'Entertainment', 'Let''s go back to the school time', 0);
+(89, 'Tours', 'imag/t.jpg', 'Entertainment', 'Let''s go back to the school time', 0),
+(90, 'Learn', 'imag/7DB96bZSYqg8OsoCmDeA_brain.jpg', 'Professinal', 'This is for learning', 0);
 
 -- --------------------------------------------------------
 
@@ -191,17 +194,19 @@ CREATE TABLE IF NOT EXISTS `group_participants` (
 --
 
 INSERT INTO `group_participants` (`groupid`, `userid`) VALUES
+(73, 1),
 (73, 2),
-(73, 3),
 (73, 4),
 (73, 5),
-(73, 20),
 (74, 1),
-(82, 1),
+(74, 2),
+(74, 5),
+(82, 20),
+(82, 21),
 (83, 1),
-(85, 2),
-(85, 3),
-(85, 5);
+(85, 1),
+(85, 25),
+(95, 1);
 
 -- --------------------------------------------------------
 
@@ -218,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `group_post` (
   `date` date NOT NULL,
   `time` time NOT NULL,
   PRIMARY KEY (`postid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
 
 --
 -- Dumping data for table `group_post`
@@ -245,11 +250,45 @@ INSERT INTO `group_post` (`postid`, `groupid`, `userid`, `descriptions`, `image`
 (18, 0, 0, 's', 'x', '2016-06-08', '09:03:52'),
 (19, -1, 1, 's', 'imag/p3.jpg', '2016-06-08', '09:04:41'),
 (20, -1, 1, 'undefined', 'imag/p2.jpg', '2016-06-08', '12:23:59'),
-(21, -1, 1, 'sss', 'imag/p1.jpg', '2016-06-08', '13:06:50'),
+(21, -1, 1, 'wow', 'imag/p1.jpg', '2016-06-08', '13:06:50'),
 (22, 73, 0, 'We are planning a cricket match', 'imag/c4.jpg', '2016-06-10', '11:26:04'),
-(23, 0, 0, 'We are pa', 'undefined', '2016-06-10', '11:27:36'),
 (26, -1, 1, 'victory of royal', 'imag/p3.jpg', '2016-06-10', '11:45:23'),
-(29, -1, 0, 'undefined', 'undefined', '2016-06-14', '15:56:49');
+(29, -1, 0, 'Here we go', 'imag/p3.jpg', '2016-06-14', '15:56:49'),
+(41, 82, 1, 'Here we are', 'imag/ra2.jpg', '2016-06-15', '11:30:00'),
+(43, 73, 1, 'dfvdf', 'imag/download (5).jpg', '2016-06-15', '12:53:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `linkedin`
+--
+
+CREATE TABLE IF NOT EXISTS `linkedin` (
+  `LID` int(11) NOT NULL AUTO_INCREMENT,
+  `Mem_Id` int(11) NOT NULL,
+  `LinkedId` int(11) NOT NULL,
+  `firstName` varchar(40) NOT NULL,
+  `lastName` varchar(40) NOT NULL,
+  `headline` varchar(50) NOT NULL,
+  `photo` varchar(50) NOT NULL,
+  `numConnections` int(11) NOT NULL,
+  PRIMARY KEY (`LID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `linkedin`
+--
+
+INSERT INTO `linkedin` (`LID`, `Mem_Id`, `LinkedId`, `firstName`, `lastName`, `headline`, `photo`, `numConnections`) VALUES
+(1, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
+(2, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
+(3, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
+(4, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
+(5, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
+(6, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
+(7, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
+(8, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
+(9, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0);
 
 -- --------------------------------------------------------
 

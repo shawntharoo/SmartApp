@@ -1595,6 +1595,7 @@ var UID=window.localStorage.getItem("id");
         $state) {
         var role = window.localStorage.getItem("role");
         var CusID = window.localStorage.getItem("id");
+        //Check whether the disable button is on or off
         $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(
                   function(data) {
           $scope.addStatus = data[0].Status;
@@ -1604,6 +1605,7 @@ var UID=window.localStorage.getItem("id");
             $scope.slide = -1;
           }
         });
+        //Show all the banners in the slider
         $http.get("http://localhost/test/showBanner.php").success(function(
             data) {
             $scope.Banner = data;
@@ -1623,11 +1625,14 @@ var UID=window.localStorage.getItem("id");
       };
     })
 
-
-    //user
+    //User Controllers
+    //User Settings Controller
     .controller('settingsBCtrl', function($scope,$http) { 
+      //Create a row for the new users
       $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
-      var CusID = window.localStorage.getItem("id"); 
+      var CusID = window.localStorage.getItem("id");
+      $scope.passid = CusID;
+      //Check whether the Disabled button is on or off
       $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
             $scope.getdata = data[0].Status;
@@ -1638,10 +1643,12 @@ var UID=window.localStorage.getItem("id");
               $scope.addSwitch = false;
             }
         });
+      //Action of the toggle change button
       $scope.toggleChange = function(){
         if($scope.addSwitch == false) {
           $scope.addSwitch = true;
           var addStatus = -1;
+          //Update the the status to enable
           $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
         });
@@ -1649,21 +1656,28 @@ var UID=window.localStorage.getItem("id");
         else{
           $scope.addSwitch = false;
           var addStatus = 1;
+          //Update the the status to disable
           $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
         });
         }
        $state.go("slider", {}, {reload: true});
       }
+
+      $scope.launch = function(memberid) {
+        window.open("http://localhost/test/LinkedIn.php?memberid="+memberid, "_system", "location=yes");
+      }
     })
 
     //Controller for notifications
     .controller('notifyCtrl',function($scope,$http,$ionicPopup) {
       var CusID = window.localStorage.getItem("id");
+      //Get all the notifications
       $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
                 function(data) {
                     $scope.notifications = data;
                 });
+      //Action for clear the notification 
       $scope.ClearNotifications = function() {
         var confirmPopup = $ionicPopup.confirm({
         title: 'You want to CLear all the Notifications?'
@@ -1671,6 +1685,7 @@ var UID=window.localStorage.getItem("id");
         confirmPopup.then(function(res) {
           if (res) {
             $http.post(
+              //Delete all the notifications in the table
             "http://localhost/test/deleteNotifications.php").success(function(data) {
               var alertPopup = $ionicPopup.alert({
               title: 'Notifications Cleared'
@@ -1683,7 +1698,9 @@ var UID=window.localStorage.getItem("id");
           }
         });
       }
+      //Action to refresh by pull
       $scope.doRefresh = function() {
+        //Load new notifications
         $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
                 function(data) {
                     $scope.notifications = data;
@@ -1699,6 +1716,7 @@ var UID=window.localStorage.getItem("id");
     //Show full view of the Advertisement on the sliders
     .controller('slideAddCtrl', function($state, $scope, $http, $stateParams) {
         var CusID = $stateParams.idA;
+        //Load the advertisement
         $http.get("http://localhost/test/addFullShow.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
@@ -1721,8 +1739,10 @@ var UID=window.localStorage.getItem("id");
     .controller('sendAdvertisementPageCtrl', function($scope, $http, $state,
         $ionicPopup) {
         var CusID = window.localStorage.getItem("id");
+        //Action for sending advertisment
         $scope.sendAdvertiesement = function(title, Selected, Image,
             description, contact, email, SDate, EDate) {
+          //Validation part
             if (title == null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter The title'
@@ -1752,6 +1772,7 @@ var UID=window.localStorage.getItem("id");
                 confirmPopup.then(function(res) {
                     if (res) {
                         $http.post(
+                          //Send the posted advertisment to the table
                             "http://localhost/test/sendUserAdvertisement.php?title=" +
                             title + "&Selected=" + Selected +
                             "&Image=" + Image +
@@ -1778,29 +1799,34 @@ var UID=window.localStorage.getItem("id");
         };
     })
 
-
+    //Show the advertisement to each user that each user has posted respectively
     .controller('AddUserListCntrl', function($scope, $http, $ionicPopover) {
         var CusID = window.localStorage.getItem("id");
         loaddata();
-
+        //Show the advertisement
         function loaddata() {
             $scope.data = {
                 showDelete: false
             };
+            //Get the advertisment from the table
             $http.get(
                 "http://localhost/test/addUserListView.php?CusID=" +
                 CusID).success(function(data) {
                 $scope.items = data;
             });
+            //Move the position of the items
             $scope.moveItem = function(item, fromIndex, toIndex) {
                 $scope.items.splice(fromIndex, 1);
                 $scope.items.splice(toIndex, 0, item);
             };
+            //remove a item from the list
             $scope.onItemDelete = function(item) {
                 $scope.items.splice($scope.items.indexOf(item), 1);
             };
         };
+        //refresh the item list by pulling
         $scope.doRefresh = function() {
+          //Load the advertisement
           $http.get(
                 "http://localhost/test/addUserListView.php?CusID=" +
                 CusID).success(function(data) {
@@ -1813,9 +1839,10 @@ var UID=window.localStorage.getItem("id");
   };
     })
 
-    //Show Business card Details
+    //Show Business card Details Controller
     .controller('buissnessCardCtrl', function($scope, $http, $state) {
         var CusID = window.localStorage.getItem("id");
+        //Get the business card details from the table
         $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
@@ -1837,7 +1864,9 @@ var UID=window.localStorage.getItem("id");
               $scope.WorkHour = card[0].WorkHour;
           }
         });
+            //refresh the Businesscard by pulling
             $scope.doRefresh = function() {
+              //Load the businesscard
               $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
@@ -1867,11 +1896,13 @@ var UID=window.localStorage.getItem("id");
     })
 
 
-    //Edit BusinessCard Control
+    //Edit BusinessCard Controller
     .controller('editProfilePageCtrl', function($scope, $http, $ionicPopup,
         $state) {
         var CusID = window.localStorage.getItem("id");
+        //Load the businesscard values to edit page
         $scope.BuissnessCardValues = function() {
+          //Get the businesscard values
             $http.get(
                 "http://localhost/test/showBuissnessCard.php?CusID=" +
                 CusID).success(function(data) {
@@ -1887,6 +1918,7 @@ var UID=window.localStorage.getItem("id");
                 $scope.WorkHour = card[0].WorkHour;
             })
         }
+        //Confirm the editings of the businesscard
         $scope.BuissnessCardEdit = function(Profession, Skills, Awards,
             WorkPlace, Address, Contact, Email, WorkHour) {
             if (Profession == null) {
@@ -1915,6 +1947,7 @@ var UID=window.localStorage.getItem("id");
                 });
                 confirmPopup.then(function(res) {
                     if (res) {
+                      //Send the edited values to the business card
                         $http.get(
                             "http://localhost/test/buissnessCardEdit.php?Profession=" +
                             Profession + "&Skills=" +
@@ -1947,6 +1980,7 @@ var UID=window.localStorage.getItem("id");
     //First Registration form Of the Business Profile 
     .controller('about2PageCtrl', function($scope, $http, $state, $ionicPopup) {
         var CusID = window.localStorage.getItem("id");
+        //Action for registering the professional details
         $scope.about2add = function(profession, skills, awards) {
             if (profession == null) {
                 var alertPopup = $ionicPopup.alert({
@@ -1958,6 +1992,7 @@ var UID=window.localStorage.getItem("id");
                 });
                 confirmPopup.then(function(res) {
                     if (res) {
+                      //Send the details to the table
                         $http.post(
                             "http://localhost/test/about2Add.php?ID=" +
                             CusID + "&profession=" +
@@ -1985,8 +2020,10 @@ var UID=window.localStorage.getItem("id");
     //Second Registration form Of the Business Profile
     .controller('about3PageCtrl', function($scope, $http, $state, $ionicPopup) {
         var CusID = window.localStorage.getItem("id");
+        //Action for registering the working place details
         $scope.about3add = function(workPlace, address, contact, email,
             workHour) {
+          //Validation process
             if (workPlace == null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter Working Place'
@@ -2009,6 +2046,7 @@ var UID=window.localStorage.getItem("id");
                 });
                 confirmPopup.then(function(res) {
                     if (res) {
+                      //Sending registered data to the table
                         $http.post(
                             "http://localhost/test/about3Add.php?workPlace=" +
                             workPlace + "&address=" +
@@ -2035,22 +2073,26 @@ var UID=window.localStorage.getItem("id");
     })
 
 
-    //admin  
-    //Admin Post Advertisement 
+    //Admin  
+    //show list of pending Advertisement controller
     .controller('adminAddListCtrl', function($scope, $http, $state, $ionicPopup ,$window) {
         loadtable();
+        //Load all the pending advertisment
         function loadtable() {
+          //Get all the pending advertisment
             $http.get("http://localhost/test/adminAddverList.php").success(
                 function(data) {
                     $scope.advertiesement = data;
                 });
         };
+        //Accept advertisement
         $scope.AcceptAdd = function(SID) {
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Accept'
             });
             confirmPopup.then(function(res) {
                 if (res) {
+                  //Send the accepted advertisment data to table
                     $http.post(
                         "http://localhost/test/AcceptAdver.php?SID=" +
                         SID).success(function(data) {
@@ -2066,12 +2108,14 @@ var UID=window.localStorage.getItem("id");
                 }
             });
         }
+        //rejected advertisment
         $scope.RejectAdd = function(SID) {
                 var confirmPopup = $ionicPopup.confirm({
                     title: 'Reject'
                 });
                 confirmPopup.then(function(res) {
                     if (res) {
+                      //Send the rejected advertisment data to table
                         $http.post(
                             "http://localhost/test/RejectAdver.php?SID=" +
                             SID).success(function(data) {
@@ -2087,7 +2131,9 @@ var UID=window.localStorage.getItem("id");
                     }
                 });
             }
+            //refresh the list by pulling
             $scope.doRefresh = function() {
+              //Load the pending advertisment
             $http.get("http://localhost/test/adminAddverList.php").success(
                 function(data) {
                     $scope.advertiesement = data;
@@ -2099,11 +2145,13 @@ var UID=window.localStorage.getItem("id");
   };
     })
 
-
+    //Post advertisement Controller
     .controller('upostAdvertiesementCtrl', function($scope, $http, $state,
         $ionicPopup) {
+      //post advertisment
         $scope.postAdvertiesement = function(Selected, Title, Image,
             Description, Contact, Email, SDate, EDate) {
+          //Validation process
             if (Selected == null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Select the type'
@@ -2136,6 +2184,7 @@ var UID=window.localStorage.getItem("id");
                 });
                 confirmPopup.then(function(res) {
                     if (res) {
+                      //Send posted advertisment data to the database
                         $http.post(
                             "http://localhost/test/postAdvertiesement.php?Selected=" +
                             Selected + "&Title=" + Title +
@@ -2163,28 +2212,31 @@ var UID=window.localStorage.getItem("id");
     })
 
 
-    //Admin Show Advertisement in a list view
+    //Admin Show Advertisement in a list view Controller
     .controller('ushowadvertiesementCtrl', function($scope, $http, $state,
         $ionicPopup) {
         loadtable();
-
+        //Load the advertisment list
         function loadtable() {
+          //Get the advertisment list
             $http.get("http://localhost/test/showAdvertiesement.php").success(
                 function(data) {
                     $scope.advertiesement = data;
                 });
         };
+        //Go to detail view page
         $scope.gotoFullEditShow = function(IDAdd) {
             $state.go('AdmintabsController.ufullEditShow', {
                 id: IDAdd
             });
         };
-
+        //get the id of current advertisment
         function Currentadvetisment($scope, Addvertisement) {
             $scope.cAdd = Addvertisement.cAdd;
         }
-
+        //refresh the list by pulling
         $scope.doRefresh = function() {
+          //Get the advertisment list
           $http.get("http://localhost/test/showAdvertiesement.php").success(
                 function(data) {
             $scope.advertiesement = data;
@@ -2197,9 +2249,10 @@ var UID=window.localStorage.getItem("id");
     })
 
 
-    //Admin View the Detail View page of the Advertisement  
+    //Admin View the Detail View page of the Advertisement Controller
     .controller('ufullEditShowCtrl', function($scope, $http, $state,
         $ionicPopup, $stateParams, $ionicActionSheet) {
+      //Action sheet functions
         $scope.showActionsheet = function() {
             $ionicActionSheet.show({
                 titleText: 'ActionSheet Example',
@@ -2223,12 +2276,14 @@ var UID=window.localStorage.getItem("id");
                 }
             });
         };
+        //delete the current advertisment
         $scope.deleteAdvertiesement = function(IDAdd) {
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Remove Advertisement'
             });
             confirmPopup.then(function(res) {
                 if (res) {
+                  //delete the current advertisment data from the table
                     $http.post(
                         "http://localhost/test/deleteAddvertisement.php?thissID=" +
                         IDAdd).success(function(data) {
@@ -2244,12 +2299,14 @@ var UID=window.localStorage.getItem("id");
                 }
             });
         }
+        //Go to edit advertisement page
         $scope.gotoEditAdd = function(IDAdd) {
             $state.go('AdmintabsController.uedit', {
                 Eid: IDAdd
             });
         };
         var CusID = $stateParams.id;
+        //get the details of the advertisement
         $http.get("http://localhost/test/addFullShow.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
@@ -2265,18 +2322,20 @@ var UID=window.localStorage.getItem("id");
                 $scope.EDate = card[0].EndDate;
                 $scope.CurrentDate = card[0].CDate;
             });
-
+        //Get the id of the current advertisement
         function ufullEditShowCtrl($scope, Advertisement) {
             $scope.cAdd = Advertisement.cAdd;
         }
     })
 
 
-    //Admin Edit the Advertisement
+    //Admin Edit the Advertisement Controller
     .controller('ufullEditCtrl', function($scope, $http, $state, $ionicPopup,
         $stateParams) {
+      //Load the current advertisement data to the fields
         $scope.EidtAddValues = function() {
             var CusID = $stateParams.Eid;
+            //get the advertisment data
             $http.get(
                 "http://localhost/test/showEditAddvertiesement.php?CusID=" +
                 CusID).success(function(data) {
@@ -2298,8 +2357,10 @@ var UID=window.localStorage.getItem("id");
                 $scope.EDate = card[0].newDate(EndDate);
             })
         }
+        //Edit the advertisment
         $scope.editAdvertiesement = function(Selected, Title, Image,
             Description, Contact, Email, SDate, EDate) {
+          //Validation process
             if (Selected == null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Select the type'
@@ -2330,6 +2391,7 @@ var UID=window.localStorage.getItem("id");
                 });
                 confirmPopup.then(function(res) {
                     if (res) {
+                      //Send the edited data to the table
                         $http.post(
                             "http://localhost/test/editAdvertisement.php?Selected=" +
                             Selected + "&Title=" + Title +
