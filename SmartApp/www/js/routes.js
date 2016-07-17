@@ -555,6 +555,18 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
+//The businesscard Select page route
+  .state('tabsController2.bchoice', {
+            url: '/bchoice',
+            cache: false,
+            views: {
+                'tab3': {
+                    templateUrl: 'templates/businessCardChice.html',
+                    controller: 'bchoiceCtrl'
+                }
+            }
+        })
+
 //The businesscard page route
   .state('tabsController2.buissnessCard', {
             url: '/buissnessCard',
@@ -641,6 +653,17 @@ angular.module('app.routes', ['ionicUIRouter'])
                 'tab7': {
                     templateUrl: 'templates/about3.html',
                     controller: 'about3PageCtrl'
+                }
+            }
+        })
+
+//The linkedin card page route
+  .state('tabsController2.linked', {
+            url: '/linked',
+            views: {
+                'tab3': {
+                    templateUrl: 'templates/linkedin.html',
+                    controller: 'linkedinPageCtrl'
                 }
             }
         })

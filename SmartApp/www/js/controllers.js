@@ -1589,6 +1589,63 @@ var UID=window.localStorage.getItem("id");
             });
     })
 
+    //Controller for choicing the card method
+    .controller('bchoiceCtrl', function($scope, $http) {
+      
+    })
+
+
+    //Display LinkedIn profile card Controller
+    .controller('linkedinPageCtrl', function($scope, $http) {
+      var CusID = window.localStorage.getItem("id");
+        //Get the business card details from the table
+        $http.get("http://localhost/test/showLinkedin.php?CusID=" +
+            CusID).success(function(data) {
+            var card = [];
+            card = data;
+            if(card[0]=="null")
+            {
+              $scope.check = -1;
+            }else{
+              $scope.check = 1;
+              $scope.Linkedid = card[0].Linkedid;
+              $scope.firstName = card[0].firstName;
+              $scope.lastName = card[0].lastName;
+              $scope.headline = card[0].headline;
+              $scope.photo = card[0].photo;
+              $scope.numConnections = card[0].numConnections;
+          }
+        });
+            //refresh the Businesscard by pulling
+            $scope.doRefresh = function() {
+              //Load the businesscard
+              $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
+            CusID).success(function(data) {
+            var card = [];
+            card = data;
+            if(card[0]=="null")
+            {
+              $scope.check = -1;
+            }else{
+              $scope.check = 1;
+              $scope.ID = card[0].ID;
+              $scope.Image = card[0].Image;
+              $scope.Profession = card[0].Profession;
+              $scope.Skills = card[0].Skills;
+              $scope.Awards = card[0].Awards;
+              $scope.WorkPlace = card[0].WorkPlace;
+              $scope.Address = card[0].Address;
+              $scope.Contact = card[0].Contact;
+              $scope.Email = card[0].Email;
+              $scope.WorkHour = card[0].WorkHour;
+          }
+        })
+               .finally(function() {
+                 // Stop the ion-refresher from spinning
+                 $scope.$broadcast('scroll.refreshComplete');
+               });
+            };
+    })
 
     //Display Slider Controller.
     .controller('slider', function($scope, $ionicSlideBoxDelegate, $http,
@@ -1665,7 +1722,7 @@ var UID=window.localStorage.getItem("id");
       }
 
       $scope.launch = function(memberid) {
-        window.open("http://localhost/test/LinkedIn.php?memberid="+memberid, "_system", "location=yes");
+        window.open("http://localhost/test/LinkedIn.php?memberid="+memberid, "_system", "width=400, height=350");
       }
     })
 

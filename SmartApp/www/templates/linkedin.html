@@ -1,4 +1,4 @@
-<ion-view title="Buissness Card" style="background-color: white" id="buissnessCard">
+<ion-view title="LinkedIn Profile" style="background-color: white" id="linked">
   <ion-content padding="true" class="has-header">
   <ion-refresher
     pulling-text="Pull to refresh..."
@@ -7,7 +7,7 @@
     <!--Show a message if user is not alredy registered to the business card-->
     <div ng-if="check == -1"><br/>
     <font size="6" color="blue"> <center> Welcome </center> </font> <br/>
-    Every User might have a Business Card as other users can view the Professional details.<br/><br/>
+    Every User might have a LinkedIn Account as other users can view the Professional details.<br/><br/>
     <font color="purple" size="4">Business Card can be created in two ways.</font><br/>
     1. Customize Manually. <br/>
     2. Import Data from the Linkedin Account.<br/><br/>
@@ -22,49 +22,21 @@
         </div>
         <ion-list>
           <i class="item item-thumbnail">
-          <img src="img/download (3).jpg"></i>
+          <img src="{{photo}}" style="width: 100px; height="100px" "></i>
           <ion-item class="item-divider">Professional Details</ion-item>
           <div class="item item-icon-left">
             <i class="icon ion-ios-person"></i>
-            {{Profession}}
+            {{firstName}} {{lastName}}
           </div>
           <div class="item item-icon-left">
             <i class="icon ion-navicon-round"></i>
-            {{Skills}}
+            {{headline}}
           </div>
           <div class="item item-icon-left">
             <i class="icon ion-trophy"></i>
-            {{Awards}}
+            {{numConnections}}
           </div>
         </ion-list><br/>
-      </div>
-    </div>
-    <div ng-if="check == 1" class="list card">
-      <div class="item item-body">
-        <ion-list>
-          <ion-item class="item-divider">Working Place</ion-item>
-          <div class="item item-icon-left">
-            <i class="icon ion-home"></i>
-            {{WorkPlace}}
-          </div>
-          <div class="item item-icon-left">
-            <i class="icon ion-ios-location"></i>
-            {{Address}}
-          </div>
-          <a class="item item-icon-left">
-          <i class="icon ion-ios-telephone"></i>
-          {{Contact}}
-          </a>
-          <div class="item item-icon-left">
-            <i class="icon ion-email"></i>
-            {{Email}}
-          </div>
-          <div class="item item-icon-left">
-            <i class="icon ion-ios-time"></i>
-            Normal Working Hours<br> {{WorkHour}}
-          </div>
-          <a ui-sref="tabsController2.editProfile" id="BuissnessCarad-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block ">Edit Details Manually</a>
-        </ion-list>
       </div>
     </div>
   </ion-content>

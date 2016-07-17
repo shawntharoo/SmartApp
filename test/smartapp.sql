@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2016 at 05:01 PM
+-- Generation Time: Jul 17, 2016 at 01:29 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -270,25 +270,26 @@ CREATE TABLE IF NOT EXISTS `linkedin` (
   `firstName` varchar(40) NOT NULL,
   `lastName` varchar(40) NOT NULL,
   `headline` varchar(50) NOT NULL,
-  `photo` varchar(50) NOT NULL,
-  `numConnections` int(11) NOT NULL,
+  `photo` varchar(250) NOT NULL,
+  `numConnections` varchar(10) NOT NULL,
   PRIMARY KEY (`LID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `linkedin`
 --
 
 INSERT INTO `linkedin` (`LID`, `Mem_Id`, `LinkedId`, `firstName`, `lastName`, `headline`, `photo`, `numConnections`) VALUES
-(1, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
-(2, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
-(3, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
-(4, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
-(5, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
-(6, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
-(7, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
-(8, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0),
-(9, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0);
+(1, 1, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 'undefined'),
+(2, 2, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', '0'),
+(3, 3, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', '0'),
+(4, 4, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', '0'),
+(5, 5, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', '0'),
+(6, 6, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', '0'),
+(7, 7, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', '0'),
+(8, 8, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', '0'),
+(9, 9, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', '0'),
+(10, 11, 0, 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzg', '0');
 
 -- --------------------------------------------------------
 
