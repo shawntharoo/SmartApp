@@ -567,6 +567,18 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
+  //The search businesscard Select page route
+  .state('tabsController2.bchoiceSearch', {
+            url: '/bchoiceSearch',
+            cache: false,
+            views: {
+                'tab3': {
+                    templateUrl: 'templates/businessCardChiceSearch.html',
+                    controller: 'bchoiceSearchCtrl'
+                }
+            }
+        })
+
 //The businesscard page route
   .state('tabsController2.buissnessCard', {
             url: '/buissnessCard',
@@ -575,6 +587,18 @@ angular.module('app.routes', ['ionicUIRouter'])
                 'tab3': {
                     templateUrl: 'templates/buissnessCard.html',
                     controller: 'buissnessCardCtrl'
+                }
+            }
+        })
+
+  //The serch businesscard view page route
+  .state('tabsController2.buissnessCardsearch', {
+            url: '/buissnessCardsearch',
+            cache: false,
+            views: {
+                'tab3': {
+                    templateUrl: 'templates/buissnessCardSearch.html',
+                    controller: 'buissnessCardSearchCtrl'
                 }
             }
         })
@@ -589,6 +613,28 @@ angular.module('app.routes', ['ionicUIRouter'])
                 }
             }
         })
+
+  //The linkedin card page route
+  .state('tabsController2.linked', {
+            url: '/linked',
+            views: {
+                'tab3': {
+                    templateUrl: 'templates/linkedin.html',
+                    controller: 'linkedinPageCtrl'
+                }
+            }
+        })
+
+  //The serch LinkeinPage view route
+  .state('tabsController2.linkedSearch', {
+          url: '/linkedSearch',
+          views: {
+              'tab3': {
+                  templateUrl: 'templates/linkedinSearch.html',
+                  controller: 'linkedinPageSearchCtrl'
+              }
+          }
+      })
 
 //The send advertisment page route
   .state('tabsController2.sendAdd', {
@@ -657,16 +703,7 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
-//The linkedin card page route
-  .state('tabsController2.linked', {
-            url: '/linked',
-            views: {
-                'tab3': {
-                    templateUrl: 'templates/linkedin.html',
-                    controller: 'linkedinPageCtrl'
-                }
-            }
-        })
+
 
 
 

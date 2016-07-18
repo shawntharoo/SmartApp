@@ -1,4 +1,4 @@
-<ion-view title="LinkedIn Profile" style="background-color: white" id="linked">
+<ion-view title="Buissness Card" style="background-color: white" id="buissnessCardsearch">
   <ion-content padding="true" class="has-header">
   <ion-refresher
     pulling-text="Pull to refresh..."
@@ -7,12 +7,13 @@
     <!--Show a message if user is not alredy registered to the business card-->
     <div ng-if="check == -1"><br/>
     <font size="6" color="blue"> <center> Welcome </center> </font> <br/>
+    <font size="4" color="red"> <center> The User Currently has no BusinessCard </center> </font> <br/>
     Every User might have a LinkedIn Account as other users can view the Professional details.<br/><br/>
     <font color="purple" size="4">Business Card can be created in two ways.</font><br/>
     1. Customize Manually. <br/>
     2. Import Data from the Linkedin Account.<br/><br/>
-    <a ui-sref="tabsController2.settingsB" id="BuissnessCarad-button3" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block ">Create Business Card</a>
-    Your Business Card will appear like this
+
+    His Business Card will appear like this
     <center> <img src="img\business.png" width="250px" height="350px"> </center>
     </div>
     <!--Show the businesscard to the registered users with theire professional details-->
@@ -22,35 +23,49 @@
         </div>
         <ion-list>
           <i class="item item-thumbnail">
-          <img src="{{photo}}" style="width: 100px; height="100px" "></i>
+          <img src="img/download (3).jpg"></i>
           <ion-item class="item-divider">Professional Details</ion-item>
           <div class="item item-icon-left">
             <i class="icon ion-ios-person"></i>
-            {{firstName}} {{lastName}}
+            {{Profession}}
           </div>
           <div class="item item-icon-left">
-            <i class="icon ion-information-circled"></i>
-            {{headline}}
+            <i class="icon ion-navicon-round"></i>
+            {{Skills}}
           </div>
           <div class="item item-icon-left">
-            <i class="icon ion-usb"></i>
-            {{numConnections}}
+            <i class="icon ion-trophy"></i>
+            {{Awards}}
           </div>
         </ion-list><br/>
       </div>
     </div>
-    <!--List of external links that can be accessed through the Application-->
-    <div class="list">
-      <ion-item class="item-divider">Other Related Profiles</ion-item>
-        <a class="item" href="#" onclick="window.open('https://www.facebook.com', '_system', 'location=yes'); return false;">
-          <img border="0" alt="W3Schools" src="img/fb-art.jpg" width="70" height="50"><font size="4"> Facebook </font>
-        </a>
-        <a class="item" href="#" onclick="window.open('http://www.twitter.com', '_system', 'location=yes'); return false;">
-          <img border="0" alt="W3Schools" src="img/twitter-logo.jpg" width="70" height="50"><font size="4"> Twitter </font>
-        </a>
-        <a class="item" href="#" onclick="window.open('https://plus.google.com', '_system', 'location=yes'); return false;">
-          <img border="0" alt="W3Schools" src="img/plushero.jpg" width="70" height="50"><font size="4"> Google+ </font>
-        </a>
+    <div ng-if="check == 1" class="list card">
+      <div class="item item-body">
+        <ion-list>
+          <ion-item class="item-divider">Working Place</ion-item>
+          <div class="item item-icon-left">
+            <i class="icon ion-home"></i>
+            {{WorkPlace}}
+          </div>
+          <div class="item item-icon-left">
+            <i class="icon ion-ios-location"></i>
+            {{Address}}
+          </div>
+          <a class="item item-icon-left">
+          <i class="icon ion-ios-telephone"></i>
+          {{Contact}}
+          </a>
+          <div class="item item-icon-left">
+            <i class="icon ion-email"></i>
+            {{Email}}
+          </div>
+          <div class="item item-icon-left">
+            <i class="icon ion-ios-time"></i>
+            Normal Working Hours<br> {{WorkHour}}
+          </div>
+        </ion-list>
+      </div>
     </div>
   </ion-content>
   <!--Show slider with the Advertisement-->

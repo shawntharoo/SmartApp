@@ -1589,6 +1589,98 @@ var UID=window.localStorage.getItem("id");
             });
     })
 
+
+    //Display Slider Controller.
+    .controller('slider', function($scope, $ionicSlideBoxDelegate, $http,
+        $state) {
+        var role = window.localStorage.getItem("role");
+        var CusID = window.localStorage.getItem("id");
+        //Check whether the disable button is on or off
+        $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(
+                  function(data) {
+          $scope.addStatus = data[0].Status;
+          if($scope.addStatus == 1){
+            $scope.slide = 1;
+          }else{
+            $scope.slide = -1;
+          }
+        });
+        //Show all the banners in the slider
+        $http.get("http://localhost/test/showBanner.php").success(function(
+            data) {
+            $scope.Banner = data;
+            $ionicSlideBoxDelegate.update();
+        });
+        $scope.gotoSlideAdd = function(IDAdd) {
+          if(role=="admin"){
+            $state.go('AdmintabsController.slideAdd', {
+                idA: IDAdd
+            });
+          }
+          else if(role=="member" || role=="rep"){
+            $state.go('tabsController.slideAdd', {
+                idA: IDAdd
+            });
+          }
+      };
+    })
+
+    //User Controllers
+    //Controller for choicing the card method in the search
+    .controller('bchoiceSearchCtrl', function($scope, $http) {
+      
+    })
+
+    //Controller for Search page of Linkedin Profile
+    .controller('linkedinPageSearchCtrl', function($scope, $http) {
+        var CusID = window.localStorage.getItem("id");
+        //Get the business card details from the table
+        $http.get("http://localhost/test/showLinkedin.php?CusID=" +
+            CusID).success(function(data) {
+            var card = [];
+            card = data;
+            if(card[0]=="null")
+            {
+              $scope.check = -1;
+            }else{
+              $scope.check = 1;
+              $scope.Linkedid = card[0].Linkedid;
+              $scope.firstName = card[0].firstName;
+              $scope.lastName = card[0].lastName;
+              $scope.headline = card[0].headline;
+              $scope.photo = card[0].photo;
+              $scope.numConnections = card[0].numConnections;
+          }
+        });
+    })
+
+    //Controller for Search page of businesscard
+    .controller('buissnessCardSearchCtrl', function($scope, $http) {
+        var CusID = window.localStorage.getItem("id");
+        //Get the business card details from the table
+        $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
+            CusID).success(function(data) {
+            var card = [];
+            card = data;
+            if(card[0]=="null")
+            {
+              $scope.check = -1;
+            }else{
+              $scope.check = 1;
+              $scope.ID = card[0].ID;
+              $scope.Image = card[0].Image;
+              $scope.Profession = card[0].Profession;
+              $scope.Skills = card[0].Skills;
+              $scope.Awards = card[0].Awards;
+              $scope.WorkPlace = card[0].WorkPlace;
+              $scope.Address = card[0].Address;
+              $scope.Contact = card[0].Contact;
+              $scope.Email = card[0].Email;
+              $scope.WorkHour = card[0].WorkHour;
+          }
+        });
+    })
+
     //Controller for choicing the card method
     .controller('bchoiceCtrl', function($scope, $http) {
       
@@ -1647,42 +1739,7 @@ var UID=window.localStorage.getItem("id");
             };
     })
 
-    //Display Slider Controller.
-    .controller('slider', function($scope, $ionicSlideBoxDelegate, $http,
-        $state) {
-        var role = window.localStorage.getItem("role");
-        var CusID = window.localStorage.getItem("id");
-        //Check whether the disable button is on or off
-        $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(
-                  function(data) {
-          $scope.addStatus = data[0].Status;
-          if($scope.addStatus == 1){
-            $scope.slide = 1;
-          }else{
-            $scope.slide = -1;
-          }
-        });
-        //Show all the banners in the slider
-        $http.get("http://localhost/test/showBanner.php").success(function(
-            data) {
-            $scope.Banner = data;
-            $ionicSlideBoxDelegate.update();
-        });
-        $scope.gotoSlideAdd = function(IDAdd) {
-          if(role=="admin"){
-            $state.go('AdmintabsController.slideAdd', {
-                idA: IDAdd
-            });
-          }
-          else if(role=="member" || role=="rep"){
-            $state.go('tabsController.slideAdd', {
-                idA: IDAdd
-            });
-          }
-      };
-    })
-
-    //User Controllers
+    
     //User Settings Controller
     .controller('settingsBCtrl', function($scope,$http) { 
       //Create a row for the new users
