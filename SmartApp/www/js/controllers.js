@@ -1703,9 +1703,27 @@ var UID=window.localStorage.getItem("id");
               $scope.Linkedid = card[0].Linkedid;
               $scope.firstName = card[0].firstName;
               $scope.lastName = card[0].lastName;
-              $scope.headline = card[0].headline;
+              if (card[0].headline=="undefined") {
+                $scope.headline = "No Profession is given";
+              }else{
+                $scope.headline = card[0].headline;
+              }
               $scope.photo = card[0].photo;
               $scope.numConnections = card[0].numConnections;
+              $scope.industry = card[0].industry;
+              $scope.emailAddress = card[0].emailAddress;
+              if (card[0].summary=="undefined") {
+                $scope.summary = "No Summery is given";
+              }else{
+                $scope.summary = card[0].summary;
+              }
+              $scope.location = card[0].location;
+              if (card[0].specialties=="undefined") {
+                $scope.specialties = "No Specialties are given";
+              }else{
+                $scope.specialties = card[0].specialties;
+              }
+              $scope.publicProfileUrl = card[0].publicProfileUrl;
           }
         });
             //refresh the Businesscard by pulling

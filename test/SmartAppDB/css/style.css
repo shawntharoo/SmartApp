@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+#maincontainer
+{
+
+background-color:#009
+}
+.box1
+{
+color:#CCC;
+font-size:24px;
+padding:1em;
+padding-top:2em;
+padding-left:0;
+}
+.smartappheading
+{
+color:#FC0;
+
+font:"MS Serif", "New York", serif;
+
+}
+#middlecontainer
+{
+	background-image:url(../images/body.jpg)}
+.navbar_margin
+{
+padding-left:.3em;
+padding-right:.3em;
+border-left:1px solid black;
+}
+.navbar-default
+{
+	margin-bottom:0;
+}
+.panel-default
+{
+	margin-top:60px;}
+.viewblock
+{
+
+	padding: 0;
+}
+.btngroup
+{
+
+ padding-top: 5em;
+}
+.btn
+{
+
+	margin-top: 7px;
+}
+
+.thumbnail {
+    background: red;
+}

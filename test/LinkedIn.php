@@ -24,9 +24,9 @@
 
 		function OnLinkedInAuth() {
 		  IN.API.Profile("me").fields([
-            "firstName","lastName","headline","positions:(company,title,summary,startDate,endDate,isCurrent)","industry",
-            "location:(name,country:(code))","pictureUrl","publicProfileUrl","emailAddress",
-            "educations","dateOfBirth","summary","numConnections","phoneNumbers"]).result(ShowProfileData).error(onError);
+            "id","firstName","lastName","headline","positions:(company:(name),title,summary)","industry",
+            "location:(name)","pictureUrl","numConnections","emailAddress",
+            "specialties","summary","publicProfileUrl"]).result(ShowProfileData).error(onError);
 		}
 
 		function onError(error) {
@@ -38,12 +38,19 @@
 		  var id=member.id;
 		  var firstName=member.firstName;
 		  var lastName=member.lastName;
-		  var photo=member.phoneNumbers;
+		  var photo=member.pictureUrl;
 		  var headline=member.headline;
 		  var numConnections=member.numConnections;
-			var phoneNumbers = member.phoneNumbers;
+			var industry=member.industry;
+			var emailAddress=member.emailAddress;
+			var summary=member.summary;
+			var location=member.location.name;
+			var publicProfileUrl=member.publicProfileUrl;
+			var specialties=member.specialties;
 		  //document.write("hy "+photo);
-		  window.location.href='linkedSecond.php?id='+id+'&firstName='+firstName+'&lastName='+lastName+'&headline='+headline+'&photo='+photo+'&numConnections='+numConnections;
+		  window.location.href='linkedSecond.php?id='+id+'&firstName='+firstName+'&lastName='+lastName+'&headline='+headline+
+			'&photo='+photo+'&numConnections='+numConnections+'&industry='+industry+'&emailAddress='+emailAddress+'&summary='+summary+
+			'&location='+location+'&publicProfileUrl='+publicProfileUrl+'&specialties='+specialties;
 		  //use information captured above
 		}
 	</script>

@@ -23,19 +23,47 @@
         <ion-list>
           <i class="item item-thumbnail">
           <img src="{{photo}}" style="width: 100px; height="100px" "></i>
-          <ion-item class="item-divider">Professional Details</ion-item>
+          <ion-item class="item-divider">Basic Information</ion-item>
           <div class="item item-icon-left">
             <i class="icon ion-ios-person"></i>
             {{firstName}} {{lastName}}
           </div>
           <div class="item item-icon-left">
-            <i class="icon ion-information-circled"></i>
+            <i class="icon ion-email"></i>
+            {{emailAddress}}
+          </div>
+          <div class="item item-icon-left">
+            <i class="icon ion-ios-location"></i>
+            {{location}}
+          </div>
+          <ion-item class="item-divider">Professional Information</ion-item>  
+          <div class="item item-icon-left">
+            <i class="icon ion-man"></i>
             {{headline}}
           </div>
           <div class="item item-icon-left">
+            <i class="icon ion-home"></i>
+            Industry :<br/>
+            {{industry}}
+          </div>
+          <div class="item item-icon-left">
+            <i class="icon ion-ios-paper"></i>
+            {{summary}}
+          </div>
+          <div class="item item-icon-left">
+            <i class="icon ion-ribbon-a"></i>
+            {{specialties}}
+          </div>
+          <ion-item class="item-divider">Other Information</ion-item> 
+          <div class="item item-icon-left">
             <i class="icon ion-usb"></i>
+            LinkedIn Connections
             {{numConnections}}
           </div>
+          <a href="{{publicProfileUrl}}" class="item item-icon-left">
+            <i class="icon ion-social-linkedin"></i>
+            <font color="blue">Click to View LinkedIn Profile</font>
+          </a>
         </ion-list><br/>
       </div>
     </div>
