@@ -26,7 +26,7 @@
   </ion-content>
   <!--Slider with the Advertisement-->
   <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
-    <ion-slide-box does-continue="true" auto-play="true" ng-if="slide == 1">
+    <ion-slide-box does-continue="true" auto-play="true" slide-interval="8000" ng-if="slide == 1">
       <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">
         <div class="box">
           <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">

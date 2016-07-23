@@ -17,6 +17,7 @@ if ( isset($_GET['id'])){
   $location= $_GET['location'];
   $publicProfileUrl= $_GET['publicProfileUrl'];
   $specialties= $_GET['specialties'];
+  $positions= $_GET['positions'];
   //Select data from the LinkedIn table of the smartapp database
   $check="SELECT * FROM LinkedIn WHERE Mem_Id = '$Mem_Id'";
   $result = $mysqli->query($check) or die($mysqli->error . __LINE__);;
@@ -25,17 +26,17 @@ if ( isset($_GET['id'])){
   	//Update LinkedIn table in the Smartapp database
   	$query = "UPDATE LinkedIn set Mem_Id='" . $Mem_Id . "',LinkedId='" . $LinkedId . "',firstName='" . $firstName . "'
     ,lastName='" . $lastName . "',headline='" . $headline . "',photo='" . $photo . "',numConnections='" . $numConnections . "'
-    ,industry='" . $industry . "',emailAddress='" . $emailAddress . "',summary='" . $summary . "'
-    ,location='" . $location . "',publicProfileUrl='" . $publicProfileUrl . "',specialties='" . $specialties . "' WHERE Mem_Id='$Mem_Id'";
+    ,industry='" . $industry . "',emailAddress='" . $emailAddress . "',summary='" . $summary . "',location='" . $location . "'
+    ,publicProfileUrl='" . $publicProfileUrl . "',specialties='" . $specialties . "',positions='" . $positions . "' WHERE Mem_Id='$Mem_Id'";
   	$result = $mysqli->query($query) or die($mysqli->error . __LINE__);
   	$result = $mysqli->affected_rows;
   }
   else{
     //Insert data to the LinkedIn table in the Smartapp database
     $query = "INSERT INTO LinkedIn(Mem_Id,LinkedId,firstName,lastName,headline,photo,numConnections,industry,emailAddress,summary
-      ,location,publicProfileUrl,specialties)
+      ,location,publicProfileUrl,specialties,positions)
     VALUES ('$Mem_Id','$LinkedId','$firstName','$lastName','$headline','$photo','$numConnections','$industry','$emailAddress','$summary'
-      ,'$location','$publicProfileUrl','$specialties')";
+      ,'$location','$publicProfileUrl','$specialties','$positions')";
     $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
     $result = $mysqli->affected_rows;
   }

@@ -9,12 +9,12 @@ $contact   = $_GET['contact'];
 $email     = $_GET['email'];
 $workHour  = $_GET['workHour'];
 
-//Select ID from the businesscard table in smartapp database 
+//Select ID from the businesscard table in smartapp database
 //to check a field is exist with the ID
 $check="SELECT * FROM buissnescard WHERE ID = '$CusID'";
 $result = $mysqli->query($check) or die($mysqli->error . __LINE__);;
 $data = mysqli_fetch_array($result, MYSQLI_NUM);
-if($data[0] > 1) {
+if($data[0] >= 1) {
 	//Update businesscard table in the Smartapp database
 	$query = "UPDATE buissnescard set WorkPlace='" . $workPlace . "',Address='" . $address . "',Contact='" . $contact . "',Email='" . $email . "',WorkHour='" . $workHour . "' WHERE ID='$CusID'";
 	$result = $mysqli->query($query) or die($mysqli->error . __LINE__);

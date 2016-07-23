@@ -10,7 +10,7 @@
 		<script type="text/javascript" src="http://platform.linkedin.com/in.js">
 			api_key: 75zaxqxnhgxdet
 			onLoad: OnLinkedInFrameworkLoad
-			authorize: false
+			authorize: true
 		</script>
 	</head>
 	<body background="images/body.jpg">
@@ -47,10 +47,11 @@
 			var location=member.location.name;
 			var publicProfileUrl=member.publicProfileUrl;
 			var specialties=member.specialties;
+			var positions=member.positions.title;
 		  //document.write("hy "+photo);
 		  window.location.href='linkedSecond.php?id='+id+'&firstName='+firstName+'&lastName='+lastName+'&headline='+headline+
 			'&photo='+photo+'&numConnections='+numConnections+'&industry='+industry+'&emailAddress='+emailAddress+'&summary='+summary+
-			'&location='+location+'&publicProfileUrl='+publicProfileUrl+'&specialties='+specialties;
+			'&location='+location+'&publicProfileUrl='+publicProfileUrl+'&specialties='+specialties+'&positions='+positions;
 		  //use information captured above
 		}
 	</script>

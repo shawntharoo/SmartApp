@@ -127,6 +127,8 @@ perform the login funtion
   template:'login successfully '
   
  });
+      var CusID = window.localStorage.getItem("id");
+    $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
 
      $state.go('tabsController.mainprofile',{name: role});
 
@@ -1582,14 +1584,8 @@ var UID=window.localStorage.getItem("id");
 
 
  //sanda controllers
-    .controller('showAdvertiesementCtrl', function($scope, $http) {
-        $http.get('http://localhost/SmartApp/www/#/database.json').success(
-            function(response) {
-                $scope.advertiesement = response.records;
-            });
-    })
 
-
+  //User Controllers
     //Display Slider Controller.
     .controller('slider', function($scope, $ionicSlideBoxDelegate, $http,
         $state) {
@@ -1625,7 +1621,6 @@ var UID=window.localStorage.getItem("id");
       };
     })
 
-    //User Controllers
     //Controller for choicing the card method in the search
     .controller('bchoiceSearchCtrl', function($scope, $http) {
       
@@ -1724,6 +1719,11 @@ var UID=window.localStorage.getItem("id");
                 $scope.specialties = card[0].specialties;
               }
               $scope.publicProfileUrl = card[0].publicProfileUrl;
+              if (card[0].positions=="undefined") {
+                $scope.positions = "No positions are given";
+              }else{
+                $scope.positions = card[0].positions;
+              }
           }
         });
             //refresh the Businesscard by pulling
@@ -1731,35 +1731,35 @@ var UID=window.localStorage.getItem("id");
               //Load the businesscard
               $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
-            var card = [];
-            card = data;
-            if(card[0]=="null")
-            {
-              $scope.check = -1;
-            }else{
-              $scope.check = 1;
-              $scope.ID = card[0].ID;
-              $scope.Image = card[0].Image;
-              $scope.Profession = card[0].Profession;
-              $scope.Skills = card[0].Skills;
-              $scope.Awards = card[0].Awards;
-              $scope.WorkPlace = card[0].WorkPlace;
-              $scope.Address = card[0].Address;
-              $scope.Contact = card[0].Contact;
-              $scope.Email = card[0].Email;
-              $scope.WorkHour = card[0].WorkHour;
-          }
+              var card = [];
+              card = data;
+              if(card[0]=="null")
+              {
+                $scope.check = -1;
+              }else{
+                $scope.check = 1;
+                $scope.ID = card[0].ID;
+                $scope.Image = card[0].Image;
+                $scope.Profession = card[0].Profession;
+                $scope.Skills = card[0].Skills;
+                $scope.Awards = card[0].Awards;
+                $scope.WorkPlace = card[0].WorkPlace;
+                $scope.Address = card[0].Address;
+                $scope.Contact = card[0].Contact;
+                $scope.Email = card[0].Email;
+                $scope.WorkHour = card[0].WorkHour;
+            }
         })
                .finally(function() {
                  // Stop the ion-refresher from spinning
                  $scope.$broadcast('scroll.refreshComplete');
                });
-            };
+      };
     })
 
     
     //User Settings Controller
-    .controller('settingsBCtrl', function($scope,$http) { 
+    .controller('settingsBCtrl', function($scope,$http,$state) { 
       //Create a row for the new users
       $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
       var CusID = window.localStorage.getItem("id");
@@ -1774,7 +1774,7 @@ var UID=window.localStorage.getItem("id");
             else if ($scope.getdata == 1){
               $scope.addSwitch = false;
             }
-        });
+      });
       //Action of the toggle change button
       $scope.toggleChange = function(){
         if($scope.addSwitch == false) {
@@ -1783,7 +1783,7 @@ var UID=window.localStorage.getItem("id");
           //Update the the status to enable
           $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
-        });
+          });
         }
         else{
           $scope.addSwitch = false;
@@ -1791,9 +1791,8 @@ var UID=window.localStorage.getItem("id");
           //Update the the status to disable
           $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
-        });
+          });
         }
-       $state.go("slider", {}, {reload: true});
       }
 
       $scope.launch = function(memberid) {
@@ -2480,13 +2479,22 @@ var UID=window.localStorage.getItem("id");
                 $scope.Contact = card[0].ContactNo;
                 $scope.Email = card[0].Email;
                 $scope.SDate = card[0].StartDate;
-                var breakvalue = SDate.split('/');
+                var breakvalue = $scope.SDate.split(' ');
                 var day = breakvalue[0];
-                var mon = breakvalue[1];
-                var yer = breakvalue[2];
-                $scope.startdate = new Date(mon + "/" + day +
-                    "/" + yer);
-                $scope.EDate = card[0].newDate(EndDate);
+                var date = breakvalue[1];
+                var mon = breakvalue[2];
+                var yer = breakvalue[3];
+                $scope.startdate = new Date(day + " " + mon + " " + date +
+                    " " + yer);
+
+                $scope.EndD = card[0].EndDate;
+                var breakvalue1 = $scope.EndD.split(' ');
+                var day1 = breakvalue1[0];
+                var date1 = breakvalue1[1];
+                var mon1 = breakvalue1[2];
+                var yer1 = breakvalue1[3];
+                $scope.EDate = new Date(day1 + " " + mon1 + " " + date1 +
+                    " " + yer1);
             })
         }
         //Edit the advertisment
