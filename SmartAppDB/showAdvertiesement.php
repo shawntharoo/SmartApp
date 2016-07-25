@@ -19,7 +19,7 @@
     </script>
     <script>
       function pop_up(url){
-      window.open(url,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=500,directories=no,location=no') 
+      window.open(url,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=500,directories=no,location=no')
       }
     </script>
   </head>
@@ -48,7 +48,7 @@
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
-              <span class="icon-bar"></span> 
+              <span class="icon-bar"></span>
               </button>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -66,14 +66,14 @@
     <br>
     <?php
       include('includes/db.php');
-      
+
       if(mysqli_connect_errno()){
       echo "failed to connect to MySQL.".mysqli_connect_error();
       }
-      $query = "select * from postadvertiesement";
+      $query = "select * from postadvertiesement GROUP BY IDAdd DESC";
       $result=mysqli_query($mysqli,$query);
-      
-      while($row=mysqli_fetch_array($result)){ 
+
+      while($row=mysqli_fetch_array($result)){
         ?>
     <div class="media">
       <div class="media-left">
@@ -105,7 +105,7 @@
       {
         window.location.href='editAdvertiesement.php?Edit_id='+id;
       }
-      
+
       function DeletePage(id)
       {
          if(confirm('Are you sure you want To Remove This Badge?'))

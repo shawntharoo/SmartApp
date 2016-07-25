@@ -5,7 +5,7 @@ include('includes/db.php');
 $CusID = $_GET['CusID'];
 
 //Select Data from the buissnescard table in the Samrtapp database
-$query = "select * from notification where MemberID='$CusID'";
+$query = "select * from notification where MemberID='$CusID' GROUP BY NID DESC ";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 $notif = array();
 if ($result->num_rows > 0) {

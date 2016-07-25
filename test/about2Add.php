@@ -7,12 +7,12 @@ $profession = $_GET['profession'];
 $skills     = $_GET['skills'];
 $awards     = $_GET['awards'];
 
-//Select ID from the businesscard table in smartapp database 
+//Select ID from the businesscard table in smartapp database
 //to check a field is exist with the ID
 $check="SELECT * FROM buissnescard WHERE ID = '$ID'";
 $result = $mysqli->query($check) or die($mysqli->error . __LINE__);;
 $data = mysqli_fetch_array($result, MYSQLI_NUM);
-if($data[0] > 1) {
+if($data[0] >= 1) {
 	//Update businesscard table in the Smartapp database
 	$query = "UPDATE buissnescard set Profession='" . $profession . "',Skills='" . $skills . "',Awards='" . $awards . "' WHERE ID='$ID'";
 	$result = $mysqli->query($query) or die($mysqli->error . __LINE__);

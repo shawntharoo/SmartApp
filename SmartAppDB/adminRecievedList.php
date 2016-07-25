@@ -69,7 +69,7 @@
             if(mysqli_connect_errno()){
             echo "failed to connect to MySQL.".mysqli_connect_error();
             }
-            $query = "select * from usendadvertiesement where status = 0";
+            $query = "select * from usendadvertiesement where status = 0 GROUP BY SID DESC ";
             $result=mysqli_query($mysqli,$query);
               ?>
           <tr class="info">

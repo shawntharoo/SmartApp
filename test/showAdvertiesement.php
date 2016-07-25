@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin:*');
 include('includes/db.php');
 
 //Select Data from the postadvertiesement table in the smartapp database
-$query = "select * from postadvertiesement";
+$query = "select * from postadvertiesement GROUP BY IDAdd DESC";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 $add = array();
 if ($result->num_rows > 0) {

@@ -6,7 +6,7 @@ include('includes/db.php');
 $CusID = $_GET['CusID'];
 
 //Select Data from the postadvertisement from the smartapp database
-$query = "select * from usendadvertiesement where MemberId = '$CusID'";
+$query = "select * from usendadvertiesement where MemberId = '$CusID' GROUP BY SID DESC ";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 $add = array();
 if ($result->num_rows > 0) {

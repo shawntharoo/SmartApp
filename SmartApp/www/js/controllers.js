@@ -1642,9 +1642,32 @@ var UID=window.localStorage.getItem("id");
               $scope.Linkedid = card[0].Linkedid;
               $scope.firstName = card[0].firstName;
               $scope.lastName = card[0].lastName;
-              $scope.headline = card[0].headline;
+              if (card[0].headline=="undefined") {
+                $scope.headline = "No Profession is given";
+              }else{
+                $scope.headline = card[0].headline;
+              }
               $scope.photo = card[0].photo;
               $scope.numConnections = card[0].numConnections;
+              $scope.industry = card[0].industry;
+              $scope.emailAddress = card[0].emailAddress;
+              if (card[0].summary=="undefined") {
+                $scope.summary = "No Summery is given";
+              }else{
+                $scope.summary = card[0].summary;
+              }
+              $scope.location = card[0].location;
+              if (card[0].specialties=="undefined") {
+                $scope.specialties = "No Specialties are given";
+              }else{
+                $scope.specialties = card[0].specialties;
+              }
+              $scope.publicProfileUrl = card[0].publicProfileUrl;
+              if (card[0].positions=="undefined") {
+                $scope.positions = "No positions are given";
+              }else{
+                $scope.positions = card[0].positions;
+              }
           }
         });
     })
@@ -1664,14 +1687,46 @@ var UID=window.localStorage.getItem("id");
               $scope.check = 1;
               $scope.ID = card[0].ID;
               $scope.Image = card[0].Image;
-              $scope.Profession = card[0].Profession;
-              $scope.Skills = card[0].Skills;
-              $scope.Awards = card[0].Awards;
-              $scope.WorkPlace = card[0].WorkPlace;
-              $scope.Address = card[0].Address;
-              $scope.Contact = card[0].Contact;
-              $scope.Email = card[0].Email;
-              $scope.WorkHour = card[0].WorkHour;
+              if (card[0].Profession=="undefined") {
+                $scope.Profession = "No Profession is given";
+              }else{
+                $scope.Profession = card[0].Profession;
+              }
+              if (card[0].Skills=="undefined") {
+                $scope.Skills = "No Skills are given";
+              }else{
+                $scope.Skills = card[0].Skills;
+              }
+              if (card[0].Awards=="undefined") {
+                $scope.Awards = "No Awards are given";
+              }else{
+                $scope.Awards = card[0].Awards;
+              }
+              if (card[0].WorkPlace=="undefined") {
+                $scope.WorkPlace = "No WorkPlace is given";
+              }else{
+                $scope.WorkPlace = card[0].WorkPlace;
+              }
+              if (card[0].Address=="undefined") {
+                $scope.Address = "No workplace Address is given";
+              }else{
+                $scope.Address = card[0].Address;
+              }
+              if (card[0].Contact==0) {
+                $scope.Contact = "No workplace Contact is given";
+              }else{
+                $scope.Contact = card[0].Contact;
+              }
+              if (card[0].Email=="undefined") {
+                $scope.Email = "No Email is given";
+              }else{
+                $scope.Email = card[0].Email;
+              }
+              if (card[0].WorkHour=="undefined") {
+                $scope.WorkHour = "No WorkHours are given";
+              }else{
+                $scope.WorkHour = card[0].WorkHour;
+              }
           }
         });
     })
@@ -1759,7 +1814,7 @@ var UID=window.localStorage.getItem("id");
 
     
     //User Settings Controller
-    .controller('settingsBCtrl', function($scope,$http,$state) { 
+    .controller('settingsBCtrl', function($scope,$http,$state,$ionicPopup) { 
       //Create a row for the new users
       $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
       var CusID = window.localStorage.getItem("id");
@@ -1783,6 +1838,9 @@ var UID=window.localStorage.getItem("id");
           //Update the the status to enable
           $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
+                  var alertPopup = $ionicPopup.alert({
+                    title: 'The Changes will be apply from the next login'
+                });
           });
         }
         else{
@@ -1791,6 +1849,9 @@ var UID=window.localStorage.getItem("id");
           //Update the the status to disable
           $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
+                  var alertPopup = $ionicPopup.alert({
+                    title: 'The Changes will be apply from the next login'
+                });
           });
         }
       }
@@ -1801,7 +1862,7 @@ var UID=window.localStorage.getItem("id");
     })
 
     //Controller for notifications
-    .controller('notifyCtrl',function($scope,$http,$ionicPopup) {
+    .controller('notifyCtrl',function($scope,$http,$state,$ionicPopup) {
       var CusID = window.localStorage.getItem("id");
       //Get all the notifications
       $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
@@ -1822,6 +1883,8 @@ var UID=window.localStorage.getItem("id");
               title: 'Notifications Cleared'
               });
             });
+            window.location.reload(true);
+            $state.go("tabsController2.addlist", {}, {reload: true});
           } else {
             var alertPopup = $ionicPopup.alert({
             title: 'Error'
@@ -1892,7 +1955,11 @@ var UID=window.localStorage.getItem("id");
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter Contact no'
                 });
-            } else if (email == null) {
+            } else if (contact.charAt(0) != 0) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Contact should begins with 0'
+                });
+            }else if (email == null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter the Email'
                 });
@@ -1917,8 +1984,8 @@ var UID=window.localStorage.getItem("id");
                                     $ionicPopup.alert({
                                         title: 'Successfully Send'
                                     });
+                                window.location.reload(true);
                                 $state.go("tabsController2.addlist", {}, {reload: true});
-                                $state.transitionTo("tabsController2.addlist");
                             });
                     } else {
                         var alertPopup = $ionicPopup.alert({
@@ -1985,14 +2052,46 @@ var UID=window.localStorage.getItem("id");
               $scope.check = 1;
               $scope.ID = card[0].ID;
               $scope.Image = card[0].Image;
-              $scope.Profession = card[0].Profession;
-              $scope.Skills = card[0].Skills;
-              $scope.Awards = card[0].Awards;
-              $scope.WorkPlace = card[0].WorkPlace;
-              $scope.Address = card[0].Address;
-              $scope.Contact = card[0].Contact;
-              $scope.Email = card[0].Email;
-              $scope.WorkHour = card[0].WorkHour;
+              if (card[0].Profession=="undefined") {
+                $scope.Profession = "No Profession is given";
+              }else{
+                $scope.Profession = card[0].Profession;
+              }
+              if (card[0].Skills=="undefined") {
+                $scope.Skills = "No Skills are given";
+              }else{
+                $scope.Skills = card[0].Skills;
+              }
+              if (card[0].Awards=="undefined") {
+                $scope.Awards = "No Awards are given";
+              }else{
+                $scope.Awards = card[0].Awards;
+              }
+              if (card[0].WorkPlace=="undefined") {
+                $scope.WorkPlace = "No WorkPlace is given";
+              }else{
+                $scope.WorkPlace = card[0].WorkPlace;
+              }
+              if (card[0].Address=="undefined") {
+                $scope.Address = "No workplace Address is given";
+              }else{
+                $scope.Address = card[0].Address;
+              }
+              if (card[0].Contact==0) {
+                $scope.Contact = "No workplace Contact is given";
+              }else{
+                $scope.Contact = card[0].Contact;
+              }
+              if (card[0].Email=="undefined") {
+                $scope.Email = "No Email is given";
+              }else{
+                $scope.Email = card[0].Email;
+              }
+              if (card[0].WorkHour=="undefined") {
+                $scope.WorkHour = "No WorkHours are given";
+              }else{
+                $scope.WorkHour = card[0].WorkHour;
+              }
           }
         });
             //refresh the Businesscard by pulling
@@ -2068,6 +2167,10 @@ var UID=window.localStorage.getItem("id");
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter Work Place Contact Details'
                 });
+            } else if (Contact.charAt(0) != 0) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Contact should begins with 0'
+                });
             } else if (Email == null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter Work Place Email'
@@ -2095,7 +2198,6 @@ var UID=window.localStorage.getItem("id");
                                   title: 'Successfully Changed'
                                 });
                               $state.go("tabsController2.buissnessCard", {}, {reload: true});
-                              $state.transitionTo("tabsController2.buissnessCard");
                             });
                     } else {
                         var alertPopup = $ionicPopup.alert({
@@ -2135,6 +2237,7 @@ var UID=window.localStorage.getItem("id");
                                         title: 'Successfully Registerd'
                                     });
                                 $state.go("tabsController2.buissnessCard", {}, {reload: true});
+                                window.location.reload(true);
                                 $state.transitionTo("tabsController2.about3");
                             });
                     } else {
@@ -2167,7 +2270,11 @@ var UID=window.localStorage.getItem("id");
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter work place Contact'
                 });
-            } else if (email == null) {
+            } else if (contact.charAt(0) != 0) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Contact should begins with 0'
+                });
+            }else if (email == null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter Email'
                 });
@@ -2191,6 +2298,7 @@ var UID=window.localStorage.getItem("id");
                                         title: 'Business Card Completed'
                                     });
                                 $state.go("tabsController2.buissnessCard", {}, {reload: true});
+                                window.location.reload(true);
                                 $state.transitionTo("tabsController2.buissnessCard");
                             });
                     } else {
@@ -2232,6 +2340,7 @@ var UID=window.localStorage.getItem("id");
                         });
                     });
                     window.location.reload(true);
+                    $state.transitionTo("AdmintabsController.ushow");
                 } else {
                     var alertPopup = $ionicPopup.alert({
                         title: 'Reject Acceptence'
@@ -2255,6 +2364,7 @@ var UID=window.localStorage.getItem("id");
                             });
                         });
                         window.location.reload(true);
+                        $state.transitionTo("AdmintabsController.ushow");
                     } else {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Reject Rejection'
@@ -2305,7 +2415,11 @@ var UID=window.localStorage.getItem("id");
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter Contact no'
                 });
-            } else if (Email == null) {
+            } else if (Contact.charAt(0) != 0) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Contact should begins with 0'
+                });
+            }else if (Email == null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter the Email'
                 });
@@ -2330,7 +2444,6 @@ var UID=window.localStorage.getItem("id");
                                         title: 'Advertiesement Posted'
                                     });
                                 $state.go("AdmintabsController.ushow", {}, {reload: true});
-                                $state.transitionTo("AdmintabsController.ushow");
                             });
                     } else {
                         var alertPopup = $ionicPopup.alert({
@@ -2500,6 +2613,7 @@ var UID=window.localStorage.getItem("id");
         //Edit the advertisment
         $scope.editAdvertiesement = function(Selected, Title, Image,
             Description, Contact, Email, SDate, EDate) {
+          var CusID = $stateParams.Eid;
           //Validation process
             if (Selected == null) {
                 var alertPopup = $ionicPopup.alert({
@@ -2521,6 +2635,10 @@ var UID=window.localStorage.getItem("id");
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter Contact no'
                 });
+            } else if (Contact.charAt(0) != 0) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Contact should begins with 0'
+                });
             } else if (Email == null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter the Email'
@@ -2540,14 +2658,13 @@ var UID=window.localStorage.getItem("id");
                             "&Contact=" + Contact +
                             "&Email=" + Email + "&SDate=" +
                             SDate + "&EDate=" + EDate +
-                            "&CusID=" + 1).success(function(
+                            "&CusID=" + CusID).success(function(
                             data) {
                             var alertPopup =
                                 $ionicPopup.alert({
                                     title: 'Advertiesement Posted'
                                 });
-                            $state.go("AdmintabsController.ushow", {}, {reload: true});
-                            $state.transitionTo("AdmintabsController.ushow");  
+                            $state.go("AdmintabsController.ushow", {}, {reload: true}); 
                         });
                     } else {
                         var alertPopup = $ionicPopup.alert({

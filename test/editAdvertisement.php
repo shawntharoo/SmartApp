@@ -2,7 +2,7 @@
 include('includes/db.php');
 
 //Asighn Data to the Variables
-$CusID = $_GET['CusID'];
+$CusID        = $_GET['CusID'];
 $Selected    = $_GET['Selected'];
 $Title       = $_GET['Title'];
 $Image       = $_GET['Image'];

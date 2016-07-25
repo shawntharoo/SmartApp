@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2016 at 07:10 AM
+-- Generation Time: Jul 24, 2016 at 08:08 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -44,15 +44,7 @@ CREATE TABLE IF NOT EXISTS `buissnescard` (
 --
 
 INSERT INTO `buissnescard` (`ID`, `Profession`, `Skills`, `Awards`, `WorkPlace`, `Address`, `Contact`, `Email`, `WorkHour`) VALUES
-(1, 'Doctor', 'neurologist', 'Specialist,Consultant', 'Hemas', 'Kiribathgoda', 112435678, 'hemas.paw@gmail.com', '8.00AM-6.00PM'),
-(2, 'Lawyer', 'Language', 'Law', 'Law Entrance', 'Colombo', 768905462, 'ronald@gmial.com', 'No Specific'),
-(3, 'Businessmen', 'promote', 'annual awards', 'helys', 'dematagoda', 767890874, 'kamal@gmail.com', '5.00PM onwards'),
-(4, 'Network Administrator', 'Java Script', 'Bronze medal', 'BOC', 'Maradana', 786575452, 'sama@gmail.com', '2.00PM- 7.00PM'),
-(5, 'Supervisor', 'undefined', 'undefined', 'Nawaloka', 'Nawaloka', 786545678, 'perera@gmail.com', '1.00PM - 12.00AM'),
-(6, 'Doctor', 'Specialist', 'MBBS', 'Hemas', 'Wathtala', 789065478, 'sakila@gmail.com', '5.00AM - 11.00PM'),
-(7, 'Manager', 'CIMA,AAT', 'Best Runner', 'Brandix I3', 'Kingsly Road', 789654321, 'brayan@gmail.com', 'Normal Hours'),
-(8, 'Software Engineer', 'Angular JS', 'OCPJP', 'Millenium IT', 'Baththaramulla', 789875673, 'robert@gmail.com', '1.00PM - 10.00PM'),
-(9, 'Master sir', 'mage himi thana', 'denavaaada?', 'Anee sir', 'anukamapaa', 789654321, 'nositheda@apa.atharekaba', '6.00AM-12.00PM');
+(1, 'Software Engineer', 'AngularJs, Ionic, Java', 'SCPJP, RedHat', 'Millenium  IT', 'Malabe,baththaramulla', 112567876, 'saman.MIT@gmail.com', '8.00AM-6.00PM');
 
 -- --------------------------------------------------------
 
@@ -65,18 +57,17 @@ CREATE TABLE IF NOT EXISTS `disableadd` (
   `MemID` int(11) NOT NULL,
   `Status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `disableadd`
 --
 
 INSERT INTO `disableadd` (`ID`, `MemID`, `Status`) VALUES
-(1, 10, -1),
-(4, 9, 1),
-(5, 0, 1),
-(6, 1, -1),
-(7, 2, 1);
+(8, 1, 1),
+(9, 0, 1),
+(10, 2, 1),
+(11, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -278,25 +269,16 @@ CREATE TABLE IF NOT EXISTS `linkedin` (
   `location` varchar(30) NOT NULL,
   `publicProfileUrl` varchar(100) NOT NULL,
   `specialties` varchar(300) NOT NULL,
+  `positions` varchar(100) NOT NULL,
   PRIMARY KEY (`LID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `linkedin`
 --
 
-INSERT INTO `linkedin` (`LID`, `Mem_Id`, `LinkedId`, `firstName`, `lastName`, `headline`, `photo`, `numConnections`, `industry`, `emailAddress`, `summary`, `location`, `publicProfileUrl`, `specialties`) VALUES
-(1, 1, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 197, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined'),
-(2, 2, '0', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0, '', '', '', '', '', ''),
-(3, 3, '0', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0, '', '', '', '', '', ''),
-(4, 4, '0', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0, '', '', '', '', '', ''),
-(5, 5, '0', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0, '', '', '', '', '', ''),
-(6, 6, '0', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0, '', '', '', '', '', ''),
-(7, 7, '0', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0, '', '', '', '', '', ''),
-(8, 8, '0', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0, '', '', '', '', '', ''),
-(9, 9, '0', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_-76t6QqzqskhhAa', 0, '', '', '', '', '', ''),
-(10, 11, '0', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzg', 0, '', '', '', '', '', ''),
-(11, 0, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 0, '', '', '', '', '', '');
+INSERT INTO `linkedin` (`LID`, `Mem_Id`, `LinkedId`, `firstName`, `lastName`, `headline`, `photo`, `numConnections`, `industry`, `emailAddress`, `summary`, `location`, `publicProfileUrl`, `specialties`, `positions`) VALUES
+(12, 1, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 205, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined', 'undefined');
 
 -- --------------------------------------------------------
 
@@ -312,19 +294,14 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `ADate` varchar(40) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`NID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `notification`
 --
 
 INSERT INTO `notification` (`NID`, `MemberID`, `ATitle`, `Notification`, `ADate`, `status`) VALUES
-(1, 1, 'SendAdd', 'Your Advertisement is Now Available in the System', '2016-07-04 18:47:20', 1),
-(2, 1, 'Get', 'Your Advertisement is Rejected by the Admin', '2016-07-04 18:50:59', -1),
-(3, 1, 'Get', 'Your Advertisement is Now Available in the System', '2016-07-04 18:52:20', 1),
-(4, 1, 'Get', 'Your Advertisement is Rejected by the Admin', '2016-07-04 18:54:02', -1),
-(5, 9, 'new add', 'Your Advertisement is Rejected by the Admin', '2016-07-07 04:24:44', 0),
-(6, 9, 'new add', 'Your Advertisement is Rejected by the Admin', '2016-07-07 04:54:06', 0);
+(15, 1, 'Padura', 'Your Advertisement is Rejected by the Admin', '2016-07-24 20:03:07', -1);
 
 -- --------------------------------------------------------
 
@@ -344,30 +321,15 @@ CREATE TABLE IF NOT EXISTS `postadvertiesement` (
   `EndDate` varchar(15) NOT NULL,
   `CDate` varchar(40) NOT NULL,
   PRIMARY KEY (`IDAdd`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `postadvertiesement`
 --
 
 INSERT INTO `postadvertiesement` (`IDAdd`, `Type`, `Title`, `Image`, `Description`, `ContactNo`, `Email`, `StartDate`, `EndDate`, `CDate`) VALUES
-(1, 'Promote', 'organize the batch trip', 'img/add2.jpg', 'batch trip for jaffna', 768954312, 'harsh@gmail.com', '2016-07-04', 'Sat Jul 30 2016', '2016-06-09 07:50 AM'),
-(2, 'Notice', 'Batch Meeting', 'img/meet1.jpg', 'Batch Meeting will be Held on the College Premises', 786578942, 'shenal@gmail.com', '2016-07-20', 'Wed Jun 01 2016', '2016-06-12 17:45:24'),
-(3, 'Promote', 'An Example of a Google Bar Chart', 'img/add2.jpg', 'sadfdf', 768954312, 'harsh@gmail.com', '2016-07-04', '2016-07-20', '2016-06-11 14:25:33'),
-(4, 'Event', 'Exhibition', 'img/mer1.jpg', 'Royal college 94 batch going to be organized exhibition to celebrate the 175th anniversary of Royal College  ', 756789546, 'kumar@gmail.com', '2016-06-20', '2016-06-30', '2016-06-11 14:24:31'),
-(5, 'Merchent', 'New T-Shirt', 'img/meet1.jpg', 'New T-Shirt has been printed for the 94''bacth members', 768956431, 'sunil@gmail.com', 'Wed Jun 09 2016', '2016-09-30', '2016-05-21 14:15:08'),
-(6, 'Promote', 'New Tags', 'img/promo.jpg', 'New tags with school logo will be available at the canteen and book shop', 766666666, 'sore@gmail.com', 'Thu Jun 16 2016', 'Thu Aug 25 2016', '2016-06-14 21:09:19'),
-(7, 'Event', '94 group meeting', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Batch Meeting will be held in order to discuss about the future plans', 789876543, 'sahan@gmail.com', 'Wed Jun 15 2016', 'Fri Jul 01 2016', '2016-06-23 17:05:33'),
-(8, 'Merchent', 'SendAdd', 'img/ad1.png', 'dsfsff', 99877, 'arjun@gmail.com', 'undefined', 'undefined', ''),
-(9, 'Merchent', 'SendAdd', 'img/ad1.png', 'dsfsff', 99877, 'arjun@gmail.com', 'undefined', 'undefined', ''),
-(10, 'Merchent', 'get', 'img/meet1.jpg', 'get together', 789654362, 'saman@gmail.com', 'Wed Jun 15 2016', 'Wed Jun 29 2016', '2016-06-29 17:34:28'),
-(11, 'Merchent', 'SendAdd', 'img/ad1.png', 'dsfsff', 99877, 'arjun@gmail.com', 'undefined', 'undefined', ''),
-(12, 'Event', 'Get', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016', 'Fri Jul 01 2016', '2016-06-29 17:45:13'),
-(13, 'Event', 'Get', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016', 'Fri Jul 01 2016', '2016-06-29 17:45:13'),
-(14, 'Notice', 'SendAdd', 'img/ad3.png', 'sjshj', 987766, 'sa@g.com', 'Fri Jun 17 2016', 'Thu Jun 30 2016', '2016-06-11 14:24:31'),
-(15, 'Event', 'Get', 'img/ad1.png', 'Get Together', 786785435, 'saman@gmail.com', 'Wed Jun 15 2016', 'Thu Jun 30 2016', '2016-06-29 17:44:26'),
-(16, 'Promote', 'balh', 'img/', 'blah blah', 786748484, 'na@gmail.com', 'Fri Jul 29 2016', 'Thu Aug 25 2016', '2016-07-05 20:41:12'),
-(18, 'Merchent', 'test123', 'img/', 'testing 123', 1231231231, '123@gmail.com', 'Wed Jun 29 2016', 'Wed Jul 06 2016', '2016-07-06 15:57:29');
+(19, 'Event', 'Get Together', 'img/ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together of 94 batch', 2147483647, 'sandaru@gmail.com', 'Sun Jul 24 2016', 'Sun Jul 31 2016', '2016-07-23 05:46:15'),
+(20, 'Promote', 'Batch T-Shirt', 'img/mer1.jpg', 'Batch t-Shirt is available', 714536728, 'repa@gmail.com', 'Thu Aug 04 2016', 'Wed Aug 31 2016', '2016-07-23 05:52:28');
 
 -- --------------------------------------------------------
 
@@ -389,21 +351,18 @@ CREATE TABLE IF NOT EXISTS `usendadvertiesement` (
   `sendDate` varchar(40) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`SID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `usendadvertiesement`
 --
 
 INSERT INTO `usendadvertiesement` (`SID`, `MemberId`, `title`, `Selection`, `Image`, `Description`, `ContactNo`, `Email`, `StartDate`, `EndDate`, `sendDate`, `status`) VALUES
-(1, 1, 'SendAdd', 'Merchent', 'img/ad1.png', 'dsfsff', 99877, 'arjun@gmail.com', 'undefined', 'undefined', '', 1),
-(2, 1, 'SendAdd', 'Promote', 'img/ad2.png', 'sjshj', 987766, 'sa@g.com', 'Fri Jun 17 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '', 0),
-(3, 1, 'SendAdd', 'Notice', 'img/ad3.png', 'sjshj', 987766, 'sa@g.com', 'Fri Jun 17 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '2016-06-11 14:24:31', -1),
-(4, 1, 'Get', 'Event', 'img/ad1.png', 'Get Together', 786785435, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Thu Jun 30 2016 00:00:00 GMT 0', '2016-06-29 17:44:26', 0),
-(5, 1, 'Get', 'Event', 'img/1EMAim3uSfm29w35E23g_ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Fri Jul 01 2016 00:00:00 GMT 0', '2016-06-29 17:45:13', 1),
-(6, 1, 'Get', 'Event', 'img/ad2.png', 'Get Together', 789654326, 'saman@gmail.com', 'Wed Jun 15 2016 00:00:00 GMT 0', 'Fri Jul 01 2016 00:00:00 GMT 0', '2016-06-29 17:45:31', -1),
-(7, 9, 'new add', 'Merchent', 'img/', 'this is a new add', 2147483647, 'sa@gmial.com', 'Thu Jul 21 2016 00:00:00 GMT 0', 'Thu Jul 28 2016 00:00:00 GMT 0', '2016-07-05 20:36:49', 0),
-(8, 9, 'SendAdd', 'Promote', 'img/', 'tasting', 98876544, 'test@gmail.com', 'Thu Jul 07 2016 00:00:00 GMT 0', 'Fri Jul 15 2016 00:00:00 GMT 0', '2016-07-07 05:37:18', 0);
+(9, 1, 'Get Together', 'Event', 'img/ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together of 94 batch', 2147483647, 'sandaru@gmail.com', 'Sun Jul 24 2016 00:00:00 GMT 0', 'Sun Jul 31 2016 00:00:00 GMT 0', '2016-07-23 05:46:15', 1),
+(10, 1, 'Exhibition', 'Merchent', 'img/meet1.jpg', 'Exhibition for fund raising', 1123456789, 'kumar@gmail.com', 'Fri Jul 29 2016 00:00:00 GMT 0', 'Fri Aug 05 2016 00:00:00 GMT 0', '2016-07-23 05:56:10', -1),
+(12, 1, 'hy', 'Event', 'img/', 'frg', 3454, 'fgf@hnm', 'Thu Jul 28 2016 00:00:00 GMT 0', 'Thu Jul 14 2016 00:00:00 GMT 0', '2016-07-24 12:35:08', -1),
+(13, 1, 'Padura', 'Event', 'img/', 'Padura with 94 group', 768945632, 'haresh@gmail.com', 'Tue Jul 19 2016 00:00:00 GMT 0', 'Wed Aug 03 2016 00:00:00 GMT 0', '2016-07-24 19:41:11', -1),
+(14, 9, 'Hy', 'Merchent', 'img/', 'sfds', 0, 'sas@dd', 'Tue Jul 19 2016 00:00:00 GMT 0', 'Thu Jul 28 2016 00:00:00 GMT 0', '2016-07-24 20:05:49', 0);
 
 -- --------------------------------------------------------
 
