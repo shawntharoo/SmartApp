@@ -34,11 +34,11 @@
             </label>
             <label class="item item-input">
             <span class="input-label">Start Date</span>
-            <input type="date" ng-model="startdate">
+            <input type="date" ng-model="startdate" min="{{date | date:'yyyy-MM-dd'}}">
             </label>
             <label class="item item-input">
             <span class="input-label">End Date</span>
-            <input type="date"  ng-model="EDate">
+            <input type="date"  ng-model="EDate" min="{{date | date:'yyyy-MM-dd'}}">
             </label>
         </form>
         <a id="EditAdvertiesement-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block icon ion-checkmark-circled" ng-click="editAdvertiesement(Selected,Title,Image,Description,Contact,Email,SDate,EDate)">Submit</a>

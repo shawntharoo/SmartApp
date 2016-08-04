@@ -37,11 +37,11 @@
           </label>
           <label class="item item-input">
           <span class="input-label">Start Date</span>
-          <input type="date" ng-model="SDate" min="2016-06-15" ng-required="true" date-format="yyyy-MM-dd"/>
+          <input type="date" ng-model="SDate" min="{{date | date:'yyyy-MM-dd'}}" ng-required="true" date-format="yyyy-MM-dd"/>
           </label>
           <label class="item item-input">
           <span class="input-label">End Date</span>
-          <input type="date" ng-model="EDate" min="2016-06-15" ng-required="true">
+          <input type="date" ng-model="EDate" min="{{date | date:'yyyy-MM-dd'}}" ng-required="true">
           </label>
       </form>
       <a id="postAdvertiesement-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block icon ion-checkmark-circled" ng-click="postAdvertiesement(Selected,Title,Image,Description,Contact,Email,SDate,EDate)">Submit</a>

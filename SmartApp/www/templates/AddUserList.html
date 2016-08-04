@@ -30,11 +30,13 @@
               </button>
             </div>
           </ion-header-bar>
-          <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-            <ion-item>
-            </ion-item>
+          <ion-list show-delete="data.showDelete" show-reorder="data.showReorder"><br><br>
+            <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" ng-model="search" placeholder="Search By Title">
+            </label>
             <!--Show all the advertisement in the list view -->
-            <ion-item ng-repeat="item in items track by $index" item="item" class="item-remove-animate">
+            <ion-item ng-repeat="item in items | filter:search">
               <div class="item-thumbnail">
                 <img src="{{item.Image}}" style="width:300px">
               </div>

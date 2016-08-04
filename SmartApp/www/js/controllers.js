@@ -1933,6 +1933,7 @@ var UID=window.localStorage.getItem("id");
     .controller('sendAdvertisementPageCtrl', function($scope, $http, $state,
         $ionicPopup) {
         var CusID = window.localStorage.getItem("id");
+        $scope.date = new Date();
         //Action for sending advertisment
         $scope.sendAdvertiesement = function(title, Selected, Image,
             description, contact, email, SDate, EDate) {
@@ -2237,7 +2238,6 @@ var UID=window.localStorage.getItem("id");
                                         title: 'Successfully Registerd'
                                     });
                                 $state.go("tabsController2.buissnessCard", {}, {reload: true});
-                                window.location.reload(true);
                                 $state.transitionTo("tabsController2.about3");
                             });
                     } else {
@@ -2389,6 +2389,7 @@ var UID=window.localStorage.getItem("id");
     //Post advertisement Controller
     .controller('upostAdvertiesementCtrl', function($scope, $http, $state,
         $ionicPopup) {
+        $scope.date = new Date();
       //post advertisment
         $scope.postAdvertiesement = function(Selected, Title, Image,
             Description, Contact, Email, SDate, EDate) {
@@ -2576,6 +2577,7 @@ var UID=window.localStorage.getItem("id");
     //Admin Edit the Advertisement Controller
     .controller('ufullEditCtrl', function($scope, $http, $state, $ionicPopup,
         $stateParams) {
+        $scope.date = new Date();
       //Load the current advertisement data to the fields
         $scope.EidtAddValues = function() {
             var CusID = $stateParams.Eid;

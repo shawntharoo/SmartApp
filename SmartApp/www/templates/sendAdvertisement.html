@@ -33,11 +33,11 @@
       </label>
       <label class="item item-input item-floating-label">
       <span class="input-label">Start Date</span>
-      <input type="date" ng-model="SDate" min="2016-06-15" ng-required="true" date-format="yyyy-MM-dd"/>
+      <input type="date" ng-model="SDate" min="{{date | date:'yyyy-MM-dd'}}" ng-required="true" date-format="yyyy-MM-dd"/>
       </label>
       <label class="item item-input item-floating-label">
       <span class="input-label">End Date</span>
-      <input type="date" ng-model="EDate" min="2016-06-15" ng-required="true">
+      <input type="date" ng-model="EDate" min="{{date | date:'yyyy-MM-dd'}}" ng-required="true">
       </label>
       <a ui-sref="tabsController2.sendAdd" id="postAdvertiesement-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block icon ion-ios-paperplane-outline" ng-click="sendAdvertiesement(title1,Selected,Image,description,contact,email,SDate,EDate)">Send</a>
     </div>
