@@ -3,7 +3,7 @@ include('includes/db.php');
 //Asighn Data to the Variables
 $CusID = $_GET['CusID'];
 //Select Data from the buissnescard table in the Samrtapp database
-$query = "select Status from disableadd where MemID='$CusID'";
+$query = "select Status,Admin from disableadd where MemID='$CusID'";
 $result = $mysqli->query($query) or die($mysqli->error . __LINE__);
 $stat = array();
 if ($result->num_rows > 0) {

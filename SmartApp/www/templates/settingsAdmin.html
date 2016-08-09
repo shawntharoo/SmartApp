@@ -1,28 +1,15 @@
-<ion-view title="Settings" id="settingsB" style="background-color:#cce6ff;">
+<ion-view title="Settings" id="settingsA" style="background-color:#cce6ff;">
   	<ion-content padding="true" class="has-header">
   		<!--Provide a toggle button to disable advertisment-->
 	  	<ion-toggle ng-model="addSwitch" ng-change="toggleChange()">Disable Advertisement</ion-toggle>
 	  	<!--Provide forms to choose the businesscard Method -->
 	  	<div class="card">
 		  	<div class="item item-divider">
-		   	Create Business Card!
+		   	Lock Advertisemnt
 		  	</div>
 		  	<div class="item item-text-wrap">
-				Fill the Fields of the Businesscard Manually
-				<button class="button button-full button-calm" ui-sref="tabsController2.about2" id="About-button1">
-			  	Fill Business card
-				</button>
-				<font size="6px" color="blue"><center>OR</center></font><br/>
-			  	Import data from the Linkedin Profile
-				<a id="BuissnessCarad-button2" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block ion-social-linkedin-outline" ng-click="launch()">
-                Import From LinkedIn
-            	</a>
-				<!--<img src ="img/linked.png" width="200px" height="50px"><br/>-->
-        <font size="6px" color="blue"><center>OR</center></font><br/>
-          Import data from the Facebook Profile
-        <a id="BuissnessCarad-button3" style="font-weight:600;font-size:-2px;" class="button button-positive  button-block ion-social-facebook" ng-click="launchfb()">
-                Import From Facebook
-              </a>
+				<font color="red">If this toggle button is enabled users will not be able to disable their advertisement.</font>
+				<ion-toggle ng-model="addLock" ng-change="toggleLock()">Lock Advertisement</ion-toggle>
 		  	</div>
 		</div>
   	</ion-content>

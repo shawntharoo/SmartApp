@@ -1595,10 +1595,27 @@ var UID=window.localStorage.getItem("id");
         $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(
                   function(data) {
           $scope.addStatus = data[0].Status;
-          if($scope.addStatus == 1){
-            $scope.slide = 1;
-          }else{
-            $scope.slide = -1;
+          $scope.adminStatus = data[0].Admin;
+          if(role=="member" || role=="rep"){
+            if($scope.addStatus == 1 && $scope.adminStatus == 1){
+              $scope.slide = 1;
+            }else if($scope.addStatus == -1 && $scope.adminStatus == 1){
+              $scope.slide = -1;
+            }else if($scope.addStatus == 1 && $scope.adminStatus == -1){
+              $scope.slide = 1;
+            }else if($scope.addStatus == -1 && $scope.adminStatus == -1){
+              $scope.slide = 1;
+            }
+          }else if(role=="admin"){
+            if($scope.addStatus == 1 && $scope.adminStatus == 1){
+              $scope.slide = 1;
+            }else if($scope.addStatus == -1 && $scope.adminStatus == 1){
+              $scope.slide = -1;
+            }else if($scope.addStatus == 1 && $scope.adminStatus == -1){
+              $scope.slide = 1;
+            }else if($scope.addStatus == -1 && $scope.adminStatus == -1){
+              $scope.slide = -1;
+            }
           }
         });
         //Show all the banners in the slider
@@ -1781,6 +1798,11 @@ var UID=window.localStorage.getItem("id");
               }
           }
         });
+
+            //Redirrect to the Linkedin Profile
+            $scope.linkedinUrl = function(publicProfileUrl){
+              window.open(publicProfileUrl, "_system", "width=1200, height=800");
+            }
             //refresh the Businesscard by pulling
             $scope.doRefresh = function() {
               //Load the businesscard
@@ -1814,11 +1836,8 @@ var UID=window.localStorage.getItem("id");
 
     
     //User Settings Controller
-    .controller('settingsBCtrl', function($scope,$http,$state,$ionicPopup) { 
-      //Create a row for the new users
-      $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
+    .controller('settingsBCtrl', function($scope,$http,$state,$ionicPopup) {
       var CusID = window.localStorage.getItem("id");
-      $scope.passid = CusID;
       //Check whether the Disabled button is on or off
       $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
@@ -1856,8 +1875,12 @@ var UID=window.localStorage.getItem("id");
         }
       }
 
-      $scope.launch = function(memberid) {
-        window.open("http://localhost/test/LinkedIn.php?memberid="+memberid, "_system", "width=400, height=350");
+      $scope.launch = function() {
+        window.open("http://localhost/test/LinkedIn.php?memberid="+CusID, "_system", "width=400, height=350");
+      }
+
+      $scope.launchfb = function() {
+        window.open("http://localhost/test/facebookprof.php?memberid="+CusID, "_system", "width=400, height=350");
       }
     })
 
@@ -2095,6 +2118,14 @@ var UID=window.localStorage.getItem("id");
               }
           }
         });
+
+        $scope.print = function() {
+          if($cordovaPrinter.isAvailable()) {
+            $cordovaPrinter.print("http://www.nraboy.com");
+          } else {
+            alert("Printing is not available on device");
+          }
+        }
             //refresh the Businesscard by pulling
             $scope.doRefresh = function() {
               //Load the businesscard
@@ -2313,6 +2344,85 @@ var UID=window.localStorage.getItem("id");
 
 
     //Admin  
+    //Admin settings controller
+    .controller('settingsACtrl', function($scope, $http, $state, $ionicPopup) {
+      var CusID = window.localStorage.getItem("id");
+      //Check whether the Disabled button is on or off
+      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
+            data) {
+            $scope.getdata = data[0].Status;
+            if($scope.getdata == -1) {
+              $scope.addSwitch = true;
+            }
+            else if ($scope.getdata == 1){
+              $scope.addSwitch = false;
+            }
+      });
+      //Check whether the system add Disabled button is on or off
+      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
+            data) {
+            $scope.getdata1 = data[0].Admin;
+            if($scope.getdata1 == -1) {
+              $scope.addLock = true;
+            }
+            else if ($scope.getdata1 == 1){
+              $scope.addLock = false;
+            }
+      });
+      //Action of the toggle change button
+      $scope.toggleChange = function(){
+        if($scope.addSwitch == false) {
+          $scope.addSwitch = true;
+          var addStatus = -1;
+          //Update the the status to enable
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+                function(data) {
+                  var alertPopup = $ionicPopup.alert({
+                    title: 'The Changes will be apply from the next login'
+                });
+          });
+        }
+        else{
+          $scope.addSwitch = false;
+          var addStatus = 1;
+          //Update the the status to disable
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+                function(data) {
+                  var alertPopup = $ionicPopup.alert({
+                    title: 'The Changes will be apply from the next login'
+                });
+          });
+        }
+      }
+
+      //Action of the toggle change button of the system add
+      $scope.toggleLock = function(){
+        if($scope.addLock == false) {
+          $scope.addLock = true;
+          var addStatus1 = -1;
+          //Update the the status to enable
+          $http.post("http://localhost/test/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
+                function(data) {
+                  var alertPopup = $ionicPopup.alert({
+                    title: 'The Changes have been applied(The changes will appear on the admin profile from the next login)'
+                });
+          });
+        }
+        else{
+          $scope.addLock = false;
+          var addStatus1 = 1;
+          //Update the the status to disable
+          $http.post("http://localhost/test/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
+                function(data) {
+                  var alertPopup = $ionicPopup.alert({
+                    title: 'The Changes have been applied(The changes will appear on the admin profile from the next login)'
+                });
+          });
+        }
+      }
+    })
+
+
     //show list of pending Advertisement controller
     .controller('adminAddListCtrl', function($scope, $http, $state, $ionicPopup ,$window) {
         loadtable();

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2016 at 08:10 AM
+-- Generation Time: Aug 09, 2016 at 04:03 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -56,18 +56,20 @@ CREATE TABLE IF NOT EXISTS `disableadd` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `MemID` int(11) NOT NULL,
   `Status` int(11) NOT NULL DEFAULT '1',
+  `Admin` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `disableadd`
 --
 
-INSERT INTO `disableadd` (`ID`, `MemID`, `Status`) VALUES
-(8, 1, -1),
-(9, 0, 1),
-(10, 2, 1),
-(11, 9, 1);
+INSERT INTO `disableadd` (`ID`, `MemID`, `Status`, `Admin`) VALUES
+(8, 1, -1, 1),
+(9, 0, 1, 1),
+(10, 2, -1, 1),
+(11, 9, 1, 1),
+(12, 10, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -89,6 +91,32 @@ CREATE TABLE IF NOT EXISTS `events` (
 INSERT INTO `events` (`id`, `eventName`, `date`) VALUES
 (1, 'Pirith Ceremony', '2016-05-24'),
 (3, 'RC vs TCK 2nd leg', '2016-05-31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facebookprof`
+--
+
+CREATE TABLE IF NOT EXISTS `facebookprof` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Mem_Id` int(11) NOT NULL,
+  `FBId` varchar(30) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Picture` varchar(1000) NOT NULL,
+  `Gender` varchar(30) NOT NULL,
+  `Email` varchar(150) NOT NULL,
+  `Age` varchar(30) NOT NULL,
+  `Link` varchar(300) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `facebookprof`
+--
+
+INSERT INTO `facebookprof` (`id`, `Mem_Id`, `FBId`, `Name`, `Picture`, `Gender`, `Email`, `Age`, `Link`) VALUES
+(2, 1, '1210495858990318', 'Sandakelum Tharindu', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xta1/v/t1.0-1/c53.0.213.320/p320x320/13094269_1142591915780713_7377642025608053356_n.jpg?oh=d6c9480c6d89333272ac930a45c6c0b8', 'male', 'undefined', 'undefined', 'undefined');
 
 -- --------------------------------------------------------
 
@@ -271,14 +299,15 @@ CREATE TABLE IF NOT EXISTS `linkedin` (
   `specialties` varchar(300) NOT NULL,
   `positions` varchar(100) NOT NULL,
   PRIMARY KEY (`LID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `linkedin`
 --
 
 INSERT INTO `linkedin` (`LID`, `Mem_Id`, `LinkedId`, `firstName`, `lastName`, `headline`, `photo`, `numConnections`, `industry`, `emailAddress`, `summary`, `location`, `publicProfileUrl`, `specialties`, `positions`) VALUES
-(12, 1, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 239, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined', 'undefined');
+(12, 0, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 244, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined', 'undefined'),
+(13, 1, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 245, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined', 'undefined');
 
 -- --------------------------------------------------------
 

@@ -123,6 +123,17 @@ angular.module('app.routes', ['ionicUIRouter'])
         }
       }
     })
+
+//The Admin Settings page route
+                .state('AdmintabsController.settingsA', {
+      url: '/settingsA',
+      views: {
+        'tab8': {
+          templateUrl: 'templates/settingsAdmin.html',
+          controller: 'settingsACtrl'
+        }
+      }
+    })
  //sanda admin end
 
 
@@ -670,7 +681,7 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
-//The Settings page route
+//The User Settings page route
   .state('tabsController2.settingsB', {
             url: '/settingsB',
             views: {
