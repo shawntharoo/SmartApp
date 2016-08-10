@@ -1638,6 +1638,70 @@ var UID=window.localStorage.getItem("id");
       };
     })
 
+    //Controller for facebook card in the search
+    .controller('facebookProfSearchCtrl', function($scope, $http) {
+      var CusID = window.localStorage.getItem("id");
+        //Get the business card details from the table
+        $http.get("http://localhost/test/showfacebookProf.php?CusID=" +
+            CusID).success(function(data) {
+            var card = [];
+            card = data;
+            if(card[0]=="null")
+            {
+              $scope.check = -1;
+            }else{
+              $scope.check = 1;
+              $scope.FBId = card[0].FBId;
+              $scope.Name = card[0].Name;
+              $scope.Picture = card[0].Picture;
+              $scope.Gender = card[0].Gender;
+              if (card[0].Email=="undefined") {
+                $scope.Email = "No Email is given";
+              }else{
+                $scope.Email = card[0].Email;
+              }
+              $scope.Age = card[0].Age;
+              $scope.Link = card[0].Link;
+          }
+        });
+         //Redirrect to the facebook Profile
+          $scope.FacebookUrl = function(Link){
+            window.open(Link, "_system", "width=1200, height=800");
+          }     
+    })
+
+    //Controller for facebook card method
+    .controller('facebookProfPageCtrl', function($scope, $http) {
+      var CusID = window.localStorage.getItem("id");
+        //Get the business card details from the table
+        $http.get("http://localhost/test/showfacebookProf.php?CusID=" +
+            CusID).success(function(data) {
+            var card = [];
+            card = data;
+            if(card[0]=="null")
+            {
+              $scope.check = -1;
+            }else{
+              $scope.check = 1;
+              $scope.FBId = card[0].FBId;
+              $scope.Name = card[0].Name;
+              $scope.Picture = card[0].Picture;
+              $scope.Gender = card[0].Gender;
+              if (card[0].Email=="undefined") {
+                $scope.Email = "No Email is given";
+              }else{
+                $scope.Email = card[0].Email;
+              }
+              $scope.Age = card[0].Age;
+              $scope.Link = card[0].Link;
+          }
+        });
+         //Redirrect to the facebook Profile
+          $scope.FacebookUrl = function(Link){
+            window.open(Link, "_system", "width=1200, height=800");
+          }     
+    })
+
     //Controller for choicing the card method in the search
     .controller('bchoiceSearchCtrl', function($scope, $http) {
       
@@ -1803,35 +1867,6 @@ var UID=window.localStorage.getItem("id");
             $scope.linkedinUrl = function(publicProfileUrl){
               window.open(publicProfileUrl, "_system", "width=1200, height=800");
             }
-            //refresh the Businesscard by pulling
-            $scope.doRefresh = function() {
-              //Load the businesscard
-              $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
-            CusID).success(function(data) {
-              var card = [];
-              card = data;
-              if(card[0]=="null")
-              {
-                $scope.check = -1;
-              }else{
-                $scope.check = 1;
-                $scope.ID = card[0].ID;
-                $scope.Image = card[0].Image;
-                $scope.Profession = card[0].Profession;
-                $scope.Skills = card[0].Skills;
-                $scope.Awards = card[0].Awards;
-                $scope.WorkPlace = card[0].WorkPlace;
-                $scope.Address = card[0].Address;
-                $scope.Contact = card[0].Contact;
-                $scope.Email = card[0].Email;
-                $scope.WorkHour = card[0].WorkHour;
-            }
-        })
-               .finally(function() {
-                 // Stop the ion-refresher from spinning
-                 $scope.$broadcast('scroll.refreshComplete');
-               });
-      };
     })
 
     

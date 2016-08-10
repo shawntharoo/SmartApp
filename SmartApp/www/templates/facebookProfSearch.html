@@ -1,16 +1,13 @@
-<ion-view title="Buissness Card" style="background-color: white" id="buissnessCard">
+<ion-view title="LinkedIn Profile" style="background-color: white" id="facebookProfSearch">
   <ion-content padding="true" class="has-header">
-  <ion-refresher
-    pulling-text="Pull to refresh..."
-    on-refresh="doRefresh()">
-  </ion-refresher>
     <!--Show a message if user is not alredy registered to the business card-->
     <div ng-if="check == -1"><br/>
     <font size="6" color="blue"> <center> Welcome </center> </font> <br/>
-    Every User might have a Business Card as other users can view the Professional details.<br/><br/>
+    Every User might have a LinkedIn Account as other users can view the Professional details.<br/><br/>
     <font color="purple" size="4">Business Card can be created in two ways.</font><br/>
     1. Customize Manually. <br/>
     2. Import Data from the Linkedin Account.<br/><br/>
+    3. Import Data from the Facebook Account.<br/><br/>
     <a ui-sref="tabsController2.settingsB" id="BuissnessCarad-button3" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block ">Create Business Card</a>
     Your Business Card will appear like this
     <center> <img src="img\business.png" width="250px" height="350px"> </center>
@@ -22,49 +19,32 @@
         </div>
         <ion-list>
           <i class="item item-thumbnail">
-          <img src="img/download (3).jpg"></i>
-          <ion-item class="item-divider">Professional Details</ion-item>
+          <center>
+          <img src="{{Picture}}" style="width: 200px; height="200px" ">
+          </center>
+          </i>
+          <ion-item class="item-divider">Basic Information</ion-item>
           <div class="item item-icon-left">
             <i class="icon ion-ios-person"></i>
-            {{Profession}}
+            {{Name}}
           </div>
-          <div class="item item-icon-left">
-            <i class="icon ion-navicon-round"></i>
-            {{Skills}}
-          </div>
-          <div class="item item-icon-left">
-            <i class="icon ion-trophy"></i>
-            {{Awards}}
-          </div>
-        </ion-list><br/>
-      </div>
-    </div>
-    <div ng-if="check == 1" class="list card">
-      <div class="item item-body">
-        <ion-list>
-          <ion-item class="item-divider">Working Place</ion-item>
-          <div class="item item-icon-left">
-            <i class="icon ion-home"></i>
-            {{WorkPlace}}
-          </div>
-          <div class="item item-icon-left">
-            <i class="icon ion-ios-location"></i>
-            {{Address}}
-          </div>
-          <a class="item item-icon-left">
-          <i class="icon ion-ios-telephone"></i>
-          {{Contact}}
-          </a>
           <div class="item item-icon-left">
             <i class="icon ion-email"></i>
             {{Email}}
           </div>
           <div class="item item-icon-left">
-            <i class="icon ion-ios-time"></i>
-            Normal Working Hours<br> {{WorkHour}}
+            <i class="icon ion-transgender"></i>
+            {{Gender}}
           </div>
-          <a ui-sref="tabsController2.editProfile" id="BuissnessCarad-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block ">Edit Details Manually</a>
-        </ion-list>
+          <div class="item item-icon-left">
+            <i class="icon ion-android-hand"></i>
+            Age : {{Age}} <br/>
+          </div>
+          <div class="item item-icon-left" ng-click="FacebookUrl(Link)">
+            <i class="icon ion-social-facebook"></i>
+            <font color="blue" size="4">Click to View Facebook Profile</font>
+          </div>
+        </ion-list><br/>
       </div>
     </div>
   </ion-content>

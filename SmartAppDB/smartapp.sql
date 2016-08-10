@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2016 at 04:03 AM
+-- Generation Time: Aug 10, 2016 at 06:41 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `facebookprof` (
 --
 
 INSERT INTO `facebookprof` (`id`, `Mem_Id`, `FBId`, `Name`, `Picture`, `Gender`, `Email`, `Age`, `Link`) VALUES
-(2, 1, '1210495858990318', 'Sandakelum Tharindu', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xta1/v/t1.0-1/c53.0.213.320/p320x320/13094269_1142591915780713_7377642025608053356_n.jpg?oh=d6c9480c6d89333272ac930a45c6c0b8', 'male', 'undefined', 'undefined', 'undefined');
+(2, 1, '1210495858990318', 'Sandakelum Tharindu', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xta1/v/t1.0-1/c53.0.213.320/p320x320/13094269_1142591915780713_7377642025608053356_n.jpg?oh=d6c9480c6d89333272ac930a45c6c0b8&oe=58231714&__gda__=1477501893_82af7626a820883c4b52236833a924fb', 'male', 'undefined', '21', 'https://www.facebook.com/app_scoped_user_id/1210495858990318/');
 
 -- --------------------------------------------------------
 

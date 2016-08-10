@@ -7,12 +7,11 @@ $Mem_Id = $_SESSION["memberid"];
 if ( isset($_GET['id'])){
   $fbId= $_GET['id'];
   $Name= $_GET['name'];
-  $picture= $_GET['picture'];
+  $picture= $_COOKIE["picture"];
   $gender= $_GET['gender'];
   $email= $_GET['email'];
   $age= $_GET['age'];
   $link= $_GET['link'];
-  echo $picture;
   //Select data from the LinkedIn table of the smartapp database
   $check="SELECT * FROM facebookprof WHERE Mem_Id = '$Mem_Id'";
   $result = $mysqli->query($check) or die($mysqli->error . __LINE__);;

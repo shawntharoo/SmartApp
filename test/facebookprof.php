@@ -8,7 +8,7 @@
   $_SESSION["memberid"] = $_GET['memberid'];
 ?>
 </head>
-<body>
+<body background="images/body.jpg">
 <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -82,17 +82,21 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me',{fields : 'name, id, picture.width(200).height(300), gender'}, function(response) {
+    FB.api('/me',{fields : 'name, id, picture.width(200).height(300), gender, email, age_range, link, timezone'}, function(response) {
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
         var name = response.name;
         var id = response.id;
         var picture = response.picture.data.url;
+        document.cookie = "picture="+picture;
         var gender = response.gender;
         var email = response.email;
-        var age = response.age_range;
+        var age = response.age_range.min;
         var link = response.link;
-        window.location.href='facebookprofSecond.php?id='+id+'&name='+name+'&picture='+picture+'&gender='+gender+'&email='+email
+        var timezone = response.timezone;
+      //  var user_friends = response.user_friends;
+        console.log("........."+ timezone);
+        window.location.href='facebookprofSecond.php?id='+id+'&name='+name+'&gender='+gender+'&email='+email
         +'&age='+age+'&link='+link;
 
     });
@@ -110,6 +114,9 @@
 
 <div id="status">
 </div>
+<br/>
+<br/>
+<img src="img/fb.jpg" width="400" height="250">
 
 </body>
 </html>

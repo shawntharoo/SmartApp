@@ -647,6 +647,29 @@ angular.module('app.routes', ['ionicUIRouter'])
           }
       })
 
+
+  //The Facebook card page route
+  .state('tabsController2.facebookProf', {
+            url: '/facebookProf',
+            views: {
+                'tab3': {
+                    templateUrl: 'templates/facebookProf.html',
+                    controller: 'facebookProfPageCtrl'
+                }
+            }
+        })
+
+  //The serch FacebookPage view route
+  .state('tabsController2.facebookProfSearch', {
+          url: '/facebookProfSearch',
+          views: {
+              'tab3': {
+                  templateUrl: 'templates/facebookProfSearch.html',
+                  controller: 'facebookProfSearchCtrl'
+              }
+          }
+      })
+
 //The send advertisment page route
   .state('tabsController2.sendAdd', {
             url: '/sendAdd',
