@@ -2062,24 +2062,12 @@ var UID=window.localStorage.getItem("id");
         loaddata();
         //Show the advertisement
         function loaddata() {
-            $scope.data = {
-                showDelete: false
-            };
             //Get the advertisment from the table
             $http.get(
                 "http://localhost/test/addUserListView.php?CusID=" +
                 CusID).success(function(data) {
                 $scope.items = data;
             });
-            //Move the position of the items
-            $scope.moveItem = function(item, fromIndex, toIndex) {
-                $scope.items.splice(fromIndex, 1);
-                $scope.items.splice(toIndex, 0, item);
-            };
-            //remove a item from the list
-            $scope.onItemDelete = function(item) {
-                $scope.items.splice($scope.items.indexOf(item), 1);
-            };
         };
         //refresh the item list by pulling
         $scope.doRefresh = function() {
@@ -2093,7 +2081,12 @@ var UID=window.localStorage.getItem("id");
            // Stop the ion-refresher from spinning
            $scope.$broadcast('scroll.refreshComplete');
          })
-  };
+        };
+
+        $scope.deletetheAdd = function() {
+          //Delete the Advertisment
+          
+        } 
     })
 
     //Show Business card Details Controller
@@ -2642,30 +2635,6 @@ var UID=window.localStorage.getItem("id");
     //Admin View the Detail View page of the Advertisement Controller
     .controller('ufullEditShowCtrl', function($scope, $http, $state,
         $ionicPopup, $stateParams, $ionicActionSheet) {
-      //Action sheet functions
-        $scope.showActionsheet = function() {
-            $ionicActionSheet.show({
-                titleText: 'ActionSheet Example',
-                buttons: [{
-                    text: '<i class="icon ion-share"></i> Share'
-                }, {
-                    text: '<i class="icon ion-arrow-move"></i> Move'
-                }, ],
-                destructiveText: 'Delete',
-                cancelText: 'Cancel',
-                cancel: function() {
-                    console.log('CANCELLED');
-                },
-                buttonClicked: function(index) {
-                    console.log('BUTTON CLICKED', index);
-                    return true;
-                },
-                destructiveButtonClicked: function() {
-                    console.log('DESTRUCT');
-                    return true;
-                }
-            });
-        };
         //delete the current advertisment
         $scope.deleteAdvertiesement = function(IDAdd) {
             var confirmPopup = $ionicPopup.confirm({
