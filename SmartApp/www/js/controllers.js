@@ -2057,7 +2057,7 @@ var UID=window.localStorage.getItem("id");
     })
 
     //Show the advertisement to each user that each user has posted respectively
-    .controller('AddUserListCntrl', function($scope, $http, $ionicPopover) {
+    .controller('AddUserListCntrl', function($scope, $http, $ionicPopup) {
         var CusID = window.localStorage.getItem("id");
         loaddata();
         //Show the advertisement
@@ -2083,9 +2083,28 @@ var UID=window.localStorage.getItem("id");
          })
         };
 
-        $scope.deletetheAdd = function() {
+        $scope.deletetheAdd = function(thissID) {
           //Delete the Advertisment
-          
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Remove Advertisement'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //delete the current advertisment data from the table
+                    $http.post(
+                        "http://localhost/test/deleteUserAddvertisement.php?thissID=" +
+                        thissID).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Advertiesement Removed'
+                        });
+                        window.location.reload(true);
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Advertisement remove failed'
+                    });
+                }
+            });
         } 
     })
 

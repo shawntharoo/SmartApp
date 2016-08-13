@@ -36,7 +36,7 @@
                 <div class="row responsive-sm">
                   <div class="col">
                     <font size="4" color="red"><i class="icon ion-android-cancel"></i> Rejected by the Admin </font><br>
-                    <button class="button button-assertive  button-block " id="button1" ng-click="dletetheAdd({{ item.SID }})">
+                    <button class="button button-assertive  button-block " id="button1" ng-click="deletetheAdd({{ item.SID }})">
                       Delete
                     </button>
                   </div>
@@ -56,10 +56,6 @@
                   </div>
                 </div>
               </div>
-              <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
-              </ion-delete-button>
-              <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)">
-              </ion-reorder-button>
             </ion-item>
           </ion-list>
       </ion-content>
