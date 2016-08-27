@@ -2559,12 +2559,11 @@ var UID=window.localStorage.getItem("id");
                 var alertPopup = $ionicPopup.alert({
                     title: 'Enter The title'
                 });
-            }
-            /*else if(Image == null){
-      var alertPopup = $ionicPopup.alert({
-        title: 'Upload the Banner'
-      });
-    }*/
+            }else if(Image == null){
+                var alertPopup = $ionicPopup.alert({
+                  title: 'Upload the Banner'
+                });
+              }
             else if (Description == null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'say something about the Advertiesement'
