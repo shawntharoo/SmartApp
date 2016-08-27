@@ -1586,6 +1586,7 @@ var UID=window.localStorage.getItem("id");
  //sanda controllers
 
   //User Controllers
+
     //Display Slider Controller.
     .controller('slider', function($scope, $ionicSlideBoxDelegate, $http,
         $state) {
@@ -2391,6 +2392,29 @@ var UID=window.localStorage.getItem("id");
 
 
     //Admin  
+
+    //Show full view of the Advertisement of the pending advertisements
+    .controller('pendingAddDetailCtrl', function($state, $scope, $http, $stateParams) {
+        var CusID = $stateParams.idS;
+        //Load the advertisement
+        $http.get("http://localhost/test/pendingAddDetails.php?CusID=" + CusID).success(
+            function(data) {
+                var card = [];
+                card = data;
+                $scope.SID = card[0].SID;
+                $scope.Selection = card[0].Selection;
+                $scope.title = card[0].title;
+                $scope.Image = card[0].Image;
+                $scope.Description = card[0].Description;
+                $scope.Contact = card[0].ContactNo;
+                $scope.Email = card[0].Email;
+                $scope.SDate = card[0].StartDate;
+                $scope.EDate = card[0].EndDate;
+                $scope.sendDate = card[0].sendDate;
+            });
+    })
+
+
     //Admin settings controller
     .controller('settingsACtrl', function($scope, $http, $state, $ionicPopup) {
       var CusID = window.localStorage.getItem("id");
@@ -2529,6 +2553,14 @@ var UID=window.localStorage.getItem("id");
                     }
                 });
             }
+
+            //Goto the detail view page
+            $scope.showDetails = function(SID) {
+              $state.go('AdmintabsController.pendingAddDetail', {
+                idS: SID
+              });
+            }
+
             //refresh the list by pulling
             $scope.doRefresh = function() {
               //Load the pending advertisment

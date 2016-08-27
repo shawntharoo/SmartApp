@@ -20,8 +20,7 @@
         <i class="icon ion-search placeholder-icon"></i>
         <input type="search" ng-model="search" placeholder="Search By Title">
         </label>
-        <ion-item class="item item-avatar" ng-repeat="add in advertiesement | filter:search" ng-click="gotoFullEditShow(add.IDAdd)">
-        <img src="{{add.Image}}">
+        <ion-item class="item" ng-repeat="add in advertiesement | filter:search" ng-click="showDetails(add.SID)">
         <h2>{{add.title}} </h2>
         <p>{{add.Description}}</p>
         <span>

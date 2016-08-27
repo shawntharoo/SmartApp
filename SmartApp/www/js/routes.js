@@ -56,6 +56,18 @@ angular.module('app.routes', ['ionicUIRouter'])
 
  
 //sanda admin start
+
+//the route of the page redirrect when admin clicks the pending advertisement
+                .state('AdmintabsController.pendingAddDetail', {
+      url: '/pendingAddDetail/:idS',
+      views: {
+        'tab7': {
+        templateUrl: 'templates/pendingAddDetail.html',
+        controller: 'pendingAddDetailCtrl'
+      }
+    }
+   })
+
 //Advertisement show page route
               .state('AdmintabsController.ushow', {
     url: '/ushow',
