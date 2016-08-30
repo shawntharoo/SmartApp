@@ -11,6 +11,22 @@
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="sideviewmenu.css" />
+    <script src="sideviewmenu.js"></script>
+    <script>
+      jQuery(function(){ // on DOM Load
+        sideviewmenu({ // call sideviewmenu() function
+          menuid: 'sideviewmenu',
+          onopenclose:function(state){ // state is either "open" or "closed"
+            // custom code
+          }
+        })
+      })
+
+      jQuery(function(){ // on DOM Load
+        sideviewmenu() // call sideviewmenu() function
+      })
+</script>
     <script type="text/javascript">
       function inputalert()
       {
@@ -53,6 +69,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
+                <li class="toggler" onClick="sideviewmenu.toggle()"></li>
                 <li class=" navbar_margin"><a href="index.php">Member Request</a></li>
                 <li class=" navbar_margin"><a href="postAdvertiesement.php">Post Advertisement</a></li>
                 <li class=" navbar_margin"><a href="#">Profile Settings</a></li>
@@ -64,6 +81,7 @@
       </div>
     </div>
     <br>
+    <center><font size="5px"> Currently Available Advertisements </font></center>
     <?php
       include('includes/db.php');
 
@@ -75,28 +93,28 @@
 
       while($row=mysqli_fetch_array($result)){
         ?>
-    <div class="media">
-      <div class="media-left">
-        <a href="#">
-        <img src="<?php echo $row['Image']?>" height="150px" width="250px" align="middle">
-        </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading"><?php echo $row['Title']?></h4>
-        <?php echo $row['Description']?>
+
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+    <div class="panel panel-info">
+      <div class="panel-heading"><?php echo $row['Title']?></div>
+      <div class="panel-body">
+        <img src="<?php echo $row['Image']?>" height="100px" width="300px" align="middle">
+        <a href="showAdd.php?sendId=<?= $row['IDAdd'] ?>" onclick="pop_up(this);return false;" class="btn btn-info" role="button">View</a>
+        <button class="btn btn-warning" onclick="javascript:EditPage(<?php echo $row['IDAdd']; ?>)">Edit</button>
+        <button class="btn btn-danger" onclick="javascript:DeletePage(<?php echo $row['IDAdd']; ?>)">Delete</button><br/><br/>
         <div>
-          <a href="showAdd.php?sendId=<?= $row['IDAdd'] ?>" onclick="pop_up(this);return false;" class="btn btn-info" role="button">View</a>
-          <button class="btn btn-warning" onclick="javascript:EditPage(<?php echo $row['IDAdd']; ?>)">Edit</button>
-          <button class="btn btn-danger" onclick="javascript:DeletePage(<?php echo $row['IDAdd']; ?>)">Delete</button>
-        </div>
-        <div>
-          <br/>
-        </div>
-        <div>
-          <font color='red'> Posted on : <?php echo $row['CDate']?> </font>
+          <?php echo $row['Description']?>
         </div>
       </div>
     </div>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
     <?php } ?>
     <!--Delete from Here -->
     <!--Delete To Here -->

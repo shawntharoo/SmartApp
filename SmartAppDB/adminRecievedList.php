@@ -79,7 +79,6 @@
                 <div class="thumbnail">
                   <div class="caption" style="width:900px">
                     <img src="<?php echo $row['Image']?>" width="750px" height="150px" align="middle"><br/><br/>
-                    <p>Title : <?php echo $row['title']; ?></p>
                     <p><a href="ViewAdd.php?sendId=<?= $row['SID'] ?>" onclick="pop_up(this);return false;" class="btn btn-info" role="button">View</a>
                       <button type="button" name="button" class="btn btn-success" onclick="javascript:AcceptAdd(<?php echo $row['SID']; ?>)">Accept</button>
                       <button type="button" name="button" class="btn btn-danger" onclick="javascript:RejectAdd(<?php echo $row['SID']; ?>)">Reject</button>
