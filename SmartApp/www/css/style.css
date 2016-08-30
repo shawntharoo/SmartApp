@@ -28,3 +28,10 @@ border-right: none;
 {
 background-color:white;
 }
+
+/*.pane{
+background:url('../img/roy.jpeg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+}*/

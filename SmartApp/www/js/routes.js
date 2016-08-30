@@ -578,30 +578,6 @@ angular.module('app.routes', ['ionicUIRouter'])
             }
         })
 
-//The businesscard Select page route
-  .state('tabsController2.bchoice', {
-            url: '/bchoice',
-            cache: false,
-            views: {
-                'tab3': {
-                    templateUrl: 'templates/businessCardChice.html',
-                    controller: 'bchoiceCtrl'
-                }
-            }
-        })
-
-  //The search businesscard Select page route
-  .state('tabsController2.bchoiceSearch', {
-            url: '/bchoiceSearch',
-            cache: false,
-            views: {
-                'tab3': {
-                    templateUrl: 'templates/businessCardChiceSearch.html',
-                    controller: 'bchoiceSearchCtrl'
-                }
-            }
-        })
-
 //The businesscard page route
   .state('tabsController2.buissnessCard', {
             url: '/buissnessCard',
@@ -701,6 +677,18 @@ angular.module('app.routes', ['ionicUIRouter'])
                 'tab6': {
                     templateUrl: 'templates/AddUserList.html',
                     controller: 'AddUserListCntrl'
+                }
+            }
+        })
+
+//The users favourite advertisment list page route
+  .state('tabsController2.favadd', {
+            url: '/favadd',
+            cache: false,
+            views: {
+                'tab6': {
+                    templateUrl: 'templates/favAddList.html',
+                    controller: 'favAddListCntrl'
                 }
             }
         })

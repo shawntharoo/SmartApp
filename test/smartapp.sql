@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2016 at 06:41 AM
+-- Generation Time: Aug 30, 2016 at 08:07 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -65,9 +65,9 @@ CREATE TABLE IF NOT EXISTS `disableadd` (
 --
 
 INSERT INTO `disableadd` (`ID`, `MemID`, `Status`, `Admin`) VALUES
-(8, 1, -1, 1),
+(8, 1, 1, 1),
 (9, 0, 1, 1),
-(10, 2, -1, 1),
+(10, 2, 1, 1),
 (11, 9, 1, 1),
 (12, 10, 1, 1);
 
@@ -117,6 +117,35 @@ CREATE TABLE IF NOT EXISTS `facebookprof` (
 
 INSERT INTO `facebookprof` (`id`, `Mem_Id`, `FBId`, `Name`, `Picture`, `Gender`, `Email`, `Age`, `Link`) VALUES
 (2, 1, '1210495858990318', 'Sandakelum Tharindu', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xta1/v/t1.0-1/c53.0.213.320/p320x320/13094269_1142591915780713_7377642025608053356_n.jpg?oh=d6c9480c6d89333272ac930a45c6c0b8&oe=58231714&__gda__=1477501893_82af7626a820883c4b52236833a924fb', 'male', 'undefined', '21', 'https://www.facebook.com/app_scoped_user_id/1210495858990318/');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favouriteadd`
+--
+
+CREATE TABLE IF NOT EXISTS `favouriteadd` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `AddId` int(11) NOT NULL,
+  `MemId` int(11) NOT NULL,
+  `Type` varchar(20) NOT NULL,
+  `Title` varchar(40) NOT NULL,
+  `Image` varchar(100) NOT NULL,
+  `Description` varchar(150) NOT NULL,
+  `ContactNo` int(11) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `StartDate` varchar(15) NOT NULL,
+  `EndDate` varchar(15) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `favouriteadd`
+--
+
+INSERT INTO `favouriteadd` (`ID`, `AddId`, `MemId`, `Type`, `Title`, `Image`, `Description`, `ContactNo`, `Email`, `StartDate`, `EndDate`) VALUES
+(1, 20, 1, 'Promote', 'Batch T-Shirt', 'img/mer1.jpg', 'Batch t-Shirt is available', 714536728, 'repa@gmail.com', 'Thu Aug 04 2016', 'Wed Aug 31 2016'),
+(2, 19, 1, 'Event', 'Get Together', 'img/ad3.png', 'Get Together of 94 batch', 2147483647, 'sandaru@gmail.com', 'Sun Jul 24 2016', 'Sun Jul 31 2016');
 
 -- --------------------------------------------------------
 
@@ -307,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `linkedin` (
 
 INSERT INTO `linkedin` (`LID`, `Mem_Id`, `LinkedId`, `firstName`, `lastName`, `headline`, `photo`, `numConnections`, `industry`, `emailAddress`, `summary`, `location`, `publicProfileUrl`, `specialties`, `positions`) VALUES
 (12, 0, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 244, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined', 'undefined'),
-(13, 1, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 245, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined', 'undefined');
+(13, 1, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 255, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined', 'undefined');
 
 -- --------------------------------------------------------
 
@@ -357,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `postadvertiesement` (
 --
 
 INSERT INTO `postadvertiesement` (`IDAdd`, `Type`, `Title`, `Image`, `Description`, `ContactNo`, `Email`, `StartDate`, `EndDate`, `CDate`) VALUES
-(19, 'Event', 'Get Together', 'img/ldaYK5wTq6GjoEcXZfvg_pizza.jpg', 'Get Together of 94 batch', 2147483647, 'sandaru@gmail.com', 'Sun Jul 24 2016', 'Sun Jul 31 2016', '2016-07-23 05:46:15'),
+(19, 'Event', 'Get Together', 'img/ad3.png', 'Get Together of 94 batch', 2147483647, 'sandaru@gmail.com', 'Sun Jul 24 2016', 'Sun Jul 31 2016', '2016-07-23 05:46:15'),
 (20, 'Promote', 'Batch T-Shirt', 'img/mer1.jpg', 'Batch t-Shirt is available', 714536728, 'repa@gmail.com', 'Thu Aug 04 2016', 'Wed Aug 31 2016', '2016-07-23 05:52:28');
 
 -- --------------------------------------------------------

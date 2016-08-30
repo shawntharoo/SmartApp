@@ -1639,8 +1639,61 @@ var UID=window.localStorage.getItem("id");
       };
     })
 
+    //Show the favourite advertisement to corresponding users
+    .controller('favAddListCntrl', function($scope, $http, $ionicPopup) {
+        var CusID = window.localStorage.getItem("id");
+        loaddata();
+        //Show the advertisement
+        function loaddata() {
+            //Get the advertisment from the table
+            $http.get(
+                "http://localhost/test/showFavourite.php?CusID=" +
+                CusID).success(function(data) {
+                $scope.items = data;
+            });
+        };
+        //refresh the item list by pulling
+        $scope.doRefresh = function() {
+          //Load the advertisement
+          $http.get(
+                "http://localhost/test/showFavourite.php?CusID=" +
+                CusID).success(function(data) {
+                $scope.items = data;
+          })
+         .finally(function() {
+           // Stop the ion-refresher from spinning
+           $scope.$broadcast('scroll.refreshComplete');
+         })
+        };
+
+        $scope.deleteFavourite = function(thissID) {
+          //Delete the Advertisment
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Remove Advertisement'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //delete the current advertisment data from the table
+                    $http.post(
+                        "http://localhost/test/deletefavouriteAdd.php?thissID=" +
+                        thissID+"&CusID=" +CusID).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Advertiesement Removed'
+                        });
+                        window.location.reload(true);
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Advertisement remove failed'
+                    });
+                }
+            });
+        } 
+    })
+
+
     //Controller for facebook card in the search
-    .controller('facebookProfSearchCtrl', function($scope, $http) {
+    .controller('facebookProfSearchCtrl', function($timeout, $state, $time$scope, $http, $ionicActionSheet) {
       var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
         $http.get("http://localhost/test/showfacebookProf.php?CusID=" +
@@ -1664,7 +1717,37 @@ var UID=window.localStorage.getItem("id");
               $scope.Age = card[0].Age;
               $scope.Link = card[0].Link;
           }
-        });
+        })
+
+          $scope.show = function() {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+              buttons: [
+                { text: 'LinkedIn Business Card' },
+                { text: 'Manual Business Card' }
+              ],
+              titleText: 'Select Business card',
+              cancelText: 'Cancel',
+              cancel: function() {
+                  // add cancel code..
+              },
+              buttonClicked: function(index) {
+                if (index==0) {
+                  $state.go("tabsController2.linked", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.buissnessCardsearch", {}, {reload: true});
+                }
+                console.log('BUTTON CLICKED', index);
+                 return true;
+              }
+            });
+            //hide the sheet after two seconds
+            $timeout(function() {
+              hideSheet();
+            }, 4000);
+          }
+
+
          //Redirrect to the facebook Profile
           $scope.FacebookUrl = function(Link){
             window.open(Link, "_system", "width=1200, height=800");
@@ -1672,7 +1755,7 @@ var UID=window.localStorage.getItem("id");
     })
 
     //Controller for facebook card method
-    .controller('facebookProfPageCtrl', function($scope, $http) {
+    .controller('facebookProfPageCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
       var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
         $http.get("http://localhost/test/showfacebookProf.php?CusID=" +
@@ -1696,20 +1779,45 @@ var UID=window.localStorage.getItem("id");
               $scope.Age = card[0].Age;
               $scope.Link = card[0].Link;
           }
-        });
+        })
+
+          $scope.show = function() {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+              buttons: [
+                { text: 'LinkedIn Business Card' },
+                { text: 'Manual Business Card' }
+              ],
+              titleText: 'Select Business card',
+              cancelText: 'Cancel',
+              cancel: function() {
+                  // add cancel code..
+              },
+              buttonClicked: function(index) {
+                if (index==0) {
+                  $state.go("tabsController2.linked", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.buissnessCard", {}, {reload: true});
+                }
+                console.log('BUTTON CLICKED', index);
+                 return true;
+              }
+            });
+            //hide the sheet after two seconds
+            $timeout(function() {
+              hideSheet();
+            }, 4000);
+          }
+
+
          //Redirrect to the facebook Profile
           $scope.FacebookUrl = function(Link){
             window.open(Link, "_system", "width=1200, height=800");
           }     
     })
 
-    //Controller for choicing the card method in the search
-    .controller('bchoiceSearchCtrl', function($scope, $http) {
-      
-    })
-
     //Controller for Search page of Linkedin Profile
-    .controller('linkedinPageSearchCtrl', function($scope, $http) {
+    .controller('linkedinPageSearchCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
         $http.get("http://localhost/test/showLinkedin.php?CusID=" +
@@ -1751,11 +1859,41 @@ var UID=window.localStorage.getItem("id");
                 $scope.positions = card[0].positions;
               }
           }
-        });
+        })
+
+          $scope.show = function() {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+              buttons: [
+                { text: 'Manual Business Card' },
+                { text: 'Facebook Business Card' }
+              ],
+              titleText: 'Select Business card',
+              cancelText: 'Cancel',
+              cancel: function() {
+                  // add cancel code..
+              },
+              buttonClicked: function(index) {
+                if (index==0) {
+                  $state.go("tabsController2.buissnessCardsearch", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.facebookProfSearch", {}, {reload: true});
+                }
+                console.log('BUTTON CLICKED', index);
+                 return true;
+              }
+            });
+            //hide the sheet after two seconds
+            $timeout(function() {
+              hideSheet();
+            }, 4000);
+          }
+
+
     })
 
     //Controller for Search page of businesscard
-    .controller('buissnessCardSearchCtrl', function($scope, $http) {
+    .controller('buissnessCardSearchCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
         $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
@@ -1810,17 +1948,42 @@ var UID=window.localStorage.getItem("id");
                 $scope.WorkHour = card[0].WorkHour;
               }
           }
-        });
-    })
+        })
 
-    //Controller for choicing the card method
-    .controller('bchoiceCtrl', function($scope, $http) {
-      
+          $scope.show = function() {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+              buttons: [
+                { text: 'LinkedIn Business Card' },
+                { text: 'Facebook Business Card' }
+              ],
+              titleText: 'Select Business card',
+              cancelText: 'Cancel',
+              cancel: function() {
+                  // add cancel code..
+              },
+              buttonClicked: function(index) {
+                if (index==0) {
+                  $state.go("tabsController2.linkedSearch", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.facebookProfSearch", {}, {reload: true});
+                }
+                console.log('BUTTON CLICKED', index);
+                 return true;
+              }
+            });
+            //hide the sheet after two seconds
+            $timeout(function() {
+              hideSheet();
+            }, 4000);
+          }
+
+
     })
 
 
     //Display LinkedIn profile card Controller
-    .controller('linkedinPageCtrl', function($scope, $http) {
+    .controller('linkedinPageCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
       var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
         $http.get("http://localhost/test/showLinkedin.php?CusID=" +
@@ -1863,6 +2026,35 @@ var UID=window.localStorage.getItem("id");
               }
           }
         });
+
+          $scope.show = function() {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+              buttons: [
+                { text: 'Manual Business Card' },
+                { text: 'Facebook Business Card' }
+              ],
+              titleText: 'Select Business card',
+              cancelText: 'Cancel',
+              cancel: function() {
+                  // add cancel code..
+              },
+              buttonClicked: function(index) {
+                if (index==0) {
+                  $state.go("tabsController2.buissnessCard", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.facebookProf", {}, {reload: true});
+                }
+                console.log('BUTTON CLICKED', index);
+                 return true;
+              }
+            });
+            //hide the sheet after two seconds
+            $timeout(function() {
+              hideSheet();
+            }, 4000);
+          }
+
 
             //Redirrect to the Linkedin Profile
             $scope.linkedinUrl = function(publicProfileUrl){
@@ -1967,8 +2159,9 @@ var UID=window.localStorage.getItem("id");
 
 
     //Show full view of the Advertisement on the sliders
-    .controller('slideAddCtrl', function($state, $scope, $http, $stateParams) {
+    .controller('slideAddCtrl', function($state, $scope, $http, $stateParams, $ionicPopup) {
         var CusID = $stateParams.idA;
+        var CusID1 = window.localStorage.getItem("id");
         //Load the advertisement
         $http.get("http://localhost/test/addFullShow.php?CusID=" + CusID).success(
             function(data) {
@@ -1984,7 +2177,65 @@ var UID=window.localStorage.getItem("id");
                 $scope.SDate = card[0].StartDate;
                 $scope.EDate = card[0].EndDate;
                 $scope.CurrentDate = card[0].CDate;
+        });
+
+        //Set the advretisement status
+        $http.get("http://localhost/test/checkFavouriteadd.php?CusID="+CusID1+"&Addid="+CusID).success(
+            function(data) {
+                var fav = [];
+                fav = data;
+                if (fav[0] == 1) {
+                  $scope.check = 1;
+                }else{
+                  $scope.check = 0;
+                }
+        });
+
+        $scope.favourite=function(){
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Add to favourite'
             });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //Add to favourite
+                    $http.post(
+                        "http://localhost/test/FavouriteAdd.php?CusID=" +
+                        CusID1+"&Addid="+CusID).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Added to favourite'
+                        });
+                        window.location.reload(true);
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Retry Adding'
+                    });
+                }
+            });
+        }
+
+        $scope.favouriteRemove=function(){
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Remove from favourite'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //Add to favourite
+                    $http.post(
+                        "http://localhost/test/FavouriteAddRemove.php?CusID=" +
+                        CusID1+"&Addid="+CusID).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Removed from favourite'
+                        });
+                        window.location.reload(true);
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Retry Removing'
+                    });
+                }
+            });
+        }
     })
 
 
@@ -2058,7 +2309,7 @@ var UID=window.localStorage.getItem("id");
     })
 
     //Show the advertisement to each user that each user has posted respectively
-    .controller('AddUserListCntrl', function($scope, $http, $ionicPopup) {
+    .controller('AddUserListCntrl', function($scope, $http, $ionicPopup, $ionicSideMenuDelegate) {
         var CusID = window.localStorage.getItem("id");
         loaddata();
         //Show the advertisement
@@ -2106,11 +2357,15 @@ var UID=window.localStorage.getItem("id");
                     });
                 }
             });
-        } 
+        }
+
+        $scope.toggleLeftSideMenu = function() {
+          $ionicSideMenuDelegate.toggleLeft();
+        }
     })
 
     //Show Business card Details Controller
-    .controller('buissnessCardCtrl', function($scope, $http, $state) {
+    .controller('buissnessCardCtrl', function($scope, $http, $state, $ionicActionSheet, $timeout) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
         $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
@@ -2165,6 +2420,35 @@ var UID=window.localStorage.getItem("id");
                 $scope.WorkHour = card[0].WorkHour;
               }
           }
+
+          $scope.show = function() {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+              buttons: [
+                { text: 'LinkedIn Business Card' },
+                { text: 'Facebook Business Card' }
+              ],
+              titleText: 'Select Business card',
+              cancelText: 'Cancel',
+              cancel: function() {
+                  // add cancel code..
+              },
+              buttonClicked: function(index) {
+                if (index==0) {
+                  $state.go("tabsController2.linked", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.facebookProf", {}, {reload: true});
+                }
+                console.log('BUTTON CLICKED', index);
+                 return true;
+              }
+            });
+            //hide the sheet after two seconds
+            $timeout(function() {
+              hideSheet();
+            }, 4000);
+          }
+
         });
 
         $scope.print = function() {
