@@ -3035,6 +3035,63 @@ var UID=window.localStorage.getItem("id");
         function ufullEditShowCtrl($scope, Advertisement) {
             $scope.cAdd = Advertisement.cAdd;
         }
+
+                //Set the advretisement status
+        $http.get("http://localhost/test/checkSpecialadd.php?Addid="+CusID).success(
+            function(data) {
+                var fav = [];
+                fav = data;
+                console.log(fav);
+                if (fav[0] == 1) {
+                  $scope.special = 1;
+                }else{
+                  $scope.special = 0;
+                }
+        });
+
+        $scope.Special=function(IDAdd){
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Add to special'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //Add to favourite
+                    $http.post(
+                        "http://localhost/test/SpecialAdd.php?Addid="+IDAdd).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Added to special'
+                        });
+                        window.location.reload(true);
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Retry Adding'
+                    });
+                }
+            });
+        }
+
+        $scope.SpecialRemove=function(IDAdd){
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Remove Speciality'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //Add to favourite
+                    $http.post(
+                        "http://localhost/test/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Marked as Normal'
+                        });
+                        window.location.reload(true);
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Retry Adding'
+                    });
+                }
+            });
+        }
     })
 
 
