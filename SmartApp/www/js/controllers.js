@@ -1600,31 +1600,47 @@ var UID=window.localStorage.getItem("id");
           if(role=="member" || role=="rep"){
             if($scope.addStatus == 1 && $scope.adminStatus == 1){
               $scope.slide = 1;
+              $scope.slideSpecial = -1;
             }else if($scope.addStatus == -1 && $scope.adminStatus == 1){
+              $scope.slideSpecial = -1;
               $scope.slide = -1;
             }else if($scope.addStatus == 1 && $scope.adminStatus == -1){
               $scope.slide = 1;
+              $scope.slideSpecial = -1;
             }else if($scope.addStatus == -1 && $scope.adminStatus == -1){
-              $scope.slide = 1;
+              $scope.slide = -1;
+              $scope.slideSpecial = 1;
             }
           }else if(role=="admin"){
             if($scope.addStatus == 1 && $scope.adminStatus == 1){
               $scope.slide = 1;
+              $scope.slideSpecial = -1;
             }else if($scope.addStatus == -1 && $scope.adminStatus == 1){
               $scope.slide = -1;
+              $scope.slideSpecial = -1;
             }else if($scope.addStatus == 1 && $scope.adminStatus == -1){
               $scope.slide = 1;
+              $scope.slideSpecial = -1;
             }else if($scope.addStatus == -1 && $scope.adminStatus == -1){
               $scope.slide = -1;
+              $scope.slideSpecial = -1;
             }
           }
         });
+        /*Enter this inside the above if statements*/
         //Show all the banners in the slider
         $http.get("http://localhost/test/showBanner.php").success(function(
             data) {
             $scope.Banner = data;
             $ionicSlideBoxDelegate.update();
         });
+
+        $http.get("http://localhost/test/showBannerSpecila.php").success(function(
+            data) {
+            $scope.BannerSpecial = data;
+            $ionicSlideBoxDelegate.update();
+        });
+
         $scope.gotoSlideAdd = function(IDAdd) {
           if(role=="admin"){
             $state.go('AdmintabsController.slideAdd', {

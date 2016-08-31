@@ -95,10 +95,10 @@
         ?>
 
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-1">
 
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
     <div class="panel panel-info">
       <div class="panel-heading"><?php echo $row['Title']?></div>
       <div class="panel-body">
@@ -112,8 +112,10 @@
       </div>
     </div>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-5">
+
   </div>
+
 </div>
     <?php } ?>
     <!--Delete from Here -->
