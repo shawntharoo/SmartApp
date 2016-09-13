@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-10">
           <br/>
-          <h3>All Pending Advertisements </h3>
+          <h3>All Special Advertisements </h3>
           <br/>
 
           <?php

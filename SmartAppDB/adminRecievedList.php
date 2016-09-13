@@ -59,11 +59,9 @@
             <div class="toggler" onClick="sideviewmenu.toggle()"></div>
           </ul>
         </div>
-        <div class="col-md-10">
-          <br/>
-          <h3>All Pending Advertisements </h3>
-          <br/>
-          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:750px; height:200px">
+        <div class="col-md-10"><br><br>
+        <center>
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:550px; height:230px">
           <!-- Indicators -->
           <ol class="carousel-indicators">
           <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -73,7 +71,7 @@
           </ol>
 
           <!-- Wrapper for slides -->
-          <div class="carousel-inner" role="listbox" style="width:750px; height:200px">
+          <div class="carousel-inner" role="listbox" style="width:550px; height:230px">
           <div class="item active">
             <img src="img/advertise.jpg" height="200px" width="750px" alt="...">
             <div class="carousel-caption">
@@ -112,6 +110,10 @@
           <span class="sr-only">Next</span>
           </a>
         </div><br/><br/>
+      </center>
+        <br/>
+        <h3>All Pending Advertisements </h3>
+        <br/>
 
           <?php
             include('includes/db.php');
