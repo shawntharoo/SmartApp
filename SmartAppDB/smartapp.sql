@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2016 at 08:07 AM
+-- Generation Time: Sep 13, 2016 at 01:24 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -65,11 +65,11 @@ CREATE TABLE IF NOT EXISTS `disableadd` (
 --
 
 INSERT INTO `disableadd` (`ID`, `MemID`, `Status`, `Admin`) VALUES
-(8, 1, 1, 1),
-(9, 0, 1, 1),
-(10, 2, 1, 1),
-(11, 9, 1, 1),
-(12, 10, 1, 1);
+(8, 1, -1, -1),
+(9, 0, 1, -1),
+(10, 2, 1, -1),
+(11, 9, 1, -1),
+(12, 10, 1, -1);
 
 -- --------------------------------------------------------
 
@@ -336,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `linkedin` (
 
 INSERT INTO `linkedin` (`LID`, `Mem_Id`, `LinkedId`, `firstName`, `lastName`, `headline`, `photo`, `numConnections`, `industry`, `emailAddress`, `summary`, `location`, `publicProfileUrl`, `specialties`, `positions`) VALUES
 (12, 0, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 244, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined', 'undefined'),
-(13, 1, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 255, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined', 'undefined');
+(13, 1, 'jE1xcBd4GA', 'Sandakelum', 'Tharindu', 'Software Engineer', 'https://media.licdn.com/mpr/mprx/0_tmY0ctNwrqNTmzgtO0HlxQvwNPThmkji4mQ0-Q3wKBoTIqK74mHAMQvwchHTIzjmNEQAM89Iprw3DhctRjUi0QcFMrw8DhqaZjUpqbGotAY2F9ftquDtN12RJ5lKkh_0AY01PvetT4E', 336, 'Computer Software', 'mr.stadikaram@gmail.com', 'Looking for a Training or a Internship related to Software Development and other Software related fi', 'Sri Lanka', 'https://www.linkedin.com/in/sandakelum-tharindu-499a96113', 'undefined', 'undefined');
 
 -- --------------------------------------------------------
 
@@ -378,6 +378,7 @@ CREATE TABLE IF NOT EXISTS `postadvertiesement` (
   `StartDate` varchar(15) NOT NULL,
   `EndDate` varchar(15) NOT NULL,
   `CDate` varchar(40) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`IDAdd`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
@@ -385,9 +386,9 @@ CREATE TABLE IF NOT EXISTS `postadvertiesement` (
 -- Dumping data for table `postadvertiesement`
 --
 
-INSERT INTO `postadvertiesement` (`IDAdd`, `Type`, `Title`, `Image`, `Description`, `ContactNo`, `Email`, `StartDate`, `EndDate`, `CDate`) VALUES
-(19, 'Event', 'Get Together', 'img/ad3.png', 'Get Together of 94 batch', 2147483647, 'sandaru@gmail.com', 'Sun Jul 24 2016', 'Sun Jul 31 2016', '2016-07-23 05:46:15'),
-(20, 'Promote', 'Batch T-Shirt', 'img/mer1.jpg', 'Batch t-Shirt is available', 714536728, 'repa@gmail.com', 'Thu Aug 04 2016', 'Wed Aug 31 2016', '2016-07-23 05:52:28');
+INSERT INTO `postadvertiesement` (`IDAdd`, `Type`, `Title`, `Image`, `Description`, `ContactNo`, `Email`, `StartDate`, `EndDate`, `CDate`, `status`) VALUES
+(19, 'Event', 'Get Together', 'img/ad3.png', 'Get Together of 94 batch', 2147483647, 'sandaru@gmail.com', 'Sun Jul 24 2016', 'Sun Jul 31 2016', '2016-07-23 05:46:15', 0),
+(20, 'Promote', 'Batch T-Shirt', 'img/mer1.jpg', 'Batch t-Shirt is available', 714536728, 'repa@gmail.com', 'Thu Aug 04 2016', 'Wed Aug 31 2016', '2016-07-23 05:52:28', 1);
 
 -- --------------------------------------------------------
 
@@ -420,7 +421,7 @@ INSERT INTO `usendadvertiesement` (`SID`, `MemberId`, `title`, `Selection`, `Ima
 (10, 1, 'Exhibition', 'Merchent', 'img/meet1.jpg', 'Exhibition for fund raising', 1123456789, 'kumar@gmail.com', 'Fri Jul 29 2016 00:00:00 GMT 0', 'Fri Aug 05 2016 00:00:00 GMT 0', '2016-07-23 05:56:10', -1),
 (12, 1, 'hy', 'Event', 'img/', 'frg', 3454, 'fgf@hnm', 'Thu Jul 28 2016 00:00:00 GMT 0', 'Thu Jul 14 2016 00:00:00 GMT 0', '2016-07-24 12:35:08', -1),
 (13, 1, 'Padura', 'Event', 'img/', 'Padura with 94 group', 768945632, 'haresh@gmail.com', 'Tue Jul 19 2016 00:00:00 GMT 0', 'Wed Aug 03 2016 00:00:00 GMT 0', '2016-07-24 19:41:11', -1),
-(14, 9, 'Hy', 'Merchent', 'img/', 'sfds', 0, 'sas@dd', 'Tue Jul 19 2016 00:00:00 GMT 0', 'Thu Jul 28 2016 00:00:00 GMT 0', '2016-07-24 20:05:49', 0);
+(14, 9, 'Hy', 'Merchent', 'img/ad2.png', 'sfds', 0, 'sas@dd', 'Tue Jul 19 2016 00:00:00 GMT 0', 'Thu Jul 28 2016 00:00:00 GMT 0', '2016-07-24 20:05:49', 0);
 
 -- --------------------------------------------------------
 

@@ -1,0 +1,73 @@
+<html>
+  <ion-view title="Special Add" id="addspecial" style="background-color:#cce6ff;">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <title>Advertisement List</title>
+      <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+      <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+    </head>
+      <ion-nav-buttons side="right" ng-show="true">
+      <button class="button button-icon button-clear ion-android-notifications" ui-sref="tabsController2.notify">
+      </button>
+      </ion-nav-buttons>
+    <body>
+      <ion-content>
+      <!--Refresh when pull Down -->
+        <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="doRefresh()">
+        </ion-refresher>
+          <ion-list>
+            <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" ng-model="search" placeholder="Search By Title">
+            </label>
+          </ion-list><br>
+            <!--Show all the advertisement in the list view -->
+              <div class="card" ng-repeat="item in items | filter:search">
+                <div class="item item-text-wrap">
+                  <div class="item-thumbnail">
+                    <img src="{{item.Image}}" style="width: 300px; height: 90px">
+                  </div>
+                  {{ item.Title }} <br/>
+                  {{ item.Description }} <br/>
+                </div>
+                <button class="button button-assertive  button-block " id="button1" ng-click="RemoveSpecial({{ item.IDAdd }})">
+                          Remove
+                </button>
+              </div>
+      </ion-content>
+    </body>  
+  <!--Slider with the Advertisement-->
+  <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;">
+      <ion-slide-box does-continue="true" auto-play="true" ng-if="slide == 1">
+       <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">
+      <div class="box">
+      <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
+      </div>
+      </ion-slide>
+      <ion-slide>
+      <div class="box">
+      <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
+      </div>
+      </ion-slide>
+      </ion-slide-box>
+  </div>
+
+    <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;">
+      <ion-slide-box does-continue="true" auto-play="true" ng-if="slideSpecial == 1">
+       <ion-slide ng-repeat="bansp in BannerSpecial" ng-click="gotoSlideAdd(bansp.IDAdd)">
+      <div class="box">
+      <img src="{{bansp.Image}}" width="382px" height="70px" style="padding:0; margin:0">
+      </div>
+      </ion-slide>
+      <ion-slide>
+      <div class="box">
+      <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
+      </div>
+      </ion-slide>
+      </ion-slide-box>
+  </div>
+  </ion-view>
+</html>

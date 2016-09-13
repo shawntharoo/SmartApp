@@ -4,5 +4,6 @@
 <li><a href="postAdvertiesement.php">Post Add</a></li>
 <li><a href="showAdvertiesement.php">Show Add</a></li>
 <li><a href="adminRecievedList.php">Pending Add</a></li>
+<li><a href="specialAddList.php">Special Add</a></li>
 </ul>
 </div>

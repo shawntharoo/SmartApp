@@ -98,21 +98,31 @@
     <div class="col-md-1">
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-7">
     <div class="panel panel-info">
       <div class="panel-heading"><?php echo $row['Title']?></div>
       <div class="panel-body">
         <img src="<?php echo $row['Image']?>" height="100px" width="300px" align="middle">
         <a href="showAdd.php?sendId=<?= $row['IDAdd'] ?>" onclick="pop_up(this);return false;" class="btn btn-info" role="button">View</a>
         <button class="btn btn-warning" onclick="javascript:EditPage(<?php echo $row['IDAdd']; ?>)">Edit</button>
-        <button class="btn btn-danger" onclick="javascript:DeletePage(<?php echo $row['IDAdd']; ?>)">Delete</button><br/><br/>
+        <button class="btn btn-danger" onclick="javascript:DeletePage(<?php echo $row['IDAdd']; ?>)">Delete</button>
+
+        <?php
+        if($row['status'] == 1) {?>
+        	  <button class="btn btn-success" onclick="javascript:markNormal(<?php echo $row['IDAdd']; ?>)">Mark as Normal</button><br/><br/>
+      <?php }
+        else{?>
+            <button class="btn btn-success" onclick="javascript:markSpecial(<?php echo $row['IDAdd']; ?>)">Mark as Special</button><br/><br/>
+        <?php
+        }
+        ?>
         <div>
           <?php echo $row['Description']?>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-5">
+  <div class="col-md-4">
 
   </div>
 
@@ -131,6 +141,22 @@
          if(confirm('Are you sure you want To Remove This Badge?'))
           {
             window.location.href='deleteAdvertiesement.php?delete_id='+id;
+          }
+      }
+
+      function markSpecial(id)
+      {
+         if(confirm('Are you sure you want To Mark This special?'))
+          {
+            window.location.href='MarkSpecial.php?Addid='+id;
+          }
+      }
+
+      function markNormal(id)
+      {
+         if(confirm('Are you sure you want To remove from special?'))
+          {
+            window.location.href='MarkNormal.php?Addid='+id;
           }
       }
     </script>

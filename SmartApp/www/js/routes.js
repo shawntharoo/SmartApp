@@ -68,6 +68,19 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
    })
 
+//The users advertisment list page route
+             .state('AdmintabsController.addspecial', {
+      url: '/addspecial',
+      cache: false,
+      views: {
+          'tab7': {
+              templateUrl: 'templates/AdminSpecialList.html',
+              controller: 'AdminSpecialListCtrl'
+             }
+      }
+  })
+
+
 //Advertisement show page route
               .state('AdmintabsController.ushow', {
     url: '/ushow',

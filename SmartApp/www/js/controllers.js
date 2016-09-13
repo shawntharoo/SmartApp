@@ -2195,6 +2195,14 @@ var UID=window.localStorage.getItem("id");
                 $scope.CurrentDate = card[0].CDate;
         });
 
+          //Check the logged user
+          var role = window.localStorage.getItem("role");
+          if(role=="admin"){
+            $scope.mem = 0;
+          }else if(role=="member" || role=="rep"){
+            $scope.mem = 1;
+          }
+
         //Set the advretisement status
         $http.get("http://localhost/test/checkFavouriteadd.php?CusID="+CusID1+"&Addid="+CusID).success(
             function(data) {
@@ -2693,6 +2701,56 @@ var UID=window.localStorage.getItem("id");
 
     //Admin  
 
+  //Show the advertisement to each user that each user has posted respectively
+    .controller('AdminSpecialListCtrl', function($scope, $http, $ionicPopup, $ionicSideMenuDelegate) {
+        var CusID = window.localStorage.getItem("id");
+        loaddata();
+        //Show the advertisement
+        function loaddata() {
+            //Get the advertisment from the table
+            $http.get(
+                "http://localhost/test/adminSpecialList.php").success(function(data) {
+                $scope.items = data;
+            });
+        };
+        //refresh the item list by pulling
+        $scope.doRefresh = function() {
+          //Load the advertisement
+          $http.get(
+                "http://localhost/test/adminSpecialList.php").success(function(data) {
+                $scope.items = data;
+          })
+         .finally(function() {
+           // Stop the ion-refresher from spinning
+           $scope.$broadcast('scroll.refreshComplete');
+         })
+        };
+
+        $scope.RemoveSpecial=function(IDAdd){
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Remove Speciality'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //Add to favourite
+                    $http.post(
+                        "http://localhost/test/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Marked as Normal'
+                        });
+                        window.location.reload(true);    
+                        $state.transitionTo("AdmintabsController.ushow");
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Retry Adding'
+                    });
+                }
+            });
+        }
+    })
+
+
     //Show full view of the Advertisement of the pending advertisements
     .controller('pendingAddDetailCtrl', function($state, $scope, $http, $stateParams) {
         var CusID = $stateParams.idS;
@@ -2790,6 +2848,11 @@ var UID=window.localStorage.getItem("id");
                 });
           });
         }
+      }
+
+      //Redirrect to google drive openning page
+      $scope.openGoogleDrive = function(){
+        window.open("http://localhost/test/GoogleDrive.php", "_system", "width=400, height=350");
       }
     })
 
