@@ -3,7 +3,6 @@ include('includes/db.php');
 
 //Asighn Data to the Variables
 $admin = $_GET['addStatus1'];
-echo "string"+$admin;
 
 //Update businesscard table in the Smartapp database
 $query = "UPDATE disableadd set Admin='" . $admin . "' ";
