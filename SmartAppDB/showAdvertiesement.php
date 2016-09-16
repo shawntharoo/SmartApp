@@ -81,6 +81,28 @@
       </div>
     </div>
     <br>
+      <center><font size="4px"> When the lock is enabled members will not be able to disable special advertisements. </font></center><br/>
+    <?php
+      include('includes/db.php');
+      if(mysqli_connect_errno()){
+      echo "failed to connect to MySQL.".mysqli_connect_error();
+      }
+      $query = "select Admin from disableadd";
+      $result=mysqli_query($mysqli,$query);
+      while($row=mysqli_fetch_array($result)){
+        $check = $row['Admin'];
+        if ($check == -1) { ?>
+          <p align="center">
+            <font size="3px">Lock is enabled, Disable the Lock</font>
+            <button class="btn btn-success" onclick="javascript:LockAdd("1")"> Disable Lock</button></p><br/><br/>
+            <?php }else {?>
+              <p align="center">
+              <font size="3px"> Lock is disabled, Enable the Lock</font>
+              <button class="btn btn-success" onclick="javascript:LockAdd("-1")"> Enable Lock</button></p><br/><br/>
+              <?php }
+        break;
+      }?>
+
     <center><font size="5px"> Currently Available Advertisements </font></center>
     <?php
       include('includes/db.php');
@@ -157,6 +179,14 @@
          if(confirm('Are you sure you want To remove from special?'))
           {
             window.location.href='MarkNormal.php?Addid='+id;
+          }
+      }
+
+      function LockAdd(id)
+      {
+         if(confirm('Are you sure you want To apply the changes?'))
+          {
+            window.location.href='LockAdvertisement.php?addStatus1='+id;
           }
       }
     </script>
