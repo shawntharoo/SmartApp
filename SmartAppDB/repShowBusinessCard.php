@@ -94,7 +94,7 @@ echo "failed to connect to MySQL.".mysqli_connect_error();
 $query = "select * from user where request='1' ";
 $result=mysqli_query($con,$query);
 ?>
-<tr class="info">
+
 <div class="row">
 <?php while($row=mysqli_fetch_array($result)){ ?>
   <div class="col-xs-6 col-md-3">
@@ -102,9 +102,9 @@ $result=mysqli_query($con,$query);
       <div class="caption">
         <h3><?php echo $row['name']; ?></h3>
 		    <p>Email         : <?php echo $row['email']; ?></p>
-        <p><a href="approve.php?sendId=<?= $row['id'] ?>" onclick="pop_up(this);return false;" class="btn btn-info" role="button">Customized BusinessCard</a><br/>
-        <button type="button" name="button" class="btn btn-success" onclick="javascript:ApproveUser(<?php echo $row['id']; ?>)">LinkedIn Business Card</button><br/>
-        <button type="button" name="button" class="btn btn-success" onclick="javascript:delete_id(<?php echo $row['id']; ?>)">Facebook Business Card</button></p>
+        <p><a href="approve.php?sendId=<?= $row['id'] ?>" onclick="pop_up(this);return false;" class="btn btn-primary" role="button">Customized BusinessCard</a><br/>
+        <button type="button" name="button" class="btn btn-info" onclick="javascript:ApproveUser(<?php echo $row['id']; ?>)">LinkedIn Business Card</button><br/>
+        <button type="button" name="button" class="btn btn-info" onclick="javascript:delete_id(<?php echo $row['id']; ?>)">Facebook Business Card</button></p>
       </div>
     </div>
   </div>
