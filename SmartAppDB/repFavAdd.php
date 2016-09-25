@@ -27,17 +27,6 @@
         sideviewmenu() // call sideviewmenu() function
       })
 </script>
-    <script type="text/javascript">
-      function inputalert()
-      {
-      alert("Succesfully Exported the Data ");
-      }
-    </script>
-    <script>
-      function pop_up(url){
-      window.open(url,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=500,directories=no,location=no')
-      }
-    </script>
   </head>
   <body background="img/body.jpg">
     <div class="container-fluid" id="maincontainer">
@@ -70,10 +59,8 @@
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
                 <li class="toggler" onClick="sideviewmenu.toggle()"></li>
-                <li class=" navbar_margin"><a href="index.php">Member Request</a></li>
-                <li class=" navbar_margin"><a href="postAdvertiesement.php">Post Advertisement</a></li>
-                <li class=" navbar_margin"><a href="#">Profile Settings</a></li>
-                <li class=" navbar_margin"><a href="committee.php">Committee Members</a></li>
+                <li class=" navbar_margin"><a href="repSendAdd.php">Send Advertisement</a></li>
+                <li class=" navbar_margin"><a href="repShowBusinessCard.php">View Businesscards</a></li>
               </ul>
             </div>
           </div>
