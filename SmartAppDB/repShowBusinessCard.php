@@ -101,8 +101,8 @@ $result=mysqli_query($con,$query);
         <h3><?php echo $row['name']; ?></h3>
 		    <p>Email         : <?php echo $row['email']; ?></p>
         <p><a href="approve.php?sendId=<?= $row['id'] ?>" onclick="pop_up(this);return false;" class="btn btn-info" role="button">Customized BusinessCard</a><br/>
-        <button type="button" name="button" class="btn btn-primary" onclick="javascript:ApproveUser(<?php echo $row['id']; ?>)">LinkedIn Business Card</button><br/>
-        <button type="button" name="button" class="btn btn-primary" onclick="javascript:delete_id(<?php echo $row['id']; ?>)">Facebook Business Card</button></p>
+        <p><a href="approveL.php?sendId=<?= $row['id'] ?>" onclick="pop_up(this);return false;" class="btn btn-primary" role="button">LinkedIn Business Card</a><br/>
+        <p><a href="approveF.php?sendId=<?= $row['id'] ?>" onclick="pop_up(this);return false;" class="btn btn-primary" role="button">Facebook Business Card</a><br/>
       </div>
     </div>
   </div>
