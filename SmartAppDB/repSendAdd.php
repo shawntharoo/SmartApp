@@ -83,14 +83,30 @@
       </div>
     </div>
     <div class="container">
+      <div class="col-md-9">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li class="toggler" onClick="sideviewmenu.toggle()"></li>
+                <li class=" navbar_margin"><a href="repShowBusinessCard.php">View Businesscards</a></li>
+                <li class=" navbar_margin"><a href="repFavAdd.php">View FavoriteAdd</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container">
       <div class="row">
         <div class="col-md-1">
-          <br/><br>
-          <ul class="nav nav-pills nav-stacked">
-            <h3>Menu </h3>
-            <br/>
-            <div class="toggler" onClick="sideviewmenu.toggle()"></div>
-          </ul>
         </div>
         <div class="col-md-5">
           <div>
