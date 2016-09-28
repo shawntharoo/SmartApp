@@ -2,9 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-
-<link rel="stylesheet" href="css/ideacss.css" />
   <link rel="stylesheet" href="css/bootstrap.min.css"></link>
 <!--Closes the new window-->
 <script>
@@ -19,7 +16,7 @@ window.close();
 </script>
 
 
-<title>View Customized Business Card</title>
+<title>View Facebook Business Card</title>
 </head>
 
 <body>

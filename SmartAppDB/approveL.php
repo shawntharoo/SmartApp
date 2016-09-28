@@ -3,8 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-
-<link rel="stylesheet" href="css/ideacss.css" />
   <link rel="stylesheet" href="css/bootstrap.min.css"></link>
 <!--Closes the new window-->
 <script>
@@ -19,7 +17,7 @@ window.close();
 </script>
 
 
-<title>View Customized Business Card</title>
+<title>View LinkedIn Business Card</title>
 </head>
 
 <body>

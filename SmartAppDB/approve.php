@@ -2,9 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-
-<link rel="stylesheet" href="css/ideacss.css" />
   <link rel="stylesheet" href="css/bootstrap.min.css"></link>
 <!--Closes the new window-->
 <script>
@@ -34,7 +31,7 @@ $sendID = $_GET['sendId'];
 echo "<script> window.postid = ".$sendID." </script>";
 $result=mysqli_query($mysqli,"Select * from buissnescard where ID='".$sendID."' ");
 if (!$result) {?>
-The user has no business card to display
+  The user has no business card to display
 <?php } else{
 while($row=mysqli_fetch_array($result)){?>
 <div class="panel-body">

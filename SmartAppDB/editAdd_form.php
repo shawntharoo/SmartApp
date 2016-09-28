@@ -27,6 +27,6 @@ $sql = "UPDATE postadvertiesement set Type='" . $type . "',Title='" . $title . "
 
 mysqli_query($mysqli, $sql);
 
-//header('Location: showAdvertiesement.php');
+header('Location: showAdvertiesement.php');
 mysqli_close($mysqli);
 ?>
