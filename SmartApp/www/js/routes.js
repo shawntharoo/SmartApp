@@ -9,7 +9,7 @@ angular.module('app.routes', ['ionicUIRouter'])
   $stateProvider
     
 .state('tabsController.mainprofile', {
-    url: '/mainprofile/:name',
+    url: '/mainprofile/:name:type',
     views: {
       'tab1': {
         templateUrl: 'templates/mainprofile.html',
@@ -18,7 +18,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   }) 
 .state('AdmintabsController.mainprofile', {
-    url: '/adminmainprofile/:name',
+    url: '/adminmainprofile/:name:type',
     views: {
       'tab1': {
         templateUrl: 'templates/mainprofile.html',
@@ -54,7 +54,15 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
- 
+
+
+
+
+
+
+
+
+
 //sanda admin start
 
 //the route of the page redirrect when admin clicks the pending advertisement
@@ -177,18 +185,7 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -229,14 +226,15 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
           .state('tabsController.grouppost', {
-    url: '/grouppost',
-    views: {
-      'tab7': {
+     url: '/grouppost',
+     views: {
+        'tab7': {
         templateUrl: 'templates/groupPost.html',
         controller: 'groupPostCtrl'
       }
     }
-  })  //mahesh
+  })  
+  //mahesh
 
             .state('tabsController.favouriteContacts', {
     url: '/favourite',
@@ -266,6 +264,16 @@ angular.module('app.routes', ['ionicUIRouter'])
       /page1/tab1/page3
       /page1/tab2/page3
   */
+  .state('start', {
+    url: '/startPage',
+    templateUrl: 'templates/start.html',
+    controller: 'start'
+  })
+   .state('welcome', {
+    url: '/page4',
+    templateUrl: 'templates/welcome.html',
+    controller: 'welcomeCtrl'
+  })
   .state('login', {
     url: '/page4',
     templateUrl: 'templates/login.html',
@@ -363,11 +371,15 @@ angular.module('app.routes', ['ionicUIRouter'])
     templateUrl: 'templates/family.html',
     controller: 'familyCtrl'
   })
+                     .state('uploadphoto', {
+    url: '/uploadphoto',
+    templateUrl: 'templates/uploadphoto.html',
+    controller: 'uploadCtrl'
+  })
   //yik routes
 
 .state('eventPage', {
     url: '/eventPage',
-    
     templateUrl: 'templates/eventPage.html',
     controller: 'eventPageCtrl'
   })
@@ -385,9 +397,15 @@ angular.module('app.routes', ['ionicUIRouter'])
   })
 
    .state('eventDesc', {
-    url: '/description',
+    url: '/description/:id',
     templateUrl: 'templates/eventDesc.html',
     controller: 'eventdesc'
+  })
+
+   .state('participants', {
+    url: '/participants/:id',
+    templateUrl: 'templates/participants.html',
+    controller: 'participants'
   })
 
    .state('eventGoing', {
@@ -418,10 +436,8 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'eventsubgroup'
   })
 
-  
-
    .state('adminEventDesc', {
-    url: '/admindescription',
+    url: '/admindescription/:id',
     templateUrl: 'templates/adminEventDesc.html',
     controller: 'admineventdesc'
   })
@@ -452,7 +468,7 @@ angular.module('app.routes', ['ionicUIRouter'])
 
     .state('calendar', {
     url: '/calendar',
-    templateUrl: 'templates/calendar.html',
+    templateUrl: 'templates/googlecalendar.html',
     controller: 'calendar'
   })
    
@@ -464,7 +480,7 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-   //panchali routes
+  //panchali routes
 
     .state('group', {
     url: '/page-group',
@@ -472,11 +488,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'groupCtrl'
   })
 
-    .state('groupSearchDemo', {
-    url: '/page-group-groupSearchDemo',
-    templateUrl: 'templates/groupSearchDemo.html',
-    controller: 'groupSearchDemoCtrl'
-  })
+ 
   .state('adminGroup', {
     url: '/page-group-admin',
     templateUrl: 'templates/adminGroup.html',
@@ -491,22 +503,9 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'followCricketCtrl'
   })
 
-  .state('football', {
-    url: '/page-football-mainpage',
-    templateUrl: 'templates/football.html',
-    controller: 'footballCtrl'
-  })
-  .state('selectedPost', {
-    url: '/page-group-post-one',
-    templateUrl: 'templates/selectedPost.html',
-    controller: 'selectedPostCtrl'
-  })
 
-   .state('selectedPostDemo', {
-    url: '/page-selectedPostDemo',
-    templateUrl: 'templates/selectedPostDemo.html',
-    controller: 'selectedPostDemoCtrl'
-  })
+
+  
 
   .state('cricketPost', {
     url: '/page-group-post',
@@ -514,11 +513,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'cricketPostCtrl'
   })
 
-  .state('addAPost', {
-    url: '/page-add-grouppost',
-    templateUrl: 'templates/addAPost.html',
-    controller: 'addAPostCtrl'
-  })
+
 
   .state('adminCreateAGroup', {
     url: '/page-create-group',
@@ -526,17 +521,9 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'adminCreateAGroupCtrl'
   })
 
-  .state('followAGroup', {
-    url: '/page-follow-group12 members',
-    templateUrl: 'templates/followAGroup.html',
-    controller: 'followAGroupCtrl'
-  })
 
-  .state('settings', {
-    url: '/page-group-setting',
-    templateUrl: 'templates/settings.html',
-    controller: 'settingsCtrl'
-  })
+
+
 
   .state('inviteFriends', {
     url: '/page-invite-group',
@@ -571,6 +558,19 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+  //sandaa 2
 
 //Tabscontroller of the business profile
   .state('tabsController2', {
@@ -786,7 +786,24 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-// mahesh
+
+
+  //mahesh
+    .state('result', {
+      url: '/result',
+      templateUrl: 'templates/results.html',
+      controller: 'resultCtrl'
+    })
+  
+   .state('group_result', {
+      url: '/groupresult',
+      templateUrl: 'templates/groupresults.html',
+      controller: 'groupresultCtrl'
+    })
+   //mahesh end
+  
+  
+// mahesh2
          .state('viewfavourite', {
       url: '/viewfavourite',
       templateUrl: 'templates/ViewFavouriteContacts.html',

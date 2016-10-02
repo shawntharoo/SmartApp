@@ -56,8 +56,8 @@
                           <p>{{names[$index].date}}</p>
                         </div>
                       </ion-list>
-                      <a style="display:block;" ui-sref="selectedGroupPost">
-                              <img src="http://localhost/test/{{names[$index].image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                      <a id="cricketPost-button2" style="display:block;" ng-click="description({{names[$index].pid}})">
+                              <img src="{{names[$index].image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
                           </a>
                                    <div id="cricketPost-markdown6" style="color:#0E0101;text-align:justify;">
                           <p>{{names[$index].description}}</p>
@@ -72,6 +72,98 @@
         </tr>
 </table>
     </ion-content>
+
+<!--ng-click= "modal.show({{names[$index].pid}})" -->
+
+<script id="templates/modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-positive">
+          <h1 class="title">Group Post</h1>
+          <button class="button button-clear button-primary" ng-click="modalhide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="list card">
+            <div class="item item-body" ng-repeat="x in names">
+                <ion-list>
+                    <div class="item item-avatar" ui-sref="profile">
+                   <img src="/img/download (3).jpg">
+                    <h2>{{names[$index].uname}}</h2>
+                    <p>{{names[$index].date}}</p>
+                     <ion-note item-right style="color: #C0C0C0 ">
+                   {{names[$index].time}}
+                    </ion-note>
+                  </div>
+                </ion-list>
+                <div>
+                    <a style="display:block;" >
+                        <img src="{{names[$index].image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                    </a>
+                </div>
+                <div id="cricketPost-markdown2" style="color:#0E0101;text-align:justify;">
+                    <p>{{names[$index].description}}</p>
+                </div>
+                <div class="item">
+  
+                    
+                   
+ </div>
+               
+            </div>
+        </div>
+        <div class="list card">
+            <div class="item item-divider">Comments</div>
+                
+
+
+        <table  ng-repeat="x in comment track by $index"  ng-switch on="$index % 1">
+     
+            <td>
+            <div class="item item-body">
+              
+                <ion-list>
+                     <div class="item item-avatar">
+                    <img src="img/ZkVgGracQROJWJljbptq_boy1.png">
+                    <h2>{{comment[$index].uname}}</h2>
+                    <p>{{comment[$index].comment}} </p>
+              
+                   <span ng-if="comment[$index].uid == comment[$index].lguser">
+       
+    
+                                    
+                    <button class="button button-icon button-clear ion-ios-trash" side="right" style="padding-left: 200px" ng-click="deletecomment({{comment[$index].cid}})">
+                         
+                        </button>   
+                     </span>
+                    </div>
+              
+
+                   </ion-list>
+                
+            </div>
+
+                 </td>
+    
+           </table>
+        </div>
+
+        <form class="list">
+        <div class="row"> 
+            <label class="item item-input" name="chat" style=";border-radius:7px 7px 7px 7px">
+           
+                <input type="text" data-clear-btn="true" placeholder="Type Here" style=";width: 300px" ng-model="comments">  
+
+            </label>
+        <a ng-click="addcomment(comments)"> <button class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff;padding-top: 10px"> 
+                </button></a>
+                
+            </div>
+        </form>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
+
+
 
  <!-- slider -->  
 

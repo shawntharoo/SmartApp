@@ -1,16 +1,33 @@
+
  <ion-view title="Events Attending" id="events" style="background-color:#EEEEF1;">
+
  <ion-content padding="false" class="has-header">
+
  <ion-list>
- <ion-item  ng-repeat="eventname in eventNames" > 
-             <div class="item item-thumbnail-left" >
-                    <img src= {{eventname.image}} ng-click="descriptionpg()">
-                    <button class="button button-clear button-positive" ng-click="descriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
+ <ion-item  ng-repeat="eventname in eventNames track by $index" > 
+    <div class="item item-thumbnail-left" >
+
+        <img src= {{eventname.image}} ng-click="descriptionpg()" style="width:30%;height:30%">
+        <div class="row"><div class="col-75">
+        <button class="button button-clear button-positive" ng-click="descriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
                     <p> {{eventname.date}}</p>
+                </div>
+                <div class="col">
+                      <button class="button button-assertive item-button-right ion-ios-calendar-outline" ng-click="addEvent({{eventname.id}})"> + </button>
+                </div>
+        </div>
                     
                    <button class="button outline item-icon-right icon ion-calendar" ng-click="openPopover($event)"></button >
-             </div>
-             </ion-item>
-         </ion-list>
+           
+                     
+                  
 
-     </ion-content>
- </ion-view>
+       
+    </div>
+ </ion-item>
+
+<pre id="output" style="padding-left:50px"></pre>
+</ion-list>
+
+</ion-content>
+</ion-view>

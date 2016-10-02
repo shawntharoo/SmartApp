@@ -1,90 +1,56 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script id="event-popover.html" type="text/ng-template">
-  <ion-popover-view style="height: 230px; border-radius: 5px; ">
-    <ion-content >
-        <ion-radio ng-model="isChecked" ng-value="'interested'" >Interested</ion-radio>
-        <ion-radio ng-value="'going'" >Going</ion-radio>
-        <ion-radio ng-value="'notinterested'"   > Not Interested</ion-radio>
-        <button class="button button-positive " ng-click="closePopover()" style="margin:10px;"> Save</button>
-    </ion-content>
-  </ion-popover-view>
+
+    <ion-popover-view style="height: 230px; border-radius: 5px; ">
+      <ion-content >
+          <ion-radio ng-model="isChecked" ng-value="interested" ng-checked="check">     Interested</ion-radio>
+          <ion-radio ng-model="isChecked" ng-value="going" ng-checked="check">
+                    Going</ion-radio>
+          <ion-radio ng-model="isChecked" ng-value="notinterested" ng-checked="check"  > 
+                    Not Interested</ion-radio>
+          <button class="button button-positive " ng-click="closePopover(isChecked)" style="margin:10px;"> Save</button>
+      </ion-content>
+    </ion-popover-view>
 </script>
 
 <ion-view title="Events" id="events" style="background-color:#EEEEF1;">
 
-<ion-nav-buttons side="right"  >
-     <!-- <button class="button button-large ion-edit " ng-click="createEvent()" >
-      </button> -->
-    </ion-nav-buttons>
     <ion-content padding="false" class="has-header">
-        <!-- <div class="button-bar">
-           <a ui-sref="eventPage" id="events-button7" class="button button-stable  button-block">Events</a>
-            <a ui-sref="birthdays" id="events-button8" class="button button-stable  button-block">Birthdays</a>
-        </div> -->
-        <form class="list"></form>
-
-
-        
-        <div ng-controller="MyController">
-         <ion-refresher
-             pulling-text="Pull to refresh..."
-             on-refresh="doRefresh()">
-         </ion-refresher>
-         <ion-list>
-
-             <div class="item item-divider">
-                <label class="item item-input item-select" style="height:30px;">
-                     <div class="input-label" ><h2>Upcoming Events</h2></div>
-                <select ng-model="item " ng-change="show(item)">
-                <option>Upcoming</option>
-                <option>Going</option>
-                <option>Hosted</option>
-                <option>Past</option>
-                </select>
-                </label>
-
-             </div>
-              <ion-item ng-hide="noInterest"  > 
-             <div class="item item-thumbnail-left"  >
-                    <img src= "img\savewil.jpg" ng-click="descriptionpg()">
-                    <button class="button button-clear button-positive" ng-click="descriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">Save Wilpattu</button>
-                    <p> 19th May 2016</p>
-                    
-                   <button class="button outline item-icon-right icon ion-calendar" ng-click="openPopover($event)"></button >
-             </div>
-             </ion-item>
-             <ion-item  ng-repeat="eventname in eventNames" > 
-             <div class="item item-thumbnail-left"  >
-                    <img src= {{eventname.image}} ng-click="descriptionpg()">
-                    <button class="button button-clear button-positive" ng-click="descriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
-                    <p> {{eventname.date}}</p>
-                    
-                   <button class="button outline item-icon-right icon ion-calendar" ng-click="openPopover($event)"></button >
-             </div>
-
-             </ion-item>
-
-         </ion-list>
-
-<!-- birthdays
        
-         <div class="list list-inset">
+        <form class="list"></form>
+        <div ng-controller="MyController">          <!-- Controls the refresh element within the form-->
+            <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="doRefresh()">
+            </ion-refresher>
 
-             <div class="item item-divider">
-                 Upcoming Birthdays
-             </div>
+            <ion-list>
+                <div class="item item-divider">
+                    <label class="item item-input item-select" style="height:30px;">
+                        <div class="input-label" >
+                            <h2>Upcoming Events</h2>
+                        </div>
+                        <select ng-model="item " ng-change="show(item)">
+                            <option>Upcoming</option>
+                            <option>Going</option>
+                            <option>Group</option>
+                            <option>Sub Groups</option>
+                            <option>Past</option>
+                        </select>
+                    </label>
+                </div>
 
-             <div class="item" ng-repeat="bdayname in Birthdays" > 
-             <a class="item item-thumbnail-left" href="#">
-                    <img src= {{bdayname.image}}>
-                    <h2>{{bdayname.name}}</h2>
-                    <p> {{bdayname.day}}</p>
-                    <button class="button button-icon icon ion-email"></button>
-             </a>
-             </div>
-         </div>         -->
-         </div>
-        
+            
+                <ion-item  ng-repeat="eventname in eventNames" >
+                    <div class="item item-thumbnail-left"  >
+                        <img src= {{eventname.image}} ng-click="descriptionpg({{eventname.id}})">
+                        <button class="button button-clear button-positive" ng-click="descriptionpg({{eventname.id}})" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
+                        <p> {{eventname.date}}</p>
+                        <button class="button outline item-icon-right icon ion-calendar" ng-click="openPopover($event)"></button >
+                    </div>
+                </ion-item>
 
+            </ion-list>
+        </div>
     </ion-content>
 </ion-view>

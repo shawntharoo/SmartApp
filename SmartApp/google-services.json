@@ -1,0 +1,79 @@
+{
+  "project_info": {
+    "project_number": "1057319974608",
+    "project_id": "firebase-smartapp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057319974608:android:27d689d63f1b7a06",
+        "android_client_info": {
+          "package_name": "com.google.samples.quickstart.signin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057319974608-8995dfb1lh94lbgj3ucl7ov27m6b1k4f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzktYg4-RCaAb8x8fCJWWl2BfotV2JFrg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057319974608:android:2e2698a1b79bb6d3",
+        "android_client_info": {
+          "package_name": "com.ionicframework.smartapp140371"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057319974608-hl0ki2c1dsg8j4636p7atkg9n342alje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ionicframework.smartapp140371",
+            "certificate_hash": "ED461453DFF9867BE09367D24A9291EADCF1F7C5"
+          }
+        },
+        {
+          "client_id": "1057319974608-8995dfb1lh94lbgj3ucl7ov27m6b1k4f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzktYg4-RCaAb8x8fCJWWl2BfotV2JFrg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

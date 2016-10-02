@@ -1,0 +1,78 @@
+<html>
+  <head>
+
+ 
+ <!--   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.js"></script>
+        <script src="js/controller.js"></script>
+        <script src="js/app.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+<script type="text/javascript" src="C:\Users\Harshee\Desktop\SmartApp\angular-google-client-2.0.4\angular-google-client-2.0.4/dist/angular-google-client.min.js"></script>
+
+    </script> -->
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
+    </script>
+  </head>
+  <body >
+    <ion-view title="My Calendar" style="background-color:#EEEEF1;">
+     <ion-content padding="false" class="has-header">
+    <!-- <div> <p>dvdfdf</p> </div>
+    <div id="authorize-div" style="display: none">
+      <span>Authorize access to Google Calendar API</span>
+      <!--Button for the user to click to initiate auth sequence
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+    </div>
+    <pre id="output"></pre>-->
+
+      <div>
+        
+      <!--  <script type="text/ng-template" id="home.tmpl.html"> 
+            <div id="viewOne">
+                <h1>Home</h1>
+                <p>Sample angular app to use google calendar api. I have used angular js library with some JS & CSS styling. You can check the video of the procedure on video tab.</p>
+            </div>
+      </script>
+
+        <script type="text/ng-template" id="cal.tmpl.html"> -->
+            <div id="viewTwo">
+               <!-- <h1>Calendar</h1>
+                <p>The up comming events of your calendar is shown in this tab.</p> -->
+                <div id="authorize-div">
+                      <button class="button button-block button-positive" id="authorize-button" ng-click="handleAuthClick(event)">
+                        Authorize with my Google Calendar
+                      </button>
+                      <button  class="btn" ng-click="addEvent()">Add events </button>
+                </div>
+              <br />
+              
+              <pre id="output" style="padding-left:50px"></pre>
+
+            </div>
+            <div class="item list-inset"  >
+              <div class="item item-divider" ng-show="{{calbit}}">
+                Upcoming Events:
+              </div>
+            <ion-item  ng-repeat="eventname in eventArr" >
+                    <h3>{{eventname.name}} </h3>
+                    <p>on {{eventname.date}} </p>
+
+            
+            </ion-item>
+            </div>  
+       <!--  </script>
+
+        <script type="text/ng-template" id="video.tmpl.html"> 
+            <div id="viewThree">
+                <h1>video</h1>
+                <p>A video on the process of coding is available here & you can watch it.</p>
+                <iframe width="800" height="600" src="https://www.youtube.com/embed/0rZmp3Ew_kA" frameborder="0" allowfullscreen></iframe>
+            </div>
+      <!--  </script> -->
+    </div>
+    
+       
+        
+  </ion-content>
+  </body>
+</html>

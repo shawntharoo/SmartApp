@@ -15,6 +15,103 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$positive:                        #000066 !default;
+$assertive:                       #ff3333 !default;
+$primary-color:					  Â£fff !default;
+//$text-color: #fff !default;
+//body{
+//	color: $primary-color;
+//}
+
+.overlay{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-repeat: repeat-y;
+    z-index:-1;
+    top: 0px;
+    bottom: 0px;
+    left:0px; 
+    right:0px;
+	opacity: 0.9;
+	-moz-opacity: 0.9;
+	filter:alpha(opacity=90);
+    
+
+}
+
+.welcome{
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index:-1;
+    top: 0px;
+    bottom: 0px;
+    left:0px; 
+    right:0px;
+}
+
+.item.item-input{
+	background-color: transparent;
+	border-width: 2px;
+}
+
+ion-item.avatar{
+	display: block;
+	border:2px solid #ffcc33;
+	height: 150px; width:150px;
+	padding:0px;
+	margin:10px;
+ border-top-left-radius: 100px;
+ -webkit-border-top-left-radius: 100px;
+ -moz-border-top-left-radius: 100px;
+ border-top-right-radius: 100px;
+ -webkit-top-bottom-right-radius: 100px;
+ -moz-border-top-right-radius: 100px;
+ border-bottom-right-radius: 100px;
+ -webkit-border-bottom-right-radius: 100px;
+ -moz-border-bottom-right-radius: 100px;
+ border-bottom-left-radius: 100px;
+ -webkit-border-bottom-left-radius: 100px;
+ -moz-border-bottom-left-radius: 100px;
+}
+
+ion-item.item{
+	background-color: transparent;
+}
+
+.item-divider{
+	opacity: 0.5;
+	background-color: #e6ac00;
+	//background-image: url("../img/5.2.jpg");
+}
+
+a{
+	opacity: 0.9;
+	color: #000033;
+	//background-color: #000033;
+}
+
+ a:hover{
+	opacity: 0.7;
+	background-color: #cc9900;
+}
+/* Changing color of a placeholder
+
+input::-webkit-input-placeholder {
+  color: #fff !important;
+}
+input:-moz-placeholder {
+  color: #fff !important;
+}
+input:-ms-input-placeholder { // IE10+ 
+  color: #fff !important;
+}
+
+
+*/
+
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 

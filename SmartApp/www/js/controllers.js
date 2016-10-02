@@ -1,4 +1,4 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['ngOpenFB','ngCordova'])
   
 .controller('orderPizzaCtrl', function($scope,$state) {
   //$tbit= false;
@@ -65,12 +65,174 @@ angular.module('app.controllers', [])
 
 
 })
+.controller('slider',function($scope,$ionicSlideBoxDelegate){
+
+   
+})
    
 .controller('cartCtrl', function($scope) {
 
 })
       
-.controller('loginCtrl', function($scope,$state,$http,$ionicPopup) {
+.controller('start', function($scope) {
+
+})
+.controller('welcomeCtrl', function($scope,$state,$http,$ionicPopup,$ionicModal, $timeout, ngFB,$ionicLoading,$ionicPlatform) {
+       $scope.fbLogin = function () {
+   // alert('1');
+    ngFB.login({scope: 'email,user_posts,publish_actions'}).then( //nvalid Scopes: read_stream. 
+        function (response) {
+
+            if (response.status === 'connected') {
+                console.log('Facebook login succeeded');
+                alert('Facebook login successful');
+
+                ngFB.api({
+                path: '/me',
+                params: {fields: 'email'}
+                }).then(
+                function (user) {
+                  $scope.userFB = user;
+
+
+                  var fbEmail = angular.toJson($scope.userFB);
+                  var emailVal = fbEmail.split("\"");
+                  //alert(emailVal[3]);
+                  //var fbEmail = $scope.fbEmail;
+                  $http.get('http://teamsoft.tk/logcheckFB.php?email='+emailVal[3]).then(function(response){
+                    var names = response.data;
+                    var role , id;
+                    if(names=="false"){
+                        alert('This user is not signed into Royalists94. \n Please try again!');
+                    }
+                    else{
+                    for (var i = 0; i < names.length; i++) {
+
+                      var name = names[i];
+                      role = name.role;
+                      id= name.id;                
+                      
+                    }
+                    window.localStorage.setItem("username",emailVal[3]);//set username to localstorage
+                    window.localStorage.setItem("id",id);//set username to localstorage
+                    window.localStorage.setItem("role",role);//set username to localstorage
+                    var stat ="fb";
+                    if(role=="admin"){
+                    $state.transitionTo('AdmintabsController.mainprofile',{name:role, type:stat});  }
+                    else if(role=="member"){
+                      $state.go('tabsController.mainprofile',{name: role,type:stat});
+                    }
+
+                  }
+                  });
+                },
+                function (error) {
+                  alert('Facebook error: ' + error.error_description);
+                });
+
+                //$scope.closeLogin();
+            } 
+            else {
+                alert('Facebook login failed');
+            }
+        });
+}; 
+  $scope.googleSignIn = function() {
+    $ionicLoading.show({
+      template: 'Logging in...'
+    });
+
+
+    window.plugins.googleplus.login(
+      {},
+      function (user_data) {
+        // For the purpose of this example I will store user data on local storage
+        UserService.setUser({
+          userID: user_data.userId,
+          name: user_data.displayName,
+          email: user_data.email,
+          picture: user_data.imageUrl,
+          accessToken: user_data.accessToken,
+          idToken: user_data.idToken
+        });
+
+        $ionicLoading.hide();
+        $state.go('app.home');
+      },
+      function (msg) {
+        $ionicLoading.hide();
+      }
+    );
+  };
+
+})
+
+
+.controller('loginCtrl', function($scope,$state,$http,$ionicPopup,$ionicModal, $timeout, ngFB) {
+
+  $scope.toSignup = function(){
+    state.transitionTo('signup');
+  }
+
+  $scope.fbLogin = function () {
+   // alert('1');
+    ngFB.login({scope: 'email,user_posts,publish_actions'}).then( //nvalid Scopes: read_stream. 
+        function (response) {
+
+            if (response.status === 'connected') {
+                console.log('Facebook login succeeded');
+                alert('Facebook login successful');
+
+                ngFB.api({
+                path: '/me',
+                params: {fields: 'email'}
+                }).then(
+                function (user) {
+                  $scope.userFB = user;
+
+
+                  var fbEmail = angular.toJson($scope.userFB);
+                  var emailVal = fbEmail.split("\"");
+                  //alert(emailVal[3]);
+                  //var fbEmail = $scope.fbEmail;
+                  $http.get('http://teamsoft.tk/logcheckFB.php?email='+emailVal[3]).then(function(response){
+                    var names = response.data;
+                    var role , id;
+                    if(names=="false"){
+                        alert('This user is not signed into Royalists94. \n Please try again!');
+                    }
+                    else{
+                    for (var i = 0; i < names.length; i++) {
+
+                      var name = names[i];
+                      role = name.role;
+                      id= name.id;                
+                      
+                    }
+                    window.localStorage.setItem("username",emailVal[3]);//set username to localstorage
+                    window.localStorage.setItem("id",id);//set username to localstorage
+                    window.localStorage.setItem("role",role);//set username to localstorage
+                    var stat ="fb";
+                    if(role=="admin"){
+                    $state.transitionTo('AdmintabsController.mainprofile',{name:role, type:stat});  }
+                    else if(role=="member"){
+                      $state.go('tabsController.mainprofile',{name: role,type:stat});
+                    }
+
+                  }
+                  });
+                },
+                function (error) {
+                  alert('Facebook error: ' + error.error_description);
+                });
+
+                //$scope.closeLogin();
+            } 
+            else {
+                alert('Facebook login failed');
+            }
+        });
+}; 
   /*
 The code below will get the username 
 and the password from the login form and 
@@ -79,17 +241,18 @@ perform the login funtion
    $scope.login= function(email,password){
     
 
- $http.get('http://localhost/test/logcheck.php?email='+email+'&password='+password).then(function(response){
+ $http.get('http://teamsoft.tk/logcheck.php?email='+email+'&password='+password).then(function(response){
   var names = response.data;
-    var role , id;
+    var role , id,reset;
    for (var i = 0; i < names.length; i++) {
 
     var name = names[i];
     role = name.role;
+    reset=name.reset;
     id= name.id;                
                       
     }
- 
+ var stat = "local";
  if(role=="admin")
  {
    window.localStorage.setItem("username",email);//set username to localstorage
@@ -98,66 +261,142 @@ perform the login funtion
    var alertPopup = $ionicPopup.alert({
   title:'login',
   template:'login successfully '
+
   
  });
-  $state.transitionTo('AdmintabsController.mainprofile',{name:role});
+
+   var CusID = window.localStorage.getItem("id");
+    $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
+      if(reset==0)
+   {
+       $state.transitionTo('resetpassword');
+    
+   }
+  else
+  {
+  $state.transitionTo('AdmintabsController.mainprofile',{name:role,type:stat});
+   }
 
   }
    else if(role=="member")
  {
    window.localStorage.setItem("username",email);//set username to localstorage
    window.localStorage.setItem("id",id);//set id to localstorage
-   window.localStorage.setItem("role",role);//set user role to localstorage
+    window.localStorage.setItem("role",role);//set user role to localstorage
    var alertPopup = $ionicPopup.alert({
   title:'login',
   template:'login successfully '
   
  });
-     $state.go('tabsController.mainprofile',{name: role});
-
-  }
-    else if(role=="rep")
- {
-   window.localStorage.setItem("username",email);//set username to localstorage
-   window.localStorage.setItem("id",id);//set id to localstorage
-   window.localStorage.setItem("role",role);//set role to localstorage
-
-  var alertPopup = $ionicPopup.alert({
-  title:'login',
-  template:'login successfully '
-  
- });
-      var CusID = window.localStorage.getItem("id");
+   var CusID = window.localStorage.getItem("id");
     $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
+        if(reset==0)
+   {
+       $state.transitionTo('resetpassword');
+    
+   }
+  else
+  {
 
-     $state.go('tabsController.mainprofile',{name: role});
+     $state.go('tabsController.mainprofile',{name: role,type:stat});
+   }
 
   }
+
   else
   {
   var alertPopup = $ionicPopup.alert({ //this message will show if the login details are incorrect
   title:'login',
   template:'Incorrect Username or password '
   
-     });
+ });
 
-     }
+  }
 
-  });
-
+ });
  };
    
 
 })
 
-.controller('timelineCtrl', function($scope) {
+
+
+.controller('timelineCtrl', function($scope,$state) {
+
+             $scope.navigate= function(){
+      var stat = "local";
+      var role = window.localStorage.getItem("role");
+      if(role=="admin")
+      {
+       $state.go('AdmintabsController.mainprofile',{name: role,type:stat}); 
+      }
+      else{
+    $state.go('tabsController.mainprofile',{name: role,type:stat});
+  }
+  }
 
 })
-.controller('resetpasswordCtrl', function($scope) {
+.controller('resetpasswordCtrl', function($scope,$state,$http,$ionicPopup) {
+          $scope.continue= function(){
+      var stat = "local";
+      var role = window.localStorage.getItem("role");
+
+      if(role=="admin")
+      {
+       $state.go('AdmintabsController.mainprofile',{name: role,type:stat}); 
+      }
+      else{
+    $state.go('tabsController.mainprofile',{name: role,type:stat});
+  }
+  }
+
+  $scope.reset=function(password)
+  {
+     var x = window.localStorage.getItem("id");
+     var stat = "local";
+     var role = window.localStorage.getItem("role");
+    $http.get('http://localhost/test/reset.php?password='+password+'&id='+x).then(function(response){
+
+ if(response.data=="true"){
+
+    var alertPopup = $ionicPopup.alert({
+    title:'SmartApp',
+    template:'successfully change the password'
+  
+ });
+      if(role=="admin")
+      {
+       $state.go('AdmintabsController.mainprofile',{name: role,type:stat}); 
+      }
+      else{
+    $state.go('tabsController.mainprofile',{name: role,type:stat});
+  }
+ 
+
+ }
+
+ else {
+//this message will show if the email already used 
+   var alertPopup = $ionicPopup.alert({
+   title:'SmartApp',
+   template:'Error in Process'
+  
+    });
+ 
+
+   }
+
+ });
+  }
+
+  
 
 })
-.controller('signupCtrl', function($scope,$http,$ionicPopup,$state) {
+
+.controller('signupCtrl', function($scope,$http,$ionicPopup,$state,ngFB) {
     var Check=0;
+
+    $scope.widget = {name: "Enter name", email: "Enter email"};
  /*
 The code below will check the 
 in put field for incorrect
@@ -173,8 +412,9 @@ eg-numbers for the name
 
                         name = namearray.charCodeAt(i);
 
-                        if ((name > 64 && name < 91) || (name > 96 && name < 123))
+                        if ((name > 64 && name < 91) || (name > 96 && name < 123)||(name=32))
                         {
+
 
                          Check=0;
 
@@ -187,7 +427,48 @@ eg-numbers for the name
                         }
                     }
                 };
+ $scope.fbsignup=function()
+ {
+     ngFB.login({scope: 'email,user_posts,publish_actions'}).then( //nvalid Scopes: read_stream. 
+        function (response) {
 
+            if (response.status === 'connected') {
+                console.log('Facebook login succeeded');
+                alert('Facebook login successful');
+
+                ngFB.api({
+                path: '/me',
+                params: {fields: 'id,name,email'}
+                }).then(
+                function (user) {
+                  $scope.userFB = user;
+
+
+                  var fbDetails = angular.toJson($scope.userFB);
+                  var details = fbDetails.split("\"");
+                 // alert(details);
+                  //var fbEmail = $scope.fbEmail;
+                 // $scope.name = ;
+                 // $scope.email = ;
+
+                  alert(details[7]);
+                  alert(details[11]);
+                  $scope.name = details[7];
+                  $scope.email = details[11];
+
+                },
+                function (error) {
+                  alert('Facebook error: ' + error.error_description);
+                });
+
+                //$scope.closeLogin();
+            } 
+            else {
+                alert('Facebook login failed');
+            }
+        });
+
+ };
                                                             
   /*
 The code below will check the 
@@ -264,8 +545,10 @@ var alertPopup = $ionicPopup.alert({
  
 
 })
- .controller('profileCtrl', function($scope,$ionicActionSheet,$timeout,$state,$http) {
+ .controller('profileCtrl', function($scope,$ionicActionSheet,$timeout,$state,$http,$rootScope) {
    // Triggered on a button click, or some other target
+
+   $scope.bg = $rootScope.bgImage;
  $scope.show = function() {
 
    // Show the action sheet
@@ -303,7 +586,7 @@ var alertPopup = $ionicPopup.alert({
 
  };
        var x = window.localStorage.getItem("id");
-            $http.get('http://localhost/test/getname.php?id='+x).then(function (response) {
+            $http.get('http://teamsoft.tk/getname.php?id='+x).then(function (response) {
 
           
 
@@ -318,10 +601,11 @@ var alertPopup = $ionicPopup.alert({
                       $scope.class=record.class;
                       $scope.email=record.email;
                       $scope.address=record.address;
+                      $scope.image=record.image;
                       $scope.contact_no=record.contact_no;
                }
             });
-             $http.get('http://localhost/test/getspouse.php?id='+x).then(function (response) {
+             $http.get('http://teamsoft.tk/getspouse.php?id='+x).then(function (response) {
 
 
                     var records = response.data;
@@ -335,13 +619,13 @@ var alertPopup = $ionicPopup.alert({
                    
                }
             });
-              $http.get('http://localhost/test/getchildcount.php?id='+x).then(function (response) {
+              $http.get('http://teamsoft.tk/getchildcount.php?id='+x).then(function (response) {
 
 
                     var records = response.data;
 
 
-                    for (var i = 0; i < records.length; i++) {
+                   for (var i = 0; i < records.length; i++) {
 
                         var record = records[i];
                         
@@ -353,6 +637,18 @@ var alertPopup = $ionicPopup.alert({
 
     $state.transitionTo("profileEdit");
   }
+     $scope.navigate= function(){
+      var stat = "local";
+      var role = window.localStorage.getItem("role");
+      if(role=="admin")
+      {
+       $state.go('AdmintabsController.mainprofile',{name: role,type:stat}); 
+      }
+      else{
+    $state.go('tabsController.mainprofile',{name: role,type:stat});
+  }
+  }
+
 
 
 })
@@ -492,10 +788,39 @@ $state.transitionTo("profile");
 
 
 })
-  .controller('mainprofileCtrl', function($scope,$state, $stateParams,$http) {
+  .controller('mainprofileCtrl', function($scope,$state, $stateParams,$http, ngFB, $rootScope) {
 
-    var CusID = window.localStorage.getItem("id");
-    $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
+    $scope.bg = $rootScope.bgImage;
+   $scope.type = $stateParams.type;
+
+    if( $scope.type=="fb"){ 
+
+  ngFB.api({
+        path: '/me',
+        params: {fields: 'id,name,email'}
+    }).then(
+        function (user) {
+            $scope.user = user;
+
+/*Setting the image to local storage (for sanda)*/
+             var fbImg = angular.toJson($scope.user);
+             var imgVal = fbImg.split("\"");
+
+             window.localStorage.setItem("image",imgVal[3]);
+           //  window.localStorage.setItem("image",imgVal[3]);
+            // window.localStorage.setItem("image",imgVal[3]);
+
+
+        },
+        function (error) {
+            alert('Facebook error: ' + error.error_description);
+        });
+
+  }
+
+  else if( $scope.type=="local"){
+
+
 
     $scope.n = $stateParams.name;
     if($scope.n == 'rep'){
@@ -516,12 +841,14 @@ $state.transitionTo("profile");
                   
            
             var x = window.localStorage.getItem("id");
-            $http.get('http://localhost/test/getname.php?id='+x).then(function (response) {
+            $http.get('http://teamsoft.tk/getname.php?id='+x).then(function (response) {
 
            
 
-                    var records = response.data;
-
+                  // $scope.user = response.data;
+                   var records = response.data;
+                   var test="this";
+                   $scope.test=test;
 
                     for (var i = 0; i < records.length; i++) {
 
@@ -530,11 +857,12 @@ $state.transitionTo("profile");
                       $scope.name=record.name;
                       $scope.class=record.class;
                       $scope.email=record.email;
+                      $scope.image=record.image;
 
                }
             });
                                          
-          
+       }   
 
 
      
@@ -547,7 +875,7 @@ $state.transitionTo("profile");
 
     .controller('requestCtrl', function($scope,$http,$ionicPopup,$state,$window) {
 
-       $http.get('http://localhost/test/memberRequest.php').then(function(response){
+       $http.get('http://teamsoft.tk/memberRequest.php').then(function(response){
           
 
           $scope.request = response.data;
@@ -561,7 +889,7 @@ the member request
 
        $scope.approve=function(id)
        {
-         $http.get('http://localhost/test/acceptRequest.php?id='+id).then(function(response){
+         $http.get('http://teamsoft.tk/acceptRequest.php?id='+id).then(function(response){
           
 
           if(response.data=="true")
@@ -624,18 +952,81 @@ the member request
 
 
        };
+           $scope.navigate= function(){
+      var stat = "local";
+      var role = window.localStorage.getItem("role");
+      if(role=="admin")
+      {
+       $state.go('AdmintabsController.mainprofile',{name: role,type:stat}); 
+      }
+      else{
+    $state.go('tabsController.mainprofile',{name: role,type:stat});
+  }
+  }
+
+
 
 
 
 
 })
-        .controller('profileEditCtrl', function($scope,$http,$ionicPopup,$window,$state) {
+        .controller('profileEditCtrl', function($scope,$http,$ionicPopup,$window,$state,$rootScope,$cordovaCamera, $ionicActionSheet, $cordovaFileTransfer) {
            /*
 The code below will check the 
 in put field for incorrect
 input 
 eg-numbers for the name
 */
+// open PhotoLibrary
+    $scope.openPhoto = function() {
+        var options = {
+            quality: 50,
+            destinationType: Camera.DestinationType.FILE_URI,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+
+            //console.log(imageData);
+            //console.log(options);   
+            var image = document.getElementById('tempImage');
+            image.src = imageData;  
+
+            var server = "http://teamsoft.tk/image/",
+                filePath = imageData;
+
+            var date = new Date();
+
+            var options = {
+                fileKey: "file",
+                fileName: imageData.substr(imageData.lastIndexOf('/') + 1),
+                chunkedMode: false,
+                mimeType: "image/jpg"
+            };
+
+            $cordovaFileTransfer.upload(server, filePath, options).then(function(result) {
+                console.log("SUCCESS: " + JSON.stringify(result.response));
+                console.log('Result_' + result.response[0] + '_ending');
+                alert("success");
+                alert(JSON.stringify(result.response));
+
+            }, function(err) {
+                console.log("ERROR: " + JSON.stringify(err));
+                //alert(JSON.stringify(err));
+            }, function (progress) {
+                // constant progress updates
+            });
+
+
+        }, function(err) {
+            // error
+            console.log(err);
+        });
+    }
           var Check=0;
              $scope.namecheck = function () {
                     var name, i, len;
@@ -750,6 +1141,112 @@ eg-numbers for the name
 
 })
      .controller('occupationCtrl', function($scope) {
+
+})
+          .controller('uploadCtrl', function($scope, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $ionicPopup, $cordovaActionSheet) {
+            // Present Actionsheet for switch beteen Camera / Library
+$scope.loadImage = function() {
+  var options = {
+    title: 'Select Image Source',
+    buttonLabels: ['Load from Library', 'Use Camera'],
+    addCancelButtonWithLabel: 'Cancel',
+    androidEnableCancelButton : true,
+  };
+  $cordovaActionSheet.show(options).then(function(btnIndex) {
+    var type = null;
+    if (btnIndex === 1) {
+      type = Camera.PictureSourceType.PHOTOLIBRARY;
+    } else if (btnIndex === 2) {
+      type = Camera.PictureSourceType.CAMERA;
+    }
+    if (type !== null) {
+      $scope.selectPicture(type);
+    }
+  });
+};
+// Take image with the camera or from library and store it inside the app folder
+// Image will not be saved to users Library.
+$scope.selectPicture = function(sourceType) {
+  var options = {
+    quality: 100,
+    destinationType: Camera.DestinationType.FILE_URI,
+    sourceType: sourceType,
+    saveToPhotoAlbum: false
+  };
+ 
+  $cordovaCamera.getPicture(options).then(function(imagePath) {
+    // Grab the file name of the photo in the temporary directory
+    var currentName = imagePath.replace(/^.*[\\\/]/, '');
+ 
+    //Create a new name for the photo
+    var d = new Date(),
+    n = d.getTime(),
+    newFileName =  n + ".jpg";
+ 
+    // If you are trying to load image from the gallery on Android we need special treatment!
+    if ($cordovaDevice.getPlatform() == 'Android' && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
+      window.FilePath.resolveNativePath(imagePath, function(entry) {
+        window.resolveLocalFileSystemURL(entry, success, fail);
+        function fail(e) {
+          console.error('Error: ', e);
+        }
+ 
+        function success(fileEntry) {
+          var namePath = fileEntry.nativeURL.substr(0, fileEntry.nativeURL.lastIndexOf('/') + 1);
+          // Only copy because of access rights
+          $cordovaFile.copyFile(namePath, fileEntry.name, cordova.file.dataDirectory, newFileName).then(function(success){
+            $scope.image = newFileName;
+          }, function(error){
+            $scope.showAlert('Error', error.exception);
+          });
+        };
+      }
+    );
+    } else {
+      var namePath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+      // Move the file to permanent storage
+      $cordovaFile.moveFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(function(success){
+        $scope.image = newFileName;
+      }, function(error){
+        $scope.showAlert('Error', error.exception);
+      });
+    }
+  },
+  function(err){
+    // Not always an error, maybe cancel was pressed...
+  })
+};
+
+// Returns the local path inside the app for an image
+$scope.pathForImage = function(image) {
+  if (image === null) {
+    return '';
+  } else {
+    return cordova.file.dataDirectory + image;
+  }
+};
+$scope.uploadImage = function() {
+  // Destination URL
+  var url = "http://teamsoft.tk/upload.php";
+ 
+  // File for Upload
+  var targetPath = $scope.pathForImage($scope.image);
+ 
+  // File name only
+  var filename = $scope.image;;
+ 
+  var options = {
+    fileKey: "file",
+    fileName: filename,
+    chunkedMode: false,
+    mimeType: "multipart/form-data",
+    params : {'fileName': filename}
+  };
+ 
+  $cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
+    $scope.showAlert('Success', 'Image upload finished.');
+  });
+}
 
 })
        .controller('familyCtrl', function($scope,$http,$ionicPopup,$state){
@@ -998,11 +1495,14 @@ eg-numbers for the name
     }
 
 })
-       //pc controllers
-
-.controller('cricketPostCtrl', function($scope,$state,$http) {
+      
+       //panchali controllers
+.controller('cricketPostCtrl', function($scope,$state,$http,$ionicActionSheet,$timeout,$ionicPopup,$ionicSideMenuDelegate,$ionicModal,$ionicPopover) {
 
 var UID=window.localStorage.getItem("id");
+
+
+
                 $scope.$on('$ionicView.enter', function() {
 
                             //catch the group id sent from group.html page or followCricket.html page and retrive the group post details from the database.
@@ -1016,23 +1516,347 @@ var UID=window.localStorage.getItem("id");
                             $http.get('http://localhost/test/subgrp.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
                             {
                                   $scope.gp = response.data;
+
+
+                            
+                            })
+                              $http.get('http://localhost/test/subgrpmember.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
+                                {
+                                      $scope.n = response.data;
+                                     
+                                  
+                                })
+                              $http.get('http://localhost/test/subpostsFilter.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
+                            {
+                                  $scope.names2 = response.data;
                                  
                                   
                             })
 
+
                 });
 
-                //send the id to setting page
-                 $scope.getid = function (x) {
-                            
-                        window.localStorage.setItem("selectitemid", x);
+
+
+                //template for add a post
+
+                $ionicModal.fromTemplateUrl('templates/modal.html', {
+                    scope: $scope
+                  }).then(function(modal) {
+                    $scope.modal = modal;
+                  });
+
+                  //template for about
+
+                $ionicModal.fromTemplateUrl('templates/modal2.html', {
+                    scope: $scope
+                  }).then(function(modal2) {
+                    $scope.modal2 = modal2;
+
+                  });
+
+
+                    $ionicModal.fromTemplateUrl('templates/modal3.html', {
+                    scope: $scope
+                  }).then(function(modal3) {
+                    $scope.modal3 = modal3;
+
+                  });
+
+                  $ionicModal.fromTemplateUrl('templates/modal4.html', {
+                                              scope: $scope
+                                            }).then(function(modal4) {
+                                              $scope.modal4 = modal4;
+
+                                            });
+
+                  
+                  
+                //add a new post throught the template      
+                   $scope.addpost = function(a,b){
+                          if(a != null || b != null ){// check that post details are added or not
+                             $http.get('http://localhost/test/addpost.php?id='+window.localStorage.getItem("selectitemid")+'&description='+a+'&image='+b+'&UID='+UID).then(function(response){
+
+                             
+                             var alertPopup = $ionicPopup.alert({
+                              title:'User -add new posts',
+                              template:'New post has been added successfully'
                               
+                             });
+                             $http.get('http://localhost/test/updatenot.php').then(function(response){
+                              
+                             });
+                             $state.go($state.current, {}, {reload: true});
+
+ $scope.modal.hide();
+
+                             });
+                         }else{
+
+                                    var alertPopup = $ionicPopup.alert({
+                                    title:'Add a new post',
+                                    template:'    Please fill the  group post details    '
+                                    
+                                   });
+                                   $http.get('http://localhost/test/updatenot.php').then(function(response){
+                                    
+                                   });
+                                  
+                                 }
+
+
+                        
+
+                   
+
+                  };
+
+
+
+  // .fromTemplate() method
+  var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
+
+  $scope.popover = $ionicPopover.fromTemplate(template, {
+    scope: $scope
+  });
+
+  // .fromTemplateUrl() method
+  $ionicPopover.fromTemplateUrl('my-popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+
+  $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+  };
+  $scope.closePopover = function() {
+    $scope.popover.hide();
+  };
+  //Cleanup the popover when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+  });
+  // Execute action on hide popover
+  $scope.$on('popover.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove popover
+  $scope.$on('popover.removed', function() {
+    // Execute action
+  });
+
+
+
+ $scope.unfollow = function () {
+                                  
+                                   
+                                      $http.get('http://localhost/test/unfollow.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response){
+
+             
+                                       var alertPopup = $ionicPopup.alert({
+                                        title:'Unfollow a group',
+                                        template:'You have successfully unfollw the group'
+                                        
+                                       });
+                                       $http.get('http://localhost/test/updatenot.php?').then(function(response){
+                                        
+                                       });
+                                       $scope.popover.hide();
+                                     
+
+
+
+                                       });
+                                    
+                                  };
+
+
+
+
+
+
+$scope.closepopover  = function () {
+ $scope.popover.hide();
+   }; 
+
+
+
+$scope.modal4hide  = function () {
+ $scope.modal4.hide();
+ $scope.modal3.show();
+ $scope.popover.hide();
+   }; 
+
+
+$scope.modal2hide  = function () {
+ $scope.modal2.hide();
+
+ $scope.popover.hide();
+   };
+
+   $scope.modal3hide  = function () {
+ $scope.modal3.hide();
+
+ $scope.popover.hide();
+   };  
+
+$scope.filter  = function () {
+ $scope.popover.hide();
+   }; 
+
+
+                //send the id to selectedGroupPost page
+              //   $scope.descriptions = function (x) {
+           //  $scope.modal3.hide();
+                //       window.localStorage.setItem("selectitemgropid", x);    
+                        //$scope.popover.hide(); 
+                         //   };
+
+              //model for a single post
+  $scope.description = function (x) {
+   window.localStorage.setItem("selectitemgropid", x);
+           $http.get('http://localhost/test/selectedgroppost.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID+'&postid='+x).then(function(response)
+                            {
+                                  $scope.names = response.data;
+                            })
+                            $http.get('http://localhost/test/selectedgroppostcomment.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID+'&postid='+x).then(function(response)
+                            {
+                                  $scope.comment = response.data;
+                                 
+                                  
+                            })
+                            $scope.modal3.hide();
+                      $scope.modalpost.show();
+                       
                             };
 
-                 //direct to the addApost.html page        
-                  $scope.addPost = function(){
-                        $state.transitionTo("addAPost");
-                    }
+
+
+                $ionicModal.fromTemplateUrl('templates/modalpost.html', {
+                    scope: $scope
+                  }).then(function(modalpost) {
+                    $scope.modalpost = modalpost;
+                 
+                  
+                  });
+                  $scope.modalposthide  = function () {
+                   $scope.modalpost.hide();
+                   $state.go($state.current, {}, {reload: true});
+                    $scope.modal3.show();
+                     };
+
+                          $scope.addcomment = function(a){
+                          var PID=window.localStorage.getItem("selectitemgropid");
+                          if(a != null ){ // check that post details are added or not
+                                
+
+                          
+
+                                $http.get('http://localhost/test/addcomment.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID+'&postid='+PID+'&comment='+a).then(function(response){
+
+                                 $scope.description(PID);
+
+                                 });
+
+
+                              
+                             }
+                        };
+                         $scope.deletecomment = function(a){
+                           var GPID=window.localStorage.getItem("selectitemgropid");
+                          $http.get('http://localhost/test/deletecomments.php?id='+window.localStorage.getItem("selectitemid")+'&postid='+GPID+'&commentid='+a).then(function(response)
+                                                                             {
+                                 
+                             $scope.description(GPID);
+                                  
+                                                    })
+                                                    };
+
+                  // Show the action sheet
+                  $scope.show = function(pid) {
+
+                       // Show the action sheet
+                       var hideSheet = $ionicActionSheet.show({
+                         buttons: [
+                           { text: '<b>Edit</b>' },
+                          { text: '<b>Delete</b>' },
+                         ],
+                         
+                         cancelText: 'Cancel',
+                         cancel: function() {
+                              // add cancel code..
+                            },
+
+                            buttonClicked: function(index) {
+                                    switch (index){
+                                          case 0 :
+                                            //Handle edit Button
+                                          
+                                           
+                                         $scope.modal4.show();
+                                         $scope.modal3.show();
+                                           $http.get('http://localhost/test/subpostsEdit.php?id='+window.localStorage.getItem("selectitemid")+'&pid='+pid+'&UID='+UID).success(function(data)
+                                                   {
+                                                       
+                                      
+                var markers = [];
+                markers = data;
+                $scope.postid = markers[0].postid;
+                $scope.groupid = markers[0].groupid;
+                $scope.descriptions = markers[0].descriptions;
+                $scope.image = markers[0].image;
+               
+            
+                                                    })
+$scope.editpost  = function (descriptions,image,a) {
+  $http.post("http://localhost/test/editposts.php?id="+window.localStorage.getItem("selectitemid")+"&description="+descriptions+"&image="+image+"&UID="+UID+"&pid="+a).success(function(
+                            data){
+
+                               $scope.modal4.hide();
+                           $scope.modal3.show();
+
+                             });
+   }; 
+                                           
+                                            return true;
+                                          case 1 :
+                                            //Handle delete Button
+                                              var confirmPopup = $ionicPopup.confirm({
+                                               title: 'Delete',
+                                               template: 'Are you sure you want to delete this?'
+                                             });
+                                           
+                                             confirmPopup.then(function(res) {
+                                               if(res) {
+                                                  $http.get('http://localhost/test/deleteposts.php?id='+window.localStorage.getItem("selectitemid")+'&pid='+pid).then(function(response)
+                                                   {
+                                 
+                                                       $scope.popover.hide();
+                                    $state.go($state.current, {}, {reload: true});
+                                  
+                                                    })
+                                                  
+                                                 console.log('Deleted !');
+                                               } else {
+                                                 console.log('Deletion canceled !');
+                                               }
+                                             });
+                                            return true;
+                                        }
+                                            //Close the model?
+                                        }
+                       });
+
+                       // For example's sake, hide the sheet after two seconds
+                       $timeout(function() {
+                         hideSheet();
+                       }, 10000);
+
+                     };
+
+
 
 })
 
@@ -1068,13 +1892,13 @@ var UID=window.localStorage.getItem("id");
             $scope.searchlist = function(searching){
                 if(searching == null){
 
-                      $http.get('http://localhost/test/getgroups5.php?UID='+UID).then(function(response)
+                      $http.get('http://teamsoft.tk/getgroups5.php?UID='+UID).then(function(response)
                       {
                             $scope.names = response.data;
                             
                       })
                 }else{
-                      $http.get('http://localhost/test/getgroups3.php?name='+searching+'&UID='+UID).then(function(response)
+                      $http.get('http://teamsoft.tk/getgroups3.php?name='+searching+'&UID='+UID).then(function(response)
                       {
                             $scope.names = response.data;
                             
@@ -1084,7 +1908,7 @@ var UID=window.localStorage.getItem("id");
 
 //get the sub group details which user following from the database
                       $scope.$on('$ionicView.enter', function() {
-                      $http.get('http://localhost/test/getgroups5.php?UID='+UID).then(function(response)
+                      $http.get('http://teamsoft.tk/getgroups5.php?UID='+UID).then(function(response)
                       {
                             $scope.names = response.data;
                            
@@ -1223,45 +2047,7 @@ var UID=window.localStorage.getItem("id");
 
 
 
-.controller('addAPostCtrl', function($scope,$http,$ionicPopup,$state) {
-var UID=window.localStorage.getItem("id");
-//save the post details in the database
-            $scope.addpost = function(a,b){
-          if(a != null && b != null ){// check that post details are added or not
-             $http.get('http://localhost/test/addpost.php?id='+window.localStorage.getItem("selectitemid")+'&description='+a+'&image='+b+'&UID='+UID).then(function(response){
 
-             
-             var alertPopup = $ionicPopup.alert({
-              title:'User -add new posts',
-              template:'New post has been added successfully'
-              
-             });
-             $http.get('http://localhost/test/updatenot.php').then(function(response){
-              
-             });
-             $state.transitionTo('cricketPost');
-
-
-
-             });
-         }else{
-
-                    var alertPopup = $ionicPopup.alert({
-                    title:'Add a new post',
-                    template:'    Please add the new group post details    '
-                    
-                   });
-                   $http.get('http://localhost/test/updatenot.php').then(function(response){
-                    
-                   });
-                  
-                 }
-
-
-             };
-
-})
-   
 
 
 
@@ -1334,9 +2120,9 @@ var UID=window.localStorage.getItem("id");
 
 
 
-.controller('groupPostCtrl', function($scope,$http,$ionicPopup,$state) {
+.controller('groupPostCtrl', function($scope,$http,$ionicPopup,$state,$ionicModal) {
 var UID=window.localStorage.getItem("id");
- 
+    
                       $scope.$on('$ionicView.enter', function() {
                       $http.get('http://localhost/test/serachgrouppost.php?UID='+UID).then(function(response)
                       {
@@ -1349,9 +2135,63 @@ var UID=window.localStorage.getItem("id");
 
 
                       });
+//model for a single post
+  $scope.description = function (x) {
+   window.localStorage.setItem("grouppostid", x);
+           $http.get('http://localhost/test/selectedgroppost.php?id='+"-1"+'&UID='+UID+'&postid='+x).then(function(response)
+                            {
+                                  $scope.names = response.data;
+                            })
+                            $http.get('http://localhost/test/selectedgroppostcomment.php?id='+"-1"+'&UID='+UID+'&postid='+x).then(function(response)
+                            {
+                                  $scope.comment = response.data;
+                                 
+                                  
+                            })
+                      $scope.modal.show();
+                       
+                            };
 
 
 
+                $ionicModal.fromTemplateUrl('templates/modal.html', {
+                    scope: $scope
+                  }).then(function(modal) {
+                    $scope.modal = modal;
+                 
+                  
+                  });
+                  $scope.modalhide  = function () {
+                   $scope.modal.hide();
+                   $state.go($state.current, {}, {reload: true});
+                     };
+
+                          $scope.addcomment = function(a){
+                          var PID=window.localStorage.getItem("grouppostid");
+                          if(a != null ){ // check that post details are added or not
+                                
+
+                          
+
+                                $http.get('http://localhost/test/addcomment.php?id='+"-1"+'&UID='+UID+'&postid='+PID+'&comment='+a).then(function(response){
+
+                                 $scope.description(PID);
+
+                                 });
+
+
+                              
+                             }
+                        };
+                         $scope.deletecomment = function(a){
+                           var GPID=window.localStorage.getItem("grouppostid");
+                          $http.get('http://localhost/test/deletecomments.php?id='+"-1"+'&postid='+GPID+'&commentid='+a).then(function(response)
+                                                                             {
+                                 
+                             $scope.description(GPID);
+                                  
+                                                    })
+                                                    };
 //direct to the calender
                         $scope.addCalendar = function(){
                               $state.transitionTo("calendar");
@@ -1368,7 +2208,21 @@ var UID=window.localStorage.getItem("id");
 //add a new post to the batch group
                          $scope.addpost = function(a,b){
                           if(a == "Say something" && b == "Image" ){ // check that post details are added or not
-                                 $http.get('http://localhost/test/addpost2.php?description='+a+'&image='+b+'&UID='+UID).then(function(response){
+                                
+
+                                  var alertPopup = $ionicPopup.alert({
+                                title:'Add a new post',
+                                template:'    Please add the new group post details    '
+                                
+                               });
+                               $http.get('http://localhost/test/updatenot.php?').then(function(response){
+                                
+                               });
+
+
+                          }else{
+
+                                $http.get('http://localhost/test/addpost2.php?description='+a+'&image='+b+'&UID='+UID).then(function(response){
 
                                  
                                  var alertPopup = $ionicPopup.alert({
@@ -1384,16 +2238,6 @@ var UID=window.localStorage.getItem("id");
                                  });
 
 
-                          }else{
-
-                                var alertPopup = $ionicPopup.alert({
-                                title:'Add a new post',
-                                template:'    Please add the new group post details    '
-                                
-                               });
-                               $http.get('http://localhost/test/updatenot.php?').then(function(response){
-                                
-                               });
                               
                              }
                        };
@@ -1410,78 +2254,15 @@ var UID=window.localStorage.getItem("id");
 
 
 
-.controller('settingsCtrl', function($scope,$state,$http,$ionicPopup) {
-var UID=window.localStorage.getItem("id");
-//send the group id to the followCricket.html page
-                       $scope.getid = function (x) {
-                                  
-                                      window.localStorage.setItem("selectitemiid", x);
-                                      $http.get('http://localhost/test/unfollow.php?id='+x+'&UID='+UID).then(function(response){
-
-             
-                                       var alertPopup = $ionicPopup.alert({
-                                        title:'Unfollow a group',
-                                        template:'You have successfully unfollw the group'
-                                        
-                                       });
-                                       $http.get('http://localhost/test/updatenot.php?').then(function(response){
-                                        
-                                       });
-                                       $state.transitionTo('followCricket');
-
-
-
-                                       });
-                                    
-                                  };
-//get the group member details from the databse
-                      $scope.$on('$ionicView.enter', function() {
-                     
-                                $http.get('http://localhost/test/subgrpmember.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
-                                {
-                                      $scope.names = response.data;
-                                     
-                                      
-                                })
-                                $http.get('http://localhost/test/subgrp.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
-                                {
-                                      $scope.gp = response.data;
-                                     
-                                      
-                                })
-                      });
-
-//direct to the inviteFriends.html page
-                    $scope.inviteFriends = function(){
-                            $state.transitionTo("inviteFriends");
-                        }
-
-})
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .controller('inviteFriendsCtrl', function($scope) {
 
 
 })
-.controller('selectedGroupPostCtrl', function($scope) {
 
 
 
-})
+
+
 
 
    
@@ -1504,41 +2285,28 @@ var UID=window.localStorage.getItem("id");
 })
 
 
-.controller('adminCreateCommitteeCtrl', function($scope,$state) {
 
 
 
-})
 
-.controller('footballCtrl', function($scope) {
 
 
 
-})
 
 
-.controller('groupSearchDemoCtrl', function($scope) {
 
 
-})
-   
-.controller('selectedPostCtrl', function($scope) {
 
 
 
-})
 
-.controller('selectedPostBoxingCtrl', function($scope) {
 
 
 
-})
 
-.controller('selectedPostDemoCtrl', function($scope) {
 
 
 
-})
 
 
 
@@ -1580,9 +2348,7 @@ var UID=window.localStorage.getItem("id");
 
 
 
-
-
-
+ 
  //sanda controllers
 
   //User Controllers
@@ -3318,6 +4084,21 @@ var UID=window.localStorage.getItem("id");
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //mahesh controllers
 .controller('pageCtrl', function($scope,$state) {
   
@@ -3325,7 +4106,7 @@ var UID=window.localStorage.getItem("id");
    {
 
     
-      //$state.go('tabsController.mainprofileCtrl',{name: role});
+      //$state.go('tabsController.mainprofile',{name: role});
    // window.localStorage.setItem("name",name);
    // window.localStorage.setItem("class",class1);
    alert("hello");
@@ -3450,28 +4231,169 @@ var UID=window.localStorage.getItem("id");
 
  
        //yik controllers
-    .controller('eventsCtrl', function($scope,$state,$http) {
-    $scope.createEvent = function(){
-        $state.transitionTo("createEvent");
-    }
-    $scope.descriptionpg = function(){
-        $state.transitionTo("eventDesc");
-    }
-    $scope.addE = function(){
-    $http.get('http://localhost/test/addEvent.php').then(function(response){
+    /* The main event controller for the user level. Displays all events associated with the user*/       
+.controller('eventsCtrl', function($scope,$state,$http) {
+   
+  $scope.addE = function(){   /*Add event list to the page*/
+    var id = window.localStorage.getItem("id");
+    $http.get('http://teamsoft.tk/addUserEvent.php?id='+id).then(function(response){
         
           $scope.eventNames = response.data;
       
-      });
+    });
+  }
+
+  $scope.descriptionpg = function(id){    /*Go to each events description*/
+    $state.go("eventDesc",{id:id});
   }
 
 })
-.controller('createevent', function($scope,$state) {
-      $scope.created = function(){
-        $state.transitionTo("AdmintabsController");
-      }
-})
+    
+.controller('createevent', function($scope,$state,$http,$ionicPopup) {
 
+
+  $http.get('http://teamsoft.tk/addGroup.php').then(function(response){    /*Get the available groups from the system*/
+          $scope.groups = response.data;
+  });
+
+  var date = new Date();
+  $scope.today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+
+
+ /*Invokes when the button to create an event is clicked*/
+  $scope.created = function(title, edate, stime, etime, location, desc, selected, duration, durationSelect ){  
+           
+    if(angular.isUndefined(title)|| title===null  ){ /*Validations to check if title is empty*/
+          var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter the title of the event'
+  
+              });
+    }
+    else if(angular.isUndefined(location)|| location===null  ){ /*Validations to check if location is empty*/
+          var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter the venue of the event'
+  
+              });
+    }
+    else if(angular.isUndefined(edate)|| edate===null  ){
+          var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter a valid date'
+  
+              });
+    }
+    else if( angular.isUndefined(stime)|| stime===null || angular.isUndefined(etime)|| etime===null )
+    {
+           var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter the time period'
+  
+              });
+    }
+    else if(selected === "default" || selected==null)
+    {
+          var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please choose a cohost'
+  
+              });
+    }
+    else if( angular.isUndefined(duration)|| duration===null || durationSelect==null)
+    {
+          var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter a valid duration'
+  
+              });
+    }
+    else{
+
+          var current = new Date();
+          var event_date = edate.getFullYear() + '-' + ('0' + (edate.getMonth() + 1)).slice(-2) + '-' + ('0' + edate.getDate()).slice(-2);
+          var start_time =  stime.getHours()  + ':' + stime.getMinutes();
+          var end_time =  etime.getHours()  + ':' + etime.getMinutes();
+
+          var start = stime.getHours();
+          var end = etime.getHours();
+          var startMin = stime.getMinutes();
+          var endMin = etime.getMinutes();
+
+          /*Validations to check if date is less than today*/
+          if( (current.getFullYear()>edate.getFullYear() ) || (current.getMonth() > edate.getMonth()) || (current.getDate() > edate.getDate() ))
+          {
+            var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter a valid date'
+  
+              });
+            
+          }
+          else if ( durationSelect=="day" && duration=='1' && (end < start))    /*Validations to check if the start and end times are valdiated*/
+          {
+        
+              var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter a valid time period'
+  
+              });
+          }
+          else if(durationSelect=="day" && duration=='1' && (end==start) && (endMin <startMin)){
+            var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter a valid time period'
+  
+              });
+          }
+          
+          else
+          {
+             var count;
+            if (durationSelect=="day"){count=1;}
+            else if (durationSelect=="week"){count=7;}
+            else if (durationSelect=="month"){count=30;}
+
+            duration = duration*count;
+           
+          $http.get('http://teamsoft.tk/createEvent.php?title='+title+'&date='+event_date+'&stime='+start_time+'&etime='+end_time
+          +'&duration='+duration+'&location='+location+'&desc='+desc+'&cohost='+selected).then(function(response){
+            
+            var status=response.data;
+            if(status =="true"){
+ 
+              var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Event was created successfully'
+  
+              });
+               $state.go('AdmintabsController.adminEvent', {}, {reload:true});
+            }
+            else if(status =="false")
+            {
+              var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Process Failed'
+  
+              });
+              $state.go($state.current, {}, {reload:true});
+            }
+            else
+            {
+              var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Failed'
+  
+              });
+              $state.go($state.current, {}, {reload:true});
+
+            }
+
+          }); 
+          }
+        }
+    }
+})
 
 
 .controller('index', function($scope) {
@@ -3496,22 +4418,103 @@ var UID=window.localStorage.getItem("id");
        $scope.$broadcast('scroll.refreshComplete');
      });
   };
-
-
-
-
 })
 
-.controller('eventdesc', function($scope, $ionicActionSheet, $timeout) {
 
-       $scope.textColor  = '#004d4d';
-      $scope.changeColor = function(){
-        $scope.textColor = '  #505050 ';
-        $scope.textColor2 = '#004d4d';
+.controller('eventdesc', function($scope, $state, $ionicActionSheet, $timeout, $http, $stateParams, $ionicPopup) {
+      var userid= window.localStorage.getItem("id");
+
+      var id = $stateParams.id;
+      $http.get('http://teamsoft.tk/userEventDesc.php?id='+id+'&uid='+userid ).then(function(response){
+        
+          $scope.eventNames = response.data;
+          angular.forEach($scope.eventNames, function(value, key){
+            $scope.title =  value.name;
+            $scope.wholedate =  new Date(value.date);
+            $scope.stime =  value.start_time;
+            //$scope.etime =  toTime(value.end_time);
+            $scope.venue =  value.venue;
+            $scope.desc =  value.description;
+            $scope.org = value.organizer;
+            $scope.durationSelect1 = value.duration;
+            $scope.stat = value.status;
+
+          })
+
+          $scope.day = $scope.wholedate.getDate();
+          $scope.month = $scope.wholedate.getMonth();
+          switch($scope.month){
+            case 1: $scope.date = "JAN"; break;
+            case 2: $scope.date = "FEB"; break;
+            case 3: $scope.date = "MAR"; break;
+            case 4 : $scope.date = "APR"; break;
+            case 5 : $scope.date = "MAY"; break;
+            case 6 : $scope.date = "JUN"; break;
+            case 7 : $scope.date = "JUL"; break;
+            case 8 : $scope.date = "AUG"; break;
+            case 9 : $scope.date = "SEP"; break;
+            case 10 : $scope.date = "OCT"; break;
+            case 11 : $scope.date = "NOV"; break;
+            case 12 : $scope.date = "DEC"; break;
+            
+            default : $scope.date = "NON"; break;
+          }
+
+          if($scope.stat=="going"){
+              $scope.changeColor(); 
+          }
+          else if($scope.stat=="interested"){
+              $scope.changeColor2();
+          }
+          
+
+      });
+
+
+      $scope.changeColor = function(){       /* Triggers and changes the users state once user clicks on the "going" button */
+
+        var id = $stateParams.id; 
+        $http.get('http://teamsoft.tk/userStatus.php?status=going&id='+userid+'&eid='+id ).then(function(response){
+            $scope.status = response.data;
+            if(response.data=="true")
+            {
+              $scope.textColor = '  #505050 ';
+              $scope.textColor2 = '#004d4d';
+            }
+            else{
+
+                 var alertPopup = $ionicPopup.alert({
+                    title:'Smart ap',
+                    template:'error '
+                 });
+            }
+
+        });
       }
-       $scope.changeColor2 = function(){
-        $scope.textColor = '#004d4d';
-        $scope.textColor2 = ' #606060 ';
+       $scope.changeColor2 = function(){      /* Triggers and changes the users state once user clicks on the "interested" button */
+        var id = $stateParams.id; 
+        $http.get('http://teamsoft.tk/userStatus.php?status=interested&id='+userid+'&eid='+id ).then(function(response){
+            $scope.status1 = response.data;
+            if(response.data=="true")
+            {
+              $scope.textColor = '#004d4d';
+              $scope.textColor2 = ' #505050 ';
+            }
+            else{
+                var alertPopup = $ionicPopup.alert({
+                    title:'Smart ap',
+                    template:'error '
+                });
+            }
+
+        });
+
+        
+      }
+
+      $scope.seeParticipants = function(){
+        var id = $stateParams.id; 
+        $state.go("participants",{id:id});
       }
 
       $scope.var = false;
@@ -3527,26 +4530,267 @@ var UID=window.localStorage.getItem("id");
       }
 })
 
-.controller('adminevent', function($scope,$state) {
+/*.controller('participants', function($scope,$state,$http,$stateParams){
+    var id = $stateParams.id;
+    $http.get('http://localhost/test/viewParticipants.php?id='+id ).then(function(response){
+            $scope.Participants = response.data;
+    })
 
+
+})*/
+
+
+.controller('participants', function($scope,$state,$http,$stateParams){
+    var id = $stateParams.id;
+    $http.get('http://teamsoft.tk/countParticipants.php?id='+id ).then(function(response){
+            $scope.count = response.data;
+            if ($scope.count==1){ $scope.count= $scope.count+" Participant"; }
+            else { $scope.count= $scope.count+" Participants"; }
+    })
+    $http.get('http://teamsoft.tk/viewParticipants.php?id='+id ).then(function(response){
+            $scope.Participants = response.data;
+    })
+
+
+})
+
+.controller('adminevent', function($scope,$state,$http,$ionicPopup) {
+
+    $http.get('http://teamsoft.tk/addEvent.php').then(function(response){
+        
+          $scope.eventNames = response.data;
+      
+    });
        
-          $scope.createEvent1 = function(){
+    $scope.createEvent1 = function(){             /* Transition to create new event page*/
         $state.transitionTo("createEvent");
     }
-           $scope.descriptionpg = function(){
-        $state.transitionTo("eventDesc");
+    $scope.admindescriptionpg = function(id){     /* View the event in detail*/
+       var idval = id;
+        $state.go("adminEventDesc",{id:id});
+    }
+
+    $scope.showConfirm = function(id){            /* Delete an event*/
+
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Delete',
+        template: 'Are you sure you want to delete this?'
+     });
+ 
+      confirmPopup.then(function(res) {
+      if(res) {
+       
+         $http.get('http://teamsoft.tk/deleteEvent.php?id='+id ).then(function(response){
+
+         var status=response.data;
+            if(status =="true"){
+ 
+              var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Event was deleted successfully'
+  
+              });
+               $state.go($state.current, {}, {reload:true});
+            }
+            
+            else if(status =="false"){
+              var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Process Failed'
+  
+              });
+             
+            } 
+      });
+
+     } 
+     else {
+       console.log('Deletion canceled !');
+     }
+   });
+ 
+
     }
 
      $scope.c = 0;
 })
 
-.controller('admineventdesc', function($scope) {
-         $scope.title="Save Wilpattu";
-         $scope.date="May 19th";
+.controller('admineventdesc', function($scope,$http,$state, $stateParams, $filter,$ionicPopup) {  /*Admins view to edit events*/
+      
+      $scope.changebit= false;
+      $scope.daybit= false;
+      var id = $stateParams.id;
+      $http.get('http://teamsoft.tk/eventDesc.php?id='+id ).then(function(response){
+        
+          $scope.eventNames = response.data;
 
-         $scope.demo = function(){
-              $scope.date="May 20th";
-         }
+          angular.forEach($scope.eventNames, function(value, key){        /*From each row, read the content*/
+            $scope.title =  value.name;
+            $scope.date =  new Date(value.date);
+            $scope.stime =  toTime(value.start_time);
+            $scope.etime =  toTime(value.end_time);
+            $scope.venue =  value.venue;
+            $scope.desc =  value.description;
+            $scope.selected1 = value.organizer;
+            $scope.durationSelect1 = value.duration;
+
+          })
+      });
+       
+      $scope.hideval = function(){
+          $scope.changebit = true;
+        }
+        $scope.hideday = function(){
+          $scope.daybit = true;
+      }
+
+      function toTime(timeString){      /*Function used to convert a certain date tp string*/
+        var timeTokens = timeString.split(':');
+        var d = new Date(1970,0,1, timeTokens[0], timeTokens[1], 00);
+        return d;
+      }   
+
+      $http.get('http://teamsoft.tk/addGroup.php').then(function(response){
+        
+          $scope.groups = response.data;
+      
+      });
+
+      var date = new Date();
+      $scope.today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+
+/*Function triggered when admin clicks on edit button*/
+      $scope.edited = function(title, edate, stime, etime, location, desc, selected, duration, durationSelect ){
+           
+        if(angular.isUndefined(title)|| title==null  ){    /*Validations to check for  empty slots*/
+          var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter the tile of the event'
+  
+              });
+        }
+        else if(angular.isUndefined(location)|| location===null  ){
+          var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter the venue of the event'
+  
+              });
+        }
+        else if(angular.isUndefined(edate)|| edate===null  ){
+          var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter a valid date'
+  
+              });
+        }
+        else if( angular.isUndefined(stime)|| stime===null || angular.isUndefined(etime)|| etime===null )
+        {
+           var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter the time period'
+  
+              });
+        }
+        else if(selected === "default" || selected==null)
+        {
+          var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please choose a cohost'
+  
+              });
+        }
+        else if( angular.isUndefined(duration)|| duration===null || durationSelect==null)
+        {
+          var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter a valid duration'
+  
+              });
+        }
+        else{
+
+          /*Validations for the date option */
+          var current = new Date();
+          var event_date = edate.getFullYear() + '-' + ('0' + (edate.getMonth() + 1)).slice(-2) + '-' + ('0' + edate.getDate()).slice(-2);
+          var start_time =  stime.getHours()  + ':' + stime.getMinutes();
+          var end_time =  etime.getHours()  + ':' + etime.getMinutes();
+
+          var start = stime.getHours();
+          var end = etime.getHours();
+          var startMin = stime.getMinutes();
+          var endMin = etime.getMinutes();
+          if( (current.getFullYear()>edate.getFullYear() ) || (current.getMonth() > edate.getMonth()) || (current.getDate() > edate.getDate() ))
+          {
+            var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter a valid date'
+  
+              });
+            
+          }
+          else if ( durationSelect=="day" && duration=='1' && (end < start))    /* Vlaidations for the time slots*/
+          {
+        
+              var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter a valid time period'
+  
+              });
+          }
+          else if(durationSelect=="day" && duration=='1' && (end==start) && (endMin <startMin)){
+            var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter a valid time period'
+  
+              });
+          }
+          
+          else
+          {
+             var count;                        /* Based on duration entered, the duration is converted to days before sending to the database*/
+            if (durationSelect=="day"){count=1;}
+            else if (durationSelect=="week"){count=7;}
+            else if (durationSelect=="month"){count=30;}
+
+            duration = duration*count;
+           
+            $http.get('http://teamsoft.tk/updateEvent.php?id='+id+'&title='+title+'&date='+event_date+'&stime='+start_time+'&etime='+end_time
+          +'&duration='+duration+'&location='+location+'&desc='+desc+'&cohost='+selected).then(function(response){
+            
+            var status=response.data;
+            if(status =="true"){
+ 
+              var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Event was updated successfully'
+  
+              });
+               $state.go('AdmintabsController.adminEvent', {}, {reload:true});
+            }
+            else if(status =="false"){
+              var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Process Failed'
+  
+              });
+              $state.go($state.current, {}, {reload:true});
+            }
+            else{
+              var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Failed'
+  
+              });
+              $state.go($state.current, {}, {reload:true});
+
+            }
+
+          }); 
+          }
+        }
+     }
+       
+    
 })
 
 
@@ -3580,43 +4824,195 @@ var UID=window.localStorage.getItem("id");
 
 
 
-.controller('eventgoing', function($scope) {
+.controller('eventgoing', function($scope,$http,$ionicPopup) {
 
+  //var userId = window.localStorage.getItem("username");
+   var userId = window.localStorage.getItem("id");
+    $http.get('http://teamsoft.tk/goingEvent.php?id='+userId).then(function(response){
+        
+          $scope.eventNames = response.data;
 
-    $scope.eventNames = [{name :"'Save Water' Charity", date:"27th April 2016", image:"img/img1.jpg"},
-                       {name:"'Memories' 13C Batch Party", date:"30th April 2016", image:"img/img2.jpg"} ,
-                       {name:"Wesak dansala",date:"6th May 2016", image:"img/img3.jpg"} ]; 
+      
+      });
+
+    /**
+    /* Merge the events to the users calendar
+    /*
+    **/
+
+   var CLIENT_ID = '61431024460-cnt3pdmt0n7gimmej7etirfr1skoj89u.apps.googleusercontent.com';
+   var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+     $scope.end =new Date(); 
+     $scope.start=new Date(); 
+     $scope.title="default"; 
+     $scope.ev_description = "default"; 
+   //var end,start,title,ev_description;
+   
+     // var events= {};
+      
  
-})
+  $scope.addEvent = function(entryId){
 
-.controller('eventhosted', function($scope) {
+    $http.get('http://teamsoft.tk/updatecalendar.php?id='+userId+'&eventId='+entryId).then(function(response){
+        if(response.data == "false"){
+         
+            var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'This event has already been updated!'
+  
+              });
+        }
+        else{
+
+         
+          var name, desc,id,date,stime,etime;
+          $scope.eventNames = response.data;
+        
+         angular.forEach($scope.eventNames, function(value, key){        /*From each row, read the content*/
+             
+             $scope.gEid= value.id;
+             $scope.title =  value.name+" - Event of Royalists94";
+             $scope.end =  $scope.start  =  new Date(value.date);
+             //stime =  value.start_time;
+             //etime = value.end_time;
+             $scope.ev_description =  value.description;
+             //var x1= date+" "+value.start_time+":00+05:30";
+            // var x2= date+" "+value.end_time+":00+05:30";
+
+            //$scope.end= x2;
+            //$scope.start= x1;
+           // $scope.title = name;
+          // $scope.ev_description = desc;*/
+
+       /*    events["end"]["date"] =  $scope.end;
+      events["start"]["date"] =  $scope.start;
+      events["summary"] =  $scope.title;
+      events["description"] =  $scope.ev_description;*/
+        
+              
+
+          gapi.auth.authorize(
+            {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+            loadCal);
+          return true;
 
 
-    $scope.eventNames = [{name :"'Save Water' Charity", date:"27th April 2016", image:"img/img1.jpg"},
-                       {name:"'Memories' 13C Batch Party", date:"30th April 2016", image:"img/img2.jpg"} ,
-                       {name:"Wesak dansala",date:"6th May 2016", image:"img/img3.jpg"} ]; 
+         // var gid = window.localStorage.getItem("gEid");
+       /*   $http.get('http://localhost/test/mergeevent.php?id='+userId+'&eventId='+id+'&googleId='+gid).then(function(response){ 
+              if(response.data=="true"){ console.log("merged"); }
+              else{ console.log("error in merging"); }
+         })*/
+
+        })
+
+         var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Events were successfully merged!'
+  
+              });
+
+      }
+    });
+
+    /*  */
+      }
+
+     function appendPre(message) {
+        var googleEid = message.split("=");
+       // alert(googleEid[1]);
+        var eId = $scope.gEid;
+       // alert(eId+" "+userId);
+         $http.get('http://teamsoft.tk/mergeevent.php?id='+userId+'&eventId='+eId+'&googleId='+googleEid[1]).then(function(response){ 
+              if(response.data=="true"){ console.log("merged"); }
+              else{ console.log("error in merging"); }
+         });
+
+        var pre = document.getElementById('output');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+/**
+/* Test to insert events to the calendar
+/*
+**/
+      
+
+      function loadCal(){
+
+        gapi.client.load('calendar', 'v3', addEventtoCal);
+      }
+
+      function addEventtoCal(){
+        //alert($scope.end"  "$scope.start);
+        var event =  {
+        "end": {
+          "dateTime": $scope.end
+        },
+        "start": {
+          "dateTime": $scope.start
+        },
+        "summary": $scope.title,
+        "description": $scope.ev_description
+      }
  
+        
+      var request = gapi.client.calendar.events.insert({
+      'calendarId': 'primary',
+      'resource': event
+      });
+
+      request.execute(function(event) {
+        var stringEvent = 'Event added: ' + event.htmlLink;
+        //window.localstorage.setItem("gEid", googleEid[1]);
+        appendPre('Event added: ' + event.htmlLink);
+
+      });
+      console.log("success");
+     }
+
+
+
+
 })
 
-.controller('eventpast', function($scope) {
 
 
-    $scope.eventNames = [{name :"'Save Water' Charity", date:"27th April 2016", image:"img/img1.jpg"}];
-                      
+.controller('eventhosted', function($scope,$http) {
+
+    //var userId = window.localStorage.getItem("username");
+   var userId = window.localStorage.getItem("id");
+    $http.get('http://teamsoft.tk/hostedEvents.php?id='+userId).then(function(response){
+        
+          $scope.eventNames = response.data;
+      
+      });
 })
-.controller('eventgroup', function($scope) {
 
+.controller('eventpast', function($scope,$http) {
 
-    $scope.eventNames = [ {name:"Wesak dansala",date:"6th June 2016", image:"img/img3.jpg", assoc:"1994 Old Boys Association"} ];
-                      
+    var userId = window.localStorage.getItem("id");
+    $http.get('http://teamsoft.tk/pastEvents.php?id='+userId).then(function(response){
+          $scope.eventNames = response.data;
+      });                 
 })
-.controller('eventsubgroup', function($scope) {
+.controller('eventgroup', function($scope,$http) {
 
+    var userId = 1;
+    $http.get('http://teamsoft.tk/groupEvents.php?id='+userId).then(function(response){
+        
+          $scope.eventNames = response.data;
+      });
+      if($scope.eventNames == null){
+      
+    }                
+})
+.controller('eventsubgroup', function($scope,$http) {
+    var userId = window.localStorage.getItem("id");
+    $http.get('http://teamsoft.tk/subgroupEvents.php?id='+userId).then(function(response){
+        
+          $scope.eventNames = response.data;
+      });
 
-    $scope.eventNames = [{name :"Save Wilpattu", date:"19th May 2016", image:"img/savewil.jpg", assoc:"Doctors Association"},
-                       {name:"'Memories' 13C Batch Party", date:"30th May 2016", image:"img/img2.jpg", assoc:"Class of 13C"} ,
-                       {name :"'Save Water' Charity", date:"27th May 2016", image:"img/img1.jpg", assoc:"1994 Charity Organization"}
-                       ];
                     
 })
 
@@ -3671,8 +5067,8 @@ var UID=window.localStorage.getItem("id");
 
 .controller('exmsg',function($scope){
     
-      $scope.newbit = $scope.c;
-      $scope.addMsg = function(){
+     $scope.newbit = $scope.c;
+ $scope.addMsg = function(){
       $scope.c = "ff";
    }
    $scope.searchcon = function(){
@@ -3695,36 +5091,206 @@ var UID=window.localStorage.getItem("id");
 
 .controller('calendar',function($scope){
       
-  $scope.calendarVals = [{d1 :"01", d2 :"02", d3 :"03", d4 :"04",d5 :"05", d6 :"06", d7 :"07"},
-                       {d1 :"08", d2 :"09", d3 :"10", d4 :"11",d5 :"12", d6 :"13", d7 :"14"},
-                       {d1 :"15", d2 :"16", d3 :"17", d4 :"18",d5 :"19", d6 :"20", d7 :"21"},
-                        {d1 :"22", d2 :"23", d3 :"24", d4 :"25",d5 :"26", d6 :"27", d7 :"28"},
-                        {d1 :"29", d2 :"30", d3 :"31", d4 :"01",d5 :"02", d6 :"03", d7 :"04"} ]; 
  
-  $scope.calcVal = function(){
+    
 
+   var event =  {
+        "end": {
+          "dateTime": "2016-08-19T18:00:00+05:30"
+        },
+        "start": {
+          "dateTime": "2016-08-19T15:30:00+05:30"
+        },
+        "summary": "Test eventxxx",
+        "status" : "tentative",
+        "description": "This is a test event"
+      }
+
+ 
+
+
+    /*{
+  'summary': 'Google I/O 2015',
+  'location': '800 Howard St., San Francisco, CA 94103',
+  'description': 'A chance to hear more about Google\'s developer products.',
+  'start': {
+    'dateTime': '2016-08-15T00:30:00+05:30',
+    'timeZone': 'Colombo'
+  },
+  'end': {
+    'dateTime': '2016-08-15T00:30:00+07:30',
+    'timeZone': 'Colombo'
   }
-  $scope.ebit = true;
+};*/
+ 
 
-  $scope.eventCal = {day:"May 02",title:"Brothers birthday",stime:"12:00pm", etime:"05:00pm",location:"Kingsbury, Colombo",description:"get the gifts ready"};  
+         
 
-})
 
-.controller('calcdet',function($scope){
-    $scope.eventCal = {day:"May 02",title:"Brothers birthday",stime:"12:00pm", etime:"05:00pm",location:"Kingsbury, Colombo",description:"get the gifts ready"};  
+  /**
+**
+GOOGLE CALENDAR
+**/
+  // Your Client ID can be retrieved from your project in the Google
+      // Developer Console, https://console.developers.google.com
+      var CLIENT_ID = '61431024460-cnt3pdmt0n7gimmej7etirfr1skoj89u.apps.googleusercontent.com';
+
+      var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+
+      /**
+       * Check if current user has authorized this application.
+       */
+      function checkAuth() {
+        gapi.auth.authorize(
+          {
+            'client_id': CLIENT_ID,
+            'scope': SCOPES.join(' '),
+            'immediate': true
+          }, handleAuthResult);
+      }
+
+      /**
+       * Handle response from authorization server.
+       *
+       * @param {Object} authResult Authorization result.
+       */
+      function handleAuthResult(authResult) {
+        var authorizeDiv = document.getElementById('authorize-div');
+        if (authResult && !authResult.error) {
+          // Hide auth UI, then load client library.
+          authorizeDiv.style.display = 'none';
+          loadCalendarApi();
+        } else {
+          // Show auth UI, allowing the user to initiate authorization by
+          // clicking authorize button.
+          authorizeDiv.style.display = 'inline';
+        }
+      }
+
+
+      /**
+       * Initiate auth flow in response to user clicking authorize button.
+       *
+       * @param {Event} event Button click event.
+       */
+      $scope.handleAuthClick = function(event) {
+        gapi.auth.authorize(
+          {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+          handleAuthResult);
+        return false;
+      }
+
+      /**
+       * Load Google Calendar client library. List upcoming events
+       * once client library is loaded.
+       */
+      function loadCalendarApi() {
+        gapi.client.load('calendar', 'v3', listUpcomingEvents);
+      }
+
+      /**
+       * Print the summary and start datetime/date of the next ten events in
+       * the authorized user's calendar. If no events are found an
+       * appropriate message is printed.
+       */
+
+       function listUpcomingEvents() {
+        var request = gapi.client.calendar.events.list({
+          'calendarId': 'primary',
+          'timeMin': (new Date()).toISOString(),
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 10,
+          'orderBy': 'startTime'
+        });
+
+        request.execute(function(resp) {
+          var events = resp.items;
+          appendPre('Upcoming events:');
+
+
+          $scope.eventArr = [];
+          $scope.calbit=true;
+          if (events.length > 0) {
+            for (i = 0; i < events.length; i++) {
+              var event = events[i];
+              var when = event.start.dateTime;
+              if (!when) {
+                when = event.start.date;
+              }
+              //appendPre(event.summary + ' (' + when + ')')
+
+              $scope.eventArr.push({name:event.summary, date:when});
+            }
+          } else {
+            appendPre('No upcoming events found.');
+            $scope.eventArr.push({name:'No upcoming events', date: ""});
+          }
+
+        });
+      }
+
+
+      /**
+       * Append a pre element to the body containing the given message
+       * as its text node.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendPre(message) {
+        var pre = document.getElementById('output');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+/**
+/* Test to insert events to the calendar
+/*
+**/
+       $scope.addEvent = function(){
+
+    gapi.auth.authorize(
+          {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+          loadCal);
+        return false;
+
+
+      }
+
+      function loadCal(){
+        gapi.client.load('calendar', 'v3', addEventtoCal);
+      }
+
+      function addEventtoCal(){
+        
+      var request = gapi.client.calendar.events.insert({
+      'calendarId': 'primary',
+      'resource': event
+      });
+
+      request.execute(function(event) {
+        appendPre('Event created: ' + event.htmlLink);
+
+      });
+      console.log("success");
+    }
 
    })
 
 
-.controller('MyController', function($scope, $http, $ionicPopover,$state,  $ionicPopup) {
 
-        $scope.addE();
 
+.controller('MyController', function($scope, $http, $ionicPopover,$state, $ionicPopup) {
+        var userId = window.localStorage.getItem("id");
+         $http.get('http://teamsoft.tk/addUserEvents.php?id='+userId).then(function(response){
+        
+          $scope.eventNames = response.data;
+      
+      });
   
-        $scope.show = function(a){
-    
+        $scope.show = function(a){    /* Page transitions for the navigation bar */
+          
           if(a=='Upcoming'){
-                $state.transitionTo('tabsController.events');
+                $state.go('tabsController.events', {}, {reload:true});
           }
            if(a=='Going'){
                 $state.transitionTo('eventGoing');
@@ -3732,73 +5298,146 @@ var UID=window.localStorage.getItem("id");
           if(a=='Past'){
                 $state.transitionTo('eventPast');
           }
-          if(a=='Hosted'){
-                $state.transitionTo('eventHosted');
-          }
            if(a=='Group'){
                 $state.transitionTo('eventGroup');
           }
-          if(a=='Sub Group'){
+          if(a=='Sub Groups'){
                 $state.transitionTo('eventSubgroup');
           }
         
   }
     
-   $scope.calendarVals = [{d1 :"01", d2 :"02", d3 :"03", d4 :"04",d5 :"05", d6 :"06", d7 :"07"},
+  
+
+  $scope.calcVal = function(){
+    
+  }
+
+  if($scope.c==0){
+    $scope.newevent = false;
+  }
+  else
+  {
+    $scope.newevent = true;
+  }
+  
+  $scope.created = function(){
+      $scope.c=$scope.c + 1;
+      $state.transitionTo("adminEvent");
+     
+  }
+       
+
+  $scope.showConfirm = function() {
+    var confirmPopup = $ionicPopup.confirm({
+        title: 'Delete Event',
+        template: 'Are you sure you want to delete this event? This action cannot be undone.'
+   });
+
+  confirmPopup.then(function(res) {
+    if(res) {
+        $scope.noInterest = true;
+    }
+    else {
+      
+    }
+
+  });
+
+  };
+
+
+  $scope.doRefresh = function() {
+
+    $http.get('/new-items')
+     .success(function(newItems) {
+
+       $scope.eventNames = newItems;
+       $scope.dates = newItems;
+
+     })
+
+     .finally(function() {
+       // Stop the ion-refresher from spinning
+       $scope.$broadcast('scroll.refreshComplete');
+     });
+  };
+
+
+
+  $scope.noInterest = false;
+  $scope.ebit = true;
+
+  // .fromTemplate() method
+  var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
+
+  $scope.popover = $ionicPopover.fromTemplate(template, {
+    scope: $scope
+  });
+
+  // .fromTemplateUrl() method
+  $ionicPopover.fromTemplateUrl('event-popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+
+  $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+  };
+
+  $scope.closePopover = function(isChecked) {
+    var userid = window.localStorage.getItem("id");
+    var x = isChecked;
+      $http.get('http://teamsoft.tk/userStatus.php?id='+userid+'&status='+x).then(function(response){
+        
+         $scope.status = response.data;
+          if(status=="true"){
+             var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Successfully changed'
+  
+              });
+          }
+          else{
+             var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Error'
+  
+              });
+          }
+    });
+
+    $scope.popover.hide(); //close the popup after 3 seconds for some reas
+    
+    }
+  
+  //Cleanup the popover when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+  });
+  // Execute action on hide popover
+  $scope.$on('popover.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove popover
+  $scope.$on('popover.removed', function() {
+    // Execute action
+  });
+
+
+})
+
+.controller('MyControllerCal', function($scope, $http, $ionicPopover,$state,  $ionicPopup) {    /*THe controller for the calendar*/
+
+     $scope.calendarVals = [{d1 :"01", d2 :"02", d3 :"03", d4 :"04",d5 :"05", d6 :"06", d7 :"07"},
                        {d1 :"08", d2 :"09", d3 :"10", d4 :"11",d5 :"12", d6 :"13", d7 :"14"},
                        {d1 :"15", d2 :"16", d3 :"17", d4 :"18",d5 :"19", d6 :"20", d7 :"21"},
                         {d1 :"22", d2 :"23", d3 :"24", d4 :"25",d5 :"26", d6 :"27", d7 :"28"},
                         {d1 :"29", d2 :"30", d3 :"31", d4 :"01",d5 :"02", d6 :"03", d7 :"04"} ]; 
  
    
-
-  $scope.calcVal = function(){
-    
-  }
-
-    $scope.admindescriptionpg = function(){
-        $state.transitionTo("adminEventDesc");
-    }
-
-  /*$scope.eventNames = [{name :"'Save Water' Charity", date:"27th May 2016", image:"img/img1.jpg", assoc:"1994 Charity Organization"},
-                       {name:"'Memories' 13C Batch Party", date:"30th May 2016", image:"img/img2.jpg", assoc:"Class of 13C"} ,
-                       {name:"Wesak dansala",date:"6th June 2016", image:"img/img3.jpg", assoc:"1994 Old Boys Association"} ]; 
- */
-  $scope.Birthdays = [{name :"Kasun Senevirathne", day:"Today", image:"img/img4.jpg"},
-                       {name:"Malinda Samarathunga",day:"Today", image:"img/img5.jpg"} ]; 
-  
-  $scope.neweventName = [{name :"Hello", date:"2k7th May 2016", image:"img/img1.jpg", assoc:"1994 Charity Organization"}];
-  
-
-  if($scope.c==0){
-  $scope.newevent = false;
-}else
-{
-   $scope.newevent = true;
-}
-    $scope.created = function(){
-        $scope.c=$scope.c + 1;
-      $state.transitionTo("adminEvent");
-     
-    }
-       
-
-        $scope.showConfirm = function() {
-       var confirmPopup = $ionicPopup.confirm({
-        title: 'Delete Event',
-     template: 'Are you sure you want to delete this event? This action cannot be undone.'
-   });
-
-   confirmPopup.then(function(res) {
-     if(res) {
-        $scope.noInterest = true;
-     } else {
-      
-     }
-   });
- };
-
-
   $scope.doRefresh = function() {
     $http.get('/new-items')
      .success(function(newItems) {
@@ -3835,11 +5474,25 @@ var UID=window.localStorage.getItem("id");
     $scope.popover.show($event);
   };
 
-  $scope.closePopover = function() {
+  $scope.closePopover = function(title,location,daet) {
      $scope.noInterest = true;
      $scope.ebit = false;
-     $scope.popover.hide(); //close the popup after 3 seconds for some reas
-    
+     if(angular.isUndefined(title)|| title===null || angular.isUndefined(date)|| date===null ){
+         var alertPopup = $ionicPopup.alert({
+                title:'SmartApp',
+                template:'Please enter all fields'
+  
+              });
+      }
+     else{
+ 
+    $scope.popover.hide(); //close the popup after 3 seconds for some reas
+    var alertPopup = $ionicPopup.alert({
+    title:'SmartApp',
+    template:'Event successfully added'
+  
+    });
+    }
   }
   //Cleanup the popover when we're done with it!
   $scope.$on('$destroy', function() {
@@ -3855,4 +5508,4 @@ var UID=window.localStorage.getItem("id");
   });
 
 
-});
+  });

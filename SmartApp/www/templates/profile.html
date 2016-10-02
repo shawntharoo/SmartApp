@@ -1,18 +1,24 @@
 <ion-view title="My Profile" id="page6" cache-view="false">
    <ion-nav-buttons side="left" ng-show="true">
-    <button class="button button-icon button-clear ion-arrow-left-b" ui-sref="tabsController.mainprofile">
+    <button class="button button-icon button-clear ion-arrow-left-b" ng-click="navigate()">
     Back</button>
     </ion-nav-buttons>
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <ion-content overflow-scroll="true" padding="true" class="has-header" >
+       <img class="overlay" src={{bg}}>
+    
         <ion-list>
+           <!-- <center><ion-item class="item avatar">
+                <img src={{propic}} ng-click="nextpage()" />
+            </ion-item></center>-->
             <ion-item class="item-thumbnail-left">
-                <img src="img/boy1.png" ng-click="nextpage()">
+             <img src="http://teamsoft.tk/{{image}}" ng-click="nextpage()">
+
                 <h2>{{name}}</h2>
                 <p>{{email}}</p>
                 <p>{{class}}</p>
             </ion-item>
         
-              <div class="item item-divider">
+              <div class="item item-divider" ng-style="background-image:url("img/background1.png")">
               Personal Details
               </div>
               <a class="item item-icon-left" href="#/address">
@@ -61,7 +67,7 @@
                  </a>
             
        
-                  <a id="signup-button5" class="button button-stable  button-block" ng-click=show() style="background-color: white"></a>
+                  <a id="signup-button5" class="button button-block button-transparent" ng-click=show() ></a>
             
        
         

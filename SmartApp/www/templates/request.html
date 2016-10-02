@@ -1,4 +1,7 @@
 <ion-view title="My Profile" id="request" cache-view="false">
+    <ion-nav-buttons side="left" ng-show="true">
+    <button class="button button-icon button-clear ion-arrow-left-b" ng-click="navigate()">
+    Back</button>
     </ion-nav-buttons>
     <ion-content overflow-scroll="true" padding="true" class="has-header">
       <form class="list">
@@ -7,8 +10,9 @@
                 <ion-item class="item-thumbnail-left" ng-repeat="x in request">
                     <img src="img/boy1.png">
                     <h2>{{x.name}}</h2>
+                    <p>{{x.email}}</p>
                     <p>Class-{{x.class}}</p>
-                    
+                 
                     <button class="button button-small button-balanced" ng-click="approve({{x.id}})">
                 Approve
                 </button>

@@ -2,88 +2,70 @@
 
     <ion-content padding="true" class="has-header">
          <div class="list card">
-            <div class="item item-body">
+            <div class="item item-body" ng-repeat="x in names">
                 <ion-list>
                     <div class="item item-avatar" ui-sref="profile">
                    <img src="/img/download (3).jpg">
-                    <h2>Marty McFly</h2>
-                    <p>November 05, 1955</p>
+                    <h2>{{names[$index].uname}}</h2>
+                    <p>{{names[$index].date}}</p>
+                     <ion-note item-right style="color: #C0C0C0 ">
+                   {{names[$index].time}}
+                    </ion-note>
                   </div>
                 </ion-list>
                 <div>
-                    <a style="display:block;" ui-sref="selectedPost">
-                        <img src="img/Beach_Party .jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                    <a style="display:block;" >
+                        <img src="http://localhost/test/{{names[$index].image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
                     </a>
                 </div>
                 <div id="cricketPost-markdown2" style="color:#0E0101;text-align:justify;">
-                    <p>There is a beach party for our batch in this year.</p>
+                    <p>{{names[$index].description}}</p>
                 </div>
                 <div class="item">
                    
-                    <button id="cricketPost-button3" class="ion-icon ion-thumbsup button-primary button-clear item-left" style="color: #3366ff">12 Likes</button>
-                       <a ui-sref="selectedPost" id="cricketPost-button2" > <button class="ion-icon ion-ios-compose button-primary button-clear item-left" style="color: #3366ff">4 Comments</button></a>
+                  <!--   
+                       <a ui-sref="selectedPost" id="cricketPost-button2" > <button class="ion-icon ion-ios-compose button-primary button-clear item-left" style="color: #3366ff">4 Comments</button></a>  -->  
                     
-                    <ion-note item-right style="color: #C0C0C0 ">
-                      11h ago
-                    </ion-note>
+                   
  </div>
                
             </div>
         </div>
         <div class="list card">
             <div class="item item-divider">Comments</div>
+                <table  ng-repeat="x in comment track by $index"  ng-switch on="$index % 1">
+           <tr>
+            <td>
             <div class="item item-body">
                 <ion-list>
                  <div class="item item-avatar" ui-sref="profile">
                     <img src="img/ZkVgGracQROJWJljbptq_boy1.png">
-                    <h2>Peter Mcfly</h2>
-                    <p>Ya its totaly good </p>
+                    <h2>{{comment[$index].uname}}</h2>
+                    <p>{{comment[$index].comment}}</p>
                   </div>
-
-                   <div class="item item-avatar" ui-sref="profile">
-                    <img src="img/img4.jpg">
-                    <h2>Sam Peter</h2>
-                    <p>Good job</p>
-                  </div>
-
-                   <div class="item item-avatar" ui-sref="profile">
-                    <img src="img/img5.jpg">
-                    <h2>Paul Jak</h2>
-                    <p>Ya its totaly good </p>
-                  </div>
-
-                   <div class="item item-avatar" ui-sref="profile">
-                    <img src="img/img4.jpg">
-                    <h2>Peter McFly</h2>
-                    <p>Ya its totaly good But it should be contained more infromation than that</p>
-                  </div>
-
-                   <div class="item item-avatar" ui-sref="profile">
-                    <img src="img/img5.jpg">
-                    <h2>Peter McFly</h2>
-                    <p>Can he change the banner colour again</p>
-                  </div>
-
-                   <div class="item item-avatar" ui-sref="profile">
-                    <img src="img/EUS0JmqoTKOYmRcySs5W_boy3.png">
-                    <h2>Peter McFly</h2>
-                    <p>Ya its totaly fine</p>
-                  </div>
-                    
+                
                     
                 </ion-list>
             </div>
+
+                 </td>
+              </tr>
+           </table>
         </div>
+
         <form class="list">
         <div class="row"> 
             <label class="item item-input" name="chat" style=";border-radius:7px 7px 7px 7px">
-                
-                <input type="text" placeholder="Type Here" style=";width: 300px"> 
+           
+                <input type="text" data-clear-btn="true" placeholder="Type Here" style=";width: 300px" ng-model="comments">  
+
             </label>
-        <a ui-sref="selectedPostDemo" id="selectedPost-button44" > <button class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff;padding-top: 10px"> 
+        <a  id="selectedPost-button44" ng-click="addcomment(comments)"> <button class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff;padding-top: 10px"> 
                 </button></a>
                 
             </div>
         </form>
     </ion-content>
+
+   
 </ion-view>

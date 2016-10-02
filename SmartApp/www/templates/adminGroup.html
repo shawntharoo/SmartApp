@@ -32,19 +32,19 @@
 
               		<tr ng-repeat="x in names" ng-switch on="$index % 3">
                             <td ng-switch-when="0">
-                                  <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;" ><img src="http://localhost/test/{{names[$index].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>   {{names[$index].group_name}}</a></div>
+                                  <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;" ><img src="{{names[$index].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>   {{names[$index].group_name}}</a></div>
                              
                             </td>
                             <span ng-show="names[$index+1]">
                                 <td ng-switch-when="0" ng-if="names[$index+1]">
-                                    <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;" ><img src="http://localhost/test/{{names[$index+1].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>{{names[$index+1].group_name}}</a></div>
+                                    <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;" ><img src="{{names[$index+1].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>{{names[$index+1].group_name}}</a></div>
                                    
                                 </td>
                             </span>    
 
                             <span ng-show="names[$index+2]"> 
                                <td ng-switch-when="0" ng-if="names[$index+2]">
-                                     <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;"><img src="http://localhost/test/{{names[$index+2].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>{{names[$index+2].group_name}}</a></div>
+                                     <div class="coll" style="padding-left:3px; margin:1px; font-size:12px;"><a class="button button-icon icon" style="font-size:12px; color: #004d4d;"><img src="{{names[$index+2].image}}" style="height: 70px;width: 70px;min-height: 70px"><br>{{names[$index+2].group_name}}</a></div>
                                      
                                 </td>
                             </span>

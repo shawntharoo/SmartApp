@@ -3,12 +3,11 @@
  <ion-list>
  <ion-item  ng-repeat="eventname in eventNames" > 
              <div class="item item-thumbnail-left" >
-                    <img src= {{eventname.image}} ng-click="descriptionpg()">
-                    <button class="button button-clear button-positive" ng-click="descriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
+                    <img src= {{eventname.image}} ng-click="descriptionpg({{eventname.id}})">
+                    <button class="button button-clear button-positive" ng-click="descriptionpg({{eventname.id}})" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
                     <p> {{eventname.date}}</p>
                     <p> {{eventname.assoc}}</p>
-                    <button class="button outline item-icon-right icon ion-compose" ng-click="admindescriptionpg()"></button >
-                  <button class="button outline item-icon-right icon ion-trash-a" style="color:red;" ng-click="showConfirm()"></button >
+                    <button class="button outline item-icon-right icon ion-calendar" ng-click="openPopover($event)"></button >
              </div>
              </ion-item>
          </ion-list>

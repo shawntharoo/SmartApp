@@ -1,46 +1,107 @@
 <ion-view title="Create an event" id="createNewEvent" style="background-color:#EEEEF1;">
-    <ion-content padding="true" class="has-header">
+  <ion-content padding="true" class="has-header">
+    <div class="list" style="margin:2px;" >
+     
+<!-- FORM TO CREATE AN EVENT
+  The form contains all elements to create the event. It has inline angularJS validaitons as warnings. Furthur 
+  validation checks are done once the form is submitted -->           
+      <form name="myForm" novalidate>
 
-    	<div class="list" style="margin:2px;" ng-controller="MyController">
-    <label class="item item-input" style="margin:0; height:100px; ">
-        <input type="text" placeholder="Event Title" style="font-size:26px; text-align:center; " >
-        <a class="button button-icon icon ion-camera" style="margin-right:10px;"></a>
-      </label>
-      <label class="item item-input">
-         <span class="input-label">Date</span>
-         <input type="date">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Time</span>
-        <input type="text">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Location</span>
-        <input type="text">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Co hosts</span>
-        <input type="text">
-      </label>
-      <label class="item item-input">
+        <label class="item item-input" style="margin:0; height:100px; ">
+          <input type="text" name="title" ng-model="title" placeholder="Event Title" style="font-size:26px;   text-align:center; " required>
+          <span style="color:red" ng-show="myForm.title.$dirty && myForm.title.$invalid ">  <!-- Inline angular validations-->
+          <span ng-show="myForm.title.$error.required">*</span></span>
+          <a class="button button-icon icon ion-camera" style="margin-right:10px;"></a>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label" style="padding-right:0;magin-right:0;" >Date</span>
+          <div class="row">
+            <div class="col col-60">
+              <input type="date" name="date" ng-model="date" min="{{today}}" style="padding-right:0;magin-right:0;" required>
+            </div>
+            <div class="col col-10">            <!-- Inline angular validations-->
+              <span style="color:red; margin-right:10px;" ng-show="myForm.date < {{today}} && myForm.date.$invalid ">Not a valid date</span>
+              <span style="color:red; margin-right:10px; text-align:left;" ng-show="myForm.date.$error.required">*</span>
+            </div>
+          </div>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Start time</span>
+          <div class="row">
+            <div class="col col-80">
+              <input type="time" name="stime" ng-model="stime" placeholder="HH:mm:ss" min="00:00:00" max="23:59:59" required>
+            </div>
+            <div class="col col-10">      <!-- Inline angular validations-->
+              <span style="color:red; margin-right:10px;" ng-show="myForm.time.$dirty && myForm.time.$invalid ">
+              <span ng-show="myForm.time.$error.time">*Invalid timezone</span></span>
+            </div>
+          </div>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">End time</span>
+          <div class="row">
+            <div class="col col-80">
+              <input type="time" name="etime" ng-model="etime" placeholder="HH:mm:ss" min="00:00:00" max="23:59:59" required>
+            </div>
+            <div class="col col-10">          <!-- Inline angular validations-->
+              <span style="color:red; margin-right:10px;" ng-show="myForm.time.$dirty && myForm.time.$invalid ">
+              <span ng-show="myForm.time.$error.time">*Invalid timezone</span></span>
+            </div>
+          </div>
+        </label>
+
+        <label class="item item-input" >
+          <span class="input-label">Duration</span>
+          <div class="row">
+            <div class="col col-20">
+              <input type="number" name="duration" ng-model="duration" style="padding:0;" min="1" required>
+            </div>
+            <div class="col col-10">
+              <select ng-model="durationSelect" >
+                <option value="day" >Day</option>
+                <option value="week">Week</option>
+                <option value="month" >Month</option>
+              </select >
+            </div>
+          </div>            <!-- Inline angular validations-->
+          <span style="color:red; margin-right:10px;" ng-show="myForm.duration.$dirty && myForm.duration.$invalid ">
+          <span ng-show="myForm.duration.$error.required">*</span></span>
+        </label>
+
+        <label class="item item-input" >
+          <span class="input-label">Location</span>
+          <div class="row">
+            <div class="col col-60">
+              <input type="text" name="location" ng-model="location" required>
+            </div>
+            <div class="col col-10">        <!-- Inline angular validations-->
+              <span style="color:red; margin-right:10px;" ng-show="myForm.location.$dirty && myForm.location.$invalid ">
+              <span ng-show="myForm.location.$error.required">*</span></span>
+            </div>
+          </div>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Co hosts</span>
+          <select ng-model="selected" >
+            <option  ng-repeat="group in groups" value="{{group.id}}"> {{group.name}} </option>
+            <option value="default" >-- Select an option--</option>
+          </select >
+        </label>
+
+        <label class="item item-input">
         <span class="input-label" >Description</span>
-        <textarea rows="7"></textarea>
-      </label>
-     <!-- <ion-toggle ng-model="airplaneMode" toggle-class="toggle-calm">Make publicly visible</ion-toggle>
-      <label class="item " style="background-color:#EEEEEE; padding:5px;" >
+        <textarea rows="7" ng-model="desc"></textarea>
+        </label>
+
+        <button class="button button-block button-positive"  ng-click="created(title,date,stime,etime,location,desc,selected,duration,durationSelect)">
+        Create
+        </button>
         
-      </label>-->
-       <label class="item item-input">
-         <span class="input-label">Invite Friends</span>
-         <input type="text">
-      </label>
-      <!--<ion-toggle ng-model="airplaneMode" toggle-class="toggle-calm">Allow guests to invite friends</ion-toggle>-->
-
-      <button class="button button-block button-positive" ng-click="created()">
-       Create
-      </button>
-      </div>
-
-
-</ion-content>
+      </form>
+    </div>
+  </ion-content>
 </ion-view>

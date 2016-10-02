@@ -10,105 +10,96 @@
 </script>
 
 <ion-view title="Event Description" id="desc" style="background-color:#EEEEF1;">
-<ion-nav-buttons side="right"  >
-      <button class="button button-large ion-checkmark-round " ng-click="demo()" > SAVE
-      </button>
-    </ion-nav-buttons>
-<ion-content padding="false" class="has-header">
 
-<div class="list">
-  <label class="item item-input">
-    <span class="input-label" style="height:200px;"><img src="img\savewil.jpg" height="200px"; width="340px"> </span>
-    
-  </label>
-  <div class="list">
-  <label class="item item-input">
-    <span class="input-label">Title</span>
-    <input type="text"  value={{title}}>
-  </label>
-  <label class="item item-input">
-    <span class="input-label">Date</span>
-    <input type="text" value={{date}}>
-  </label>
-  <label class="item item-input">
-    <span class="input-label">Hosted By</span>
-    <input type="text"  value="Doctors Association">
-  </label>
-  <label class="item item-input">
-    <span class="input-label">Time</span>
-    <input type="text"  value="10am onwards">
-  </label>
-  <label class="item item-input">
-    <span class="input-label">Venue</span>
-    <input type="text"  value="Waters' Edge, Battaramulla">
-  </label>
-</div>
+  <!--<ion-nav-buttons side="right"  >
+    <button class="button button-large ion-checkmark-round " ng-click="edited(title,date,stime,etime,venue,desc,selected,duration,durationSelect)" > SAVE
+    </button>
+  </ion-nav-buttons> -->
 
- <!--<label class="item item-input" align="center" >
-   <div class="row">
-  <div class="col" style="padding:3px; margin:3px; font-size:12px;" ><a class="button button-icon icon ion-star" style="font-size:12px; color: {{textColor}};" ><br>Interested</a>
-  </div>
-  <div class="col" ><button class="button button-icon icon ion-checkmark-round" style="font-size:12px; color: {{textColor2}};" ng-click="changeColor()">
-    <br >
-    Going</button>
-  </div>
-  <div class="col" ng-controller="Modalfriends"> <button class="button button-icon icon ion-ios-email" ng-click="openModal() " style="font-size:12px;"><br>Invite Friends</button></div>
-</div> </label>
-   <label class="item item-input" align="center" >
-    <span class="input-label " style="font-size:25px;"> <i class="icon ion-ios-time"></i> </span>
-    <span class="input-label" style="font-size:18px;">4pm onwards</span>  
-  </label>
-   <label class="item item-input" align="center" >
-    <span class="input-label " style="font-size:25px;">  <i class="icon ion-location"></i></span>
-    <span class="input-label" style="font-size:18px;">Location</span>  
-  </label>
-</div>-->
+  <ion-content padding="false" class="has-header">
 
-<div class="list">
+    <form class="list" name="myForm" novalidate>
+      <div class="list" >
 
-    <div class="item item-divider"><center>
-    Discussion Board</center>
-    </div>
+        <label class="item item-input">
+        <span class="input-label" style="height:200px;"><img src="img\savewil.jpg" height="200px"; width="340px"> </span>
+        </label>
 
-    <div class="list">
-    <!--<label class="item item-input">
-      <textarea placeholder="Your Comments" rows="7" ng-click="showButton()" ng-model="comment"></textarea>
-    </label>-->
-    
-      <div class="row"  ng-show="var" >
-       <div class="col col-20" ><button class="button icon ion-images" ></button></div>
-       <div class="col col-20"  style="margin-right:0;"><button class="button icon ion-location" ></button></div>
-       <div class="col col-50" style="margin-left:0;"><button class="button button-positive" ng-click="addPost()">POST</button></div>
+        <label class="item item-input">
+        <span class="input-label">Title </span>
+        <input type="text" ng-model="title" name="title" >
+        <span style="color:red" ng-show="myForm.title.$dirty && myForm.title.$invalid ">
+        <span ng-show="myForm.title.$error.required">*</span></span>
+        </label>
+
+        <label class="item item-input">
+        <span class="input-label">Date</span>
+        <input type="date" name="date" ng-model="date" min="{{today}}" >
+        <span style="color:red" ng-show="myForm.date.$dirty && myForm.date.$invalid ">
+        <span ng-show="myForm.date.$error.required">*</span></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Hosted By</span>
+          <select ng-model="selected" ng-change="hideval()">
+            <option  ng-repeat="group in groups" value="{{group.id}}"> {{group.name}} </option>
+            <option value="default">-- Select an option--</option>
+          </select >
+          <span ng-bind="selected1" ng-hide="changebit"></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Start Time</span>
+          <input type="time" name="stime" ng-model="stime" placeholder="HH:mm:ss" min="00:00:00" max="23:59:59" required>
+          <span style="color:red" ng-show="myForm.time.$dirty && myForm.time.$invalid ">
+          <span ng-show="myForm.time.$error.required">*Required</span></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">End time</span>
+          <div class="row">
+            <div class="col col-80">
+              <input type="time" name="etime" ng-model="etime" placeholder="HH:mm:ss" min="00:00:00" max="23:59:59" required>
+            </div>
+            <div class="col col-10">  
+              <span style="color:red; margin-right:10px;" ng-show="myForm.time.$dirty && myForm.time.$invalid ">
+              <span ng-show="myForm.time.$error.time">*Invalid timezone</span></span>
+            </div>
+          </div>
+        </label>
+
+        <label class="item item-input" >
+          <span class="input-label">Duration</span>
+          <div class="row">
+            <div class="col col-20">
+              <input type="number" name="duration" ng-model="duration" style="padding:0;" min="1" required>
+            </div>
+            <div class="col col-10">
+              <select ng-model="durationSelect" ng-change="hideday()">
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+              </select >
+              <span ng-bind="durationSelect1" ng-hide="daybit"></span>
+            </div>
+          </div>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Venue</span>
+          <input type="text"  ng-model="venue" name="venue" >
+          <span style="color:red" ng-show="myForm.venue.$dirty && myForm.venue.$invalid ">
+          <span ng-show="myForm.venue.$error.required">*</span></span>
+        </label>
+        <label class="item item-input">
+        <span class="input-label" >Description</span>
+        <textarea rows="7" ng-model="desc"></textarea>
+        </label>
+        
+         <button class="button button-block button-positive button-large ion-checkmark-round " ng-click="edited(title,date,stime,etime,venue,desc,selected,duration,durationSelect)" > SAVE
+    </button>
       </div>
-    
-    </div>
-
+    </form>
    
-     <a class="item item-thumbnail-left" href="#" ng-show="postvar">
-      <img src="img\img5.jpg">
-      <h2>Pawan Gamage</h2>
-      <p> Its time to have fun</p>
-    </a>
-
-    <a class="item item-thumbnail-left" href="#">
-      <img src="img\img5.jpg">
-      <h2>Kasun Samarathunga</h2>
-      <p> Great idea! Thank you committee for organizing a get together. Its about time we have one</p>
-    </a>
-
-    <a class="item item-thumbnail-left" href="#">
-      <img src="img\img5.jpg">
-      <h2>Janith Tharanga</h2>
-      <p> Great idea! Thank you committee for organizing a get together. Its about time we have one</p>
-    </a>
-
-    <a class="item item-thumbnail-left" href="#">
-      <img src="img\img5.jpg">
-      <h2>Randima Isuranga</h2>
-      <p> Great idea! Thank you committee for organizing a get together. Its about time we have one</p>
-    </a>
-
-</div>
-
-</ion-content>
+  </ion-content>
 </ion-view>
