@@ -1,15 +1,17 @@
 <ion-view left-buttons="leftButtons" right-buttons="rightButtons" hide-back-button="true" class="bubble-background" id="page9">
-
+   <ion-nav-title>
+    
+    </ion-nav-title>
 <ion-nav-buttons side="right" ng-show="true"  >
 <div>
       <!-- button for the template for add a new post to the group -->
         <button class="button button-icon ion-compose" ng-click="modal.show()">
         </button>
 
-        <!-- button for the settings -->    
-           <button ng-click="openPopover($event)" class="button button-icon button-clear ion-android-settings "></button>
+  <!-- button for the settings -->    
+     <button ng-click="openPopover($event)" class="button button-icon button-clear ion-android-settings "></button>
 
- </div>
+      </div>
 
 </ion-nav-buttons>
 
@@ -54,7 +56,10 @@
                      
                       
                       <ion-note item-right style="color: #C0C0C0 ">{{names[$index].time}}
-     
+
+
+
+                      
                   </div>
               </div>
               </td>
@@ -328,27 +333,30 @@
                          
                         </button>   
                      </span>
-                    </div>            
+                    </div>
+              
+
                    </ion-list>
                 
-             </div>
-           </td>
+            </div>
+
+                 </td>
     
            </table>
         </div>
 
         <form class="list">
-                  <div class="row"> 
-                      <label class="item item-input" name="chat" style=";border-radius:7px 7px 7px 7px">
-                     
-                          <input type="text" data-clear-btn="true" placeholder="Type Here" style=";width: 300px" ng-model="comments">  
+        <div class="row"> 
+            <label class="item item-input" name="chat" style=";border-radius:7px 7px 7px 7px">
+           
+                <input type="text" data-clear-btn="true" placeholder="Type Here" style=";width: 300px" ng-model="comments">  
 
-                      </label>
-                           <a ng-click="addcomment(comments)"> <button class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff;padding-top: 10px"> 
-                          </button></a>
-                          
-                  </div>
+            </label>
+        <a ng-click="addcomment(comments)"> <button class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff;padding-top: 10px"> 
+                </button></a>
+                
+            </div>
         </form>
-   </ion-content>
-</ion-modal-view>
-</script>
+        </ion-content>
+      </ion-modal-view>
+    </script>

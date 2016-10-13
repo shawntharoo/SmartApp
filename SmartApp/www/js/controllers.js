@@ -307,7 +307,7 @@ perform the login funtion
   {
   var alertPopup = $ionicPopup.alert({ //this message will show if the login details are incorrect
   title:'login',
-  template:'Incorrect Username or password try again'
+  template:'Incorrect Username or password '
   
  });
 
@@ -2286,6 +2286,69 @@ var UID=window.localStorage.getItem("id");
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
  //sanda controllers
 
   //User Controllers
@@ -2296,7 +2359,7 @@ var UID=window.localStorage.getItem("id");
         var role = window.localStorage.getItem("role");
         var CusID = window.localStorage.getItem("id");
         //Check whether the disable button is on or off
-        $http.get("http://teamsoft.tk/getDisableadd.php?CusID="+CusID).success(
+        $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(
                   function(data) {
           $scope.addStatus = data[0].Status;
           $scope.adminStatus = data[0].Admin;
@@ -2332,13 +2395,13 @@ var UID=window.localStorage.getItem("id");
         });
         /*Enter this inside the above if statements*/
         //Show all the banners in the slider
-        $http.get("http://teamsoft.tk/showBanner.php").success(function(
+        $http.get("http://localhost/test/showBanner.php").success(function(
             data) {
             $scope.Banner = data;
             $ionicSlideBoxDelegate.update();
         });
 
-        $http.get("http://teamsoft.tk/showBannerSpecila.php").success(function(
+        $http.get("http://localhost/test/showBannerSpecila.php").success(function(
             data) {
             $scope.BannerSpecial = data;
             $ionicSlideBoxDelegate.update();
@@ -2358,11 +2421,188 @@ var UID=window.localStorage.getItem("id");
       };
     })
 
-  //Controller for Search page of Linkedin Profile
+    //Show the favourite advertisement to corresponding users
+    .controller('favAddListCntrl', function($scope, $http, $ionicPopup) {
+        var CusID = window.localStorage.getItem("id");
+        loaddata();
+        //Show the advertisement
+        function loaddata() {
+            //Get the advertisment from the table
+            $http.get(
+                "http://localhost/test/showFavourite.php?CusID=" +
+                CusID).success(function(data) {
+                $scope.items = data;
+            });
+        };
+        //refresh the item list by pulling
+        $scope.doRefresh = function() {
+          //Load the advertisement
+          $http.get(
+                "http://localhost/test/showFavourite.php?CusID=" +
+                CusID).success(function(data) {
+                $scope.items = data;
+          })
+         .finally(function() {
+           // Stop the ion-refresher from spinning
+           $scope.$broadcast('scroll.refreshComplete');
+         })
+        };
+
+        $scope.deleteFavourite = function(thissID) {
+          //Delete the Advertisment
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Remove Advertisement'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //delete the current advertisment data from the table
+                    $http.post(
+                        "http://localhost/test/deletefavouriteAdd.php?thissID=" +
+                        thissID+"&CusID=" +CusID).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Advertiesement Removed'
+                        });
+                        window.location.reload(true);
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Advertisement remove failed'
+                    });
+                }
+            });
+        } 
+    })
+
+
+    //Controller for facebook card in the search
+    .controller('facebookProfSearchCtrl', function($timeout, $state, $time$scope, $http, $ionicActionSheet) {
+      var CusID = window.localStorage.getItem("id");
+        //Get the business card details from the table
+        $http.get("http://localhost/test/showfacebookProf.php?CusID=" +
+            CusID).success(function(data) {
+            var card = [];
+            card = data;
+            if(card[0]=="null")
+            {
+              $scope.check = -1;
+            }else{
+              $scope.check = 1;
+              $scope.FBId = card[0].FBId;
+              $scope.Name = card[0].Name;
+              $scope.Picture = card[0].Picture;
+              $scope.Gender = card[0].Gender;
+              if (card[0].Email=="undefined") {
+                $scope.Email = "No Email is given";
+              }else{
+                $scope.Email = card[0].Email;
+              }
+              $scope.Age = card[0].Age;
+              $scope.Link = card[0].Link;
+          }
+        })
+
+          $scope.show = function() {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+              buttons: [
+                { text: 'LinkedIn Business Card' },
+                { text: 'Manual Business Card' }
+              ],
+              titleText: 'Select Business card',
+              cancelText: 'Cancel',
+              cancel: function() {
+                  // add cancel code..
+              },
+              buttonClicked: function(index) {
+                if (index==0) {
+                  $state.go("tabsController2.linked", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.buissnessCardsearch", {}, {reload: true});
+                }
+                console.log('BUTTON CLICKED', index);
+                 return true;
+              }
+            });
+            //hide the sheet after two seconds
+            $timeout(function() {
+              hideSheet();
+            }, 4000);
+          }
+
+
+         //Redirrect to the facebook Profile
+          $scope.FacebookUrl = function(Link){
+            window.open(Link, "_system", "location=yes");
+          }     
+    })
+
+    //Controller for facebook card method
+    .controller('facebookProfPageCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
+      var CusID = window.localStorage.getItem("id");
+        //Get the business card details from the table
+        $http.get("http://localhost/test/showfacebookProf.php?CusID=" +
+            CusID).success(function(data) {
+            var card = [];
+            card = data;
+            if(card[0]=="null")
+            {
+              $scope.check = -1;
+            }else{
+              $scope.check = 1;
+              $scope.FBId = card[0].FBId;
+              $scope.Name = card[0].Name;
+              $scope.Picture = card[0].Picture;
+              $scope.Gender = card[0].Gender;
+              if (card[0].Email=="undefined") {
+                $scope.Email = "No Email is given";
+              }else{
+                $scope.Email = card[0].Email;
+              }
+              $scope.Age = card[0].Age;
+              $scope.Link = card[0].Link;
+          }
+        })
+
+          $scope.show = function() {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+              buttons: [
+                { text: 'LinkedIn Business Card' },
+                { text: 'Manual Business Card' }
+              ],
+              titleText: 'Select Business card',
+              cancelText: 'Cancel',
+              cancel: function() {
+                  // add cancel code..
+              },
+              buttonClicked: function(index) {
+                if (index==0) {
+                  $state.go("tabsController2.linked", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.buissnessCard", {}, {reload: true});
+                }
+                console.log('BUTTON CLICKED', index);
+                 return true;
+              }
+            });
+            //hide the sheet after two seconds
+            $timeout(function() {
+              hideSheet();
+            }, 4000);
+          }
+
+
+         //Redirrect to the facebook Profile
+          $scope.FacebookUrl = function(Link){
+            window.open(Link, "_system", "location=yes");
+          }     
+    })
+
+    //Controller for Search page of Linkedin Profile
     .controller('linkedinPageSearchCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://teamsoft.tk/showLinkedin.php?CusID=" +
+        $http.get("http://localhost/test/showLinkedin.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2407,7 +2647,8 @@ var UID=window.localStorage.getItem("id");
             // Show the action sheet
             var hideSheet = $ionicActionSheet.show({
               buttons: [
-                { text: 'Manual Business Card' }
+                { text: 'Manual Business Card' },
+                { text: 'Facebook Business Card' }
               ],
               titleText: 'Select Business card',
               cancelText: 'Cancel',
@@ -2417,6 +2658,8 @@ var UID=window.localStorage.getItem("id");
               buttonClicked: function(index) {
                 if (index==0) {
                   $state.go("tabsController2.buissnessCardsearch", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.facebookProfSearch", {}, {reload: true});
                 }
                 console.log('BUTTON CLICKED', index);
                  return true;
@@ -2435,7 +2678,7 @@ var UID=window.localStorage.getItem("id");
     .controller('buissnessCardSearchCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://teamsoft.tk/showBuissnessCard.php?CusID=" +
+        $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2493,7 +2736,8 @@ var UID=window.localStorage.getItem("id");
             // Show the action sheet
             var hideSheet = $ionicActionSheet.show({
               buttons: [
-                { text: 'LinkedIn Business Card' }
+                { text: 'LinkedIn Business Card' },
+                { text: 'Facebook Business Card' }
               ],
               titleText: 'Select Business card',
               cancelText: 'Cancel',
@@ -2503,6 +2747,8 @@ var UID=window.localStorage.getItem("id");
               buttonClicked: function(index) {
                 if (index==0) {
                   $state.go("tabsController2.linkedSearch", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.facebookProfSearch", {}, {reload: true});
                 }
                 console.log('BUTTON CLICKED', index);
                  return true;
@@ -2522,7 +2768,7 @@ var UID=window.localStorage.getItem("id");
     .controller('linkedinPageCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
       var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://teamsoft.tk/showLinkedin.php?CusID=" +
+        $http.get("http://localhost/test/showLinkedin.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2567,7 +2813,8 @@ var UID=window.localStorage.getItem("id");
             // Show the action sheet
             var hideSheet = $ionicActionSheet.show({
               buttons: [
-                { text: 'Manual Business Card' }
+                { text: 'Manual Business Card' },
+                { text: 'Facebook Business Card' }
               ],
               titleText: 'Select Business card',
               cancelText: 'Cancel',
@@ -2577,6 +2824,8 @@ var UID=window.localStorage.getItem("id");
               buttonClicked: function(index) {
                 if (index==0) {
                   $state.go("tabsController2.buissnessCard", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.facebookProf", {}, {reload: true});
                 }
                 console.log('BUTTON CLICKED', index);
                  return true;
@@ -2587,6 +2836,7 @@ var UID=window.localStorage.getItem("id");
               hideSheet();
             }, 4000);
           }
+
 
             //Redirrect to the Linkedin Profile
             $scope.linkedinUrl = function(publicProfileUrl){
@@ -2599,7 +2849,7 @@ var UID=window.localStorage.getItem("id");
     .controller('settingsBCtrl', function($scope,$http,$state,$ionicPopup) {
       var CusID = window.localStorage.getItem("id");
       //Check whether the Disabled button is on or off
-      $http.get("http://teamsoft.tk/getDisableadd.php?CusID="+CusID).success(function(
+      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
             $scope.getdata = data[0].Status;
             if($scope.getdata == -1) {
@@ -2615,7 +2865,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = true;
           var addStatus = -1;
           //Update the the status to enable
-          $http.post("http://teamsoft.tk/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -2626,7 +2876,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = false;
           var addStatus = 1;
           //Update the the status to disable
-          $http.post("http://teamsoft.tk/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -2636,16 +2886,66 @@ var UID=window.localStorage.getItem("id");
       }
 
       $scope.launch = function() {
-        window.open("http://teamsoft.tk/LinkedIn.php?memberid="+CusID, "_system", "location=yes");
+        window.open("http://localhost/test/LinkedIn.php?memberid="+CusID, "_system", "location=yes");
+      }
+
+      $scope.launchfb = function() {
+        window.open("http://localhost/test/facebookprof.php?memberid="+CusID, "_system", "location=yes");
       }
     })
+
+    //Controller for notifications
+    .controller('notifyCtrl',function($scope,$http,$state,$ionicPopup) {
+      var CusID = window.localStorage.getItem("id");
+      //Get all the notifications
+      $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
+                function(data) {
+                    $scope.notifications = data;
+                });
+      //Action for clear the notification 
+      $scope.ClearNotifications = function() {
+        var confirmPopup = $ionicPopup.confirm({
+        title: 'You want to CLear all the Notifications?'
+        });
+        confirmPopup.then(function(res) {
+          if (res) {
+            $http.post(
+              //Delete all the notifications in the table
+            "http://localhost/test/deleteNotifications.php").success(function(data) {
+              var alertPopup = $ionicPopup.alert({
+              title: 'Notifications Cleared'
+              });
+            });
+            window.location.reload(true);
+            $state.go("tabsController2.addlist", {}, {reload: true});
+          } else {
+            var alertPopup = $ionicPopup.alert({
+            title: 'Error'
+            });
+          }
+        });
+      }
+      //Action to refresh by pull
+      $scope.doRefresh = function() {
+        //Load new notifications
+        $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
+                function(data) {
+                    $scope.notifications = data;
+        })
+         .finally(function() {
+           // Stop the ion-refresher from spinning
+           $scope.$broadcast('scroll.refreshComplete');
+         });
+      };
+    })
+
 
     //Show full view of the Advertisement on the sliders
     .controller('slideAddCtrl', function($state, $scope, $http, $stateParams, $ionicPopup) {
         var CusID = $stateParams.idA;
         var CusID1 = window.localStorage.getItem("id");
         //Load the advertisement
-        $http.get("http://teamsoft.tk/addFullShow.php?CusID=" + CusID).success(
+        $http.get("http://localhost/test/addFullShow.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
                 card = data;
@@ -2660,13 +2960,205 @@ var UID=window.localStorage.getItem("id");
                 $scope.EDate = card[0].EndDate;
                 $scope.CurrentDate = card[0].CDate;
         });
+
+          //Check the logged user
+          var role = window.localStorage.getItem("role");
+          if(role=="admin"){
+            $scope.mem = 0;
+          }else if(role=="member" || role=="rep"){
+            $scope.mem = 1;
+          }
+
+        //Set the advretisement status
+        $http.get("http://localhost/test/checkFavouriteadd.php?CusID="+CusID1+"&Addid="+CusID).success(
+            function(data) {
+                var fav = [];
+                fav = data;
+                if (fav[0] == 1) {
+                  $scope.check = 1;
+                }else{
+                  $scope.check = 0;
+                }
+        });
+
+        $scope.favourite=function(){
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Add to favourite'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //Add to favourite
+                    $http.post(
+                        "http://localhost/test/FavouriteAdd.php?CusID=" +
+                        CusID1+"&Addid="+CusID).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Added to favourite'
+                        });
+                        window.location.reload(true);
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Retry Adding'
+                    });
+                }
+            });
+        }
+
+        $scope.favouriteRemove=function(){
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Remove from favourite'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //Add to favourite
+                    $http.post(
+                        "http://localhost/test/FavouriteAddRemove.php?CusID=" +
+                        CusID1+"&Addid="+CusID).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Removed from favourite'
+                        });
+                        window.location.reload(true);
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Retry Removing'
+                    });
+                }
+            });
+        }
+    })
+
+
+    //Send advertisement to the admin Controller
+    .controller('sendAdvertisementPageCtrl', function($scope, $http, $state,
+        $ionicPopup) {
+        var CusID = window.localStorage.getItem("id");
+        $scope.date = new Date();
+        //Action for sending advertisment
+        $scope.sendAdvertiesement = function(title, Selected, Image,
+            description, contact, email, SDate, EDate) {
+          //Validation part
+            if (title == null) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Enter The title'
+                });
+            }
+            /*else if(Image == null){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Upload the Banner'
+      });
+    }*/
+            else if (description == null) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'say something about the Advertiesement'
+                });
+            } else if (contact == null) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Enter Contact no'
+                });
+            } else if (contact.charAt(0) != 0) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Contact should begins with 0'
+                });
+            }else if (email == null) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Enter the Email'
+                });
+            } else {
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Send the Advertisement'
+                });
+                confirmPopup.then(function(res) {
+                    if (res) {
+                        $http.post(
+                          //Send the posted advertisment to the table
+                            "http://localhost/test/sendUserAdvertisement.php?title=" +
+                            title + "&Selected=" + Selected +
+                            "&Image=" + Image +
+                            "&description=" + description +
+                            "&contact=" + contact +
+                            "&email=" + email + "&SDate=" +
+                            SDate + "&EDate=" + EDate +
+                            "&MemberId=" + CusID).success(
+                            function(data) {
+                                var alertPopup =
+                                    $ionicPopup.alert({
+                                        title: 'Successfully Send'
+                                    });
+                                window.location.reload(true);
+                                $state.go("tabsController2.addlist", {}, {reload: true});
+                            });
+                    } else {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Sending Failed'
+                        });
+                    }
+                });
+            }
+        };
+    })
+
+    //Show the advertisement to each user that each user has posted respectively
+    .controller('AddUserListCntrl', function($scope, $http, $ionicPopup, $ionicSideMenuDelegate) {
+        var CusID = window.localStorage.getItem("id");
+        loaddata();
+        //Show the advertisement
+        function loaddata() {
+            //Get the advertisment from the table
+            $http.get(
+                "http://localhost/test/addUserListView.php?CusID=" +
+                CusID).success(function(data) {
+                $scope.items = data;
+            });
+        };
+        //refresh the item list by pulling
+        $scope.doRefresh = function() {
+          //Load the advertisement
+          $http.get(
+                "http://localhost/test/addUserListView.php?CusID=" +
+                CusID).success(function(data) {
+                $scope.items = data;
+          })
+         .finally(function() {
+           // Stop the ion-refresher from spinning
+           $scope.$broadcast('scroll.refreshComplete');
+         })
+        };
+
+        $scope.deletetheAdd = function(thissID) {
+          //Delete the Advertisment
+          var confirmPopup = $ionicPopup.confirm({
+                title: 'Remove Advertisement'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //delete the current advertisment data from the table
+                    $http.post(
+                        "http://localhost/test/deleteUserAddvertisement.php?thissID=" +
+                        thissID).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Advertiesement Removed'
+                        });
+                        window.location.reload(true);
+                    });
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Advertisement remove failed'
+                    });
+                }
+            });
+        }
+
+        $scope.toggleLeftSideMenu = function() {
+          $ionicSideMenuDelegate.toggleLeft();
+        }
     })
 
     //Show Business card Details Controller
     .controller('buissnessCardCtrl', function($scope, $http, $state, $ionicActionSheet, $timeout) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://teamsoft.tk/showBuissnessCard.php?CusID=" +
+        $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2723,7 +3215,8 @@ var UID=window.localStorage.getItem("id");
             // Show the action sheet
             var hideSheet = $ionicActionSheet.show({
               buttons: [
-                { text: 'LinkedIn Business Card' }
+                { text: 'LinkedIn Business Card' },
+                { text: 'Facebook Business Card' }
               ],
               titleText: 'Select Business card',
               cancelText: 'Cancel',
@@ -2733,6 +3226,8 @@ var UID=window.localStorage.getItem("id");
               buttonClicked: function(index) {
                 if (index==0) {
                   $state.go("tabsController2.linked", {}, {reload: true});
+                }else{
+                  $state.go("tabsController2.facebookProf", {}, {reload: true});
                 }
                 console.log('BUTTON CLICKED', index);
                  return true;
@@ -2745,10 +3240,18 @@ var UID=window.localStorage.getItem("id");
           }
 
         });
+
+        $scope.print = function() {
+          if($cordovaPrinter.isAvailable()) {
+            $cordovaPrinter.print("http://www.nraboy.com");
+          } else {
+            alert("Printing is not available on device");
+          }
+        }
             //refresh the Businesscard by pulling
             $scope.doRefresh = function() {
               //Load the businesscard
-              $http.get("http://teamsoft.tk/showBuissnessCard.php?CusID=" +
+              $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2785,7 +3288,7 @@ var UID=window.localStorage.getItem("id");
         $scope.BuissnessCardValues = function() {
           //Get the businesscard values
             $http.get(
-                "http://teamsoft.tk/showBuissnessCard.php?CusID=" +
+                "http://localhost/test/showBuissnessCard.php?CusID=" +
                 CusID).success(function(data) {
                 var card = [];
                 card = data;
@@ -2834,7 +3337,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the edited values to the business card
                         $http.get(
-                            "http://teamsoft.tk/buissnessCardEdit.php?Profession=" +
+                            "http://localhost/test/buissnessCardEdit.php?Profession=" +
                             Profession + "&Skills=" +
                             Skills + "&Awards=" + Awards +
                             "&WorkPlace=" + WorkPlace +
@@ -2878,7 +3381,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the details to the table
                         $http.post(
-                            "http://teamsoft.tk/about2Add.php?ID=" +
+                            "http://localhost/test/about2Add.php?ID=" +
                             CusID + "&profession=" +
                             profession + "&skills=" +
                             skills + "&awards=" + awards).success(
@@ -2936,7 +3439,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Sending registered data to the table
                         $http.post(
-                            "http://teamsoft.tk/about3Add.php?workPlace=" +
+                            "http://localhost/test/about3Add.php?workPlace=" +
                             workPlace + "&address=" +
                             address + "&contact=" + contact +
                             "&email=" + email +
@@ -2972,7 +3475,7 @@ var UID=window.localStorage.getItem("id");
         function loaddata() {
             //Get the advertisment from the table
             $http.get(
-                "http://teamsoft.tk/adminSpecialList.php").success(function(data) {
+                "http://localhost/test/adminSpecialList.php").success(function(data) {
                 $scope.items = data;
             });
         };
@@ -2980,7 +3483,7 @@ var UID=window.localStorage.getItem("id");
         $scope.doRefresh = function() {
           //Load the advertisement
           $http.get(
-                "http://teamsoft.tk/adminSpecialList.php").success(function(data) {
+                "http://localhost/test/adminSpecialList.php").success(function(data) {
                 $scope.items = data;
           })
          .finally(function() {
@@ -2995,9 +3498,9 @@ var UID=window.localStorage.getItem("id");
             });
             confirmPopup.then(function(res) {
                 if (res) {
-                  //Add to Special
+                  //Add to favourite
                     $http.post(
-                        "http://teamsoft.tk/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
+                        "http://localhost/test/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Marked as Normal'
                         });
@@ -3013,11 +3516,34 @@ var UID=window.localStorage.getItem("id");
         }
     })
 
+
+    //Show full view of the Advertisement of the pending advertisements
+    .controller('pendingAddDetailCtrl', function($state, $scope, $http, $stateParams) {
+        var CusID = $stateParams.idS;
+        //Load the advertisement
+        $http.get("http://localhost/test/pendingAddDetails.php?CusID=" + CusID).success(
+            function(data) {
+                var card = [];
+                card = data;
+                $scope.SID = card[0].SID;
+                $scope.Selection = card[0].Selection;
+                $scope.title = card[0].title;
+                $scope.Image = card[0].Image;
+                $scope.Description = card[0].Description;
+                $scope.Contact = card[0].ContactNo;
+                $scope.Email = card[0].Email;
+                $scope.SDate = card[0].StartDate;
+                $scope.EDate = card[0].EndDate;
+                $scope.sendDate = card[0].sendDate;
+            });
+    })
+
+
     //Admin settings controller
     .controller('settingsACtrl', function($scope, $http, $state, $ionicPopup) {
       var CusID = window.localStorage.getItem("id");
       //Check whether the Disabled button is on or off
-      $http.get("http://teamsoft.tk/getDisableadd.php?CusID="+CusID).success(function(
+      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
             $scope.getdata = data[0].Status;
             if($scope.getdata == -1) {
@@ -3028,7 +3554,7 @@ var UID=window.localStorage.getItem("id");
             }
       });
       //Check whether the system add Disabled button is on or off
-      $http.get("http://teamsoft.tk/getDisableadd.php?CusID="+CusID).success(function(
+      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
             $scope.getdata1 = data[0].Admin;
             if($scope.getdata1 == -1) {
@@ -3044,7 +3570,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = true;
           var addStatus = -1;
           //Update the the status to enable
-          $http.post("http://teamsoft.tk/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -3055,7 +3581,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = false;
           var addStatus = 1;
           //Update the the status to disable
-          $http.post("http://teamsoft.tk/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -3070,7 +3596,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addLock = true;
           var addStatus1 = -1;
           //Update the the status to enable
-          $http.post("http://teamsoft.tk/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
+          $http.post("http://localhost/test/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes have been applied(The changes will appear on the admin profile from the next login)'
@@ -3081,7 +3607,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addLock = false;
           var addStatus1 = 1;
           //Update the the status to disable
-          $http.post("http://teamsoft.tk/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
+          $http.post("http://localhost/test/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes have been applied(The changes will appear on the admin profile from the next login)'
@@ -3089,9 +3615,96 @@ var UID=window.localStorage.getItem("id");
           });
         }
       }
+
+      //Redirrect to google drive openning page
+      $scope.openGoogleDrive = function(){
+        window.open("http://localhost/test/GoogleDrive.php", "_system", "width=400, height=350");
+      }
     })
 
-  //Post advertisement Controller
+
+    //show list of pending Advertisement controller
+    .controller('adminAddListCtrl', function($scope, $http, $state, $ionicPopup ,$window) {
+        loadtable();
+        //Load all the pending advertisment
+        function loadtable() {
+          //Get all the pending advertisment
+            $http.get("http://localhost/test/adminAddverList.php").success(
+                function(data) {
+                    $scope.advertiesement = data;
+                });
+        };
+        //Accept advertisement
+        $scope.AcceptAdd = function(SID) {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Accept'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                  //Send the accepted advertisment data to table
+                    $http.post(
+                        "http://localhost/test/AcceptAdver.php?SID=" +
+                        SID).success(function(data) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Advertiesement Accepted'
+                        });
+                    });
+                    window.location.reload(true);
+                    $state.transitionTo("AdmintabsController.ushow");
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Reject Acceptence'
+                    });
+                }
+            });
+        }
+        //rejected advertisment
+        $scope.RejectAdd = function(SID) {
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Reject'
+                });
+                confirmPopup.then(function(res) {
+                    if (res) {
+                      //Send the rejected advertisment data to table
+                        $http.post(
+                            "http://localhost/test/RejectAdver.php?SID=" +
+                            SID).success(function(data) {
+                            var alertPopup = $ionicPopup.alert({
+                                title: 'Advertiesement Rejected'
+                            });
+                        });
+                        window.location.reload(true);
+                        $state.transitionTo("AdmintabsController.ushow");
+                    } else {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Reject Rejection'
+                        });
+                    }
+                });
+            }
+
+            //Goto the detail view page
+            $scope.showDetails = function(SID) {
+              $state.go('AdmintabsController.pendingAddDetail', {
+                idS: SID
+              });
+            }
+
+            //refresh the list by pulling
+            $scope.doRefresh = function() {
+              //Load the pending advertisment
+            $http.get("http://localhost/test/adminAddverList.php").success(
+                function(data) {
+                    $scope.advertiesement = data;
+                })
+             .finally(function() {
+               // Stop the ion-refresher from spinning
+               $scope.$broadcast('scroll.refreshComplete');
+             });
+  };
+    })
+
+    //Post advertisement Controller
     .controller('upostAdvertiesementCtrl', function($scope, $http, $state,
         $ionicPopup) {
         $scope.date = new Date();
@@ -3136,7 +3749,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send posted advertisment data to the database
                         $http.post(
-                            "http://teamsoft.tk/postAdvertiesement.php?Selected=" +
+                            "http://localhost/test/postAdvertiesement.php?Selected=" +
                             Selected + "&Title=" + Title +
                             "&Image=" + Image +
                             "&Description=" + Description +
@@ -3168,7 +3781,7 @@ var UID=window.localStorage.getItem("id");
         //Load the advertisment list
         function loadtable() {
           //Get the advertisment list
-            $http.get("http://teamsoft.tk/showAdvertiesement.php").success(
+            $http.get("http://localhost/test/showAdvertiesement.php").success(
                 function(data) {
                     $scope.advertiesement = data;
                 });
@@ -3186,7 +3799,7 @@ var UID=window.localStorage.getItem("id");
         //refresh the list by pulling
         $scope.doRefresh = function() {
           //Get the advertisment list
-          $http.get("http://teamsoft.tk/showAdvertiesement.php").success(
+          $http.get("http://localhost/test/showAdvertiesement.php").success(
                 function(data) {
             $scope.advertiesement = data;
           })
@@ -3210,7 +3823,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //delete the current advertisment data from the table
                     $http.post(
-                        "http://teamsoft.tk/deleteAddvertisement.php?thissID=" +
+                        "http://localhost/test/deleteAddvertisement.php?thissID=" +
                         IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Advertiesement Removed'
@@ -3232,7 +3845,7 @@ var UID=window.localStorage.getItem("id");
         };
         var CusID = $stateParams.id;
         //get the details of the advertisement
-        $http.get("http://teamsoft.tk/addFullShow.php?CusID=" + CusID).success(
+        $http.get("http://localhost/test/addFullShow.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
                 card = data;
@@ -3253,7 +3866,7 @@ var UID=window.localStorage.getItem("id");
         }
 
                 //Set the advretisement status
-        $http.get("http://teamsoft.tk/checkSpecialadd.php?Addid="+CusID).success(
+        $http.get("http://localhost/test/checkSpecialadd.php?Addid="+CusID).success(
             function(data) {
                 var fav = [];
                 fav = data;
@@ -3273,7 +3886,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://teamsoft.tk/SpecialAdd.php?Addid="+IDAdd).success(function(data) {
+                        "http://localhost/test/SpecialAdd.php?Addid="+IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Added to special'
                         });
@@ -3295,7 +3908,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://teamsoft.tk/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
+                        "http://localhost/test/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Marked as Normal'
                         });
@@ -3320,7 +3933,7 @@ var UID=window.localStorage.getItem("id");
             var CusID = $stateParams.Eid;
             //get the advertisment data
             $http.get(
-                "http://teamsoft.tk/showEditAddvertiesement.php?CusID=" +
+                "http://localhost/test/showEditAddvertiesement.php?CusID=" +
                 CusID).success(function(data) {
                 var card = [];
                 card = data;
@@ -3390,7 +4003,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the edited data to the table
                         $http.post(
-                            "http://teamsoft.tk/editAdvertisement.php?Selected=" +
+                            "http://localhost/test/editAdvertisement.php?Selected=" +
                             Selected + "&Title=" + Title +
                             "&Image=" + Image +
                             "&Description=" + Description +
@@ -3414,6 +4027,73 @@ var UID=window.localStorage.getItem("id");
             }
         };
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3554,88 +4234,18 @@ var UID=window.localStorage.getItem("id");
     /* The main event controller for the user level. Displays all events associated with the user*/       
 .controller('eventsCtrl', function($scope,$state,$http) {
    
-
-    var userId = window.localStorage.getItem("id");
-    $http.get('http://teamsoft.tk/addUserEvents.php?id='+userId).then(function(response){
+  $scope.addE = function(){   /*Add event list to the page*/
+    var id = window.localStorage.getItem("id");
+    $http.get('http://teamsoft.tk/addUserEvent.php?id='+id).then(function(response){
         
           $scope.eventNames = response.data;
       
-      });
-    $scope.searchevent = function(searchKey){
-      console.log("1");
-     if(!angular.isUndefined(searchKey))
-         {
-          console.log("2");
-            $http.get('http://teamsoft.tk/searchEvent.php?id='+userId+'key='+searchKey).then(function(response){    /*Get the available groups from the system*/
-              $scope.key = response.data;
-            });
-            if($scope.key=="false")
-            {
-                var alertPopup = $ionicPopup.alert({
-                  title: 'No search results found'
-                });
-            }
-            else{
-                console.log("3");
-                $http.get('http://teamsoft.tk/addSearchedEvents.php?id='+userId+'key='+searchKey).then(function(response){
-        
-                $scope.eventNames = response.data;
-      
-                });
-            }
-         }
-      else{
-          console.log("error at 3586");
-      }
-     }
-
-
-    /*Add event list to the page*/
-    
-    
-     
-    
-  
-
-   $scope.show = function(a){    /* Page transitions for the navigation bar */
-          
-          if(a=='Upcoming'){
-                $state.go('tabsController.events', {}, {reload:true});
-          }
-           if(a=='Going'){
-                $state.transitionTo('eventGoing');
-          }
-          if(a=='Past'){
-                $state.transitionTo('eventPast');
-          }
-           if(a=='Group'){
-                $state.transitionTo('eventGroup');
-          }
-          if(a=='Sub Groups'){
-                $state.transitionTo('eventSubgroup');
-          }
-        
+    });
   }
-    
 
   $scope.descriptionpg = function(id){    /*Go to each events description*/
     $state.go("eventDesc",{id:id});
   }
-
- 
-
-
-      $scope.doRefresh = function() {
-    $http.get('/new-items')
-     .success(function(newItems) {
-       $scope.eventNames = newItems;
-       $scope.dates = newItems;
-     })
-     .finally(function() {
-       // Stop the ion-refresher from spinning
-       $scope.$broadcast('scroll.refreshComplete');
-     });
-  };
 
 })
     
@@ -4003,49 +4613,6 @@ var UID=window.localStorage.getItem("id");
     }
 
      $scope.c = 0;
-
-  $scope.calcVal = function(){
-    
-  }
-
-  if($scope.c==0){
-    $scope.newevent = false;
-  }
-  else
-  {
-    $scope.newevent = true;
-  }
-  
-  $scope.created = function(){
-      $scope.c=$scope.c + 1;
-      $state.transitionTo("adminEvent");
-     
-  }
-       
-
-  
-
-  $scope.doRefresh = function() {
-
-    $http.get('/new-items')
-     .success(function(newItems) {
-
-       $scope.eventNames = newItems;
-       $scope.dates = newItems;
-
-     })
-
-     .finally(function() {
-       // Stop the ion-refresher from spinning
-       $scope.$broadcast('scroll.refreshComplete');
-     });
-  };
-
-
-
-  $scope.noInterest = false;
-  $scope.ebit = true;
-
 })
 
 .controller('admineventdesc', function($scope,$http,$state, $stateParams, $filter,$ionicPopup) {  /*Admins view to edit events*/

@@ -26,7 +26,55 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     }
   }) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //sanda admin start
+
+//the route of the page redirrect when admin clicks the pending advertisement
+                .state('AdmintabsController.pendingAddDetail', {
+      url: '/pendingAddDetail/:idS',
+      views: {
+        'tab7': {
+        templateUrl: 'templates/pendingAddDetail.html',
+        controller: 'pendingAddDetailCtrl'
+      }
+    }
+   })
 
 //The users advertisment list page route
              .state('AdmintabsController.addspecial', {
@@ -84,7 +132,19 @@ angular.module('app.routes', ['ionicUIRouter'])
         controller: 'upostAdvertiesementCtrl'
       }
     }
-  })
+  })              
+
+//Show the pending advertisement page route
+                  .state('AdmintabsController.readd', {
+    url: '/readd',
+    views: {
+      'tab7': {
+        templateUrl: 'templates/adminAddList.html',
+        controller: 'adminAddListCtrl'
+      }
+    }
+  }) 
+
 
 //the route of the page redirrect when admin clicks the slider
                   .state('AdmintabsController.slideAdd', {
@@ -108,6 +168,28 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     })
  //sanda admin end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
 
 
 
@@ -456,7 +538,40 @@ angular.module('app.routes', ['ionicUIRouter'])
   })
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //sandaa 2
+
 //Tabscontroller of the business profile
   .state('tabsController2', {
             url: '/tabsController2',
@@ -533,6 +648,75 @@ angular.module('app.routes', ['ionicUIRouter'])
           }
       })
 
+
+  //The Facebook card page route
+  .state('tabsController2.facebookProf', {
+            url: '/facebookProf',
+            views: {
+                'tab3': {
+                    templateUrl: 'templates/facebookProf.html',
+                    controller: 'facebookProfPageCtrl'
+                }
+            }
+        })
+
+  //The serch FacebookPage view route
+  .state('tabsController2.facebookProfSearch', {
+          url: '/facebookProfSearch',
+          views: {
+              'tab3': {
+                  templateUrl: 'templates/facebookProfSearch.html',
+                  controller: 'facebookProfSearchCtrl'
+              }
+          }
+      })
+
+//The send advertisment page route
+  .state('tabsController2.sendAdd', {
+            url: '/sendAdd',
+            views: {
+                'tab5': {
+                    templateUrl: 'templates/sendAdvertisement.html',
+                    controller: 'sendAdvertisementPageCtrl'
+                }
+            }
+        })
+
+//The users advertisment list page route
+  .state('tabsController2.addlist', {
+            url: '/addlist',
+            cache: false,
+            views: {
+                'tab6': {
+                    templateUrl: 'templates/AddUserList.html',
+                    controller: 'AddUserListCntrl'
+                }
+            }
+        })
+
+//The users favourite advertisment list page route
+  .state('tabsController2.favadd', {
+            url: '/favadd',
+            cache: false,
+            views: {
+                'tab6': {
+                    templateUrl: 'templates/favAddList.html',
+                    controller: 'favAddListCntrl'
+                }
+            }
+        })
+
+//The notification page route
+  .state('tabsController2.notify', {
+            url: '/notify',
+            views: {
+                'tab6': {
+                    templateUrl: 'templates/notify.html',
+                    controller: 'notifyCtrl'
+                }
+            }
+        })
+
 //The User Settings page route
   .state('tabsController2.settingsB', {
             url: '/settingsB',
@@ -565,6 +749,42 @@ angular.module('app.routes', ['ionicUIRouter'])
                 }
             }
         })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
