@@ -1,0 +1,44 @@
+<ion-view title="Post Advertiesement" id="page5" style="background-color:white;">
+    <ion-content padding="true" class="has-header">
+        <form class="list">
+            <label class="item item-select">
+                <span class="input-label">Select Type</span>
+                <select>
+                    <option>Event</option>
+                    <option>Merchent</option>
+                    <option>Promote</option>
+                    <option>Notice</option>
+                </select>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Title</span>
+                <input type="text" placeholder="Enter the Title">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Image</span>
+                <input type="text" placeholder="Browse Banner">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Description</span>
+                <textarea placeholder="Enter A Brief Description About the Advertiesement"></textarea>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Contact No</span>
+                <input type="text" placeholder="Contact you want to show in the advertiesement">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Email</span>
+                <input type="text" placeholder="Email you want to show in the advertiesement">
+            </label>
+            <label class="item item-input">
+            <span class="input-label">Start Date</span>
+            <input type="date">
+            </label>
+            <label class="item item-input">
+            <span class="input-label">End Date</span>
+            <input type="date">
+            </label>
+        </form>
+        <a ui-sref="tabsController.showAdvertiesement" id="postAdvertiesement-button1" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block icon ion-checkmark-circled">Submit</a>
+    </ion-content>
+</ion-view>

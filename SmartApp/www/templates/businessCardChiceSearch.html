@@ -1,0 +1,31 @@
+<ion-view title="Buissness Card" id="bchoiceSearch" style="background-color:#cce6ff;">
+  <ion-nav-buttons side="right" ng-show="true">
+    <button class="button button-icon button-clear ion-ios-world-outline" ui-sref="tabsController.mainprofile">
+    </button>
+  </ion-nav-buttons>
+  <ion-content padding="true" class="has-header">
+    <br/>
+    <font size="6" color="blue"> <center> Professional Cards </center> </font> <br/>
+    <font size="3" color="black">Each user could have both customized Business Card and Linkedin Profile or either one of them</font><br/><br/><br/>
+    <font size="4" color="black">Select following links to view the Business Cards</font><br/><br/>
+    <font size="4" color="red">View Customized Business card</font><br/>
+    <a ui-sref="tabsController2.buissnessCard" id="BuissnessCarad-button3" style="font-weight:600;font-size:-2px;" class="button button-calm  button-block ">Customized BusinessCard</a><br/>
+    <font size="4" color="red">View LinkedIn Profile Details</font><br/>
+    <a ui-sref="tabsController2.linked" id="BuissnessCarad-button3" style="font-weight:600;font-size:-2px;" class="button button-royal  button-block ion-social-linkedin-outline"> LinkedIn Profile</a><br/>
+  </ion-content>
+  <!--Show slider with the Advertisement-->
+  <div  ng-controller="slider" style="position: absolute;  bottom: 30px; width: 100%; padding:0;margin:0;" >
+    <ion-slide-box does-continue="true" auto-play="true" slide-interval="8000" ng-if="slide == 1">
+      <ion-slide ng-repeat="ban in Banner" ng-click="gotoSlideAdd(ban.IDAdd)">
+        <div class="box">
+          <img src="{{ban.Image}}" width="382px" height="70px" style="padding:0; margin:0">
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box">
+          <img src ="img/advertise.jpg" width="382px" height="70px" style="padding:0; margin:0">
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+  </div>
+</ion-view>

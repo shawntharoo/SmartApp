@@ -1,5 +1,5 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script id="event-popover.html" type="text/ng-template">
+<!--<script id="event-popover.html" type="text/ng-template">
 
     <ion-popover-view style="height: 230px; border-radius: 5px; ">
       <ion-content >
@@ -11,20 +11,28 @@
           <button class="button button-positive " ng-click="closePopover(isChecked)" style="margin:10px;"> Save</button>
       </ion-content>
     </ion-popover-view>
-</script>
+</script>-->
 
 <ion-view title="Events" id="events" style="background-color:#EEEEF1;">
 
     <ion-content padding="false" class="has-header">
        
         <form class="list"></form>
-        <div ng-controller="MyController">          <!-- Controls the refresh element within the form-->
+        <!--<div ng-controller="MyController">           Controls the refresh element within the form-->
             <ion-refresher
                 pulling-text="Pull to refresh..."
                 on-refresh="doRefresh()">
             </ion-refresher>
 
             <ion-list>
+             <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="Search events" ng-model="event">
+                </label>
+                <button class="button button-small" ng-click="searchevent(event)">
+                     Search
+                </button>
+             </div>
                 <div class="item item-divider">
                     <label class="item item-input item-select" style="height:30px;">
                         <div class="input-label" >
@@ -41,16 +49,16 @@
                 </div>
 
             
-                <ion-item  ng-repeat="eventname in eventNames" >
+                <ion-item  ng-repeat="eventname in eventNames " >
                     <div class="item item-thumbnail-left"  >
                         <img src= {{eventname.image}} ng-click="descriptionpg({{eventname.id}})">
                         <button class="button button-clear button-positive" ng-click="descriptionpg({{eventname.id}})" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
                         <p> {{eventname.date}}</p>
-                        <button class="button outline item-icon-right icon ion-calendar" ng-click="openPopover($event)"></button >
+                      <!--  <button class="button outline item-icon-right icon ion-calendar" ng-click="openPopover($event)"></button >-->
                     </div>
                 </ion-item>
 
             </ion-list>
-        </div>
+        <!--</div>-->
     </ion-content>
 </ion-view>
