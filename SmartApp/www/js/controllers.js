@@ -2351,7 +2351,7 @@ var UID=window.localStorage.getItem("id");
  
  //sanda controllers
 
-  //User Controllers
+  //Member related Controllers
 
     //Display Slider Controller.
     .controller('slider', function($scope, $ionicSlideBoxDelegate, $http,
@@ -3465,7 +3465,7 @@ var UID=window.localStorage.getItem("id");
     })
 
 
-    //Admin  
+  //Admin  related controllers
 
   //Show the advertisement to each user that each user has posted respectively
     .controller('AdminSpecialListCtrl', function($scope, $http, $ionicPopup, $ionicSideMenuDelegate) {

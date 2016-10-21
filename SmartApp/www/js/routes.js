@@ -63,7 +63,8 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-//sanda admin start
+//sanda routes
+//Administrator related routes
 
 //the route of the page redirrect when admin clicks the pending advertisement
                 .state('AdmintabsController.pendingAddDetail', {
@@ -570,7 +571,8 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-  //sandaa 2
+  //sanda routes
+  //Member related routes
 
 //Tabscontroller of the business profile
   .state('tabsController2', {
@@ -751,7 +753,7 @@ angular.module('app.routes', ['ionicUIRouter'])
         })
 
 
-
+//Sanda member routes end
 
 
 
