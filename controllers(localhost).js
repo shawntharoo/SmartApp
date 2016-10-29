@@ -266,7 +266,7 @@ perform the login funtion
  });
 
    var CusID = window.localStorage.getItem("id");
-    $http.post("http://teamsoft.tk/DisableAddCreate.php?CusID="+CusID);
+    $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
       if(reset==0)
    {
        $state.transitionTo('resetpassword');
@@ -289,7 +289,7 @@ perform the login funtion
   
  });
    var CusID = window.localStorage.getItem("id");
-    $http.post("http://teamsoft.tk/DisableAddCreate.php?CusID="+CusID);
+    $http.post("http://localhost/test/DisableAddCreate.php?CusID="+CusID);
         if(reset==0)
    {
        $state.transitionTo('resetpassword');
@@ -355,7 +355,7 @@ perform the login funtion
      var x = window.localStorage.getItem("id");
      var stat = "local";
      var role = window.localStorage.getItem("role");
-    $http.get('http://teamsoft.tk/reset.php?password='+password+'&id='+x).then(function(response){
+    $http.get('http://localhost/test/reset.php?password='+password+'&id='+x).then(function(response){
 
  if(response.data=="true"){
 
@@ -512,7 +512,7 @@ var alertPopup = $ionicPopup.alert({
  else
  {
 //following code will perform the sending http request.
- $http.get('http://teamsoft.tk/signup.php?name='+name+'&class='+myclass+'&email='+email).then(function(response){
+ $http.get('http://localhost/test/signup.php?name='+name+'&class='+myclass+'&email='+email).then(function(response){
 
  if(response.data=="true"){
 
@@ -712,7 +712,7 @@ eg-letters for numbers
 
 
 var z = window.localStorage.getItem("username");
-$http.get('http://teamsoft.tk/getaddress.php?user='+z).then(function(response){
+$http.get('http://localhost/test/getaddress.php?user='+z).then(function(response){
   $scope.mydetails = response.data;
   for (var i = 0; i < mydetails.length; i++) {
 
@@ -759,7 +759,7 @@ var alertPopup = $ionicPopup.alert({
     else
     {
       //add personal details 
- $http.get('http://teamsoft.tk/personal.php?address='+address+'&home='+home+'&mobile='+mobile+'&id='+y).then(function(response){
+ $http.get('http://localhost/test/personal.php?address='+address+'&home='+home+'&mobile='+mobile+'&id='+y).then(function(response){
  
  if(response.data=="true"){
  var alertPopup = $ionicPopup.alert({
@@ -924,7 +924,7 @@ the member request
 */
         $scope.reject=function(id)
        {
-         $http.get('http://teamsoft.tk/rejectRequest.php?id='+id).then(function(response){
+         $http.get('http://localhost/test/rejectRequest.php?id='+id).then(function(response){
           
 
           if(response.data=="true")
@@ -1092,7 +1092,7 @@ eg-numbers for the name
 
                 var x = window.localStorage.getItem("id");
                 
-                $http.get('http://teamsoft.tk/profileEdit.php?id='+x+'&name='+name+'&email='+email).then(function(response){
+                $http.get('http://localhost/test/profileEdit.php?id='+x+'&name='+name+'&email='+email).then(function(response){
           
 
           if(response.data=="true")
@@ -1329,7 +1329,7 @@ eg-numbers for the name
         }
         else
         {
-        $http.get('http://teamsoft.tk/schange.php?id='+r+'&sname='+sname).then(function (response) {
+        $http.get('http://localhost/test/schange.php?id='+r+'&sname='+sname).then(function (response) {
 
           if(response.data=="true"){
            var alertPopup = $ionicPopup.alert({
@@ -1393,7 +1393,7 @@ eg-numbers for the name
         }
         else
         {
-        $http.get('http://teamsoft.tk/childadd.php?id='+r+'&cname='+cname+'&dob='+date1+'&royal='+x).then(function (response) {
+        $http.get('http://localhost/test/childadd.php?id='+r+'&cname='+cname+'&dob='+date1+'&royal='+x).then(function (response) {
            if(response.data=="true"){
            var alertPopup = $ionicPopup.alert({
            title:'SmartApp',
@@ -1413,7 +1413,7 @@ eg-numbers for the name
     $scope.edit = function(a){
     
     select = a;
-    $http.get('http://teamsoft.tk/getchildren1.php?id='+a).then(function (response) {
+    $http.get('http://localhost/test/getchildren1.php?id='+a).then(function (response) {
     var children = response.data;
 
 
@@ -1438,8 +1438,8 @@ eg-numbers for the name
     
     $scope.delete = function(b){
     
-    $http.get('http://teamsoft.tk/delchildren.php?id='+b).then(function (response) {
-    $http.get('http://teamsoft.tk/getchildren.php?id='+u).then(function (response) {
+    $http.get('http://localhost/test/delchildren.php?id='+b).then(function (response) {
+    $http.get('http://localhost/test/getchildren.php?id='+u).then(function (response) {
     $scope.childlist = response.data;
     });
     });
@@ -1448,7 +1448,7 @@ eg-numbers for the name
     
     
     
-    $http.get('http://teamsoft.tk/getchildren.php?id='+u).then(function (response) {
+    $http.get('http://localhost/test/getchildren.php?id='+u).then(function (response) {
     $scope.childlist = response.data;
     });
       $scope.editchild = function(a,b){
@@ -1471,7 +1471,7 @@ eg-numbers for the name
         else
         {   
    
-        $http.get('http://teamsoft.tk/childupd.php?id='+select+'&cname='+a+'&dob='+date1+'&royal='+x).then(function (response) {
+        $http.get('http://localhost/test/childupd.php?id='+select+'&cname='+a+'&dob='+date1+'&royal='+x).then(function (response) {
            if(response.data=="true"){
            var alertPopup = $ionicPopup.alert({
            title:'SmartApp',
@@ -1481,7 +1481,7 @@ eg-numbers for the name
      alertPopup.then(function(res) {
     
   
-      $http.get('http://teamsoft.tk/getchildren.php?id='+u).then(function (response) {
+      $http.get('http://localhost/test/getchildren.php?id='+u).then(function (response) {
     $scope.childlist = response.data;
     });
     document.getElementById("c_name").value="";
@@ -1506,27 +1506,27 @@ var UID=window.localStorage.getItem("id");
                 $scope.$on('$ionicView.enter', function() {
 
                             //catch the group id sent from group.html page or followCricket.html page and retrive the group post details from the database.
-                            $http.get('http://teamsoft.tk/subposts.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
+                            $http.get('http://localhost/test/subposts.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
                             {
                                   $scope.names = response.data;
                                  
                                   
                             })
                             //catch the group id sent from group.html page or followCricket.html page and retrive the group details from the database.
-                            $http.get('http://teamsoft.tk/subgrp.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
+                            $http.get('http://localhost/test/subgrp.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
                             {
                                   $scope.gp = response.data;
 
 
                             
                             })
-                              $http.get('http://teamsoft.tk/subgrpmember.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
+                              $http.get('http://localhost/test/subgrpmember.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
                                 {
                                       $scope.n = response.data;
                                      
                                   
                                 })
-                              $http.get('http://teamsoft.tk/subpostsFilter.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
+                              $http.get('http://localhost/test/subpostsFilter.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response)
                             {
                                   $scope.names2 = response.data;
                                  
@@ -1575,7 +1575,7 @@ var UID=window.localStorage.getItem("id");
                 //add a new post throught the template      
                    $scope.addpost = function(a,b){
                           if(a != null || b != null ){// check that post details are added or not
-                             $http.get('http://teamsoft.tk/addpost.php?id='+window.localStorage.getItem("selectitemid")+'&description='+a+'&image='+b+'&UID='+UID).then(function(response){
+                             $http.get('http://localhost/test/addpost.php?id='+window.localStorage.getItem("selectitemid")+'&description='+a+'&image='+b+'&UID='+UID).then(function(response){
 
                              
                              var alertPopup = $ionicPopup.alert({
@@ -1583,7 +1583,7 @@ var UID=window.localStorage.getItem("id");
                               template:'New post has been added successfully'
                               
                              });
-                             $http.get('http://teamsoft.tk/updatenot.php').then(function(response){
+                             $http.get('http://localhost/test/updatenot.php').then(function(response){
                               
                              });
                              $state.go($state.current, {}, {reload: true});
@@ -1598,7 +1598,7 @@ var UID=window.localStorage.getItem("id");
                                     template:'    Please fill the  group post details    '
                                     
                                    });
-                                   $http.get('http://teamsoft.tk/updatenot.php').then(function(response){
+                                   $http.get('http://localhost/test/updatenot.php').then(function(response){
                                     
                                    });
                                   
@@ -1652,7 +1652,7 @@ var UID=window.localStorage.getItem("id");
  $scope.unfollow = function () {
                                   
                                    
-                                      $http.get('http://teamsoft.tk/unfollow.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response){
+                                      $http.get('http://localhost/test/unfollow.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID).then(function(response){
 
              
                                        var alertPopup = $ionicPopup.alert({
@@ -1660,7 +1660,7 @@ var UID=window.localStorage.getItem("id");
                                         template:'You have successfully unfollw the group'
                                         
                                        });
-                                       $http.get('http://teamsoft.tk/updatenot.php?').then(function(response){
+                                       $http.get('http://localhost/test/updatenot.php?').then(function(response){
                                         
                                        });
                                        $scope.popover.hide();
@@ -1717,11 +1717,11 @@ $scope.filter  = function () {
               //model for a single post
   $scope.description = function (x) {
    window.localStorage.setItem("selectitemgropid", x);
-           $http.get('http://teamsoft.tk/selectedgroppost.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID+'&postid='+x).then(function(response)
+           $http.get('http://localhost/test/selectedgroppost.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID+'&postid='+x).then(function(response)
                             {
                                   $scope.names = response.data;
                             })
-                            $http.get('http://teamsoft.tk/selectedgroppostcomment.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID+'&postid='+x).then(function(response)
+                            $http.get('http://localhost/test/selectedgroppostcomment.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID+'&postid='+x).then(function(response)
                             {
                                   $scope.comment = response.data;
                                  
@@ -1754,7 +1754,7 @@ $scope.filter  = function () {
 
                           
 
-                                $http.get('http://teamsoft.tk/addcomment.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID+'&postid='+PID+'&comment='+a).then(function(response){
+                                $http.get('http://localhost/test/addcomment.php?id='+window.localStorage.getItem("selectitemid")+'&UID='+UID+'&postid='+PID+'&comment='+a).then(function(response){
 
                                  $scope.description(PID);
 
@@ -1766,7 +1766,7 @@ $scope.filter  = function () {
                         };
                          $scope.deletecomment = function(a){
                            var GPID=window.localStorage.getItem("selectitemgropid");
-                          $http.get('http://teamsoft.tk/deletecomments.php?id='+window.localStorage.getItem("selectitemid")+'&postid='+GPID+'&commentid='+a).then(function(response)
+                          $http.get('http://localhost/test/deletecomments.php?id='+window.localStorage.getItem("selectitemid")+'&postid='+GPID+'&commentid='+a).then(function(response)
                                                                              {
                                  
                              $scope.description(GPID);
@@ -1797,7 +1797,7 @@ $scope.filter  = function () {
                                            
                                          $scope.modal4.show();
                                          $scope.modal3.show();
-                                           $http.get('http://teamsoft.tk/subpostsEdit.php?id='+window.localStorage.getItem("selectitemid")+'&pid='+pid+'&UID='+UID).success(function(data)
+                                           $http.get('http://localhost/test/subpostsEdit.php?id='+window.localStorage.getItem("selectitemid")+'&pid='+pid+'&UID='+UID).success(function(data)
                                                    {
                                                        
                                       
@@ -1811,7 +1811,7 @@ $scope.filter  = function () {
             
                                                     })
 $scope.editpost  = function (descriptions,image,a) {
-  $http.post("http://teamsoft.tk/editposts.php?id="+window.localStorage.getItem("selectitemid")+"&description="+descriptions+"&image="+image+"&UID="+UID+"&pid="+a).success(function(
+  $http.post("http://localhost/test/editposts.php?id="+window.localStorage.getItem("selectitemid")+"&description="+descriptions+"&image="+image+"&UID="+UID+"&pid="+a).success(function(
                             data){
 
                                $scope.modal4.hide();
@@ -1830,7 +1830,7 @@ $scope.editpost  = function (descriptions,image,a) {
                                            
                                              confirmPopup.then(function(res) {
                                                if(res) {
-                                                  $http.get('http://teamsoft.tk/deleteposts.php?id='+window.localStorage.getItem("selectitemid")+'&pid='+pid).then(function(response)
+                                                  $http.get('http://localhost/test/deleteposts.php?id='+window.localStorage.getItem("selectitemid")+'&pid='+pid).then(function(response)
                                                    {
                                  
                                                        $scope.popover.hide();
@@ -1938,13 +1938,13 @@ var UID=window.localStorage.getItem("id");
           $scope.searchlist = function(searching){
                 if(searching == null){
 
-                $http.get('http://teamsoft.tk/getgroups.php?UID='+UID).then(function(response)
+                $http.get('http://localhost/test/getgroups.php?UID='+UID).then(function(response)
                 {
                       $scope.names = response.data;
                       
                 })
                 }else{
-                $http.get('http://teamsoft.tk/serachgroup.php?name='+searching+'&UID='+UID).then(function(response)
+                $http.get('http://localhost/test/serachgroup.php?name='+searching+'&UID='+UID).then(function(response)
                 {
                       $scope.names = response.data;
                       
@@ -1954,7 +1954,7 @@ var UID=window.localStorage.getItem("id");
 
 //load the all current groups to the admin page
           $scope.$on('$ionicView.enter', function() {
-                $http.get('http://teamsoft.tk/getgroups.php?UID='+UID).then(function(response)
+                $http.get('http://localhost/test/getgroups.php?UID='+UID).then(function(response)
                 {
                       $scope.names = response.data;
                      
@@ -1995,13 +1995,13 @@ var UID=window.localStorage.getItem("id");
             $scope.$on('$ionicView.enter', function() {
 
 //get the details about the group members from the details
-                  $http.get('http://teamsoft.tk/subgrpmember.php?id='+window.localStorage.getItem("selectitemiid")+'&UID='+UID).then(function(response)
+                  $http.get('http://localhost/test/subgrpmember.php?id='+window.localStorage.getItem("selectitemiid")+'&UID='+UID).then(function(response)
                   {
                         $scope.names = response.data;
                        
 //get the details about the group from the details                        
                   })
-                  $http.get('http://teamsoft.tk/subgrp.php?id='+window.localStorage.getItem("selectitemiid")+'&UID='+UID).then(function(response)
+                  $http.get('http://localhost/test/subgrp.php?id='+window.localStorage.getItem("selectitemiid")+'&UID='+UID).then(function(response)
                   {
                         $scope.gp = response.data;
                        
@@ -2015,7 +2015,7 @@ var UID=window.localStorage.getItem("id");
                         
                             window.localStorage.setItem("selectitemid", x);
 
-                            $http.get('http://teamsoft.tk/follow.php?id='+x+'&UID='+UID).then(function(response){
+                            $http.get('http://localhost/test/follow.php?id='+x+'&UID='+UID).then(function(response){
 
              
                            var alertPopup = $ionicPopup.alert({
@@ -2023,7 +2023,7 @@ var UID=window.localStorage.getItem("id");
                             template:'Now you are a member of this group'
                             
                            });
-                           $http.get('http://teamsoft.tk/updatenot.php').then(function(response){
+                           $http.get('http://localhost/test/updatenot.php').then(function(response){
                             
                            });
                            $state.transitionTo('cricketPost');
@@ -2064,7 +2064,7 @@ var UID=window.localStorage.getItem("id");
            $scope.create = function(a,b,c,d){
                 if(a != null && b != null && c != null && d != null){// check that post details are added or not
            //check group name is already avilable
-                    $http.get('http://teamsoft.tk/checkgroupname.php?name='+a+'&UID='+UID).then(function(response){
+                    $http.get('http://localhost/test/checkgroupname.php?name='+a+'&UID='+UID).then(function(response){
                       
                        $scope.id = response.data; 
                        if (Array.isArray($scope.id)) {  //check group name is already avilable
@@ -2073,21 +2073,21 @@ var UID=window.localStorage.getItem("id");
                           template:'    The name of the new group is already available. Please add a new name for the group    '
                           
                          });
-                         $http.get('http://teamsoft.tk/updatenot.php').then(function(response){
+                         $http.get('http://localhost/test/updatenot.php').then(function(response){
                           
                          });
 
 
 
                        }else{
-                           $http.get('http://teamsoft.tk/addgroupname.php?name='+a+'&Description='+b+'&category='+c+'&image='+d+'&UID='+UID).then(function(response){
+                           $http.get('http://localhost/test/addgroupname.php?name='+a+'&Description='+b+'&category='+c+'&image='+d+'&UID='+UID).then(function(response){
                            if(response.data=="true"){
                            var alertPopup = $ionicPopup.alert({
                             title:'Admin -Create a group',
                             template:'New group has been created successfully'
                             
                            });
-                           $http.get('http://teamsoft.tk/updatenot.php').then(function(response){
+                           $http.get('http://localhost/test/updatenot.php').then(function(response){
                             
                            });
                            $state.transitionTo('adminGroup');
@@ -2104,7 +2104,7 @@ var UID=window.localStorage.getItem("id");
                     template:'    Please fill all fields to create a new group    '
                     
                    });
-                   $http.get('http://teamsoft.tk/updatenot.php').then(function(response){
+                   $http.get('http://localhost/test/updatenot.php').then(function(response){
                     
                    });
                   
@@ -2124,7 +2124,7 @@ var UID=window.localStorage.getItem("id");
 var UID=window.localStorage.getItem("id");
     
                       $scope.$on('$ionicView.enter', function() {
-                      $http.get('http://teamsoft.tk/serachgrouppost.php?UID='+UID).then(function(response)
+                      $http.get('http://localhost/test/serachgrouppost.php?UID='+UID).then(function(response)
                       {
                          
 
@@ -2138,11 +2138,11 @@ var UID=window.localStorage.getItem("id");
 //model for a single post
   $scope.description = function (x) {
    window.localStorage.setItem("grouppostid", x);
-           $http.get('http://teamsoft.tk/selectedgroppost.php?id='+"-1"+'&UID='+UID+'&postid='+x).then(function(response)
+           $http.get('http://localhost/test/selectedgroppost.php?id='+"-1"+'&UID='+UID+'&postid='+x).then(function(response)
                             {
                                   $scope.names = response.data;
                             })
-                            $http.get('http://teamsoft.tk/selectedgroppostcomment.php?id='+"-1"+'&UID='+UID+'&postid='+x).then(function(response)
+                            $http.get('http://localhost/test/selectedgroppostcomment.php?id='+"-1"+'&UID='+UID+'&postid='+x).then(function(response)
                             {
                                   $scope.comment = response.data;
                                  
@@ -2173,7 +2173,7 @@ var UID=window.localStorage.getItem("id");
 
                           
 
-                                $http.get('http://teamsoft.tk/addcomment.php?id='+"-1"+'&UID='+UID+'&postid='+PID+'&comment='+a).then(function(response){
+                                $http.get('http://localhost/test/addcomment.php?id='+"-1"+'&UID='+UID+'&postid='+PID+'&comment='+a).then(function(response){
 
                                  $scope.description(PID);
 
@@ -2185,7 +2185,7 @@ var UID=window.localStorage.getItem("id");
                         };
                          $scope.deletecomment = function(a){
                            var GPID=window.localStorage.getItem("grouppostid");
-                          $http.get('http://teamsoft.tk/deletecomments.php?id='+"-1"+'&postid='+GPID+'&commentid='+a).then(function(response)
+                          $http.get('http://localhost/test/deletecomments.php?id='+"-1"+'&postid='+GPID+'&commentid='+a).then(function(response)
                                                                              {
                                  
                              $scope.description(GPID);
@@ -2215,14 +2215,14 @@ var UID=window.localStorage.getItem("id");
                                 template:'    Please add the new group post details    '
                                 
                                });
-                               $http.get('http://teamsoft.tk/updatenot.php?').then(function(response){
+                               $http.get('http://localhost/test/updatenot.php?').then(function(response){
                                 
                                });
 
 
                           }else{
 
-                                $http.get('http://teamsoft.tk/addpost2.php?description='+a+'&image='+b+'&UID='+UID).then(function(response){
+                                $http.get('http://localhost/test/addpost2.php?description='+a+'&image='+b+'&UID='+UID).then(function(response){
 
                                  
                                  var alertPopup = $ionicPopup.alert({
@@ -2230,7 +2230,7 @@ var UID=window.localStorage.getItem("id");
                                   template:'New post has been added successfully'
                                   
                                  });
-                                 $http.get('http://teamsoft.tk/updatenot.php').then(function(response){
+                                 $http.get('http://localhost/test/updatenot.php').then(function(response){
                                   
                                  });
                                  $state.transitionTo('groupPost');
@@ -2351,7 +2351,7 @@ var UID=window.localStorage.getItem("id");
  
  //sanda controllers
 
-  //User Controllers
+  //Member related Controllers
 
     //Display Slider Controller.
     .controller('slider', function($scope, $ionicSlideBoxDelegate, $http,
@@ -2359,7 +2359,7 @@ var UID=window.localStorage.getItem("id");
         var role = window.localStorage.getItem("role");
         var CusID = window.localStorage.getItem("id");
         //Check whether the disable button is on or off
-        $http.get("http://teamsoft.tk/getDisableadd.php?CusID="+CusID).success(
+        $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(
                   function(data) {
           $scope.addStatus = data[0].Status;
           $scope.adminStatus = data[0].Admin;
@@ -2395,13 +2395,13 @@ var UID=window.localStorage.getItem("id");
         });
         /*Enter this inside the above if statements*/
         //Show all the banners in the slider
-        $http.get("http://teamsoft.tk/showBanner.php").success(function(
+        $http.get("http://localhost/test/showBanner.php").success(function(
             data) {
             $scope.Banner = data;
             $ionicSlideBoxDelegate.update();
         });
 
-        $http.get("http://teamsoft.tk/showBannerSpecila.php").success(function(
+        $http.get("http://localhost/test/showBannerSpecila.php").success(function(
             data) {
             $scope.BannerSpecial = data;
             $ionicSlideBoxDelegate.update();
@@ -2429,7 +2429,7 @@ var UID=window.localStorage.getItem("id");
         function loaddata() {
             //Get the advertisment from the table
             $http.get(
-                "http://teamsoft.tk/showFavourite.php?CusID=" +
+                "http://localhost/test/showFavourite.php?CusID=" +
                 CusID).success(function(data) {
                 $scope.items = data;
             });
@@ -2438,7 +2438,7 @@ var UID=window.localStorage.getItem("id");
         $scope.doRefresh = function() {
           //Load the advertisement
           $http.get(
-                "http://teamsoft.tk/showFavourite.php?CusID=" +
+                "http://localhost/test/showFavourite.php?CusID=" +
                 CusID).success(function(data) {
                 $scope.items = data;
           })
@@ -2457,7 +2457,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //delete the current advertisment data from the table
                     $http.post(
-                        "http://teamsoft.tk/deletefavouriteAdd.php?thissID=" +
+                        "http://localhost/test/deletefavouriteAdd.php?thissID=" +
                         thissID+"&CusID=" +CusID).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Advertiesement Removed'
@@ -2478,7 +2478,7 @@ var UID=window.localStorage.getItem("id");
     .controller('facebookProfSearchCtrl', function($timeout, $state, $time$scope, $http, $ionicActionSheet) {
       var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://teamsoft.tk/showfacebookProf.php?CusID=" +
+        $http.get("http://localhost/test/showfacebookProf.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2540,7 +2540,7 @@ var UID=window.localStorage.getItem("id");
     .controller('facebookProfPageCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
       var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://teamsoft.tk/showfacebookProf.php?CusID=" +
+        $http.get("http://localhost/test/showfacebookProf.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2602,7 +2602,7 @@ var UID=window.localStorage.getItem("id");
     .controller('linkedinPageSearchCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://teamsoft.tk/showLinkedin.php?CusID=" +
+        $http.get("http://localhost/test/showLinkedin.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2678,7 +2678,7 @@ var UID=window.localStorage.getItem("id");
     .controller('buissnessCardSearchCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://teamsoft.tk/showBuissnessCard.php?CusID=" +
+        $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2768,7 +2768,7 @@ var UID=window.localStorage.getItem("id");
     .controller('linkedinPageCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
       var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://teamsoft.tk/showLinkedin.php?CusID=" +
+        $http.get("http://localhost/test/showLinkedin.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2849,7 +2849,7 @@ var UID=window.localStorage.getItem("id");
     .controller('settingsBCtrl', function($scope,$http,$state,$ionicPopup) {
       var CusID = window.localStorage.getItem("id");
       //Check whether the Disabled button is on or off
-      $http.get("http://teamsoft.tk/getDisableadd.php?CusID="+CusID).success(function(
+      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
             $scope.getdata = data[0].Status;
             if($scope.getdata == -1) {
@@ -2865,7 +2865,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = true;
           var addStatus = -1;
           //Update the the status to enable
-          $http.post("http://teamsoft.tk/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -2876,7 +2876,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = false;
           var addStatus = 1;
           //Update the the status to disable
-          $http.post("http://teamsoft.tk/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -2886,11 +2886,11 @@ var UID=window.localStorage.getItem("id");
       }
 
       $scope.launch = function() {
-        window.open("http://teamsoft.tk/LinkedIn.php?memberid="+CusID, "_system", "location=yes");
+        window.open("http://localhost/test/LinkedIn.php?memberid="+CusID, "_system", "location=yes");
       }
 
       $scope.launchfb = function() {
-        window.open("http://teamsoft.tk/facebookprof.php?memberid="+CusID, "_system", "location=yes");
+        window.open("http://localhost/test/facebookprof.php?memberid="+CusID, "_system", "location=yes");
       }
     })
 
@@ -2898,7 +2898,7 @@ var UID=window.localStorage.getItem("id");
     .controller('notifyCtrl',function($scope,$http,$state,$ionicPopup) {
       var CusID = window.localStorage.getItem("id");
       //Get all the notifications
-      $http.get("http://teamsoft.tk/notificationUser.php?CusID="+CusID).success(
+      $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
                 function(data) {
                     $scope.notifications = data;
                 });
@@ -2911,7 +2911,7 @@ var UID=window.localStorage.getItem("id");
           if (res) {
             $http.post(
               //Delete all the notifications in the table
-            "http://teamsoft.tk/deleteNotifications.php").success(function(data) {
+            "http://localhost/test/deleteNotifications.php").success(function(data) {
               var alertPopup = $ionicPopup.alert({
               title: 'Notifications Cleared'
               });
@@ -2928,7 +2928,7 @@ var UID=window.localStorage.getItem("id");
       //Action to refresh by pull
       $scope.doRefresh = function() {
         //Load new notifications
-        $http.get("http://teamsoft.tk/notificationUser.php?CusID="+CusID).success(
+        $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
                 function(data) {
                     $scope.notifications = data;
         })
@@ -2945,7 +2945,7 @@ var UID=window.localStorage.getItem("id");
         var CusID = $stateParams.idA;
         var CusID1 = window.localStorage.getItem("id");
         //Load the advertisement
-        $http.get("http://teamsoft.tk/addFullShow.php?CusID=" + CusID).success(
+        $http.get("http://localhost/test/addFullShow.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
                 card = data;
@@ -2970,7 +2970,7 @@ var UID=window.localStorage.getItem("id");
           }
 
         //Set the advretisement status
-        $http.get("http://teamsoft.tk/checkFavouriteadd.php?CusID="+CusID1+"&Addid="+CusID).success(
+        $http.get("http://localhost/test/checkFavouriteadd.php?CusID="+CusID1+"&Addid="+CusID).success(
             function(data) {
                 var fav = [];
                 fav = data;
@@ -2989,7 +2989,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://teamsoft.tk/FavouriteAdd.php?CusID=" +
+                        "http://localhost/test/FavouriteAdd.php?CusID=" +
                         CusID1+"&Addid="+CusID).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Added to favourite'
@@ -3012,7 +3012,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://teamsoft.tk/FavouriteAddRemove.php?CusID=" +
+                        "http://localhost/test/FavouriteAddRemove.php?CusID=" +
                         CusID1+"&Addid="+CusID).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Removed from favourite'
@@ -3072,7 +3072,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                         $http.post(
                           //Send the posted advertisment to the table
-                            "http://teamsoft.tk/sendUserAdvertisement.php?title=" +
+                            "http://localhost/test/sendUserAdvertisement.php?title=" +
                             title + "&Selected=" + Selected +
                             "&Image=" + Image +
                             "&description=" + description +
@@ -3106,7 +3106,7 @@ var UID=window.localStorage.getItem("id");
         function loaddata() {
             //Get the advertisment from the table
             $http.get(
-                "http://teamsoft.tk/addUserListView.php?CusID=" +
+                "http://localhost/test/addUserListView.php?CusID=" +
                 CusID).success(function(data) {
                 $scope.items = data;
             });
@@ -3115,7 +3115,7 @@ var UID=window.localStorage.getItem("id");
         $scope.doRefresh = function() {
           //Load the advertisement
           $http.get(
-                "http://teamsoft.tk/addUserListView.php?CusID=" +
+                "http://localhost/test/addUserListView.php?CusID=" +
                 CusID).success(function(data) {
                 $scope.items = data;
           })
@@ -3134,7 +3134,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //delete the current advertisment data from the table
                     $http.post(
-                        "http://teamsoft.tk/deleteUserAddvertisement.php?thissID=" +
+                        "http://localhost/test/deleteUserAddvertisement.php?thissID=" +
                         thissID).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Advertiesement Removed'
@@ -3158,7 +3158,7 @@ var UID=window.localStorage.getItem("id");
     .controller('buissnessCardCtrl', function($scope, $http, $state, $ionicActionSheet, $timeout) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://teamsoft.tk/showBuissnessCard.php?CusID=" +
+        $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -3251,7 +3251,7 @@ var UID=window.localStorage.getItem("id");
             //refresh the Businesscard by pulling
             $scope.doRefresh = function() {
               //Load the businesscard
-              $http.get("http://teamsoft.tk/showBuissnessCard.php?CusID=" +
+              $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -3288,7 +3288,7 @@ var UID=window.localStorage.getItem("id");
         $scope.BuissnessCardValues = function() {
           //Get the businesscard values
             $http.get(
-                "http://teamsoft.tk/showBuissnessCard.php?CusID=" +
+                "http://localhost/test/showBuissnessCard.php?CusID=" +
                 CusID).success(function(data) {
                 var card = [];
                 card = data;
@@ -3337,7 +3337,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the edited values to the business card
                         $http.get(
-                            "http://teamsoft.tk/buissnessCardEdit.php?Profession=" +
+                            "http://localhost/test/buissnessCardEdit.php?Profession=" +
                             Profession + "&Skills=" +
                             Skills + "&Awards=" + Awards +
                             "&WorkPlace=" + WorkPlace +
@@ -3381,7 +3381,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the details to the table
                         $http.post(
-                            "http://teamsoft.tk/about2Add.php?ID=" +
+                            "http://localhost/test/about2Add.php?ID=" +
                             CusID + "&profession=" +
                             profession + "&skills=" +
                             skills + "&awards=" + awards).success(
@@ -3439,7 +3439,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Sending registered data to the table
                         $http.post(
-                            "http://teamsoft.tk/about3Add.php?workPlace=" +
+                            "http://localhost/test/about3Add.php?workPlace=" +
                             workPlace + "&address=" +
                             address + "&contact=" + contact +
                             "&email=" + email +
@@ -3465,7 +3465,7 @@ var UID=window.localStorage.getItem("id");
     })
 
 
-    //Admin  
+  //Admin  related controllers
 
   //Show the advertisement to each user that each user has posted respectively
     .controller('AdminSpecialListCtrl', function($scope, $http, $ionicPopup, $ionicSideMenuDelegate) {
@@ -3475,7 +3475,7 @@ var UID=window.localStorage.getItem("id");
         function loaddata() {
             //Get the advertisment from the table
             $http.get(
-                "http://teamsoft.tk/adminSpecialList.php").success(function(data) {
+                "http://localhost/test/adminSpecialList.php").success(function(data) {
                 $scope.items = data;
             });
         };
@@ -3483,7 +3483,7 @@ var UID=window.localStorage.getItem("id");
         $scope.doRefresh = function() {
           //Load the advertisement
           $http.get(
-                "http://teamsoft.tk/adminSpecialList.php").success(function(data) {
+                "http://localhost/test/adminSpecialList.php").success(function(data) {
                 $scope.items = data;
           })
          .finally(function() {
@@ -3500,7 +3500,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://teamsoft.tk/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
+                        "http://localhost/test/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Marked as Normal'
                         });
@@ -3521,7 +3521,7 @@ var UID=window.localStorage.getItem("id");
     .controller('pendingAddDetailCtrl', function($state, $scope, $http, $stateParams) {
         var CusID = $stateParams.idS;
         //Load the advertisement
-        $http.get("http://teamsoft.tk/pendingAddDetails.php?CusID=" + CusID).success(
+        $http.get("http://localhost/test/pendingAddDetails.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
                 card = data;
@@ -3543,7 +3543,7 @@ var UID=window.localStorage.getItem("id");
     .controller('settingsACtrl', function($scope, $http, $state, $ionicPopup) {
       var CusID = window.localStorage.getItem("id");
       //Check whether the Disabled button is on or off
-      $http.get("http://teamsoft.tk/getDisableadd.php?CusID="+CusID).success(function(
+      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
             $scope.getdata = data[0].Status;
             if($scope.getdata == -1) {
@@ -3554,7 +3554,7 @@ var UID=window.localStorage.getItem("id");
             }
       });
       //Check whether the system add Disabled button is on or off
-      $http.get("http://teamsoft.tk/getDisableadd.php?CusID="+CusID).success(function(
+      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
             $scope.getdata1 = data[0].Admin;
             if($scope.getdata1 == -1) {
@@ -3570,7 +3570,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = true;
           var addStatus = -1;
           //Update the the status to enable
-          $http.post("http://teamsoft.tk/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -3581,7 +3581,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = false;
           var addStatus = 1;
           //Update the the status to disable
-          $http.post("http://teamsoft.tk/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -3596,7 +3596,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addLock = true;
           var addStatus1 = -1;
           //Update the the status to enable
-          $http.post("http://teamsoft.tk/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
+          $http.post("http://localhost/test/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes have been applied(The changes will appear on the admin profile from the next login)'
@@ -3607,7 +3607,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addLock = false;
           var addStatus1 = 1;
           //Update the the status to disable
-          $http.post("http://teamsoft.tk/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
+          $http.post("http://localhost/test/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes have been applied(The changes will appear on the admin profile from the next login)'
@@ -3618,7 +3618,7 @@ var UID=window.localStorage.getItem("id");
 
       //Redirrect to google drive openning page
       $scope.openGoogleDrive = function(){
-        window.open("http://teamsoft.tk/GoogleDrive.php", "_system", "width=400, height=350");
+        window.open("http://localhost/test/GoogleDrive.php", "_system", "width=400, height=350");
       }
     })
 
@@ -3629,7 +3629,7 @@ var UID=window.localStorage.getItem("id");
         //Load all the pending advertisment
         function loadtable() {
           //Get all the pending advertisment
-            $http.get("http://teamsoft.tk/adminAddverList.php").success(
+            $http.get("http://localhost/test/adminAddverList.php").success(
                 function(data) {
                     $scope.advertiesement = data;
                 });
@@ -3643,7 +3643,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Send the accepted advertisment data to table
                     $http.post(
-                        "http://teamsoft.tk/AcceptAdver.php?SID=" +
+                        "http://localhost/test/AcceptAdver.php?SID=" +
                         SID).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Advertiesement Accepted'
@@ -3667,7 +3667,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the rejected advertisment data to table
                         $http.post(
-                            "http://teamsoft.tk/RejectAdver.php?SID=" +
+                            "http://localhost/test/RejectAdver.php?SID=" +
                             SID).success(function(data) {
                             var alertPopup = $ionicPopup.alert({
                                 title: 'Advertiesement Rejected'
@@ -3693,7 +3693,7 @@ var UID=window.localStorage.getItem("id");
             //refresh the list by pulling
             $scope.doRefresh = function() {
               //Load the pending advertisment
-            $http.get("http://teamsoft.tk/adminAddverList.php").success(
+            $http.get("http://localhost/test/adminAddverList.php").success(
                 function(data) {
                     $scope.advertiesement = data;
                 })
@@ -3749,7 +3749,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send posted advertisment data to the database
                         $http.post(
-                            "http://teamsoft.tk/postAdvertiesement.php?Selected=" +
+                            "http://localhost/test/postAdvertiesement.php?Selected=" +
                             Selected + "&Title=" + Title +
                             "&Image=" + Image +
                             "&Description=" + Description +
@@ -3781,7 +3781,7 @@ var UID=window.localStorage.getItem("id");
         //Load the advertisment list
         function loadtable() {
           //Get the advertisment list
-            $http.get("http://teamsoft.tk/showAdvertiesement.php").success(
+            $http.get("http://localhost/test/showAdvertiesement.php").success(
                 function(data) {
                     $scope.advertiesement = data;
                 });
@@ -3799,7 +3799,7 @@ var UID=window.localStorage.getItem("id");
         //refresh the list by pulling
         $scope.doRefresh = function() {
           //Get the advertisment list
-          $http.get("http://teamsoft.tk/showAdvertiesement.php").success(
+          $http.get("http://localhost/test/showAdvertiesement.php").success(
                 function(data) {
             $scope.advertiesement = data;
           })
@@ -3823,7 +3823,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //delete the current advertisment data from the table
                     $http.post(
-                        "http://teamsoft.tk/deleteAddvertisement.php?thissID=" +
+                        "http://localhost/test/deleteAddvertisement.php?thissID=" +
                         IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Advertiesement Removed'
@@ -3845,7 +3845,7 @@ var UID=window.localStorage.getItem("id");
         };
         var CusID = $stateParams.id;
         //get the details of the advertisement
-        $http.get("http://teamsoft.tk/addFullShow.php?CusID=" + CusID).success(
+        $http.get("http://localhost/test/addFullShow.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
                 card = data;
@@ -3866,7 +3866,7 @@ var UID=window.localStorage.getItem("id");
         }
 
                 //Set the advretisement status
-        $http.get("http://teamsoft.tk/checkSpecialadd.php?Addid="+CusID).success(
+        $http.get("http://localhost/test/checkSpecialadd.php?Addid="+CusID).success(
             function(data) {
                 var fav = [];
                 fav = data;
@@ -3886,7 +3886,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://teamsoft.tk/SpecialAdd.php?Addid="+IDAdd).success(function(data) {
+                        "http://localhost/test/SpecialAdd.php?Addid="+IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Added to special'
                         });
@@ -3908,7 +3908,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://teamsoft.tk/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
+                        "http://localhost/test/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Marked as Normal'
                         });
@@ -3933,7 +3933,7 @@ var UID=window.localStorage.getItem("id");
             var CusID = $stateParams.Eid;
             //get the advertisment data
             $http.get(
-                "http://teamsoft.tk/showEditAddvertiesement.php?CusID=" +
+                "http://localhost/test/showEditAddvertiesement.php?CusID=" +
                 CusID).success(function(data) {
                 var card = [];
                 card = data;
@@ -4003,7 +4003,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the edited data to the table
                         $http.post(
-                            "http://teamsoft.tk/editAdvertisement.php?Selected=" +
+                            "http://localhost/test/editAdvertisement.php?Selected=" +
                             Selected + "&Title=" + Title +
                             "&Image=" + Image +
                             "&Description=" + Description +
@@ -4137,7 +4137,7 @@ var UID=window.localStorage.getItem("id");
     
         
      //http reqest to PHP file       
-      $http.get('http://teamsoft.tk/searchresult.php?name='+name+'&class='+class1+'&profession='+profession+'&country='+country
+      $http.get('http://localhost/test/searchresult.php?name='+name+'&class='+class1+'&profession='+profession+'&country='+country
         ).then(function(response){
           
           $scope.searchItems = response.data;
@@ -4151,7 +4151,7 @@ var UID=window.localStorage.getItem("id");
        var class1 = window.localStorage.getItem("class");
        var group = window.localStorage.getItem("group");
 
-        $http.get('http://teamsoft.tk/searchgroupresult.php?name='+name+'&class='+class1+'&group='+group
+        $http.get('http://localhost/test/searchgroupresult.php?name='+name+'&class='+class1+'&group='+group
         ).then(function(response){
           
           $scope.searchItems = response.data;
@@ -4163,7 +4163,7 @@ var UID=window.localStorage.getItem("id");
  .controller('favouriteContactsCtrl', function($scope,$http) {
          var id = window.localStorage.getItem("id");
 
-        $http.get('http://teamsoft.tk/favouriteList.php?id='+id).then(function(response){
+        $http.get('http://localhost/test/favouriteList.php?id='+id).then(function(response){
       
           $scope.favourite = response.data;
 
@@ -4190,7 +4190,7 @@ var UID=window.localStorage.getItem("id");
 
     var follower = window.localStorage.getItem("followerid");
     var id = window.localStorage.getItem("id");
-    $http.get("http://teamsoft.tk/followpage.php?follower="+follower).success(function(data){   
+    $http.get("http://localhost/test/followpage.php?follower="+follower).success(function(data){   
     var fav=[];
     fav=data;
     $scope.name=fav[0].name;
@@ -4201,7 +4201,7 @@ var UID=window.localStorage.getItem("id");
     $scope.contact_no=fav[0].contact_no;
   })
 
-    $http.get('http://teamsoft.tk/checkFollow.php?follower='+follower+'&id='+id).then(function(response){
+    $http.get('http://localhost/test/checkFollow.php?follower='+follower+'&id='+id).then(function(response){
       if(response.data=="true")
       {
         alert("ufollow");
@@ -4218,7 +4218,7 @@ var UID=window.localStorage.getItem("id");
   })
 
     $scope.follow = function(){
-     $http.post("http://teamsoft.tk/followdatabase.php?follower="+follower+"&id="+id)
+     $http.post("http://localhost/test/followdatabase.php?follower="+follower+"&id="+id)
     .success(function(data){  
       var alertPopup = $ionicPopup.alert({
         title: 'You followed this person'
@@ -4532,7 +4532,7 @@ var UID=window.localStorage.getItem("id");
 
 /*.controller('participants', function($scope,$state,$http,$stateParams){
     var id = $stateParams.id;
-    $http.get('http://teamsoft.tk/viewParticipants.php?id='+id ).then(function(response){
+    $http.get('http://localhost/test/viewParticipants.php?id='+id ).then(function(response){
             $scope.Participants = response.data;
     })
 
@@ -4898,7 +4898,7 @@ var UID=window.localStorage.getItem("id");
 
 
          // var gid = window.localStorage.getItem("gEid");
-       /*   $http.get('http://teamsoft.tk/mergeevent.php?id='+userId+'&eventId='+id+'&googleId='+gid).then(function(response){ 
+       /*   $http.get('http://localhost/test/mergeevent.php?id='+userId+'&eventId='+id+'&googleId='+gid).then(function(response){ 
               if(response.data=="true"){ console.log("merged"); }
               else{ console.log("error in merging"); }
          })*/

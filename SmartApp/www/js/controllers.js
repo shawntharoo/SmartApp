@@ -2359,7 +2359,7 @@ var UID=window.localStorage.getItem("id");
         var role = window.localStorage.getItem("role");
         var CusID = window.localStorage.getItem("id");
         //Check whether the disable button is on or off
-        $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(
+        $http.get("http://uniropaints.info/Carmu/test/getDisableadd.php?CusID="+CusID).success(
                   function(data) {
           $scope.addStatus = data[0].Status;
           $scope.adminStatus = data[0].Admin;
@@ -2395,13 +2395,13 @@ var UID=window.localStorage.getItem("id");
         });
         /*Enter this inside the above if statements*/
         //Show all the banners in the slider
-        $http.get("http://localhost/test/showBanner.php").success(function(
+        $http.get("http://uniropaints.info/Carmu/test/showBanner.php").success(function(
             data) {
             $scope.Banner = data;
             $ionicSlideBoxDelegate.update();
         });
 
-        $http.get("http://localhost/test/showBannerSpecila.php").success(function(
+        $http.get("http://uniropaints.info/Carmu/test/showBannerSpecila.php").success(function(
             data) {
             $scope.BannerSpecial = data;
             $ionicSlideBoxDelegate.update();
@@ -2429,7 +2429,7 @@ var UID=window.localStorage.getItem("id");
         function loaddata() {
             //Get the advertisment from the table
             $http.get(
-                "http://localhost/test/showFavourite.php?CusID=" +
+                "http://uniropaints.info/Carmu/test/showFavourite.php?CusID=" +
                 CusID).success(function(data) {
                 $scope.items = data;
             });
@@ -2438,7 +2438,7 @@ var UID=window.localStorage.getItem("id");
         $scope.doRefresh = function() {
           //Load the advertisement
           $http.get(
-                "http://localhost/test/showFavourite.php?CusID=" +
+                "http://uniropaints.info/Carmu/test/showFavourite.php?CusID=" +
                 CusID).success(function(data) {
                 $scope.items = data;
           })
@@ -2457,7 +2457,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //delete the current advertisment data from the table
                     $http.post(
-                        "http://localhost/test/deletefavouriteAdd.php?thissID=" +
+                        "http://uniropaints.info/Carmu/test/deletefavouriteAdd.php?thissID=" +
                         thissID+"&CusID=" +CusID).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Advertiesement Removed'
@@ -2478,7 +2478,7 @@ var UID=window.localStorage.getItem("id");
     .controller('facebookProfSearchCtrl', function($timeout, $state, $time$scope, $http, $ionicActionSheet) {
       var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://localhost/test/showfacebookProf.php?CusID=" +
+        $http.get("http://uniropaints.info/Carmu/test/showfacebookProf.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2540,7 +2540,7 @@ var UID=window.localStorage.getItem("id");
     .controller('facebookProfPageCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
       var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://localhost/test/showfacebookProf.php?CusID=" +
+        $http.get("http://uniropaints.info/Carmu/test/showfacebookProf.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2602,7 +2602,7 @@ var UID=window.localStorage.getItem("id");
     .controller('linkedinPageSearchCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://localhost/test/showLinkedin.php?CusID=" +
+        $http.get("http://uniropaints.info/Carmu/test/showLinkedin.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2678,7 +2678,7 @@ var UID=window.localStorage.getItem("id");
     .controller('buissnessCardSearchCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
+        $http.get("http://uniropaints.info/Carmu/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2768,7 +2768,7 @@ var UID=window.localStorage.getItem("id");
     .controller('linkedinPageCtrl', function($timeout, $state, $scope, $http, $ionicActionSheet) {
       var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://localhost/test/showLinkedin.php?CusID=" +
+        $http.get("http://uniropaints.info/Carmu/test/showLinkedin.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -2849,7 +2849,7 @@ var UID=window.localStorage.getItem("id");
     .controller('settingsBCtrl', function($scope,$http,$state,$ionicPopup) {
       var CusID = window.localStorage.getItem("id");
       //Check whether the Disabled button is on or off
-      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
+      $http.get("http://uniropaints.info/Carmu/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
             $scope.getdata = data[0].Status;
             if($scope.getdata == -1) {
@@ -2865,7 +2865,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = true;
           var addStatus = -1;
           //Update the the status to enable
-          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://uniropaints.info/Carmu/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -2876,7 +2876,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = false;
           var addStatus = 1;
           //Update the the status to disable
-          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://uniropaints.info/Carmu/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -2886,11 +2886,11 @@ var UID=window.localStorage.getItem("id");
       }
 
       $scope.launch = function() {
-        window.open("http://localhost/test/LinkedIn.php?memberid="+CusID, "_system", "location=yes");
+        window.open("http://uniropaints.info/Carmu/test/LinkedIn.php?memberid="+CusID, "_system", "location=yes");
       }
 
       $scope.launchfb = function() {
-        window.open("http://localhost/test/facebookprof.php?memberid="+CusID, "_system", "location=yes");
+        window.open("http://uniropaints.info/Carmu/test/facebookprof.php?memberid="+CusID, "_system", "location=yes");
       }
     })
 
@@ -2898,7 +2898,7 @@ var UID=window.localStorage.getItem("id");
     .controller('notifyCtrl',function($scope,$http,$state,$ionicPopup) {
       var CusID = window.localStorage.getItem("id");
       //Get all the notifications
-      $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
+      $http.get("http://uniropaints.info/Carmu/test/notificationUser.php?CusID="+CusID).success(
                 function(data) {
                     $scope.notifications = data;
                 });
@@ -2911,7 +2911,7 @@ var UID=window.localStorage.getItem("id");
           if (res) {
             $http.post(
               //Delete all the notifications in the table
-            "http://localhost/test/deleteNotifications.php").success(function(data) {
+            "http://uniropaints.info/Carmu/test/deleteNotifications.php").success(function(data) {
               var alertPopup = $ionicPopup.alert({
               title: 'Notifications Cleared'
               });
@@ -2928,7 +2928,7 @@ var UID=window.localStorage.getItem("id");
       //Action to refresh by pull
       $scope.doRefresh = function() {
         //Load new notifications
-        $http.get("http://localhost/test/notificationUser.php?CusID="+CusID).success(
+        $http.get("http://uniropaints.info/Carmu/test/notificationUser.php?CusID="+CusID).success(
                 function(data) {
                     $scope.notifications = data;
         })
@@ -2945,7 +2945,7 @@ var UID=window.localStorage.getItem("id");
         var CusID = $stateParams.idA;
         var CusID1 = window.localStorage.getItem("id");
         //Load the advertisement
-        $http.get("http://localhost/test/addFullShow.php?CusID=" + CusID).success(
+        $http.get("http://uniropaints.info/Carmu/test/addFullShow.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
                 card = data;
@@ -2970,7 +2970,7 @@ var UID=window.localStorage.getItem("id");
           }
 
         //Set the advretisement status
-        $http.get("http://localhost/test/checkFavouriteadd.php?CusID="+CusID1+"&Addid="+CusID).success(
+        $http.get("http://uniropaints.info/Carmu/test/checkFavouriteadd.php?CusID="+CusID1+"&Addid="+CusID).success(
             function(data) {
                 var fav = [];
                 fav = data;
@@ -2989,7 +2989,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://localhost/test/FavouriteAdd.php?CusID=" +
+                        "http://uniropaints.info/Carmu/test/FavouriteAdd.php?CusID=" +
                         CusID1+"&Addid="+CusID).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Added to favourite'
@@ -3012,7 +3012,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://localhost/test/FavouriteAddRemove.php?CusID=" +
+                        "http://uniropaints.info/Carmu/test/FavouriteAddRemove.php?CusID=" +
                         CusID1+"&Addid="+CusID).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Removed from favourite'
@@ -3072,7 +3072,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                         $http.post(
                           //Send the posted advertisment to the table
-                            "http://localhost/test/sendUserAdvertisement.php?title=" +
+                            "http://uniropaints.info/Carmu/test/sendUserAdvertisement.php?title=" +
                             title + "&Selected=" + Selected +
                             "&Image=" + Image +
                             "&description=" + description +
@@ -3106,7 +3106,7 @@ var UID=window.localStorage.getItem("id");
         function loaddata() {
             //Get the advertisment from the table
             $http.get(
-                "http://localhost/test/addUserListView.php?CusID=" +
+                "http://uniropaints.info/Carmu/test/addUserListView.php?CusID=" +
                 CusID).success(function(data) {
                 $scope.items = data;
             });
@@ -3115,7 +3115,7 @@ var UID=window.localStorage.getItem("id");
         $scope.doRefresh = function() {
           //Load the advertisement
           $http.get(
-                "http://localhost/test/addUserListView.php?CusID=" +
+                "http://uniropaints.info/Carmu/test/addUserListView.php?CusID=" +
                 CusID).success(function(data) {
                 $scope.items = data;
           })
@@ -3134,7 +3134,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //delete the current advertisment data from the table
                     $http.post(
-                        "http://localhost/test/deleteUserAddvertisement.php?thissID=" +
+                        "http://uniropaints.info/Carmu/test/deleteUserAddvertisement.php?thissID=" +
                         thissID).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Advertiesement Removed'
@@ -3158,7 +3158,7 @@ var UID=window.localStorage.getItem("id");
     .controller('buissnessCardCtrl', function($scope, $http, $state, $ionicActionSheet, $timeout) {
         var CusID = window.localStorage.getItem("id");
         //Get the business card details from the table
-        $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
+        $http.get("http://uniropaints.info/Carmu/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -3251,7 +3251,7 @@ var UID=window.localStorage.getItem("id");
             //refresh the Businesscard by pulling
             $scope.doRefresh = function() {
               //Load the businesscard
-              $http.get("http://localhost/test/showBuissnessCard.php?CusID=" +
+              $http.get("http://uniropaints.info/Carmu/test/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
@@ -3288,7 +3288,7 @@ var UID=window.localStorage.getItem("id");
         $scope.BuissnessCardValues = function() {
           //Get the businesscard values
             $http.get(
-                "http://localhost/test/showBuissnessCard.php?CusID=" +
+                "http://uniropaints.info/Carmu/test/showBuissnessCard.php?CusID=" +
                 CusID).success(function(data) {
                 var card = [];
                 card = data;
@@ -3337,7 +3337,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the edited values to the business card
                         $http.get(
-                            "http://localhost/test/buissnessCardEdit.php?Profession=" +
+                            "http://uniropaints.info/Carmu/test/buissnessCardEdit.php?Profession=" +
                             Profession + "&Skills=" +
                             Skills + "&Awards=" + Awards +
                             "&WorkPlace=" + WorkPlace +
@@ -3381,7 +3381,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the details to the table
                         $http.post(
-                            "http://localhost/test/about2Add.php?ID=" +
+                            "http://uniropaints.info/Carmu/test/about2Add.php?ID=" +
                             CusID + "&profession=" +
                             profession + "&skills=" +
                             skills + "&awards=" + awards).success(
@@ -3439,7 +3439,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Sending registered data to the table
                         $http.post(
-                            "http://localhost/test/about3Add.php?workPlace=" +
+                            "http://uniropaints.info/Carmu/test/about3Add.php?workPlace=" +
                             workPlace + "&address=" +
                             address + "&contact=" + contact +
                             "&email=" + email +
@@ -3475,7 +3475,7 @@ var UID=window.localStorage.getItem("id");
         function loaddata() {
             //Get the advertisment from the table
             $http.get(
-                "http://localhost/test/adminSpecialList.php").success(function(data) {
+                "http://uniropaints.info/Carmu/test/adminSpecialList.php").success(function(data) {
                 $scope.items = data;
             });
         };
@@ -3483,7 +3483,7 @@ var UID=window.localStorage.getItem("id");
         $scope.doRefresh = function() {
           //Load the advertisement
           $http.get(
-                "http://localhost/test/adminSpecialList.php").success(function(data) {
+                "http://uniropaints.info/Carmu/test/adminSpecialList.php").success(function(data) {
                 $scope.items = data;
           })
          .finally(function() {
@@ -3500,7 +3500,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://localhost/test/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
+                        "http://uniropaints.info/Carmu/test/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Marked as Normal'
                         });
@@ -3521,7 +3521,7 @@ var UID=window.localStorage.getItem("id");
     .controller('pendingAddDetailCtrl', function($state, $scope, $http, $stateParams) {
         var CusID = $stateParams.idS;
         //Load the advertisement
-        $http.get("http://localhost/test/pendingAddDetails.php?CusID=" + CusID).success(
+        $http.get("http://uniropaints.info/Carmu/test/pendingAddDetails.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
                 card = data;
@@ -3543,7 +3543,7 @@ var UID=window.localStorage.getItem("id");
     .controller('settingsACtrl', function($scope, $http, $state, $ionicPopup) {
       var CusID = window.localStorage.getItem("id");
       //Check whether the Disabled button is on or off
-      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
+      $http.get("http://uniropaints.info/Carmu/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
             $scope.getdata = data[0].Status;
             if($scope.getdata == -1) {
@@ -3554,7 +3554,7 @@ var UID=window.localStorage.getItem("id");
             }
       });
       //Check whether the system add Disabled button is on or off
-      $http.get("http://localhost/test/getDisableadd.php?CusID="+CusID).success(function(
+      $http.get("http://uniropaints.info/Carmu/test/getDisableadd.php?CusID="+CusID).success(function(
             data) {
             $scope.getdata1 = data[0].Admin;
             if($scope.getdata1 == -1) {
@@ -3570,7 +3570,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = true;
           var addStatus = -1;
           //Update the the status to enable
-          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://uniropaints.info/Carmu/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -3581,7 +3581,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addSwitch = false;
           var addStatus = 1;
           //Update the the status to disable
-          $http.post("http://localhost/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
+          $http.post("http://uniropaints.info/Carmu/test/DisableAddUpdate.php?CusID="+CusID+"&addStatus="+addStatus).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes will be apply from the next login'
@@ -3596,7 +3596,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addLock = true;
           var addStatus1 = -1;
           //Update the the status to enable
-          $http.post("http://localhost/test/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
+          $http.post("http://uniropaints.info/Carmu/test/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes have been applied(The changes will appear on the admin profile from the next login)'
@@ -3607,7 +3607,7 @@ var UID=window.localStorage.getItem("id");
           $scope.addLock = false;
           var addStatus1 = 1;
           //Update the the status to disable
-          $http.post("http://localhost/test/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
+          $http.post("http://uniropaints.info/Carmu/test/DisableAddUpdate2.php?addStatus1="+addStatus1).success(
                 function(data) {
                   var alertPopup = $ionicPopup.alert({
                     title: 'The Changes have been applied(The changes will appear on the admin profile from the next login)'
@@ -3618,7 +3618,7 @@ var UID=window.localStorage.getItem("id");
 
       //Redirrect to google drive openning page
       $scope.openGoogleDrive = function(){
-        window.open("http://localhost/test/GoogleDrive.php", "_system", "width=400, height=350");
+        window.open("http://uniropaints.info/Carmu/test/GoogleDrive.php", "_system", "width=400, height=350");
       }
     })
 
@@ -3629,7 +3629,7 @@ var UID=window.localStorage.getItem("id");
         //Load all the pending advertisment
         function loadtable() {
           //Get all the pending advertisment
-            $http.get("http://localhost/test/adminAddverList.php").success(
+            $http.get("http://uniropaints.info/Carmu/test/adminAddverList.php").success(
                 function(data) {
                     $scope.advertiesement = data;
                 });
@@ -3643,7 +3643,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Send the accepted advertisment data to table
                     $http.post(
-                        "http://localhost/test/AcceptAdver.php?SID=" +
+                        "http://uniropaints.info/Carmu/test/AcceptAdver.php?SID=" +
                         SID).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Advertiesement Accepted'
@@ -3667,7 +3667,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the rejected advertisment data to table
                         $http.post(
-                            "http://localhost/test/RejectAdver.php?SID=" +
+                            "http://uniropaints.info/Carmu/test/RejectAdver.php?SID=" +
                             SID).success(function(data) {
                             var alertPopup = $ionicPopup.alert({
                                 title: 'Advertiesement Rejected'
@@ -3693,7 +3693,7 @@ var UID=window.localStorage.getItem("id");
             //refresh the list by pulling
             $scope.doRefresh = function() {
               //Load the pending advertisment
-            $http.get("http://localhost/test/adminAddverList.php").success(
+            $http.get("http://uniropaints.info/Carmu/test/adminAddverList.php").success(
                 function(data) {
                     $scope.advertiesement = data;
                 })
@@ -3749,7 +3749,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send posted advertisment data to the database
                         $http.post(
-                            "http://localhost/test/postAdvertiesement.php?Selected=" +
+                            "http://uniropaints.info/Carmu/test/postAdvertiesement.php?Selected=" +
                             Selected + "&Title=" + Title +
                             "&Image=" + Image +
                             "&Description=" + Description +
@@ -3781,7 +3781,7 @@ var UID=window.localStorage.getItem("id");
         //Load the advertisment list
         function loadtable() {
           //Get the advertisment list
-            $http.get("http://localhost/test/showAdvertiesement.php").success(
+            $http.get("http://uniropaints.info/Carmu/test/showAdvertiesement.php").success(
                 function(data) {
                     $scope.advertiesement = data;
                 });
@@ -3799,7 +3799,7 @@ var UID=window.localStorage.getItem("id");
         //refresh the list by pulling
         $scope.doRefresh = function() {
           //Get the advertisment list
-          $http.get("http://localhost/test/showAdvertiesement.php").success(
+          $http.get("http://uniropaints.info/Carmu/test/showAdvertiesement.php").success(
                 function(data) {
             $scope.advertiesement = data;
           })
@@ -3823,7 +3823,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //delete the current advertisment data from the table
                     $http.post(
-                        "http://localhost/test/deleteAddvertisement.php?thissID=" +
+                        "http://uniropaints.info/Carmu/test/deleteAddvertisement.php?thissID=" +
                         IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Advertiesement Removed'
@@ -3845,7 +3845,7 @@ var UID=window.localStorage.getItem("id");
         };
         var CusID = $stateParams.id;
         //get the details of the advertisement
-        $http.get("http://localhost/test/addFullShow.php?CusID=" + CusID).success(
+        $http.get("http://uniropaints.info/Carmu/test/addFullShow.php?CusID=" + CusID).success(
             function(data) {
                 var card = [];
                 card = data;
@@ -3866,7 +3866,7 @@ var UID=window.localStorage.getItem("id");
         }
 
                 //Set the advretisement status
-        $http.get("http://localhost/test/checkSpecialadd.php?Addid="+CusID).success(
+        $http.get("http://uniropaints.info/Carmu/test/checkSpecialadd.php?Addid="+CusID).success(
             function(data) {
                 var fav = [];
                 fav = data;
@@ -3886,7 +3886,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://localhost/test/SpecialAdd.php?Addid="+IDAdd).success(function(data) {
+                        "http://uniropaints.info/Carmu/test/SpecialAdd.php?Addid="+IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Added to special'
                         });
@@ -3908,7 +3908,7 @@ var UID=window.localStorage.getItem("id");
                 if (res) {
                   //Add to favourite
                     $http.post(
-                        "http://localhost/test/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
+                        "http://uniropaints.info/Carmu/test/SpecialAddRemove.php?Addid="+IDAdd).success(function(data) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Marked as Normal'
                         });
@@ -3933,7 +3933,7 @@ var UID=window.localStorage.getItem("id");
             var CusID = $stateParams.Eid;
             //get the advertisment data
             $http.get(
-                "http://localhost/test/showEditAddvertiesement.php?CusID=" +
+                "http://uniropaints.info/Carmu/test/showEditAddvertiesement.php?CusID=" +
                 CusID).success(function(data) {
                 var card = [];
                 card = data;
@@ -4003,7 +4003,7 @@ var UID=window.localStorage.getItem("id");
                     if (res) {
                       //Send the edited data to the table
                         $http.post(
-                            "http://localhost/test/editAdvertisement.php?Selected=" +
+                            "http://uniropaints.info/Carmu/test/editAdvertisement.php?Selected=" +
                             Selected + "&Title=" + Title +
                             "&Image=" + Image +
                             "&Description=" + Description +
