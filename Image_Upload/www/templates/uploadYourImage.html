@@ -1,0 +1,10 @@
+<ion-view title="Upload your image" id="page1" class=" ">
+    <ion-content padding="true" class="has-header">
+        <button id="uploadYourImage-button1" class=" button button-positive  button-block " ng-click="choosePhoto()">Select from gallery</button>
+        <button id="uploadYourImage-button2" class=" button button-positive  button-block " ng-click="takePhoto()">Take a picture</button>
+        <div>
+            <img ng-src="{{imgURI}}">
+        </div>
+        <button id="uploadYourImage-button3" class=" button button-positive  button-block button-outline icon-left ion-android-upload ">Upload</button>
+    </ion-content>
+</ion-view>
