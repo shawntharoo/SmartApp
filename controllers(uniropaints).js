@@ -3157,11 +3157,13 @@ var UID=window.localStorage.getItem("id");
     //Show Business card Details Controller
     .controller('buissnessCardCtrl', function($scope, $http, $state, $ionicActionSheet, $timeout) {
         var CusID = window.localStorage.getItem("id");
+        var x1 = window.localStorage.getItem("x");
         //Get the business card details from the table
-        $http.get("http://uniropaints.info/Carmu/test/showBuissnessCard.php?CusID=" +
+        $http.get("http://teamsoft.tk/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
             var card = [];
             card = data;
+            $scope.x2 = x1;
             if(card[0]=="null")
             {
               $scope.check = -1;

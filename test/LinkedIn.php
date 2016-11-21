@@ -8,7 +8,7 @@
     <font size="5"; color="black">Signing with your LinkedIn Account </font><br/><br/>
     <font size="4"; color="black">Click the Button Below </font><br/><br/>
 		<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-			api_key: 75zaxqxnhgxdet
+			api_key: 8123jzta38fk74
 			onLoad: OnLinkedInFrameworkLoad
 			authorize: true
 		</script>

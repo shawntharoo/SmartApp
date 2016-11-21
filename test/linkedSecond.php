@@ -19,12 +19,12 @@ if ( isset($_GET['id'])){
   $specialties= $_GET['specialties'];
   $positions= $_GET['positions'];
   //Select data from the LinkedIn table of the smartapp database
-  $check="SELECT * FROM LinkedIn WHERE Mem_Id = '$Mem_Id'";
+  $check="SELECT * FROM linkedin WHERE Mem_Id = '$Mem_Id'";
   $result = $mysqli->query($check) or die($mysqli->error . __LINE__);;
   $data = mysqli_fetch_array($result, MYSQLI_NUM);
   if($data[0] >= 1) {
   	//Update LinkedIn table in the Smartapp database
-  	$query = "UPDATE LinkedIn set Mem_Id='" . $Mem_Id . "',LinkedId='" . $LinkedId . "',firstName='" . $firstName . "'
+  	$query = "UPDATE linkedin set Mem_Id='" . $Mem_Id . "',LinkedId='" . $LinkedId . "',firstName='" . $firstName . "'
     ,lastName='" . $lastName . "',headline='" . $headline . "',photo='" . $photo . "',numConnections='" . $numConnections . "'
     ,industry='" . $industry . "',emailAddress='" . $emailAddress . "',summary='" . $summary . "',location='" . $location . "'
     ,publicProfileUrl='" . $publicProfileUrl . "',specialties='" . $specialties . "',positions='" . $positions . "' WHERE Mem_Id='$Mem_Id'";
@@ -33,7 +33,7 @@ if ( isset($_GET['id'])){
   }
   else{
     //Insert data to the LinkedIn table in the Smartapp database
-    $query = "INSERT INTO LinkedIn(Mem_Id,LinkedId,firstName,lastName,headline,photo,numConnections,industry,emailAddress,summary
+    $query = "INSERT INTO linkedin(Mem_Id,LinkedId,firstName,lastName,headline,photo,numConnections,industry,emailAddress,summary
       ,location,publicProfileUrl,specialties,positions)
     VALUES ('$Mem_Id','$LinkedId','$firstName','$lastName','$headline','$photo','$numConnections','$industry','$emailAddress','$summary'
       ,'$location','$publicProfileUrl','$specialties','$positions')";
