@@ -1,3 +1,20 @@
+<?php
+ session_start(); 
+require("dbconnect.php");
+
+if (isset($_SESSION["userID"])) {
+
+   
+} 
+else {
+    header('Location:login.php');
+}
+?>
+
+
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -26,6 +43,7 @@
 
 
    <p>Admin Panel</p>
+    <a class="btn btn-danger btn" href="logout.php"> Logout </a>
  </div>
   <div class="col-md-2">
  </div>
@@ -59,7 +77,7 @@
         <li class=" navbar_margin"><a href="postAdvertiesement.php">Post Advertisement</a></li>
          <li class=" navbar_margin"><a href="showAdvertiesement.php">Show Advertisement</a></li>
           <li class=" navbar_margin"><a href="editprofileapproval.php">View Profile Alteration</a></li>
-      
+      <li class=" navbar_margin"><a href="group.php">Group</a></li>
       </ul>
      
      </div>
@@ -68,71 +86,84 @@
   
     </div>
     <div class="col-md-2">
-    <form role="form" action="" method="post" onsubmit="click()">
-     
-     <input type="submit" value="Allow Alterations" class="btn-success btn">
+	<?php
+	 include("dbconnect.php");
+$sql0='select value from settings where entity="profilealter" ';
+$result0=mysqli_query($con,$sql0);
+$row=mysqli_fetch_array($result0);
+
+if($row['value']==1)
+     {  
+?>	 
+    <form role="form" action="disallow.php" method="post" onsubmit="click()">
+    <input type="submit" value="Disallow Alterations" class="btn-success btn">
+    </form> 
+<?php
+	}
+else
+{	
+	?>
+    
+	<form role="form" action="allow.php" method="post" onsubmit="click()">
+    <input type="submit" value="Allow Alterations" class="btn-success btn">
     </form>
+	<?php
+	}
+	?>
     </div>
 
   </div>
   <div class="container">
+   <?php
+   	
+$sql="select * from user where request=0 or request=1";
+$result=mysqli_query($con,$sql);
+while($row=mysqli_fetch_array($result))
+  {
+   $name=$row['name'];
+   $class=$row['class'];
+   $email=$row['email'];
+   $img=$row['image'];
+   $req=$row['request'];
+ 
+  ?>
   <div class="jumbotron viewblock">
    <div class="container">
     <div class="col-md-3">
-    <img src="images/boy1.png" class="img img-thumbnail" />
+    <img src="<?=$img ?>" class="img img-thumbnail" />
     </div>
     <div class="col-md-6">
-    <p>Saman Perera</p>
-    <p>Class - 13B</p>
-    <p>Saman@gmail.com</p>
+    <p><?=$name ?></p>
+    <p><?=$class ?></p>
+    <p><?=$email ?></p>
      </div>
      <div class="col-md-3 btngroup">
-     
-      <a class="btn btn-primary">Pending</a>
+     <?php
+	 if($req==0)
+	 {
+	 ?>
+     <a class="btn btn-primary" href="pendingRequestWeb.php">Pending</a>
      <a class="btn btn-danger btn disabled"> Reject </a>
-    
+	 <?php
+	 }
+	 else 
+	 {
+	 ?>
+     <a class="btn btn-success btn disabled">Approved</a>
+     <a class="btn btn-danger btn" href="rejectRequestWeb.php?id=<?=$row["id"]?>"> Reject </a>
+     <?php
+	 }
+	 ?>
      
      </div>
     </div>
   </div>
-   <div class="jumbotron viewblock">
-   <div class="container">
-    <div class="col-md-3">
-    <img src="images/boy3.png" class="img img-thumbnail" />
-    </div>
-    <div class="col-md-6">
-    <p>Kamal Peries</p>
-    <p>Class - 13B2</p>
-    <p>kamal@gmail.com</p>
-    </div>
-     <div class="col-md-3 btngroup">
-     
-      <a class="btn btn-primary">Pending</a>
-     <a class="btn btn-danger btn disabled"> Reject </a>
-    
-     
-     </div>
-    </div>
-  </div>
-    <div class="jumbotron viewblock">
-   <div class="container">
-    <div class="col-md-3">
-    <img src="images/boy1.png" class="img img-thumbnail" />
-    </div>
-    <div class="col-md-6">
-    <p>Namal mendis</p>
-    <p>Class - 13B2</p>
-    <p>Namal@gmail.com</p>
-    </div>
-     <div class="col-md-3 btngroup">
-     
-      <a class="btn btn-success btn disabled">Approved</a>
-     <a class="btn btn-danger btn" onclick="showalert()"> Reject </a>
-    
-     
-     </div>
-    </div>
-  </div>
+  <?php
+  
+  }
+  ?>
+
+  
   </div>
  </div>
 </body>

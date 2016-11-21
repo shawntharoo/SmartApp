@@ -6,8 +6,12 @@
                 <h2>{{name}}</h2>
                 <p>{{email}}</p>
                    <p>{{class}}</p>
-               <div class="row">
+               <div class="row" ng-if="check == 1">
                <button id="signup-button5" class="button button-primary  button-block" ng-click=follow() style="background-color: silver; width:80px; height:10px;">follow</button>
+               <!--<p>Follow</p>-->
+               </div>
+			   <div class="row" ng-if="check == 0">
+               <button id="signup-button5" class="button button-primary  button-block" ng-click=unfollow() style="background-color: silver; width:80px; height:10px;">unfollow</button>
                <!--<p>Follow</p>-->
                </div>
             </ion-item>

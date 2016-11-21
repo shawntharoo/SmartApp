@@ -150,7 +150,7 @@ background-color: #D6EAF8;
 
   <div class="c">
 
-                        <div class="rw" style="padding-left: 300px;padding-bottom: 15px">
+                        <div class="rw" style="padding-left: 180px;padding-bottom: 15px">
 
                           <div id="logo">
                             <span id="danger">
@@ -277,7 +277,7 @@ background-color: #D6EAF8;
                               <div class="floating-box">
                                   <div class="animated rotateInDownRight"> 
          
-                                        <img src="<?php echo $row['image']; ?>" alt="profile-sample5" class="img-circle" alt="Cinque Terre" width="190" height="200" />
+                                        <img src="<?php echo $row['image']; ?>" alt="profile-sample5" class="img-circle" alt="Cinque Terre" width="100" height="100" />
                                         <h2 style="text-align: center"><?php echo $row['group_name']; ?><span></h2>
                                         <h5 style="text-align: center"><?php echo $row['category']; ?> </h5>
                                         <h5 style="text-align: center"><?php echo $row['description']; ?> </h5>

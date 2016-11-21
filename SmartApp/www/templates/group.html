@@ -15,7 +15,7 @@
               <div class="list list-inset">
                 <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" ng-model="search" name="searchvalue" ng-required="true" ng-change="searchlist(search)" id="wordofthe" placeholder="Search">
+                <input type="text" ng-model="search" name="searchvalue" ng-required="true" ng-change="searchlist(search)" id="wordofthe" placeholder="Search" style="width: 310px;">
                 </label>
               </div>
         </form>
@@ -27,7 +27,7 @@
 
             <table style="width:100%;border="0"">
 
-  <!-- display sub groups which user is following -->  
+    <!-- display sub groups which user is following -->  
                 <tr ng-repeat="x in names" ng-switch on="$index % 3" ng-hide='{{names[$index].xx}}'>
                       
                             <td ng-switch-when="0">

@@ -1,19 +1,53 @@
 
- <ion-view title="Events Attending" id="events" style="background-color:#EEEEF1;">
+ <ion-view title="Events Attending" id="events" style="background-color:#EEEEF1;" cache-view="false">
 
  <ion-content padding="false" class="has-header">
+        
+    <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="doRefresh()">
+            </ion-refresher>
 
  <ion-list>
+     <div class="item item-divider" style="padding-top:3px; padding-bottom:3px">
+                    <div class="row">
+                        <div class="col">
+                            <label class="item-input">
+                            <i class="icon ion-search placeholder-icon"></i>
+                            <input type="text" placeholder="Search events" ng-model="event" ng-required="true" 
+                            ng-change="searchevent(event)">
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="item item-input item-select" style="height:32px;">
+                            <div class="input-label" >
+                                <h2>Upcoming Events</h2>
+                            </div>
+                            <select ng-model="item " ng-change="show(item)">
+                                <option>Upcoming</option>
+                                <option>Going</option>
+                                <option>Group</option>
+                                <option>Sub Groups</option>
+                                <option>Past</option>
+                            </select>
+                            </label>
+                        </div>
+
+                        
+                    </div>
+                
+                </div>
+ 
  <ion-item  ng-repeat="eventname in eventNames track by $index" > 
     <div class="item item-thumbnail-left" >
 
         <img src= {{eventname.image}} ng-click="descriptionpg()" style="width:30%;height:30%">
         <div class="row"><div class="col-75">
-        <button class="button button-clear button-positive" ng-click="descriptionpg()" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
+        <button class="button button-clear button-positive" ng-click="descriptionpg({{eventname.id}})" style="padding:0px ; margin:0px; font-size:18px; ">{{eventname.name}}</button>
                     <p> {{eventname.date}}</p>
                 </div>
                 <div class="col">
-                      <button class="button button-assertive item-button-right ion-ios-calendar-outline" ng-click="addEvent({{eventname.id}})"> + </button>
+                      <button class="button button-assertive item-button-right ion-ios-calendar-outline" ng-click="addEvent({{eventname.id}})" ng-show="{{eventname.merged}}">  </button>
                 </div>
         </div>
                     

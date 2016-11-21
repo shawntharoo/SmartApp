@@ -1,6 +1,39 @@
- <ion-view title="Sub group Events" id="events" style="background-color:#EEEEF1;">
+ <ion-view title="Sub group Events" id="events" style="background-color:#EEEEF1;" cache-view="false">
  <ion-content padding="false" class="has-header">
+  <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="doRefresh()">
+            </ion-refresher>
+
  <ion-list>
+        <div class="item item-divider" style="padding-top:3px; padding-bottom:3px">
+                    <div class="row">
+                        <div class="col">
+                            <label class="item-input">
+                            <i class="icon ion-search placeholder-icon"></i>
+                            <input type="text" placeholder="Search events" ng-model="event" ng-required="true" 
+                            ng-change="searchevent(event)">
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="item item-input item-select" style="height:32px;">
+                            <div class="input-label" >
+                                <h2>Upcoming Events</h2>
+                            </div>
+                            <select ng-model="item " ng-change="show(item)">
+                                <option>Upcoming</option>
+                                <option>Going</option>
+                                <option>Group</option>
+                                <option>Sub Groups</option>
+                                <option>Past</option>
+                            </select>
+                            </label>
+                        </div>
+
+                        
+                    </div>
+                
+                </div>
  <ion-item  ng-repeat="eventname in eventNames" > 
              <div class="item item-thumbnail-left" >
                     <img src= {{eventname.image}} ng-click="descriptionpg({{eventname.id}})">

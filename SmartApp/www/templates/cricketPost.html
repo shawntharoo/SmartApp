@@ -5,33 +5,39 @@
 <ion-nav-buttons side="right" ng-show="true"  >
 <div>
       <!-- button for the template for add a new post to the group -->
-        <button class="button button-icon ion-compose" ng-click="modal.show()">
-        </button>
+        <button class="button button-icon ion-compose" ng-click="modal.show()"></button>
 
   <!-- button for the settings -->    
-     <button ng-click="openPopover($event)" class="button button-icon button-clear ion-android-settings "></button>
+         <button ng-click="openPopover($event)" class="button button-icon button-clear ion-android-settings "></button>
 
-      </div>
+</div>
 
 </ion-nav-buttons>
 
+<ion-nav-buttons side="left" ng-show="true"  >
+     <div>
+<a href="#/page1/tab2/page-group">
 
+      <!-- button for the template for add a new post to the group -->
+        <button class="button button-icon ion-arrow-left-b"  >
+        </button>
+        </a>
+      </div>
+
+</ion-nav-buttons>
    
 <ion-content padding="true" class="cards-bg has-header">
-       
- <!-- group details in header -->  
+        <!-- group details in header -->  
          <div ng-repeat="x in gp">
-                    <img src="{{gp[$index].gi}}" width="100%" height="90" style="display: block; margin-left: auto; margin-right: auto;">
-                
+          <div ng-show="{{gp[$index].gi}}">
+          <img src="{{gp[$index].gi}}" style="display: block; margin-left: auto; margin-right: auto;height: 70px;width: 70px;min-height: 70px"> </div>         
+          <h1 id="cricket-heading1" style="color:#000000;text-align:center;">{{gp[$index].gn}}</h1>
+          <div id="cricket-markdown10" style="color:#000000;text-align:center;">
+           <p>{{gp[$index].gd}}
+           </p>
+           </div>
 
-                <h1 id="cricket-heading1" style="color:#000000;text-align:center;">{{gp[$index].gn}}</h1>
-
-                <div id="cricket-markdown10" style="color:#000000;text-align:center;">
-                    <p>{{gp[$index].gd}}
-                    </p>
-                </div>
-
-        </div>
+           </div>
 
  <!-- display posts in the sub group-->     
         <table>
@@ -41,38 +47,25 @@
                   <div class="item item-body">
                       <ion-list>
                          <div class="item item-avatar" ui-sref="profile">
-                          <img src="/img/download (3).jpg">
+                          <img src="http://teamsoft.tk/images/default.png">
                           <h2>{{names[$index].uname}}</h2>
                           <p>{{names[$index].date}}</p>
 
                         </div>
                       </ion-list>
-                       <div>
+                       <div ng-show='{{names[$index].image}}'>
                        <a id="cricketPost-button2" ng-click="description({{names[$index].id}})">   <img src="{{names[$index].image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;"></a>
                       </div>
-                                   <div id="cricketPost-markdown6" style="color:#0E0101;text-align:justify;">
-                          <p>{{names[$index].description}}</p>
+                       <div id="cricketPost-markdown6" style="color:#0E0101;text-align:justify;">
+                       <a id="cricketPost-button2" ng-click="description({{names[$index].id}})" >   <p>{{names[$index].description}}</p></a>
+                      </div>                   
+                      <ion-note item-right style="color: #C0C0C0 ">{{names[$index].time}}                      
                       </div>
-                     
-                      
-                      <ion-note item-right style="color: #C0C0C0 ">{{names[$index].time}}
-
-
-
-                      
-                  </div>
               </div>
               </td>
               </tr>
-
-
            </table>
-
-
-
-</ion-content>
-
-    
+</ion-content>    
 </ion-view>
 <style>
   .has-header ion-col {
@@ -93,8 +86,7 @@
             <label class="item item-input">
               <span class="input-label">Description</span>
               <input ng-model="dis" type="text">
-            </label>
-          
+            </label>          
             <label class="item item-input">
               <span class="input-label">Image</span>
               <input ng-model="img" type="text">
@@ -113,38 +105,30 @@
 <!-- Popover for settings-->
 <script id="my-popover.html" type="text/ng-template">
   <ion-popover-view>
-    <ion-header-bar>
+     <ion-header-bar>
       <h1 class="title">Settings</h1>
-    </ion-header-bar>
-    <ion-content>
-    <ion-list>
-    <ion-item item="item" href="#" class="item-remove-animate" ng-click="modal2.show()">
-          About
-                   
+     </ion-header-bar>
+        <ion-content>
+        <ion-list>
+        <ion-item item="item" href="#" class="item-remove-animate" ng-click="modal2.show()">
+              About                       
         </ion-item>
-            <ion-item item="item" href="#" class="item-remove-animate" ng-click="modal3.show()">
-          Filter
-                   
-        </ion-item>
-        <ion-item item="item" href="#" class="item-remove-animate">
-         Invite Friends
-                   
-        </ion-item>
+        <ion-item item="item" href="#" class="item-remove-animate" ng-click="modal3.show()">
+              Filter                      
+        </ion-item>           
         <ion-item item="item" href="#/page1/tab2/page-group" class="item-remove-animate" ng-click="unfollow()">
-          Unfollow
-                   
+              Unfollow                       
         </ion-item>
         <ion-item item="item" href="#" class="item-remove-animate" ng-click="closepopover()">
-         Close
-                   
+             Close                       
         </ion-item>
-      </ion-list>
-    </ion-content>
+        </ion-list>
+        </ion-content>
   </ion-popover-view>
 </script>
 
 
-<!-- Action sheet for about-->
+<!-- model for about-->
 <script id="templates/modal2.html" type="text/ng-template">
       <ion-modal-view>
         <ion-header-bar class="bar bar-header bar-positive">
@@ -153,15 +137,13 @@
         </ion-header-bar>
         <ion-content class="padding">
           <div class="list">
-          <div ng-repeat="x in gp">
-                 
+          <div ng-repeat="x in gp">                 
                 <div id="cricket-markdown10" style="color:#000000;text-align:center;">
                     <p>{{gp[$index].gd}}
                     </p>
                 </div>
-
-        </div>
-         <div class="list card">
+          </div>
+          <div class="list card">
                           <div class="item item-divider">Members</div>
                                <div class="item item-body">
                                     <ion-list>
@@ -169,7 +151,7 @@
                                             <tr>
                                                 <td> 
                                                   <div class="item item-avatar" ui-sref="profile">
-                                                  <img src="/img/download (3).jpg">
+                                                  <img src="http://teamsoft.tk/images/default.png">
                                                   <h2>{{n[$index].name}}</h2>                                          
                                                   </div>
                                        
@@ -179,9 +161,8 @@
                                               
                                      </ion-list>
                                 </div>
-                          </div>
-            
-          </div>
+                          </div>            
+           </div>
         </ion-content>
       </ion-modal-view>
     </script>
@@ -195,9 +176,7 @@
           <button class="button button-clear button-primary" ng-click="modal3hide()">Cancel</button>
         </ion-header-bar>
         <ion-content class="padding">
-          <div class="list">
-            
-
+          <div class="list">          
 <table>
   <tr ng-repeat="y in names2 track by $index" ng-switch on="$index % 1" >
             <td>
@@ -205,41 +184,29 @@
                   <div class="item item-body">
                       <ion-list>
                          <div class="item item-avatar" ui-sref="profile">
-                          <img src="/img/download (3).jpg">
+                          <img src="http://teamsoft.tk/images/default.png">
                           <h2>{{names2[$index].uname}}</h2>
                           <p>{{names2[$index].date}}</p>
-
                         </div>
                       </ion-list>
-                       <div>
+                       <div ng-show='{{names2[$index].image}}'>
                        <a id="cricketPost-button2" ng-click="description({{names2[$index].id}})" >   <img src="{{names2[$index].image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;"></a>
                       </div>
-                                   <div id="cricketPost-markdown6" style="color:#0E0101;text-align:justify;">
-                          <p>{{names2[$index].description}}</p>
-                      </div>
-                     
-                      
+                       <div id="cricketPost-markdown6" style="color:#0E0101;text-align:justify;">
+                      <a id="cricketPost-button2" ng-click="description({{names2[$index].id}})" >   <p>{{names2[$index].description}}</p></a>
+                      </div>                    
                       <ion-note item-right style="color: #C0C0C0 ">{{names2[$index].time}}
-
-
                       <!-- edit/delete a post -->
                          </ion-note>
-                      <div class="col text-right">
-                                    
-                        <button class="button button-icon button-clear ion-edit" side="right" ng-click="show({{names2[$index].id}})">
-                         
+                      <div class="col text-right">                                    
+                        <button class="button button-icon button-clear ion-edit" side="right" ng-click="show({{names2[$index].id}})">                         
                         </button>
-                      </div>
-
-                      
-                  </div>
+                      </div>                      
+                </div>
               </div>
               </td>
               </tr>
-
 </table>
-
-
           </div>
         </ion-content>
       </ion-modal-view>
@@ -257,15 +224,15 @@
           <div class="list">
             <label class="item item-input">
               <span class="input-label">Description</span>
-              <input type="text" value={{descriptions}}>
+              <input type="text" placeholder={{descriptions}} ng-model="dis">
             </label>
           
             <label class="item item-input">
               <span class="input-label">Image</span>
-              <input type="text" value="{{image}}">
+              <input type="text" placeholder="{{image}}" ng-model="img">
             </label>
               <button id="addAPost-button52"  class="button button-full button-positive">Choose image</button>
-            <button class="button button-full button-positive" ng-click="editpost(postid )">Edit</button>
+            <button class="button button-full button-positive" ng-click="editpost(dis,img,postid)">Edit</button>
           </div>
         </ion-content>
       </ion-modal-view>
@@ -285,7 +252,7 @@
             <div class="item item-body" ng-repeat="x in names">
                 <ion-list>
                     <div class="item item-avatar" ui-sref="profile">
-                   <img src="/img/download (3).jpg">
+                   <img src="http://teamsoft.tk/images/default.png">
                     <h2>{{names[$index].uname}}</h2>
                     <p>{{names[$index].date}}</p>
                      <ion-note item-right style="color: #C0C0C0 ">
@@ -293,7 +260,7 @@
                     </ion-note>
                   </div>
                 </ion-list>
-                <div>
+                <div ng-show='{{names[$index].image}}'>
                     <a style="display:block;" >
                         <img src="{{names[$index].image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
                     </a>
@@ -302,61 +269,49 @@
                     <p>{{names[$index].description}}</p>
                 </div>
                 <div class="item">
-  
-                    
-                   
- </div>
+                </div>
                
             </div>
         </div>
         <div class="list card">
-            <div class="item item-divider">Comments</div>
-                
-
-
-        <table  ng-repeat="x in comment track by $index"  ng-switch on="$index % 1">
-     
+            <div class="item item-divider">Comments</div>              
+        <table  ng-repeat="x in comment track by $index"  ng-switch on="$index % 1">     
             <td>
-            <div class="item item-body">
-              
+            <div class="item item-body">              
                 <ion-list>
-                     <div class="item item-avatar">
-                    <img src="img/ZkVgGracQROJWJljbptq_boy1.png">
+                <div class="item item-avatar">
+                    <img src="http://teamsoft.tk/images/default.png">
                     <h2>{{comment[$index].uname}}</h2>
-                    <p>{{comment[$index].comment}} </p>
-              
-                   <span ng-if="comment[$index].uid == comment[$index].lguser">
-       
-    
-                                    
-                    <button class="button button-icon button-clear ion-ios-trash" side="right" style="padding-left: 200px" ng-click="deletecomment({{comment[$index].cid}})">
-                         
+                    <p>{{comment[$index].comment}} </p> 
+
+                   <span ng-if="comment[$index].uid == comment[$index].lguser">     
+                        <button class="button button-icon button-clear ion-ios-trash" side="right" style="padding-left: 200px" ng-click="deletecomment({{comment[$index].cid}})">
                         </button>   
-                     </span>
-                    </div>
-              
-
-                   </ion-list>
-                
-            </div>
-
-                 </td>
-    
-           </table>
+                  </span>
+                  
+                </div>            
+            </ion-list>
+           </div>
+          </td>    
+          </table>
         </div>
 
         <form class="list">
         <div class="row"> 
-            <label class="item item-input" name="chat" style=";border-radius:7px 7px 7px 7px">
-           
-                <input type="text" data-clear-btn="true" placeholder="Type Here" style=";width: 300px" ng-model="comments">  
-
-            </label>
-        <a ng-click="addcomment(comments)"> <button class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff;padding-top: 10px"> 
-                </button></a>
-                
+           <label class="item-input-wrapper">
+              <i class="icon ion-ios7-search placeholder-icon"></i>             
+               <input type="text" data-clear-btn="true" placeholder="Type Comment" style="background-color:#eee6ff;width: 300px" ng-model="comments">    
+               </label>
+               <a ng-click="addcomment(comments)"> 
+                  <button class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff;padding-top: 10px" ng-show="comments.length">
+              <i class="icon"></i>                      
+                    </button></a>     
             </div>
         </form>
         </ion-content>
       </ion-modal-view>
     </script>
+
+ 
+
+

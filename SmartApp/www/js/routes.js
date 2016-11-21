@@ -9,7 +9,7 @@ angular.module('app.routes', ['ionicUIRouter'])
   $stateProvider
     
 .state('tabsController.mainprofile', {
-    url: '/mainprofile/:name:type',
+    url: '/mainprofile/:name',
     views: {
       'tab1': {
         templateUrl: 'templates/mainprofile.html',
@@ -18,7 +18,7 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   }) 
 .state('AdmintabsController.mainprofile', {
-    url: '/adminmainprofile/:name:type',
+    url: '/adminmainprofile/:name',
     views: {
       'tab1': {
         templateUrl: 'templates/mainprofile.html',
@@ -26,42 +26,6 @@ angular.module('app.routes', ['ionicUIRouter'])
       }
     }
   }) 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //sanda routes
 //Administrator related routes
@@ -174,27 +138,6 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
   //yik event start
     .state('tabsController.events', {
     url: '/events',
@@ -266,17 +209,17 @@ angular.module('app.routes', ['ionicUIRouter'])
       /page1/tab2/page3
   */
   .state('start', {
-    url: '/startPage',
+    url: '/page4',
     templateUrl: 'templates/start.html',
     controller: 'start'
   })
    .state('welcome', {
-    url: '/page4',
+    url: '/welcome',
     templateUrl: 'templates/welcome.html',
     controller: 'welcomeCtrl'
   })
   .state('login', {
-    url: '/page4',
+    url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'loginCtrl'
   })
@@ -377,6 +320,11 @@ angular.module('app.routes', ['ionicUIRouter'])
     templateUrl: 'templates/uploadphoto.html',
     controller: 'uploadCtrl'
   })
+  .state('timelineupload', {
+    url: '/timelineupload',
+    templateUrl: 'templates/timelineupload.html',
+    controller: 'timelineuploadCtrl'
+  })
   //yik routes
 
 .state('eventPage', {
@@ -443,6 +391,39 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'admineventdesc'
   })
 
+    .state('bdaynotification', {
+    url: '/bdaynotification',
+    
+        templateUrl: 'templates/bdaynotification.html',
+        controller: 'bdayCtrl'
+      
+  })
+
+    .state('createTemplate', {
+    url: '/createTemplate',
+    
+        templateUrl: 'templates/createTemplate.html',
+        controller: 'createTemplate'
+      
+  })
+
+    .state('templatedesc', {
+    url: '/templatedesc/:id',
+    
+        templateUrl: 'templates/templateDesc.html',
+        controller: 'templatedesc'
+      
+  })
+
+ .state('specialtemplatedesc', {
+    url: '/specialtemplatedesc/:id',
+    
+        templateUrl: 'templates/specialtemplateDesc.html',
+        controller: 'specialtemplatedesc'
+      
+  })
+
+
    .state('privatemsg', {
     url: '/messages',
     templateUrl: 'templates/privatemsg.html',
@@ -469,10 +450,16 @@ angular.module('app.routes', ['ionicUIRouter'])
 
     .state('calendar', {
     url: '/calendar',
-    templateUrl: 'templates/googlecalendar.html',
+    templateUrl: 'templates/nativeCalendar.html',
     controller: 'calendar'
   })
    
+     .state('googlecalendar', {
+    url: '/googlecalendar',
+    templateUrl: 'templates/googlecalendar.html',
+    controller: 'googlecalendar'
+  })
+
    .state('calcdet', {
     url: '/calendardetails',
     templateUrl: 'templates/calcDetail.html',
@@ -490,11 +477,17 @@ angular.module('app.routes', ['ionicUIRouter'])
   })
 
  
-  .state('adminGroup', {
-    url: '/page-group-admin',
-    templateUrl: 'templates/adminGroup.html',
-    controller: 'adminGroupCtrl'
-  })
+
+
+  .state('AdmintabsController.page8', {
+            url: '/page8',
+            views: {
+                'tab2': {
+                    templateUrl: 'templates/adminGroup.html',
+                    controller: 'adminGroupCtrl'
+                }
+            }
+        })
 
   
 
@@ -538,36 +531,8 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'NotificationsCtrl'
   })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+ 
 
 
 
@@ -754,34 +719,6 @@ angular.module('app.routes', ['ionicUIRouter'])
 
 
 //Sanda member routes end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

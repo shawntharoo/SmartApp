@@ -25,9 +25,16 @@
                 <label class="item item-input">
                     <input type="email" placeholder="Email" ng-model="email" name="email">
                 </label>
+                 <label class="item item-input">
+                     Date of Birth
+                      </label>
+                 <label class="item item-input">
+                    <input type="date" max="1977-12-31" placeholder="Name" ng-model="date" id="d_date">
+                    <span class="datepicker_label" style="pointer-events: none;"></span>
+                </label>
                  <div class="list">
 
-                
+                <!--
                      <div class="item item-divider">
                       Group
                       </div>
@@ -39,15 +46,19 @@
 
                      </ion-list>
 
-                   
+                   -->
 
 
                 </div>
 
             </ion-list>
 
-            <a id="signup-button5" class="button button-stable  button-block" ng-click="signup(name,class,email)" style="background-color: #000080;color: white">Sign up</a>
+            <a id="signup-button5" class="button button-stable  button-block" ng-click="signup(name,class,email,date)" style="background-color: #000080;color: white">Sign up</a>
              <button class="button button-block button-positive" ng-click="fbsignup()"> Signup with Facebook</button>
+                <a class="button button-block icon-left ion-social-google button-assertive" ng-click="googlesignup()">
+                Signup with Google
+        </a>
+
         </form>
     </ion-content>
 </ion-view>

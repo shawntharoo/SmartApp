@@ -9,6 +9,27 @@
    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
    <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   <script>
+      function check()
+   {
+    ok=true;
+    var p = document.forms["comadd"]["position"].value;
+      var q = document.forms["comadd"]["period"].value;
+
+ 
+    if (p =="SelectOne" ||q=="SelectOne")
+	{
+        alert("please fill the all fields");
+       ok = false;
+    }
+	else
+	{
+	 ok = true;
+	}
+
+	return ok;
+	}
+   </script>
 </head>
 
 <body>
@@ -68,49 +89,61 @@
 			    		<h3 class="panel-title"></h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form role="form" action="car_action.php" method="post" enctype="multipart/form-data">
+			    		<form role="form" name="comadd" action="committee_action.php" method="post" onsubmit="return check()">
 			    			    
                                   
                                    
 			    				    
 			    			<div class="form-group">
                                       
-			                       <label for="sel1">Name</label>
-                                        <select class="form-control" id="sel1">
-                                             <option>Select One</option>
-             								 <option>Saman</option>
-    										 <option>Kamal</option>
-   											
- 										 </select>
+			                       <label for="uname">User Name</label>
+                           
+							        <select class="form-control" id="uname" name="uname">
+
+                                <?php 
+                                 include("dbconnect.php");
+								 $sql= "SELECT email FROM user";
+								 $result=mysqli_query($con,$sql);
+                               while($row = mysqli_fetch_array($result))
+                             {
+                               echo "<option >" . $row['email'] . "</option>";
+                                }
+                                 ?>
+                           </select>
 			    					</div>
 			    				
 			    			
 
 			    			<div class="form-group">
                             <label for="weight">Position</label>
-			    				    <select class="form-control" id="clarity">
-                                              <option>Select One</option>
+			    				    <select class="form-control" id="position" name="position">
+                                              <option>SelectOne</option>
              								 <option>committe member</option>
     										 <option>class representative</option>
+											 <option>member</option>
+											 <option>admin</option>
    											 <option>president</option>
-   											 <option></option>
+   											
                                         
  										 </select>
 			    			</div>
                             	<div class="form-group">
                                      <label for="weight">Period</label>
-			    				    <select class="form-control" id="clarity">
-                                              <option>Select One</option>
-                                              <option></option> 
-             								 <option>2016-2017</option>
+			    				    <select class="form-control" id="period" name="period">
+                                              <option>SelectOne</option>
+                                             <option>2016-2017</option>
     										 <option>2017-2018</option>
    											 <option>2018-2019</option>
-   											 <option></option>
+             								
+   											
                                         
  										 </select>
                                
 			    			</div>
-			    		<input type="submit" value="ADD" class="btn btn-info btn-block butn">
+							  
+			    		<input type="submit" name="add" id="add" value="ADD" class="btn btn-info btn-block butnadd">
+						<input type="submit" name="update" id="update" value="UPDATE" class="btn btn-info btn-block butn">
+						<input type="submit" name="delete" id="delete" value="DELETE" class="btn btn-info btn-block butndel">
 			    		</form>
 			    	</div>
 	    		</div>

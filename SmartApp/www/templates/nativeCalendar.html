@@ -1,0 +1,33 @@
+ <ion-view title="My Calendar" style="background-color:#EEEEF1;">
+     <ion-content padding="false" class="has-header">
+ <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+ 
+
+ <div class="row">
+  <div class="col">
+		<button  ng-click="openCalendar()" class="button button-block button-balanced">Open Calendar
+   </button>
+  </div>
+  <div class="col">
+		<button  ng-click="googleCalendar()" class="button button-block button-assertive ion-social-google">
+   </button>
+  </div>
+   
+</div>
+
+      <div class="card" ng-repeat="event in events">
+          <div class="item item-divider">
+            {{event.title}}
+          </div>                    
+          <div class="item item-text-wrap">
+             {{ event.eventLocation }}
+           <p/>
+           <strong>When: {{ event.dtstart | date:'short' }}</strong>
+          </div>
+
+
+      </div>
+  </div>
+
+</ion-content>
+</ion-view>

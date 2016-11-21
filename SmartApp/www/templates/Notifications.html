@@ -1,41 +1,41 @@
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-<!--<script src="angular-route.min.js"></script>-->
-<script src="controllers.js"></script>
+
 
 <ion-view title="Notifications" id="page2" style="background-color:#d9d9d9;" ng-app="app">
+
+   
   <ion-nav-buttons side="left" ng-show="true">
-    <button class="button button-icon ion-arrow-left-b" ui-sref="tabsController.mainprofile">
+    <button class="button button-icon ion-arrow-left-b" ui-sref="tabsController.grouppost">
     </button>
     </ion-nav-buttons>
-    <ion-content padding="true" class="has-header">
-    <div ng-controller="showAdvertiesementCtrl">
-        <ion-list>
+
+
+
+<ion-content padding="true" class="has-header">
+                 
+                      
+                           
+                                     <table>
+                                          <tr ng-repeat="x in names track by $index"  ng-switch on="$index % 1" ng-show='{{names[$index].count}}'>
+                                            <td ng-switch-when="0"> 
+                                              <div class="item item-body" style="width: 355px;">
+                                             <div ng-show="{{names[$index].image}}">
+                                             <a class="button button-icon icon" href="#/page-follow-cricket" style="font-size:12px; color: #004d4d" ng-click="getid(names[$index].gid,names[$index].nid)">
+          <img src="{{names[$index].image}}" style="height: 40px;width: 40px;min-height: 40px"></div>     Admin newly created {{names[$index].grpname}} group.
+        </a> 
+                                              </div>
+                                                           
+                                                 <p></p>        
+                                             </td>
+                                         </tr>
+                                    </table>       
+                              
+                             
+                        </div>
+                    </div>     
+                       
+     </ion-list>
+  </div>
             
-            <div class="item item-body">
-          <button id="cricketPost-button3" class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff" ui-sref="football">"Football" new group is created.</button>
-       <h4 style="padding-left: 250px">May 03, 2016</h4>
-          </div>
-          <p></p>
-            <div class="item item-body">
-          <button id="cricketPost-button3" class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff" ui-sref="football">"Canada" new group is created.</button>
-      <h4 style="padding-left: 250px">May 02, 2016</h4>
-          </div>
-          <p></p>
-            <div class="item item-body">
-          <button id="cricketPost-button3" class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff" ui-sref="football">New event named "Lawyers Get" has been organized.</button>
-      <h4 style="padding-left: 250px">May 02, 2016</h4>
-          </div>
-          <p></p>
-            <div class="item item-body">
-          <button id="cricketPost-button3" class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff" ui-sref="football">New event named "New Year Festival" has been organized</button>
-      <h4 style="padding-left: 250px">April 05, 2016</h4>
-          </div>
-          <p></p>
-            <div class="item item-body">
-          <button id="cricketPost-button3" class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff" ui-sref="football">New event named "Doctors Get" has been organized</button>
-      <h4 style="padding-left: 250px">April 05, 2016</h4>
-          </div>
-        </ion-list>
-        </div>
-    </ion-content>
+ 
+  </ion-content>
 </ion-view>

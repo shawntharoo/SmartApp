@@ -11,7 +11,7 @@ $gname =  $_POST['gname'];
      	
 		$dis =  $_POST['dis'];
 		$list = $_POST['list'];
-		$destination="images/".$_FILES["input"]["name"];
+		$destination="imag/".$_FILES["input"]["name"];
 		$source = $_FILES["input"]["tmp_name"];
 		$input=$destination;
 		$done = move_uploaded_file($source,$destination);

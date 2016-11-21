@@ -1,3 +1,61 @@
+<?php
+$db_host = 'localhost';
+$db_user = 'root';
+$db_pwd = '';
+
+$database = 'smartapp';
+$table = 'user';
+
+if (!mysql_connect($db_host, $db_user, $db_pwd))
+    die("Can't connect to database");
+
+if (!mysql_select_db($database))
+    die("Can't select database");
+
+
+    if(isset($_POST['submit']))
+    {
+         $fname = $_FILES['sel_file']['name'];
+         echo 'upload file name: '.$fname.' ';
+         $chk_ext = explode(".",$fname);
+        
+         if(strtolower(end($chk_ext)) == "csv")
+         {
+        
+             $filename = $_FILES['sel_file']['tmp_name'];
+             $handle = fopen($filename, "r");
+       
+             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+             {
+                $sql = "INSERT into user(name,email,password,class,dob,address,contact_no,
+				home,profession,office_address,office_phone,office_email,role,request,requestdate,reset,image) 
+				values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','$data[6]','$data[7]','$data[8]'
+				,'$data[9]','$data[10]','$data[11]','$data[12]','$data[13]','$data[14]','$data[15]','$data[16]')";
+                mysql_query($sql) or die(mysql_error());
+             }
+       
+             fclose($handle);
+             
+                 echo '<script language="javascript">';
+                 echo 'alert("Successfully Imported")';
+                 echo '</script>';
+ 
+   header( "refresh:0.00001; url=populate.php" );
+            
+         }
+         else
+         {
+            
+             echo '<script language="javascript">';
+             echo 'alert("Incorrect File.Please choose a file")';
+             echo '</script>';
+			            
+ 
+   header( "refresh:0.00001; url=populate.php" );
+            
+         }   
+    }
+ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -73,11 +131,12 @@
 			    		<h3 class="panel-title">Browse The Excel Sheet here!</h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form role="form" action="" method="post" onsubmit="inputalert()">
-			    			<div class="row">
+			    		<form action='<?php echo $_SERVER["PHP_SELF"];?>' method='post' enctype="multipart/form-data">
+       
+		<div class="row">
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			                <input type="file" name="data" id="data" class="form-control input-sm" placeholder="Excel">
+			                <input type="file" name="sel_file" id="sel_file" class="form-control input-sm" placeholder="Excel">
 			    					</div>
 			    				</div>
 			    				
@@ -87,9 +146,8 @@
 			    			
 			    			</div>
 			    			
-			    			<input type="submit" value="ADD" class="btn btn-info btn-block butn">
-			    		
-			    		</form>
+			    			<input type='submit' name='submit' value='SUBMIT' class="btn btn-info btn-block butn">
+    </form>
 			    	</div>
 	    		</div>
     		</div>

@@ -1,4 +1,4 @@
-<ion-view title="Profile" id="mainprofile">
+<ion-view title="Profile" id="mainprofile" cache-view="false">
   <ion-nav-buttons side="right" ng-show="true">
     <button class="button button-icon button-clear ion-ios-world-outline" ui-sref="tabsController2.buissnessCard">
     </button>
@@ -54,7 +54,15 @@
                     <i class="icon ion-arrow-right-b"></i>
 
                   </a>
+                    <div class="item item-divider" ng-show={{admin}}>
+                   
+                   </div>
+                    <a class="item item-icon-left item-icon-right" href="#/bdaynotification"  ng-show={{admin}}>
+                   <i class="icon ion-android-notifications"></i>
+                    Notifications
+                    <i class="icon ion-arrow-right-b"></i>
 
+                  </a>
 
           
             <div class="item item-divider">

@@ -36,16 +36,17 @@
 
             <label class="item item-select">
                 <span class="input-label">Sub Group</span>
-                <select ng-model="group">
-                    <option ng-value="default">Select One</option>
-                    <option ng-value="IT">IT</option>
-                    <option ng-value="Doctors">Doctors</option>
-                    <option ng-value="Business">Business</option>
+                <select ng-model="group" ng-required="true">
+                    <option>Select One</option>
+                    <option>IT</option>
+                    <option>Doctor</option>
+                    <option>Businessman</option>
+					<option>Engineer</option>-
 
                 </select>
             </label>
             </div>
-        <button id="page-button4" class="button button-positive button-block" ng-click="searchGroup(name,class,group)" ui-sref="group_result" >Search</button>
+        <button id="page-button4" class="button button-positive button-block" ng-click="searchGroup(group)" ui-sref="group_result" >Search</button>
         
         </form>
     </ion-content>

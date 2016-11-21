@@ -6,8 +6,17 @@
      
        <button class="button button-icon button-clear ion-email" ng-click="addMsg()"  style="padding-right:5px;">
        </button>
-       <button class="button button-icon button-clear ion-android-notifications-none " ng-click="addNotif()" >
+
+  
+
+       <div ng-repeat="x in notif" ng-show='{{notif[$index].count}}'>
+       <button class="button button-icon button-clear ion-android-notifications ">
+       </button> 
+       <button class="button button-float"  ng-click="modal2.show()" style=" text-align: center;font-weight: normal;font-size: 14px;line-height: 10px;" ng-show='{{notif[$index].count}}'>
+        <i class="icon">{{notif[$index].count}}</i>
        </button>
+       </div>
+    
 </ion-nav-buttons>
 
  <!-- add a new post to the batch group-->     
@@ -41,6 +50,24 @@
     </a>
   </div>
  
+ <!-- the birthday template -->
+   <div class="list card" ng-show="bdayBit">
+    <div class="item item-body" >
+      <center><h2 style="margin-bottom:10px;"> <b>{{wish}}</b> </h2></center>
+    <img class="full-image" src="http://teamsoft.tk/images/{{Bdayimg}}">
+    
+    </div>
+
+ </div>
+ <!-- the special event template -->
+  <div class="list card" ng-show="spBit" >
+    <div class="item item-body" >
+      <center><h2 style="margin-bottom:10px;"> <b>{{spText}}</b> </h2></center>
+    <img class="full-image" src="http://teamsoft.tk/images/{{spImage}}">
+    
+    </div>
+
+ </div>
        
  <!-- display group posts -->  
 
@@ -51,27 +78,101 @@
                   <div class="item item-body">
                       <ion-list>
                          <div class="item item-avatar" ui-sref="profile">
-                          <img src="/img/download (3).jpg">
+                          <img src="http://teamsoft.tk/images/default.png">
                           <h2>{{names[$index].name}}</h2>
                           <p>{{names[$index].date}}</p>
                         </div>
                       </ion-list>
-                      <a id="cricketPost-button2" style="display:block;" ng-click="description({{names[$index].pid}})">
-                              <img src="{{names[$index].image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
-                          </a>
-                                   <div id="cricketPost-markdown6" style="color:#0E0101;text-align:justify;">
-                          <p>{{names[$index].description}}</p>
+                     
+                          <div id="cricketPost-markdown6" style="color:#0E0101;text-align:justify;">
+                           <a id="cricketPost-button2" ng-click="description({{names[$index].pid}})" > <p>{{names[$index].description}}</p></a>
                     </div>
                      
                       
                       <ion-note item-right style="color: #C0C0C0 ">{{names[$index].time}}
                       </ion-note>
+                      <div class="col text-right" ng-if="names[$index].lgid == names[$index].uid">                                    
+                        <button class="button button-icon button-clear ion-edit" side="right" ng-click="show({{names[$index].pid}})">                         
+                        </button>
+                      </div>  
                   </div>
               </div>
           </td>
         </tr>
 </table>
     </ion-content>
+
+      <!-- template for edit a post-->
+
+<script id="templates/modal4.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-positive">
+          <h1 class="title">Edit Post</h1>
+          <button class="button button-clear button-primary" ng-click="modal4hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Description</span>
+              <input type="text" placeholder={{descriptions}} ng-model="dis">
+            </label>
+          
+            <label class="item item-input">
+              <span class="input-label">Image</span>
+              <input type="text" placeholder="{{image}}" ng-model="img">
+            </label>
+              <button id="addAPost-button52"  class="button button-full button-positive">Choose image</button>
+            <button class="button button-full button-positive" ng-click="editpost(dis,img,postid)">Edit</button>
+          </div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
+
+<!--notification model-->
+
+<script id="templates/modal2.html" type="text/ng-template">
+      <ion-modal-view style="background-color:#d9d9d9;padding: 10px">
+        <ion-header-bar class="bar bar-header bar-positive">
+          <h1 class="title">Notifications</h1>
+          <button class="button button-clear button-primary" ng-click="modal2hide()">Cancel</button>
+        </ion-header-bar>       
+        <ion-content padding="true">
+               <table>
+               <tr ng-repeat="x in names2 track by $index"  ng-switch on="$index % 1">
+               <td> 
+               <div class="item item-body" style="width: 377px">
+               <a class="button button-icon icon" href="#/page-follow-cricket" style="font-size:12px; color: #004d4d" ng-click="getid(names2[$index].gid,names2[$index].nid)">
+               <img src="{{names2[$index].image}}" style="height: 40px;width: 40px;min-height: 40px">     Admin newly created {{names2[$index].grpname}} group.
+               </a> 
+               </div>
+               <p></p>        
+               </td>
+               </tr>
+
+               
+               <tr ng-repeat="evname in names3 track by $index"  ng-switch on="$index % 1">
+                <td> 
+               <div class="item item-body" style="width: 377px">
+               <a class="button button-icon icon" href="#/description/{{evname.eid}}" style="font-size:12px; color: #004d4d" ng-click="geteventid({{evname.nid}})">
+               <img src="" style="height: 40px;width: 40px;min-height: 40px"> Admin created an event named {{evname.ename}} in your {{evname.gname}} group.
+               </a> 
+               </div>
+
+               <p></p>        
+               </td>
+               </tr>
+
+               </table> 
+               </div>
+               </div>     
+                       
+         </ion-list>
+       </div>           
+      </ion-content>
+      </ion-modal-view>
+</script>
+
 
 <!--ng-click= "modal.show({{names[$index].pid}})" -->
 
@@ -86,7 +187,7 @@
             <div class="item item-body" ng-repeat="x in names">
                 <ion-list>
                     <div class="item item-avatar" ui-sref="profile">
-                   <img src="/img/download (3).jpg">
+                   <img src="http://teamsoft.tk/images/default.png">
                     <h2>{{names[$index].uname}}</h2>
                     <p>{{names[$index].date}}</p>
                      <ion-note item-right style="color: #C0C0C0 ">
@@ -94,7 +195,7 @@
                     </ion-note>
                   </div>
                 </ion-list>
-                <div>
+                <div ng-show='{{names[$index].image}}'>
                     <a style="display:block;" >
                         <img src="{{names[$index].image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
                     </a>
@@ -122,7 +223,7 @@
               
                 <ion-list>
                      <div class="item item-avatar">
-                    <img src="img/ZkVgGracQROJWJljbptq_boy1.png">
+                    <img src="http://teamsoft.tk/images/default.png">
                     <h2>{{comment[$index].uname}}</h2>
                     <p>{{comment[$index].comment}} </p>
               
@@ -147,14 +248,19 @@
         </div>
 
         <form class="list">
-        <div class="row"> 
-            <label class="item item-input" name="chat" style=";border-radius:7px 7px 7px 7px">
-           
-                <input type="text" data-clear-btn="true" placeholder="Type Here" style=";width: 300px" ng-model="comments">  
-
-            </label>
-        <a ng-click="addcomment(comments)"> <button class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff;padding-top: 10px"> 
-                </button></a>
+        <div class="row">         
+                <label class="item-input-wrapper">
+                  <i class="icon ion-ios7-search placeholder-icon"></i>              
+                     
+                <input type="text" data-clear-btn="true" placeholder="Type Comment" style="background-color:#eee6ff;width: 300px" ng-model="comments">    
+               
+                    </label>
+                       <a ng-click="addcomment(comments)"> 
+                       <button class="ion-icon ion-android-send button-primary button-clear item-left" style="color: #3366ff;padding-top: 10px" ng-show="comments.length">
+                      
+                      <i class="icon"></i>
+                      
+                    </button></a> 
                 
             </div>
         </form>
@@ -192,4 +298,46 @@
   .has-header ion-col {
     padding: 10;
   }
+
+
+
+
+
+
+
+.button-float{
+  $assertive :#ff0000;
+  background: #ff0000 !important;
+  color:black !important;
+  z-index: 12 !important;
+  position: absolute !important; 
+  bottom: 15px !important;
+  top: 0.2px !important;
+  right: 1px !important;
+ min-height: 3px !important;
+ min-width: 3px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transition: 0.2s linear !important;
+  transition: 0.2s linear !important;
+  -webkit-transition-property: -webkit-transform, all !important;
+  transition-property: transform, all !important;
+
+
+}
+
+.button-float:hover{
+  $assertive :#ff0000;
+  -webkit-transform: translate3d(0, -1px, 0)  !important;
+  transform: translate3d(0, -1px, 0) !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4) !important;
+    background: darken($assertive, 10%) !important;
+}
+
+
+
+
+
 </style>

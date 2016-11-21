@@ -1,50 +1,28 @@
-<ion-view title="My Profile" id="timeline">
+<ion-view title="My Profile" id="timeline" cache-view="false">
     <ion-nav-buttons side="left" ng-show="true">
     <button class="button button-icon button-clear ion-arrow-left-b" ng-click="navigate()">
     Back</button>
     </ion-nav-buttons>
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <ion-list>
-            <ion-item class="item-thumbnail-left">
-                <img src="img/boy1.png">
-                <h2>Saman Perera</h2>
-                <p>saman@gmail.com</p>
            
                 
-            </ion-item>
-               <div class="item item-input-inset">
-                 <div class="col col-80"> 
-                 <label class="item-input-wrapper">
-
-                 <input type="file" placeholder="post">
-                 </label>
-                 </div>
-              <a class="button icon-right button-small button-positive"> POST </a>
-             </div>
-
-             <label class="item item-input item-select" >
-                     <div class="input-label">
-                      Visibility
-                      </div>
-                     <select ng-model="class">
-                     <option>OnlyMe</option>
-                     <option>Public</option>
-                     <option>Favourite</option>
-                     </select>
-              </label>
-      
+              <a class="button button-outline button-positive button-block" ui-sref="timelineupload"> POST </a>
+            
               <div class="item item-divider">
               Timeline
               </div>
-            <div class="item item-body">
-   
-             <p>
-              Relaxing sunday
-             </p>
-             <img class="full-image" src="img/sunday1.jpg">
-
-            </div>
-       
+                <ion-item class="item" ng-repeat="x in timeline"> 
+                <p>
+                {{x.title}}
+                {{x.time}}
+                </p>
+                <img class="full-image" src="http://teamsoft.tk/{{x.image}}">
+                <button class="button button-outline  button-assertive button-block" ng-click="deletepost({{x.id}})">
+                Delete
+                </button>
+          
+        </ion-item>
         
         </ion-list>
      </ion-content>

@@ -76,25 +76,42 @@ document.write(x);
 
   </div>
   <div class="container">
+  <?php
+   	 include("dbconnect.php");
+$sql='select * from useralterations';
+$result=mysqli_query($con,$sql);
+while($row=mysqli_fetch_array($result))
+  {
+  $id=$row['uid'];
+ 
+  $sql2="select * from user where id=$id ";
+  $result2=mysqli_query($con,$sql2);
+  if($row2=mysqli_fetch_array($result2))
+  {
+   $img=$row2['image'];
+  }
+  ?>
   <div class="jumbotron viewblock">
    <div class="container">
     <div class="col-md-3">
-    <img src="images/boy1.png" class="img img-thumbnail" />
+    <img src=<?= $img ?> class="img img-thumbnail" />
     </div>
     <div class="col-md-6">
-    <p>Saman Perera</p>
-    <p>Class - 13B</p>
-    <p>Saman@gmail.com</p>
-    <label>Nickname : </label> : pina
+    <p><?php echo $row["name"]?></p>
+
+    <p><?php echo $row["email"]?></p>
+   
      </div>
      <div class="col-md-3 btngroup">
-     
-       <a class="btn btn-success btn">Approve</a>
-    
+     <a class="btn btn-success btn" href="allowalter.php?id=<?=$row["uid"]?>&name=<?=$row["name"]?>&email=<?=$row["email"]?>">Approve</a>
+     <a class="btn btn-danger btn" href="rejectalter.php?id=<?=$row["uid"]?>"> Reject </a>
      
      </div>
     </div>
   </div>
+  <?php
+  }
+  ?>
    <div class="jumbotron viewblock">
    <div class="container">
     <div class="col-md-3">

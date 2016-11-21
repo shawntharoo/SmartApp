@@ -2,7 +2,7 @@
 /* CSS Document */
 #maincontainer
 {
-
+	
 background-color:#009
 }
 .box1
@@ -18,7 +18,7 @@ padding-left:0;
 color:#FC0;
 
 font:"MS Serif", "New York", serif;
-
+	
 }
 #middlecontainer
 {
@@ -26,7 +26,7 @@ font:"MS Serif", "New York", serif;
 .navbar_margin
 {
 padding-left:.3em;
-padding-right:.3em;
+padding-right:.3em;	
 border-left:1px solid black;
 }
 .navbar-default
@@ -51,7 +51,12 @@ border-left:1px solid black;
 
 	margin-top: 7px;
 }
+.butnadd
+{
 
-.thumbnail {
-    background: red;
+	background-color:#00cc00;
+}
+.butndel
+{
+background-color:#ff0000;
 }
