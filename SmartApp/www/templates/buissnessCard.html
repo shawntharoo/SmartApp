@@ -1,4 +1,8 @@
 <ion-view title="Business Card" style="background-color: white" id="buissnessCard" class="pane">
+    <ion-nav-buttons side="right" ng-show="true">
+      <button class="button button-icon button-clear ion-ios-world-outline" ui-sref="tabsController.mainprofile">
+      </button>
+    </ion-nav-buttons>
   <ion-content padding="true" class="has-header">
   <ion-refresher
     pulling-text="Pull to refresh..."
@@ -22,7 +26,7 @@
         </div>
         <ion-list>
           <i class="item item-thumbnail">
-          <img src="{{x2}}" width="200px" height="200px" align="center"></i>
+          <img src="http://teamsoft.tk/{{x2}}" width="200px" height="200px" align="center"></i>
           <ion-item class="item-divider">Professional Details</ion-item>
           <div class="item item-icon-left">
             <i class="icon ion-ios-person"></i>

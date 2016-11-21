@@ -83,7 +83,7 @@ angular.module('app.routes', ['ionicUIRouter'])
       cache: false,
       views: {
           'tab7': {
-              templateUrl: 'templates/AdminSpecialList.html',
+              templateUrl: 'templates/adminSpecialList.html',
               controller: 'AdminSpecialListCtrl'
              }
       }

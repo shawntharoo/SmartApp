@@ -859,7 +859,7 @@ $state.transitionTo("profile");
                       $scope.email=record.email;
                       $scope.image=record.image;
 
-                      var x = window.localStorage.setItem("image",$scope.image);
+                      window.localStorage.setItem("image",$scope.image);
 
                }
             });
@@ -3159,7 +3159,7 @@ var UID=window.localStorage.getItem("id");
     //Show Business card Details Controller
     .controller('buissnessCardCtrl', function($scope, $http, $state, $ionicActionSheet, $timeout) {
         var CusID = window.localStorage.getItem("id");
-        var x1 = window.localStorage.getItem("x");
+        var x1 = window.localStorage.getItem("image");
         //Get the business card details from the table
         $http.get("http://teamsoft.tk/showBuissnessCard.php?CusID=" +
             CusID).success(function(data) {
